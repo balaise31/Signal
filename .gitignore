@@ -241,5 +241,18 @@ TSWLatexianTemp*
 # generated if using elsarticle.cls
 *.spl
 
+#pycharm et consorts
 *.idea
-*.ipynb_checkpoints
+
+#apple putaing de fichiers
+*.DS_Store
+
+#backups jumyter notebook
+*.ipynb_checkpoints/
+
+#backups emacs
+*~
+
+#python files
+*.pyc
+>>>>>>> 0ea8669cc8c1f61439465680a1b75a373975a155
