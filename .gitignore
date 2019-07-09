@@ -240,3 +240,15 @@ TSWLatexianTemp*
 
 # generated if using elsarticle.cls
 *.spl
+
+#apple putaing de fichiers
+*.DS_Store
+
+#backups jumyter notebook
+*.ipynb_checkpoints/
+
+#backups emacs
+*~
+
+#python files
+*.pyc
