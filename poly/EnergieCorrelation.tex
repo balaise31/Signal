@@ -190,6 +190,12 @@
 		\centering
 		\includegraphics[scale=0.6]{images/convo_vs_correlation.jpg} 
 	\end{figure}
+
+	On peut exprimer le calcul de la corrélation sous la forme d'un produit de convolution, comme le montre \ref{equiv_conv_corr} :
+	\begin{equation}\label{equiv_conv_corr}
+	R(\tau)=\int_{-\infty}^{+\infty}s_{1}(t)s_{2}^{*}(t-\tau)dt=s_{1}*s_{2}(-\tau)
+	\end{equation}
+
 	
 	Si on analyse ce que représente la corrélation, on remarque qu'elle est équivalente à une puissance. En effet, il s'agit d'une grandeur quadratique. Nous verrons plus loin qu'elle est intimement liée à la puissance des signaux.
 	
@@ -201,6 +207,10 @@
 		\item si le calcul s'effectue sur le même signal ($s_{1} = s_{2}$), on parlera d'autocorrélation que l'on notera $R_{11}(\tau)$
 		\item si le calcul s'effectue sur deux signaux différents, on parlera d'intercorrélation que l'on notera $R_{12}(\tau)$.
 	\end{itemize}
+
+	L'autocorrélation permet de mesurer le degré de ressemblance d'un signal à une version décalée de lui-même. Comme nous allons le voir plus tard dans le cours, cela peut avoir de nombreuses applications comme la détection de composantes périodiques.
+	
+	L'intercorrélation permet de mesurer le degré de ressemblance entre deux signaux. Si deux signaux sont complètement décorrélés, alors leur intercorrélation restera minimale quelle que soit le décalage temporel que l'on applique entre ces deux signaux.
 	
 	
 	\subsection{Propriétés de la corrélation}
@@ -245,20 +255,52 @@
 	 
 	La fonction d'autocorrélation peut présenter des maxima en d'autres points d'abscisse, notamment lorsque le signal est périodique. Pour un signal de période $T_{0}$, alors la fonction d'autocorrélation présente des maxima pour toutes les valeurs d'abscisse $\tau = k\cdot T_{0}$ où k est un nombre entier. Cette propriété fournit un des intérêt pratique de la fonction d'autocorrélation et de son tracé : elle permet de repérer des composantes périodiques dans un signal complexe. 
 	
-	Cet outil d'analyse du signal est illustré dans l'exemple présenté à la figure \ref{Fig:Mesure_autocorr_1}. Un signal est relevé. Ce signal aléatoire semble contenir une composante périodique, de période proche de 20 ms. Sa présence est clairement révélée par le tracé de la fonction d'autocorrélation du signal. On observe un fort pic à l'origine, lié à la présence d'un bruit aléatoire important, et des maxima locaux se répétant périodiquement, tous les $\tau=k \cdot 0.02$ avec $k \in \mathbb{Z}$. Ce résultat confirme la présence d'une composante périodique de 20 ms cachée dans le signal.
+	Cet outil d'analyse du signal est illustré dans les deux exemples ci-dessous.\\
+	
+	\underline{\textbf{Exemple 1 : bruit blanc}}
+	
+	Par définition, un bruit est un signal aléatoire. Sa valeur à tout instant reste imprédictible. Selon la loi statistique suivie par ses valeurs, il peut être qualifié différemment : par exemple, on parle de bruit blanc gaussien si ses valeurs suivent une loi normale. Le qualificatif blanc vient de la répartition spectrale du signal, qui est quasiment constante quelle que soit la fréquence. Nous le comprendrons à la partie IV.
+	Considérons un bruit blanc gaussien centré, c'est-à-dire de moyenne nulle. L'écart-type des valeurs prises par le signal est noté $\sigma$. Ce signal constitue un excellent modèle du bruit d'origine thermique affectant les composants électroniques et les récepteurs radio.
+	
+	La figure ci-dessous présente un exemple de simulation d'un tel bruit, avec $\sigma=0.5$ : en haut, le relevé temporel; en bas la fonction d'autocorrélation calculée. On remarque que la fonction d'autocorrélation est minimale pour toutes les valeurs de $\tau$, sauf pour $\tau = 0$. L'amplitude de ce pic est égale à $\sigma^{2} = 0.25$. Comme le signal est totalement aléatoire, comparer ce signal à une version décalée de lui-même revient à comparer deux signaux décorrélés. L'autocorrélation d'un tel signal peut être modélisée par une impulsion de Dirac.
 	
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[scale=0.6]{images/Mesure_autocorr_1.jpg}
+		\includegraphics[scale=0.6]{images/Mesure_autocorr_bruit.png}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.6]{images/Mesure_autocorr_bruit_2.png}
+		\caption{Bruit blanc gaussien ($\sigma = 0.5$)(en haut) et sa fonction d'autocorrélation (en bas)}	
+		\label{Fig:Mesure_autocorr_bruit} 
+	\end{figure}
+	
+	
+	
+
+	
+	
+	
+	
+	\textbf{\underline{Exemple 2 : extraction d'une composante périodique dans un signal bruité}}
+	
+	 Dans ce deuxième exemple, on considère un signal fortement affecté par un bruit blanc gaussien. Un relevé temporel de ce signal est présenté à la figure \ref{Fig:Mesure_autocorr_1}. Ce signal aléatoire semble contenir une composante périodique, de période proche de 20 ms. Sa présence est clairement révélée par le tracé de la fonction d'autocorrélation du signal. On retrouve un fort pic à l'origine, lié à la présence du bruit blanc gaussien. Mais on ne retrouve pas une fonction d'autocorrélation minimale pour $|\tau| > 0$. On observe des maxima locaux se répétant périodiquement, tous les $\tau=k \cdot 0.02$ avec $k \in \mathbb{Z}$. Ce résultat confirme la présence d'une composante périodique de 20 ms cachée dans le signal.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.6]{images/Mesure_autocorr_1.png}
 	\end{figure}
 
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[scale=0.6]{images/Mesure_autocorr_2.jpg}
+		\includegraphics[scale=0.6]{images/Mesure_autocorr_2.png}
 		\caption{Signal bruité (en haut) et analyse par son autocorrélation (en bas)}	
 		\label{Fig:Mesure_autocorr_1} 
 	\end{figure}
 	
+	\subsubsection{Valeur minimale}
+	Puisqu'on aborde la question de la valeur maximale, on pourrait s'interroger sur la valeur minimale prise par la fonction de corrélation. On atteint un minimum lorsque les deux fonctions à comparer ne présentent aucune corrélation. On serait tenté de penser que la valeur prise par la corrélation est nulle, mais ce n'est pas le cas. La fonction de corrélation dépend aussi des amplitudes et des valeurs moyennes prises par les signaux. Comparer les valeurs minimales et maximales de deux fonctions de corrélation, calculées sur des signaux différents, avec des amplitudes et moyennes différentes, n'a pas de sens. Cela n'indiquera pas qu'il y a plus de corrélation dans un cas que dans un autre.
 	
 	
 	\subsection{Exemples}
@@ -384,7 +426,8 @@
 	\vspace{1\baselineskip}
 	
 	
-	\textbf{\underline{Exemple :}} 
+	\textbf{\underline{Exemple 1 : spectre de puissance d'un signal cosinusoïdal}} \\
+	
 	Reprenons l'exemple du signal cosinusoïdale $s(t)=Acos(2\pi f_{0}t+\theta_{0})$ dont on a calculé l'autocorrélation précédemment. Calculez sa transformée de Fourier puis son spectre de puissance. En déduire la fonction d'autocorrélation.
 	
 	La transformée de Fourier de la fonction s(t) donne :
@@ -403,7 +446,21 @@
 	R_{11}(\tau)=\int_{-\infty}^{+\infty}S_{F}(f)e^{j2\pi f\tau}df=\frac{A^{2}}{2}cos(2\pi f_{0}\tau)
 	\end{equation*}
 	
-	On retrouve l'expression de la fonction d'autocorrélation déterminée dans la partie III.4. 
+	On retrouve l'expression de la fonction d'autocorrélation déterminée dans la partie III.4. \\
+	
+	
+	\textbf{\underline{Exemple 2 : densité spectrale de puissance d'un bruit blanc gaussien}} \\
+	
+	Reprenons l'exemple du bruit blanc gaussien abordé dans la partie III.3. Sa fonction d'autocorrélation est assimilable à une impulsion de Dirac : $R_{bruit}(\tau) = \sigma^{2}\delta(\tau)$. Comme ce signal est aléatoire, on ne peut pas définir son évolution temporelle par une fonction mathématique. Le calcul de sa transformée de Fourier est donc impossible. Cependant, puisqu'on dispose de sa fonction d'autocorrélation, on peut extraire sa densité spectrale de puissance à l'aide du théorème de Wiener-Khintchine.
+	\begin{equation}\label{}
+	S_{bruit}(f)=	\int_{-\infty}^{+\infty}R_{bruit}(\tau)e^{-j2\pi f\tau}d\tau
+	\end{equation}
+	\begin{equation}\label{}
+	S_{bruit}(f)=	\int_{-\infty}^{+\infty}\sigma^{2}\delta(\tau)e^{-j2\pi f\tau}d\tau=\sigma^{2}
+	\end{equation}
+	
+	La transformée de Fourier d'une impulsion de Dirac étant une fonction constante en fonction de la fréquence, le spectre d'un bruit blanc est constant quelle que soit la fréquence. On remarque que la puissance moyenne d'un tel signal est infinie et est donc irréalisable dans la pratique. Le bruit blanc que nous avons généré dans la partie III.3 n'est qu'un modèle, discret et à support temporel borné, dont l'énergie est forcément finie.
+	
 	
 	\vspace{1\baselineskip}
 	
