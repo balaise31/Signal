@@ -1,5 +1,5 @@
 \chapter{Séries de Fourier - Analyse fréquentielle des signaux périodiques}
-
+\label{chap:series}
 	Ce chapitre, ainsi que le suivant, s'intéresse à un outil fondamental de l'analyse des signaux : l'analyse fréquentielle ou spectrale. Elle vise à étudier un signal (temporel par exemple) dans un domaine dit dual : le domaine fréquentiel. En d'autres termes, cette analyse suppose que le signal peut être décomposé en une somme de fonctions périodiques, en l'occurrence (co)sinusoïdales. L'analyse fréquentielle consiste à analyser l'évolution de l'amplitude et la phase de ces termes en fonction de leur fréquence. Cette décomposition offre un autre "éclairage" du signal permettant de déceler des caractéristiques qui passent inaperçues dans le domaine temporel. La base de cette décomposition est appelée développement en série de Fourier. Cependant, il ne s'applique qu'aux fonctions périodiques. Dans le chapitre suivant, nous verrons que le développement en série de Fourier peut être modifié pour s'étendre à toutes les autres fonctions : on parlera alors de transformée de Fourier
 	Le but de ces deux chapitres est de présenter les fondements théoriques de ces outils, leurs propriétés ainsi que leur mise en œuvre. L'analyse fréquentielle s'applique à toutes les fonctions, tous les signaux, réels ou complexes. Nous ne intéresserons ici qu'aux signaux à valeurs réels formant la majorité des cas d'étude en pratique.
 	
@@ -618,18 +618,15 @@
 	\end{equation}
 
 	
-	Nous reviendrons sur les questions de puissance et d'énergie des signaux au chapitre 8.
+	Nous reviendrons sur les questions de puissance et d'énergie des signaux au chapitre 8.\\
 	
 	
 	\section{Exercices}
 	
-	\subsubsection{Exercice 1}
-	Déterminez, sans intégration, les coefficients de Fourier, sous les formes trigonométriques et complexes, des fonctions périodiques décrites ci-dessous.\\
-	
-	\subsubsection{Exercice 2}
+\subsubsection{Exercice 1}
 	Développez en série de Fourier la fonction $f(t)=|sin(\alpha t)|$ avec $\alpha \in \mathbb{R^{*}}$ donné.\\
 	
-	\subsubsection{Exercice 3}
+	\subsubsection{Exercice 2}
 	Soit f : $\mathbb{R} \rightarrow \mathbb{R}$ une fonction périodique de période 4, impaire, définie par :
 	\begin{equation*}
 	f(t)=\left \{
@@ -641,9 +638,10 @@
 	\end{equation*}
 	
 	1. Dessinez le graphe de f. Calculer f(7), f($\frac{9}{2})$ et $f(\frac{11}{2})$.\\
+	
 	2. Calculez les coefficients de Fourier de f.\\
 	
-	\subsubsection{Exercice 4}
+	\subsubsection{Exercice 3}
 	Cet exercice est en relation avec l'exemple d'un signal rectangulaire présenté dans le cours. On considère un signal de même nature, de moyenne nulle, de période $T_1$, de fréquence $f_1$ et	d'amplitude 2, représenté par la fonction périodique s. On s'intéresse au produit scalaire de la fonction s avec les fonctions de base $cos(n\omega_{1}t)$, n = 1, 2 et 3 où $\omega_{1} = \frac{2\pi}{T_1}$. La figure ci-dessous représente sur la première ligne, dans la colonne de gauche, le graphe de la fonction s superposé à celui de	la fonction $cos(\omega_{1}t)$ et dans la colonne de droite, le graphe du produit scalaire $s(t)cos(\omega_{1}t)$ sur
 	une période $T_1$. Sur la deuxième ligne sont représentés, dans la colonne de gauche, le graphe de la fonction s superposé à celui de la fonction $cos(2\omega_{1}t)$ et dans la colonne de droite, le graphe	du produit scalaire $s(t)cos(2\omega_{1}t)$ sur une période $T_1$. Sur la troisième ligne sont représentés,
 	dans la colonne de gauche, le graphe de la fonction s superposé à celui de la fonction  $cos(3\omega_{1}t)$	et dans la colonne de droite, le graphe du produit scalaire $s(t)cos(3\omega_{1}t)$ sur une période $T_1$. 
@@ -664,7 +662,7 @@
 	cours et en utilisant les résultats établis dans le cours, calculer les coefficients de Fourier exponentiels de s. Donner la série de Fourier associée à s.\\
 	
 	
-	\subsubsection{Exercice 5}
+	\subsubsection{Exercice 4}
 	Soit f une fonction définie sur l'intervalle [0;1] de $\mathbb{R}$ par f(t) = t.
 	On considère f comme la restriction de fonctions $g_i$ avec i = 1, 23 3, périodiques et continues par morceaux sur $\mathbb{R}$. On se propose de déterminer plusieurs expressions de f sur ]0;1[ à partir du développement en séries de Fourier des fonctions $g_i$.\\
 	
@@ -697,7 +695,7 @@
 		d. En déduire le développement en série de Fourier de f sur ]0;1[.\\
 	
 	
-	\subsubsection{Exercice 6}
+	\subsubsection{Exercice 5}
 	
 	Donnez la définition, la période et la parité des fonctions représentées par les séries de Fourier suivantes et tracez leur graphe :\\
 	
@@ -708,7 +706,7 @@
 	3. $	\pi-\sum_{n=1}^{+\infty}\frac{2}{n}sin(nt)=t~~avec~t~\in[0;2\pi]$ \\
 	
 	
-	\subsubsection{Exercice 7 - Signal de forme exponentielle}
+	\subsubsection{Exercice 6 - Signal de forme exponentielle}
 	On considère la fonction x définie sur $\mathbb{R}$ à valeurs dans $\mathbb{R}$, de période $T=2\pi$, par $x(t)=e^{t}$ pour $t\in [0;+2\pi[$.\\
 	
 	1. Tracez la fonction x(t) sur l'intervalle $[-2\pi;+2\pi[$.\\
@@ -726,7 +724,7 @@
 
 	
 	
-	\subsubsection{Exercice 8 - Modulation à largeur d'impulsion}
+	\subsubsection{Exercice 7 - Modulation à largeur d'impulsion}
 	La modulation à largeur d'impulsion (MLI) (Pulse Width Modulation PWM en anglais) est une technique couramment utilisée en électronique pour générer un signal analogique à partir d'un signal discret à deux états. Le signal MLI $s_p(t)$ est constitué d'une suite périodique, de période T, d'impulsions $s_i(t)$ définie par :
 	\begin{equation*}
 	s_i(t)=\left \{
@@ -759,6 +757,7 @@
 	
 	7. Quelle est l'énergie du signal en sortie du filtre ? En déduire le rendement du système de conversion ?\\
 	
+
 
 	
 	

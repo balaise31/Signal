@@ -1,5 +1,5 @@
 \chapter{Filtrage}
-
+\label{chap:filtrage}
 	Un filtre est un dispositif visant à modifier le contenu fréquentiel d'un signal. Une utilisation courante est de supprimer d'un signal des composantes fréquentielles indésirables (ou, inversement, d'extraire de ce signal certaines composantes utiles). La figure \ref{Fig:Effet_filtre_bruit} illustre ce type d'utilisation. Le graphique à gauche présente un signal digital corrompu par un bruit aléatoire important. La présence de ce bruit est indésirable, car il risque de corrompre l'interprétation de ce signal. Afin d'éviter toute erreur de décodage de ce signal, un filtre doit être synthétisé pour supprimer ce bruit, sans trop affecter le signal utile. L'utilisation d'un filtre est possible si le signal utile et le bruit occupent des bandes de fréquence différentes. Un outil d'analyse du signal, comme la transformée de Fourier que nous aborderons dans le prochain chapitre, permet de déterminer l'occupation fréquentielle des signaux.
 	
 	Dans l'exemple ci-dessous, le signal utile à une fréquence de 2.5 Hz. Le spectre du signal bruité est présenté à la figure \ref{Fig:Effet_filtre_bruit_spectre}. Le spectre du signal utile se situe principalement en dessous de 100 Hz. Le bruit est large bande, mais présente quatre composantes spectrales importantes au-dessus de 100 Hz. Pour éliminer ce bruit, on dimensionne un filtre passe-bas d'ordre 2 avec une fréquence de coupure de 100 Hz. L'effet de ce filtre sur le signal est présenté sur la partie droite de la figure \ref{Fig:Effet_filtre_bruit}. La présence du bruit n'est quasiment plus discernable. Comme le confirme le spectre du signal filtré (\ref{Fig:Effet_filtre_bruit_spectre}), le filtre a fortement atténué le spectre au-dessus de 100 Hz. On peut remarquer que le filtre affecte aussi la forme du signal utile, mais cet effet reste négligeable et ne contribuera pas à une erreur d'interprétation du signal.  
@@ -454,49 +454,63 @@
 	\section{Exercices }
 	
 	\subsubsection{Exercice 1}
-	Soit les fonctions de transfert suivantes. Esquissez le diagramme de Bode (asymptotique). 
+	Soit les fonctions de transfert suivantes (en fonction de la fréquence). Esquissez le diagramme de Bode (asymptotique). \\
 	
-	\vspace{1\baselineskip}
+	a. $G(\omega)=\frac{j10\omega}{(1+j\frac{\omega}{628})(1+j\frac{\omega}{6280})(1+j\frac{\omega}{31400})}$\\
 	
-	\subsubsection{Exercice 2}
-	Soit les 3 tracés asymptotiques dans le diagramme de Bode présentés ci-dessous. Proposez les fonctions de transfert possibles pour chacune d'elles. 
+	b. $H(p)=\frac{p^3+4p^2+4p}{p^2+60p+800}$\\
 	
-	\vspace{1\baselineskip}
+	c. $Z(p)=\frac{p+10}{p(p+100)}$\\
+	
+	
+	\subsubsection{Exercice 2 - Circuit bouchon}
+	On considère le filtre décrit ci-dessous.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.5]{images/circuit_bouchon.png} 
+	\end{figure}
+	
+	1. Etablir la fonction de transfert $H(\omega)$ de ce filtre. On la mettra sous la forme : $H(\omega)=\frac{2\alpha \omega}{2\alpha \omega+j(\omega^{2}-\omega_{0}^{2})}$. Précisez la signification des termes $\alpha$ et $\omega_{0}$.\\
+	
+	2. Tracez 'évolution de la fonction de transfert de ce filtre en fonction de la fréquence. Précisez l'amplitude maximale et les fréquences caractéristiques. Quelle est la nature du filtre ? Son ordre ?\\
+	
+	3. Déterminez la bande passante à 3 dB de ce filtre. \\
+	
+	4. Déterminez le facteur de qualité de ce filtre. \\
+	
+	5. On fixe L = $100 \mu H$. On souhaite réaliser un filtre centré sur 200 kHz avec une bande passante de 10 kHz. Proposez des valeurs pour R et C.\\
+	
 	
 	\subsubsection{Exercice 3}
-	On considère le filtre ci-dessous (CRRC). On utilisera les valeurs suivantes
+	On considère le filtre passif ci-dessous. On utilisera les valeurs suivantes : R = 1 k$\Omega$ et C = 100 nF.
 	
-	1. Déterminez l'expression littérale de la fonction de transfert. Précisez les pôles et les zéros du filtre.
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.5]{images/Exo_4_3.png} 
+	\end{figure}
 	
-	2. On se place en régime harmonique. Quelles sont les fréquences de coupure ?
 	
-	3. Tracez le diagramme de Bode de ce filtre. Quelle est la nature du filtre ? Précisez son ordre.
+	1. Déterminez l'expression de l'impédance formée par le circuit en aval du premier condensateur.\\
 	
-	4. Parmi les trois signaux suivants (harmoniques), lesquelles sont transmis en sortie de filtre ?
+	2. En déduire la relation entre les tensions $e$ et $s_1$. En déduire la fonction de transfert du circuit.\\
 	
-	\vspace{1\baselineskip}
+	3. Quels sont les pôles et les zéros du filtre. \\
+	
+	4. Pour les valeurs de R et de C, tracez le diagramme asymptotique de Bode. Précisez les fréquences de coupure du filtre, ainsi que la nature du filtre.\\
 	
 	\subsubsection{Exercice 4}
-	On dispose d'un filtre dont la fonction de transfert est donnée par : (filtre passe-bas)
-	On l'attaque avec les signaux suivants : impulsion de largeur tau, puis une impulsion avec une montée Tr.
+	On dispose d'un filtre dont la fonction de transfert est donnée par $H(p)=\frac{1}{(p+2)^2}$.
 	
-	1. Tracez la réponse fréquentielle du filtre dans le diagramme de Bode. Quelle est la nature du filtre ?
+	1. Tracez la réponse fréquentielle du filtre dans le diagramme de Bode. Quelle est la nature du filtre ? Quelle est sa fréquence de coupure ? \\
 	
-	2. Pour les deux signaux d'excitation, déterminez l'expression théorique de la réponse du filtre.
+	2. Calculez sa réponse impulsionnelle.\\
 	
-	3. Déterminez l'amplitude du signal de sortie pour tau = xx puis yy. Même chos avec Tr = xx et yy. Conclure sur l'effet du filtre sur des signaux impulsionnels.
+	3. Calculez sa réponse indicielle. \\
 	
-	On peut faire un exo similaire avec un filtre passe-haut.
+
 	
-	\vspace{1\baselineskip}
-	
-	\subsubsection{Exercice 5 - Calcul d'une impédance}
-	
-	Ce serait bien de faire un exo de filtrage avec comme entrée I et comme sortie V, ce qui donnerait une unité au filtre : impédance.
-	
-	\vspace{1\baselineskip}
-	
-	\subsubsection{Exercice 6 - Mise en cascade de filtres}
+	\subsubsection{Exercice 5 - Mise en cascade de filtres}
 	On considère le filtre RC ci-dessous.
 	
 	\begin{figure}[h!]
@@ -511,26 +525,3 @@
 	3. On cascade deux filtres de ce type. Calculez sa fonction de transfert $H_{2}(f)$.
 	
 	4. Vérifie t-on $H_{2}(f)=H(f)^{2}$ ? Pourquoi ?
-	
-	\vspace{1\baselineskip}
-	
-	
-	
-	
-	Un exercice sur un filtre déphaseur pur (passe-tout). 
-	
-	
-	Exo bêbête : on présente le contenu fréquentiel d'un signal bruité, en indiquant la bande passante du signal utile. Quel type de filtre faut-il mettre ? Quel ordre ?
-	
-	Filtre anti-glitch
-	Soit une perturbation, que l'on considère d'abord comme une impulsion rectangulaire de largeur tau, puis d'impulsion double exponentielle.
-	
-	Dans chaque cas, calculez la transformée de Laplace des signaux.
-	
-	Exprimez l'amplitude maximale atteinte par ces signaux.
-	
-	On applique un filtre passe-bas d'ordre 1 d'expression … Calculez la réponse du filtre dans le domaine de Laplace pour les deux types d'excitation.
-	
-	Calculez les amplitudes maximales des signaux. Quelle est l'influence du paramètre Fc.
-	
-	Ce filtre est placée sur une ligne de signal électrique de fréquence … Proposez une valeur pour Fc.

@@ -1,6 +1,5 @@
-	
 \chapter{Transformée de Laplace}	
-	
+\label{chap:laplace}	
 	Dans le chapitre précédent, nous avons identifié deux manières de calculer la réponse transitoire d'un système :
 	\begin{itemize}
 		\item soit en considérant la réponse impulsionnelle et en calculant le produit de convolution dans le domaine temporel
@@ -251,13 +250,13 @@
 	\subsection{Intégration temporelle}
 	Considérons le cas d'une fonction f(t) continue non nulle pour t > 0. La transformée de Laplace de son intégrale de 0 à t est donnée par :
 	\begin{equation}\label{key}
-		soit~F(p)=\mathcal{L}[f(t)]~alors~\mathcal{L}[\int_{0}^{+\infty}f(t)dt]=\frac{F(p)}{p}	
+		soit~F(p)=\mathcal{L}[f(t)]~alors~\mathcal{L}[\int_{0}^{t}f(\tau)d\tau]=\frac{F(p)}{p}	
 	\end{equation}
 	
 	Cette propriété peut s'étendre au cas où on intègre N fois la fonction temporelle :
 	
 	\begin{equation}\label{key}
-	soit~F(p)=\mathcal{L}[f(t)]~alors~\mathcal{L}[\int ... \int_{0}^{+\infty}f(t)dt]=\frac{F(p)}{p^{n}}	
+	soit~F(p)=\mathcal{L}[f(t)]~alors~\mathcal{L}[\int ... \int_{0}^{t}f(\tau)d\tau]=\frac{F(p)}{p^{n}}	
 	\end{equation}
 	
 
@@ -659,7 +658,7 @@
 	
 	\subsubsection{Exercice 4}
 	
-	On reprend l'exercice 6 du chapitre 2.
+	On reprend l'exercice 8 du chapitre 2.
 
 	
 	\begin{figure}[h!]
@@ -708,7 +707,7 @@
 	C_{m} = C_{R} = J\frac{d\Omega}{dt}+f\Omega
 	\end{equation*}	
 	Nous cherchons à déterminer la vitesse de rotation du moteur en fonction de l'excitation appliquée.
-	Dans cet exercice, on considèrera les valeurs suivantes : r=0.2 $\Omega$, L = 0.2 mH, K = 0.057 N.m/A, J = $650.10^{-7}~kg.m^{2}$, f = $2.3.10^{-5}~N.m/rad.s^{-1}$. On suppose que le moteur est initialement à l'arrêt.
+	Dans cet exercice, on considèrera les valeurs suivantes : r=0.2 $\Omega$, L = 0.2 mH, K = 0.057 N.m/A, J = $650.10^{-7}~kg.m^{2}$, f = $2.3.10^{-5}~N.m/rad.s^{-1}$. On suppose que le moteur est initialement à l'arrêt.\\
 	
 	a. Etablir l'équation différentielle reliant la vitesse de rotation et l'excitation $U_{C}$ du moteur.
 	
@@ -719,9 +718,6 @@
 	d. En t = 0, on applique une commande de type échelon unitaire d'amplitude $Uc_{0}$ = 10 V. Déterminez l'expression du profil temporel de la vitesse angulaire.
 	
 	e. Esquissez le profil temporel de la vitesse angulaire. En régime permanent, quelle est la valeur de la vitesse ? 
-	
-	
-	
 	
 		
 	\newpage

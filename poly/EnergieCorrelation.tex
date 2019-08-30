@@ -515,21 +515,35 @@
 	
 	\subsubsection{Exercice 1}
 	
-	Calculez la puissance moyenne ou l'énergie totale des signaux suivants ...
+	Calculez la puissance moyenne et l'énergie totale des signaux suivants :\\
 	
-	\vspace{1\baselineskip}
+	a. $\frac{1}{2}+sin(4\pi t)~,~~t \in \mathbb{R}$\\
 	
-		\subsubsection{Exercice 2}
+	b. $cos(\pi t)~,~~t \in [0;3]$\\
 	
-	On dispose d'un spectre d'amplitude de raies après un système. Le signal est à support non borné.
+	c. $e^{-t}u(t)~,~~t \in \mathbb{R}$\\
 	
-	1. quelle est la nature du signal ? Précisez les caractéristiques du signal.
+	d. Une impulsion rectangulaire, d'amplitude pic-à-pic de 2 V, centrée en -1 V, d'une durée de 0.1 s et de période égale à 1 s.\\
 	
-	2. quelle est la puissance moyenne du signal ?
 	
-	3. Ce signal traverse un système. On relève le spectre en amplitude en sortie de ce système (figure ci-dessous). Le système est-il linéaire ?
+	\subsubsection{Exercice 2}
 	
-	4. Calculez la puissance moyenne du signal en sortie du système.
+	\subsubsection{Exercice 2 - Distorsion harmonique}
+	
+	On dispose du relevé d'un spectre d'amplitude de raies en sortie d'un système (figure ci-dessous à gauche). Le signal est à support temporel non borné.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.5]{images/Exo_8_2.png} 
+	\end{figure}
+	
+	1. Quelle est la nature du signal ? Précisez ses caractéristiques.\\
+	
+	2. Quelle est la puissance moyenne du signal ?\\
+	
+	3. Ce signal traverse un système. On relève le spectre en amplitude en sortie de ce système (figure ci-dessous à droite). Le système est-il linéaire ?\\
+	
+	4. Calculez la puissance moyenne du signal en sortie du système.\\
 	
 	5. On définit le taux de distorsion harmonique total (\textit{Total Harmonic Distortion} (THD) en anglais) du signal par rapport au fondamental à l'aide de l'équation suivante :
 	\begin{equation*}
@@ -588,6 +602,43 @@
 	5. Calculez la puissance moyenne du signal d'entrée. En déduire celle du signal de sortie.
 	
 	\vspace{1\baselineskip}	
+	
+	\subsubsection{Exercice 5 - Détection de discontinuité}
+	
+	On considère un signal x(t) avec plusieurs discontinuités, par exemple : $x(t)=u(t)-2u(t-4)+u(t-6)$. On se propose de trouver une méthode basée sur un calcul d'intercorrélation pour détecter la position de ces discontinuités. On utilise comme signal de détection la fonction $y(t)=sin(2\pi t)(u(t)-u(t-1))$.\\
+	
+	1. Esquissez l'allure des signaux x(t) et y(t).\\
+	
+	2. Déterminez l'expression de l'intercorrélation $R_{xy}(\tau)$ entre les signaux x(t) et y(t).Tracez son évolution temporelle. Les discontinuités sont-elles détectées ? Peut-on détecter leur polarité ?\\
+	
+	3. On choisit un nouveau signal de détection : $y(t)=sin(2\pi \frac{t}{8})(u(t)-u(t-4))$. Reprendre la question précédente. Comment améliorer la précision de la détection ? \\
+	
+	4. Le dispositif de détection est-il sensible au bruit ?\\
+	
+	\vspace{1\baselineskip}	
+	
+	\subsubsection{Exercice 6 - Radar}
+	
+	La figure ci-dessous illustre le principe de détection d'une cible par le traitement d'un écho radar, et l'estimation de sa distance.
+	
+	Le radar transmet un signal connu, noté u(t), qui se propage à une vitesse v. Son autocorrélation $R_{u}(\tau)$ est connu. Si un obstacle intercepte ce signal, il en réfléchit une partie. Celle-ci repart en arrière et atteint le radar un temps $t_{1}$ après son émission. Le radar mesure alors l'écho du signal u(t), noté x(t). Celui-ci est la superposition d'une version atténuée du signal u(t) (on supposera l'atténuation constante et on la notera a) et d'un bruit b(t), lié au bruit de mesure et aux interférences électromagnétiques externes.\\
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.5]{images/TD_8_6.png} 
+	\end{figure}
+	
+	1. Proposez une relation entre les signaux x(t), u(t) et b(t).\\
+	
+	2. Calculez le produit de convolution : $x(t)*u(-t)$.\\
+	
+	3. Exprimez l'intercorrélation entre les signaux u(t) et x(t). Exprimez-la en fonction d'autres termes de corrélation.\\
+	
+	4. Que devient cette expression si le signal de bruit est faiblement corrélé avec le signal u(t) ?\\
+	
+	5. Proposez une méthode d'estimation de la distance de la cible à partir de la mesure de l'écho du signal radar.\\
+	
+	6. Quelles propriétés doit vérifier le signal u(t) pour améliorer la précision de la détection ?
 	
 	
 	

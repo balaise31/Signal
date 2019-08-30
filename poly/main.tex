@@ -12,8 +12,8 @@
 %-------------------------------------------------------------------------
 %	TABLE OF CONTENTS
 %-------------------------------------------------------------------------
-%\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with \usechapterimagetrue
-\chapterimage{poly/Pictures/chapter_head_2.pdf} % Table of contents heading image
+\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with \usechapterimagetrue
+%\chapterimage{poly/Pictures/chapter_head_2.pdf} % Table of contents heading image
 \pagestyle{empty} % Disable headers and footers for the following pages
 \tableofcontents % Print the table of contents itself
 \cleardoublepage % Forces the first chapter to start on an odd page so it's on the right side of the book
@@ -22,9 +22,10 @@
 %-------------------------------------------------------------------------
 %	CHAPITRES
 %-------------------------------------------------------------------------
-
 \input{poly/introduction.tex}	
 \cleardoublepage
+\usechapterimagetrue
+\chapterimage{poly/Pictures/linear_response.png} % Table of contents heading
 \input{poly/systemes_lti.tex}
 \cleardoublepage
 \chapterimage{poly/Pictures/portrait_charge_bouilly_laplace.png} % Table of contents heading image
@@ -32,7 +33,8 @@
 \cleardoublepage
 \input{poly/filtrage.tex}
 \cleardoublepage
-\chapterimage{poly/Pictures/Legendre_and_Fourier_recadre.png} %
+\usechapterimagetrue
+\chapterimage{poly/Pictures/interpretation-musicale.png} % Table of contents heading 
 \input{poly/Serie_Fourier.tex}
 \cleardoublepage
 \chapterimage{poly/Pictures/Legendre_and_Fourier_recadre.png} % Table of contents heading image
@@ -45,6 +47,6 @@
 %-------------------------------------------------------------------------
 %	ANNEXES
 %-------------------------------------------------------------------------
-\input{poly/annexe_complexe.tex}
+%\input{poly/annexe_complexe.tex}
 
 \end{document}

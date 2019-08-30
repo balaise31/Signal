@@ -1,5 +1,5 @@
-\chapter{Analyse des systèmes et des signaux dans le domaine temporel}
-	
+\chapter{Analyse dans le domaine temporel}
+\label{chap:temporel}
 	Jusque-là, nous avons principalement calculé la réponse de systèmes LTI en passant par le domaine fréquentiel, en utilisant les notions de fonctions de transfert, de transformée de Fourier et de Laplace. Cette approche permettait de calculer facilement cette réponse.
 	Tous les calculs auraient pu être effectué en restant dans le domaine temporel à partir de la réponse impulsionnelle du système, que nous avions introduite au chapitre 2. Nous l'avions laissé de côté momentanément car son utilisation passait par un calcul relativement complexe, appelé produit de convolution. Nous allons le détailler dans ce chapitre.
 	Nous pourrions croire que nous sommes en train de présenter un nouvel outil pour analyser l'effet d'un même système LTI. Nous allons voir au contraire que les concepts de fonction de transfert et de réponse impulsionnelle sont intimement liées.
@@ -312,79 +312,100 @@
 	
 	\section{Exercices}
 	
-		\subsubsection{Exercice 1}
+	\subsubsection{Exercice 1}
 	
-	Déduire les réponses impulsionnelles de système à partir de transformée de Fourier, Laplace et de réponse indicielle
+	Déduire les réponses impulsionnelles des systèmes décrits par les fonctions ci-dessous :\\
+	a. $G(p)=\frac{1}{p(p+2)}+\frac{1}{2}(\frac{e^{4}}{p+2}-\frac{1}{p})e^{-2p}$ \\
+	b. $H(j\omega)=\frac{2j\omega}{2+j\omega}$\\
+	c. $a(t)=t^{2}u(t)$ où a(t) est la réponse indicielle \\
+	d. $a(t)=u(t)(2-e^{-t})$ où a(t) est la réponse indicielle\\
 	
 	\subsubsection{Exercice 2}
 	
-	On considère les fonctions h(t) et x(t) dont le profil est représenté ci-dessous.
+	Calculez les produits de convolution suivants : \\
+	a. $e(t)=u*u(t)$ avec $t \in \mathbb{R}$\\
+	b. $f(t)=sin(t)*\Pi_{2a}(t)$ avec $t \in \mathbb{R}$\\
+	c. $g(t)=cos(t)*\Pi_{2a}(t)$ avec $t \in \mathbb{R}$\\
+	d. $h(t)=\Pi_{2a}(t)*e^{-bt}$ avec $t \in \mathbb{R}$\\
+	e. $m(t)=(\delta(t-1)-\delta(t-2))*(u(t+1)-u(t-1))$ avec $t \in \mathbb{R}$\\
+	
+	\subsubsection{Exercice 3}
+	
+	On considère les fonctions h(t) et x(t) dont le profil est représenté ci-dessous.\\
 	\begin{figure}[h!]
 		\centering
 		\includegraphics[scale=0.5]{images/Courbes_TD_Convolution_2.jpg} 
 	\end{figure}
 	
-	1. Proposez une expression mathématique pour ces deux fonctions.
+	1. Proposez une expression mathématique pour ces deux fonctions.\\
 	
-	2. On note y(t) le résultat du produit de convolution de x(t) et h(t). Déterminez l'expression de y(t) en calculant directement le produit de convolution. Tracez l'allure de cette fonction.
+	2. On note y(t) le résultat du produit de convolution de x(t) et h(t). Déterminez l'expression de y(t) en calculant directement le produit de convolution. Tracez l'allure de cette fonction.\\
 	
-	3. En utilisant la transformée de Laplace, vérifiez la validité du résultat précédent.
+	3. En utilisant la transformée de Laplace, vérifiez la validité du résultat précédent.\\
 	
-	4. Même chose en utilisant la transformée de Fourier.
-
-	
-	\vspace{1\baselineskip}
-	
-	\subsubsection{Exercice 3 - Convolution de spectre}
-	
-	On considère deux signaux, définis par les fonctions $f_{1}(t) = cos(\omega_{1}t) et f_{2} = cos(\omega_{2}t)$. 
-	
-	1. Déterminez l'expression du spectre du signal $f(t)=f_{1}(t)\cdot f_{2}(t)$ (on prendra $\omega_{1} > \omega_{2}$). Représentez le graphiquement.
-	
-	2. Même chose avec $f_{2}(t) = sin(\omega_{2}t)$.
-	
-	3. Même chose avec $f_{2}(t) = sinc(t)$.
-	
-	4. Conclure sur l'effet de la multiplication par un signal sinusoïdal.
-	
-	\vspace{1\baselineskip}
-	
+	4. Même chose en utilisant la transformée de Fourier.\\
 	
 	\subsubsection{Exercice 4}
+	On considère un filtre linéaire à temps invariant dont la fonction de transfert est donnée par $H(\omega)=\frac{j\omega}{1+j\omega}$. \\
 	
-	On considère la fonction porte $\pi_{[-a;a]}(t)=\pi(t)$ avec $a \in \mathbb{R^{*}}$.
+	1. On l'excite à l'aide d'un signal échelon. Calculez la réponse du filtre en utilisant sa réponse impulsionnelle. Esquissez sa forme temporelle.\\
 	
-	1. Calculez le produit de convolution $s(t)=\pi(t)*\pi(t)$.
+	2. Même question si on excite le filtre à partir du signal $e(t)=u(t)-u(t-2)$.\\
+
+
 	
-	2. Calculez la transformée de Fourier $\Pi(f)$ de la fonction $\pi(t)$. En déduire l'expression de la transformée de Fourier S(f) de la fonction s(t).
+	\subsubsection{Exercice 5 - Convolution de spectre}
 	
-	3. Soit le signal $l(t)=\pi(t) \cdot \pi(t)$. Calculez la transformée de Fourier L(f) de la fonction l(t).
+	On considère deux signaux, définis par les fonctions $f_{1}(t) = cos(\omega_{1}t) et f_{2} = cos(\omega_{2}t)$. \\
+	
+	1. Déterminez l'expression du spectre du signal $f(t)=f_{1}(t)\cdot f_{2}(t)$ (on prendra $\omega_{1} > \omega_{2}$). Représentez-le graphiquement.\\
+	
+	2. Même chose avec $f_{2}(t) = sin(\omega_{2}t)$.\\
+	
+	3. Même chose avec $f_{2}(t) = sinc(t)$.\\
+	
+	4. Conclure sur l'effet de la multiplication par un signal sinusoïdal.\\
+
+	
+	
+	\subsubsection{Exercice 6}
+	
+	On considère la fonction porte $\pi_{[-a;a]}(t)=\pi(t)$ avec $a \in \mathbb{R^{*}}$.\\
+	
+	1. Calculez le produit de convolution $s(t)=\pi(t)*\pi(t)$.\\
+	
+	2. Calculez la transformée de Fourier $\Pi(f)$ de la fonction $\pi(t)$. En déduire l'expression de la transformée de Fourier S(f) de la fonction s(t).\\
+	
+	3. Soit le signal $l(t)=\pi(t) \cdot \pi(t)$. Calculez la transformée de Fourier L(f) de la fonction l(t).\\
 	
 	On pose a = 0.5. On considère $t \in \mathbb(R)$.
 	
-	4. Calculez le produit de convolution $p(t)=\pi(t)*\pi(\frac{t}{2})$.
+	4. Calculez le produit de convolution $p(t)=\pi(t)*\pi(\frac{t}{2})$.\\
 	
 	5. On considère les fonctions définies par $s_{1}(t)=\pi(\frac{t-1}{2})$ et $s_{2}(t)=s_{1}(t)-s_{1}(t-2)$. Tracez $s_{1}(t)$ et $s_{2}(t)$. Calculez le produit de convolution entre $s_{1}$ et $s_{2}$.
 	
 	\vspace{1\baselineskip}
 	
-	\subsubsection{Exercice 5 - Échantillonnage}
+	\subsubsection{Exercice 7 - Échantillonnage}
 	
-	On considère le circuit de principe ci-dessous, formé d'un interrupteur idéal et appelé échantillonneur. x(t) est le signal d'entrée, h(t) le signal de commande d'ouverture/fermeture de l'interrupteur, et y(t) le signal de sortie. L'interrupteur est ouvert lorsque la commande est nulle. Il se ferme lorsque la commande h(t) = 1.
-	Dans cet exercice, on considère que la commande est formée par un peigne de Dirac de période T. Dans un premier temps, le signal d'entrée est une fonction sinus cardinal (expression ..., largeur $\tau$)
+		On considère le circuit de principe ci-dessous, formé d'un interrupteur idéal et appelé échantillonneur. x(t) est le signal d'entrée, h(t) le signal de commande d'ouverture/fermeture de l'interrupteur, et y(t) le signal de sortie. L'interrupteur est ouvert lorsque la commande est nulle. Il se ferme lorsque la commande h(t) = 1.
+	Dans cet exercice, on considère que la commande est formée par un peigne de Dirac de période T. Dans un premier temps, le signal d'entrée est une fonction sinus cardinal, tel que $x(t)=A\cdot \frac{sin(\pi \frac{t}{\tau})}{\pi \frac{t}{\tau}}$.
 	
-	1. Donnez la relation entre les signaux de sortie, d'entrée et de commande.
-	
-	2. Tracez l'allure du signal de sortie. Le nom d'échantillonneur donné au circuit est-il justifié ? Sa présence est-il nécessaire dans les circuits de traitement de signal ?
-	
-	3. Donnez les transformées de Fourier des signaux x(t) et h(t) ? Esquissez leur spectre (en amplitude).
-	
-	4. Déterminez la transformée de Fourier du signal y(t). Esquissez son spectre dans le cas où T << $\tau$, puis dans le cas où T > $\tau$.
-	
-	5. Est-il possible de retrouver le signal x(t) à partir de l'acquisition du signal y(t). Comment et sous quelles conditions ?
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.6]{images/Echantillonneur.png} 
+	\end{figure}
 	
 	
+	1. Donnez la relation entre les signaux de sortie, d'entrée et de commande.\\
 	
+	2. Tracez l'allure du signal de sortie. Le nom d'échantillonneur donné au circuit est-il justifié ? Sa présence est-il nécessaire dans un circuit de traitement du signal ?\\
 	
+	3. Donnez les transformées de Fourier des signaux x(t) et h(t) ? Esquissez leur spectre (en amplitude).\\
 	
+	4. Déterminez la transformée de Fourier du signal y(t). Esquissez son spectre dans le cas où T << $\tau$, puis dans le cas où T > $\tau$.\\
+	
+	5. Est-il possible de retrouver le signal x(t) à partir de l'acquisition du signal y(t). Comment et sous quelles conditions ?\\
+	
+	6. Pourquoi est-il nécessaire de limiter la bande passante des signaux à échantillonner ?
 	
