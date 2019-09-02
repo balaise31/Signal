@@ -185,20 +185,80 @@
  	
  	\subsubsection{Exercice 7 - Fonction de transfert d'un circuit résonant}
  	
- 	On reprendre le circuit RLC présenté dans la partie IV.4. Celui-ci est excité par un générateur de courant I, comme le montre la figure ci-dessous. On s'intéresse à la tension U aux bornes de ce circuit. 
+ 	On reprend le circuit RLC présenté dans la partie IV.4. Celui-ci est excité par un générateur de courant I, comme le montre la figure ci-dessous. On s'intéresse à la tension U aux bornes de ce circuit. On considère que la résistance R est grande et $R>>\sqrt{\frac{L}{C}}$.
  	 	
  	\begin{figure}[h!]
  		\centering
  		\includegraphics[scale=0.5]{images/Exo_2_5.jpg} 
  	\end{figure} 
  
- 	a. Déterminez la fonction de transfert de ce circuit. 
+ 	a. Déterminez la fonction de transfert de ce circuit. La mettre sous la forme $\frac{Gp}{p^2+2\alpha p+\omega_{0}^{2}}$.\\
  	
- 	b. Précisez l'unité de la fonction de transfert. 
+ 	b. Précisez l'unité de la fonction de transfert. \\
  	
- 	c. Dans le cas où l'on considère une excitation cosinusoïdale du circuit, y a t-il une fréquence particulière où la réponse présente un maximum ? Si oui, laquelle ? Donnez l'expression de la réponse temporelle du circuit en régime permanent.
+ 	c. Ce circuit est-il stable ?\\
  	
- 	\vspace{1\baselineskip}
+ 	d. On considère maintenant que le terme $\alpha$ est négligeable et une excitation cosinusoïdale du circuit. Y a t-il une fréquence particulière où la réponse présente un maximum ? Si oui, laquelle ? \\
+ 	
+ 	e. Donnez l'expression de la réponse temporelle du circuit en régime permanent.\\
+ 	
+ 	\textbf{\underline{Correction exercice 7}}\\
+ 	
+ 	a. On peut établir l'équation différentielle du circuit en remarquant que :
+ 	\begin{itemize}
+ 		\item $i=i_R+i_L+i_C$, où $i_R$ est le courant traversant la résistance, $i_L$ celui traversant l'inductance et $i_C$ celui traversant le condensateur
+ 		\item $U=r.i_R$, $i_L=\frac{1}{L}\int U dt$ et $i_C=C\frac{dU}{dt}$
+ 	\end{itemize} 
+ 	
+ 	\begin{equation*}
+ 	\frac{U}{R}+\frac{1}{L}\int i_L dt+C\frac{dU}{dt}=i
+ 	\end{equation*}
+ 	
+ 	La fonction de transfert suppose que l'excitation est de type exponentiel complexe : $i=\hat{I}e^{pt}$, donc la réponse est aussi de type exponentiel complexe : $U=\hat{U}e^{pt}$ :
+ 	\begin{equation*}
+ 	\frac{\hat{U}e^{pt}}{R}+\frac{1}{L}\int \hat{U}e^{pt} dt+C\frac{d(\hat{U}e^{pt})}{dt}=\hat{I}e^{pt}
+ 	\end{equation*}
+ 	\begin{equation*}
+ 	\frac{\hat{U}e^{pt}}{R}+\frac{1}{Lp}\hat{U}e^{pt}+Cp\hat{U}e^{pt}=\hat{I}e^{pt}
+ 	\end{equation*}
+ 	\begin{equation*}
+ 	\frac{\hat{U}}{\hat{I}}=\frac{RLp}{R+Lp+RLCp^2}=\frac{1}{C}\frac{p}{p^2+\frac{1}{RC}p+\frac{1}{LC}}
+ 	\end{equation*}
+ 	
+ 	On trouve donc la forme indiquée avec $G=\frac{1}{C}$, $\alpha=\frac{1}{2RC}$ et $\omega_0^2=\frac{1}{LC}$.\\
+ 	
+ 	b. Rapport entre tension et courant, donc une impédance (ohms).\\
+ 	
+ 	c. Etude des racines du dénominateur. Ordre 2 , deux pôles.
+ 	Déterminant : $\Delta=4(\alpha^2-\omega_{0}^2$). Comme R est très grand, le dénominateur est négatif. Les deux pôles sont complexes et conjugués et s'écrivent :
+ 	\begin{equation*}
+ 	p_1=-\alpha+j\sqrt{\omega_{0}^2-\alpha^2}~~~et~~~p_2=-\alpha-j\sqrt{\omega_{0}^2-\alpha^2}
+ 	\end{equation*}
+ 	
+ 	La partie réelle des pôles étant négative, le système est stable. La partie imaginaire entrainant un comportement oscillant. \\
+ 	
+ 	d. Si $\alpha$ est négligeable, les pôles sont purement imaginaires. La fonction de transfert s'écrit alors :
+ 	\begin{equation*}
+ 	\frac{\hat{U}}{\hat{I}}=\frac{1}{C}\frac{p}{p^2+\omega_0^2}
+ 	\end{equation*}
+ 	Si l'excitation est cosinusoïdale, cela signifie que : $p = j\omega$ où $\omega$ est la pulsation de l'excitation. Si $\omega=\omega_0$, le rapport entre U et I devient infini. Cette fréquence est appelée fréquence de résonance.\\
+ 	
+ 	e. En posant $i=\hat{I}e^{pt}$, on peut déterminer l'amplitude complexe de la tension U : 
+ 	\begin{equation*}
+ 	\hat(U)=\frac{1}{C}\frac{p}{p^2+\omega_0^2}
+ 	\end{equation*}
+ 	Dans le cas d'une excitation cosinusoïdale : $u(t)=\hat(U)e^{j\omega t}$ avec :
+ 	\begin{equation*}
+ 	\hat(U)=\frac{1}{C}\frac{j\omega}{-\omega^2+\omega_0^2}
+ 	\end{equation*}
+ 	L'expression de la tension s'écrit donc :
+ 	\begin{equation*}
+ 	u(t)=Re[\frac{1}{C}\frac{j\omega}{-\omega^2+\omega_0^2}e^{j\omega t}]=\frac{\omega}{C(-\omega^2+\omega_0^2)}cos(\omega t+\frac{\pi}{2})
+ 	\end{equation*}
+ 	
+ 	
+ 	
+ 	
  	
  	\subsubsection{Exercice 8}
  	
