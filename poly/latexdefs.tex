@@ -6,16 +6,38 @@
 \def\R{\mathbb{R}}
 \def\priveDe#1{/\left\{#1\right\}}
 
-\def\c#1{\left[#1\right]}
+\def\b#1{\left[#1\right]}
 \def\p#1{\left(#1\right)}
 \def\a#1{\left\{#1\right\}}
 
 \def\scalint#1#2#3{\int\limits_{-\infty}^{\infty}\;#1\,#2\;d#3}
 
 \def\application#1#2#3#4{
-    \begin{array}{rl}
+    \begin{array}{ccc}
      #1 & \longrightarrow & #2 \\
      #3 & \longmapsto & #4 \\
 \end{array}}
 
 \def\quads{\;\;\;\;}
+\newcommand{\deriv}{\mathrm{d}}
+
+\newtheorem{thme}{Th\'{e}or\`{e}me}[chapter]
+\newtheorem{prop}[thme]{Proposition}
+\newtheorem{thdef}[thme]{Théor\`{e}me-Définition}
+\newtheorem{lemme}[thme]{Lemme}
+\newtheorem{exple}[thme]{Exemple}
+\newtheorem{defi}[thme]{D\'{e}finition}
+\newtheorem{prot}[thme]{Propri\'{e}t\'{e}}
+\newtheorem{col}[thme]{Corollaire}
+\newtheorem{rmq}[thme]{Remarque}   
+\newcommand{\dpy}{\displaystyle}
+\newcommand{\gfrac}[2]{\mbox{$\displaystyle{\frac{#1}{#2}}$}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\Frac}[2]{\mbox{$\displaystyle{\frac{#1}{#2}}$}}
+
+\def\Fourier{\textsc{Fourier}}
+\def\Laplace{\textsc{Laplace}}
+\def\Bode{\textsc{Bode}}
+
+\def\figref#1{Fig.~\ref{#1}}
+\def\chapref#1{chap.~\ref{#1}}
