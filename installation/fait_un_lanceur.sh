@@ -13,6 +13,7 @@ get_abs_filename() {
 }
 
 
+
 if (( $#<1 | $#>2 )) ; then
     echo "usage $0 script_executable  [ fichier icone ]"
     exit
@@ -33,13 +34,14 @@ if  (( $#==2 )); then
 	exit
     fi
 else
-    ICONE=a.0
+    ICONE=.icone_defaut
 fi
 
 SCRIPT_FULL=$(get_abs_filename $SCRIPT)
 ICONE_FULL=$(get_abs_filename $ICONE)
-
+DEPOT=$(cd .. && pwd )
 cp lanceur.desktop.patron $SCRIPT.desktop
+sed -i "s:^DEPOT=.*$:DEPOT=$DEPOT:g" $1
 sed -i "s#SCRIPT_FULL#$SCRIPT_FULL#g" $SCRIPT.desktop
 sed -i "s/SCRIPT/$SCRIPT/g" $SCRIPT.desktop
 sed -i "s#ICONE#$ICONE_FULL#g" $SCRIPT.desktop

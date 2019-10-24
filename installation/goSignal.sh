@@ -22,7 +22,7 @@ creer_initialise_conda () {
     echo 'alias goConda="source ~/.initialise_conda.sh"'>>~/.bashrc    
 }
 
-if $CONDA_SHLVL>0 ; then
+if (( CONDA_SHLVL > 0 )) ; then
     echo "Lancez jupyter notebook avec :"
     echo "   jupyter-notebook"
     lance_bash       

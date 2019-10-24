@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Terminal=true
-Exec=/home/balaise31/Signal/installation/goSignal.sh
-Name=goSignal
-Comment="lanceur du script à tou faire pour Signal"
-Icon=/home/balaise31/Signal/installation/.goSignal.jpeg
-GenericName[fr_FR.UTF-8]="lanceur du script à tout faire pour Signal"

@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Terminal=true
-Exec=/home/balaise31/Signal/installation/goGo.sh
-Name=goGo.sh
-Comment="lanceur du script goGo.sh"
-Icon=/home/balaise31/Signal/installation/a.0
-GenericName[fr_FR.UTF-8]="lanceur du script goGo.sh
