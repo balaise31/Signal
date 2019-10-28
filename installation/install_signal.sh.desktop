@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=true
+Exec=/home_pers/acco/gits/signal_github/installation/install_signal.sh
+Name=install_signal.sh
+Comment="lanceur du script install_signal.sh"
+Icon=/home_pers/acco/gits/signal_github/installation/.icone_defaut
+GenericName[fr_FR.UTF-8]="lanceur du script install_signal.sh
