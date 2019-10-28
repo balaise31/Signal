@@ -39,7 +39,7 @@ creer_initialise_conda () {
 
     echo 'alias goConda="source ~/.initialise_conda.sh"'>>~/.bashrc
 
-    echo 'alias goSignal="cd ~/tp_signal && goConda && jupyter-notebook"'>>~/.bashrc
+    echo 'alias goSignal="cd ~/tp_signal && goConda && conda activate Octave && jupyter-notebook"'>>~/.bashrc
     echo 'echo "===Pour les TP de signaux, tapez la commande goSignal"'>>~/.bashrc
 }
 
