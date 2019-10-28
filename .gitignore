@@ -15,6 +15,7 @@
 ## Intermediate documents:
 *.dvi
 *.xdv
+*.out.*
 *-converted-to.*
 # these rules might exclude image files for figures etc.
 # *.ps
@@ -124,7 +125,7 @@ acs-*.bib
 # knitr
 *-concordance.tex
 # TODO Comment the next line if you want to keep your tikz graphics files
-*.tikz
+#*.tikz
 *-tikzDictionary
 
 # listings
@@ -255,4 +256,4 @@ TSWLatexianTemp*
 
 #python files
 *.pyc
->>>>>>> 0ea8669cc8c1f61439465680a1b75a373975a155
+
