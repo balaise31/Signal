@@ -6,9 +6,9 @@ get_abs_filename() {
   parentdir=$(dirname "${filename}")
 
   if [ -d "${filename}" ]; then
-      fullpath=$(cd "${filename}" && pwd)
+      fullpath="$(cd "${filename}" && pwd)"
   elif [ -d "${parentdir}" ]; then
-    fullpath=$(cd "${parentdir}" && pwd)/$(basename "${filename}")
+    fullpath="$(cd "${parentdir}" && pwd)/$(basename "${filename}")"
   fi
 
   echo $(printf "%q" "${fullpath}")
@@ -36,18 +36,26 @@ if  (( $#==2 )); then
 	exit
     fi
 else
-    ICONE=.icone_defaut
+    ICONE=.icone_defaut.jpeg
 fi
 
 SCRIPT_FULL=$(get_abs_filename $SCRIPT)
 ICONE_FULL=$(get_abs_filename $ICONE)
 DEPOT=$(cd .. && pwd )
-DEPOT=$(printf "%q" "$DEPOT")
-cp lanceur.desktop.patron $SCRIPT.desktop
-sed -i "s:^DEPOT=.*$:DEPOT=$DEPOT/:g" $1
+DEPOT=$(printf "%q" "$DEPOT") 
+cp .lanceur.desktop.patron $SCRIPT.desktop
+sed -i 's:^DEPOT=.*$:DEPOT="'"$DEPOT"'/":g' $1
 sed -i "s#SCRIPT_FULL#$SCRIPT_FULL#g" $SCRIPT.desktop
 sed -i "s/SCRIPT/$SCRIPT/g" $SCRIPT.desktop
 sed -i "s#ICONE#$ICONE_FULL#g" $SCRIPT.desktop
+# là dans les scripts j'ai pas les "\ " mais des espaces pourris " "...
+
+echo "==================="
+echo "Voilà le'icone créée"
+echo "==================="
 
 cat $SCRIPT.desktop
+echo
+echo "==================="
+
 chmod a+x $SCRIPT.desktop
