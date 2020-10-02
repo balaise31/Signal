@@ -46,25 +46,18 @@
 	
 	L'argument correspond au déphasage apporté par le filtre. Celui-ci traduit un retard $ \tau_p $ introduit par le filtre à la fréquence f, déterminé par l'équation \ref{retard_phase}.	Il caractérise le retard apporté par le filtre sur chaque composante fréquentielle du signal et on parle de retard de phase. Un autre terme de retard courant pour caractériser les filtres est le retard de groupe $ \tau_g $. Par groupe, on entend un groupe de composantes fréquentielles, de fréquences proches, formant le signal qui va traverser le filtre. Chaque composante sera retardé individuellement selon l'argument de la fonction de transfert et la fréquence. Cependant, l'enveloppe du signal, résultante de l'ensemble des composantes fréquentielles présentes, sera affectée par le retard de groupe. Celui-ci est défini par \ref{retard_groupe}. Il dépend de la dérivée fréquentielle de l'argument de la fonction de transfert.  
 	
-	\begin{equation}\label{retard_phase}
-	\tau_p(f) = -\frac{Arg(H(f))}{2\pi df}
-	\end{equation}
-	
-	\begin{equation}\label{retard_groupe}
-	\tau_g(g) = -\frac{d(Arg(H(f)))}{2\pi df}
+	\begin{equation}\label{retard}
+	\tau = \frac{d(Arg(H(f)))}{2\pi df}
 	\end{equation}
 	
 	\vspace{1\baselineskip}
 	
 	\underline{\textbf{Filtre à phase linéaire}}
 	
-	Considérons un cas simple : un signal formée de deux signaux cosinusoïdaux, de fréquence f1 et f2, traverse un filtre LTI caractérisé par une fonction de transfert H(jf). Les retards introduits par le filtre aux fréquences f1 et f2 sont respectivement : $-\frac{Arg(H(f_1))}{f_1}$ et $-\frac{Arg(H(f_2))}{f_2}$. Les retards subis par ces deux composantes ne sont pas nécessairement identiques. Dans ce cas, la forme du signal sera affectée même si le module du filtre est constant. On parlera de distorsion du signal. Selon le domaine d'application, ce n'est pas forcément acceptable (par exemple, dans le cas d'un signal audio HiFi). 
-	Si les deux composantes sont en phase à l'entrée du filtre, le délai $\Delta \tau$ entre elles à la sortie du filtre est donné par :
-	\begin{equation*}
-	\Delta \tau = -\frac{Arg(H(f_1))}{f_1}+\frac{Arg(H(f_2))}{f_2}
-	\end{equation*} 
+	On remarque une propriété intéressante : soit un signal constitué de la superposition de plusieurs signaux sinusoïdaux, traverante un filtre présentant un déphasage variable en fonction de la fréquence. Même si le gain est le même à ces différentes fréquences, si le retard introduit par le filtre varie avec la fréquence, alors le signal en sortie présentera une distorsion. Ceci démontre qu'il ne faut pas négliger l'information de phase d'un filtre.
+	Pour éviter cette distorsion, il est nécessaire que le retard soit constant. D'après \ref{retard}, cela est vérifié uniquement si le déphasage varie linéairement avec la fréquence. On parle alors de filtres à phase linéaire.
 	
-	Pour éviter toute distorsion du signal lors de la traversée du filtre, ce délai doit être nul. Une situation évidente se produit quand l'argument du filtre est constant en fonction de la fréquence (du moins, entre f1 et f2). Cependant, il y a un cas plus général : lorsque la phase varie linéairement en fonction de la fréquence. Autrement dit, si l'évolution fréquentielle de l'argument est donnée par une fonction du type $Arg(H(f))=K.f$ où K est une constante réelle. Dans ce cas, le délai entre les différentes composantes fréquentielles du signal s'annule et il n'y a plus de distorsions. Autrement dit, le retard de groupe est constant en fonction de la fréquence. Un filtre qui présente une telle propriété est appelé filtre à phase linéaire.  
+	On peut aussi remarquer qu'un filtre présentant un déphasage constant quelle que soit la fréquence ne doit pas être réalisable en pratique. En effet, celui-ci ne présenterait aucun retard. La sortie changerait simultanément avec l'entrée, ce qui est physiquement impossible.
 	
 	\vspace{1\baselineskip}
 	
@@ -96,11 +89,11 @@
 	\section{Analyse harmonique}
 	A partir de la connaissance du gain et du déphasage de la fonction de transfert, lorsque le filtre est attaqué par un signal (co)sinusïdal, il est très simple de déterminer l'expression de sa réponse. En considérant une notation complexe, la réponse temporelle du filtre en régime harmonique est donnée par :
 	\begin{equation}\label{}
-	x(t) = Re[X_{0}exp(j\Phi_{x})exp(j2\pi ft)] \Rightarrow y(t) = Re[X_{0}|H(f)|exp(j(\Phi_{x}+arg(H(f))))exp(j2\pi ft)]
+	x(t) = Re[X_{0}exp(j\Phi_{x})exp(j2\pi ft)] \Rightarrow y(t) = Re[X_{0}|H(f)exp(j(\Phi_{x}+arg(H(f))))exp(j2\pi ft)]
 	\end{equation}
 	Celle-ci peut aussi s'écrire sous la forme suivante :
 	\begin{equation}\label{key}
-	x(t) = X_{0}cos(2\pi ft+\Phi_{x}) \Rightarrow y(t) = X_{0}|H(f)|+cos(2\pi ft+\Phi_{x}+arg(H(f)))
+	x(t) = X_{0}cos(2\pi ft+\Phi_{x}) \Rightarrow y(t) = X_{0}|H(f)+cos(2\pi ft+\Phi_{x}+arg(H(f)))
 	\end{equation}
 	
 	\section{Représentation - Diagramme de Bode}
@@ -313,7 +306,7 @@
 	\subsection{Fréquences de résonance et d'antirésonance}
 	Lorsque les filtres présentent des racines complexes, elles sont généralement doubles et conjuguées.	Prenons l'exemple d'un filtre présentant deux pôles complexes et conjuguées $p_{0}$ et $p_{0}^{*}$, où $p_{0}=\alpha+j\omega_{0}$.
 	\begin{equation*}
-	H(p)=\frac{1}{(p+p_{0})(p+p_{0})^{*}}=\frac{1}{(p+\alpha)^{2}+(\omega_{0})^{2}}
+	H(p)=\frac{1}{(p+p_{0})p+p_{0})^{*}}=\frac{1}{(p+\alpha)^{2}+(\omega_{0})^{2}}
 	\end{equation*}
 	
 	Supposons que la partie réelle $\alpha$ des racines est faible et plaçons nous en régime harmonique. La fonction de transfert est donnée par :

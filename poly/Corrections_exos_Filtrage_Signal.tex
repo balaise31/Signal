@@ -60,20 +60,12 @@
 	
 	a. On vérifie facilement que le système est :
 	 \begin{itemize}
-	 	\item linéaire : une manière simple de réponse est de vérifier que l'opérateur mathématique reliant x(t) et y(t) est la superposition d'opérateurs proportionnels et différenciateur, qui sont linéaire. On peut aussi vérifier que le principe de superposition s'applique : soit $x_{1}(t) $ et $x_{2}(t)$ les solutions de l'équation pour $y_{1}(t)$ et $y_{2}(t)$. Posons $x_3(t)=ax_{1}(t)+bx_{2}(t)$, avec a et b des constantes quelconques, et appelons $y_3(t)$ la solution associée à cette équation différentielle :
-	 	\begin{equation*}
-	 	y_3(t)=x_3(t)+4\frac{dy_3}{dt}=ax_{1}(t)+bx_{2}(t)+4\frac{dy_3}{dt}
-	 	\end{equation*}
-	 	Si on suppose que $y_3(t)=ay_{1}(t)+by_{2}(t)$, en l'intégrant dans l'équation différentielle :
-	 	\begin{equation*}
-	 	y_3(t)=ax_{1}(t)+bx_{2}(t)+4a\frac{dy_1}{dt}+4a\frac{dy_2}{dt}=ay_1(t)+by_2(t)
-	 	\end{equation*}
-	 	on vérifie bien que la fonction $y_3(t)=ay_1(t)+by_2(t)$ est bien la solution de cette équation différentielle.
-	 	\item à temps invariant car les paramètres de l'équation sont invariants dans le temps (appliquez une excitation x(t) à n'importe quel temps $t_0$ donnera la même solution y(t), seulement décalée d'un temps $t_0$.)
+	 	\item linéaire (soit $x_{1}(t) $ et $x_{2}(t)$ les solutions de l'équation pour $y_{1}(t)$ et $y_{2}(t)$. $x(t)=ax_{1}(t)+bx_{2}(t)$ ne peut être la solution que de $y(t)=ay_{1}(t)+by_{2}(t)$).
+	 	\item à temps invariant (les paramètres de l'équation sont invariants dans le temps)
 	 	\item causal (la sortie ne dépend pas des états futurs de l'entrée et de la sortie).
 	 \end{itemize}
  	\vspace{0.5\baselineskip}
- 	b. Le système est causal et à temps invariant, mais n'est pas linéaire. Soit  $x_{1}(t) $ et $x_{2}(t)$ les solutions de l'équation pour $y_{1}(t)$ et $y_{2}(t)$. $x(t)= ax_{1}(t)+bx_{2}(t)$ est la solution de $y(t)=2ax_{1}(t)+2+2bx_{2}(t)+2 \neq ay_{1}(t)+by_{2}(t)=2ax_{1}(t)+2a+2bx_{2}(t)+2b$. Bien qu'il existe un opérateur proportionnel reliant x(t) et y(t), il y a aussi l'ajout d'une constante, qui n'est pas un opérateur linéaire.
+ 	b. Le système est causal et à temps invariant, mais n'est pas linéaire. Soit  $x_{1}(t) $ et $x_{2}(t)$ les solutions de l'équation pour $y_{1}(t)$ et $y_{2}(t)$. $x(t)= ax_{1}(t)+bx_{2}(t)$ est la solution de $y(t)=2ax_{1}(t)+2+2bx_{2}(t)+2 \neq ay_{1}(t)+by_{2}(t)=2ax_{1}(t)+2a+2bx_{2}(t)+2b$
  	
  	\vspace{0.5\baselineskip}
  	c. Le système n'est ni linéaire ( $x(t)= ax_{1}(t)+bx_{2}(t)$ est la solution de $e^{-t}(ax_{1}(t-2)+bx_{2}(t-2))^{2} \neq ae^{-t}x_{1}(t-2)^{2}+be^{-t}x_{2}(t-2)^{2}$), ni à temps invariant (le coefficient devant $x^{2}$ dépend du temps). Le système est causal (la sortie à l'instant t dépend de l'entrée donnée à un instant passé (t-2)).
@@ -105,9 +97,9 @@
  	
  	\textbf{\underline{Correction exercice 2}}\\
  	
- 	1. a. $y(t)=2u(t-1)-3u(t-3)+(0.5t-2.5)(u(t-3)-u(t-5))$\\. Une manière simple de résoudre ce type de problème est de décomposer la forme d'onde en formes d'onde plus simples. Dans ce cas, y(t) est la superposition d'une fonction porte centrée sur 2 et de largeur 2, suivi d'une "dent de scie" entre t=3 et t=5.\\
+ 	1. a. $y(t)=2u(t-1)-3u(t-3)+(0.5t-2.5)(u(t-3)-u(t-5))$\\
  	
- 	b. $y(t)=\delta(t)+tu(t)-2(t-1)u(t-1))+(t-3)u(t-3)$\\. La flèche sur l'impulsion de départ indique qu'il s'agit d'une impulsion de Dirac. Son amplitude est infinie, mais son énergie est égale à 2. En t= 0, y(t) n'est donc pas une fonction, mais une distribution !\\
+ 	b. $y(t)=\delta(t)+t(u(t)-u(t-1))+(-t+2)(u(t-1)-u(t-3))$\\
  	
  	2. a. $x(t)=Re[(1+j)e^{-j10t}]=Re[\sqrt{2}e^{j\frac{\pi}{4}}e^{j10t}]=\sqrt{2}cos(10t+\frac{\pi}{4})$. Autre forme possible : $x(t)=cos(10t)-sin(10t)$\\
  
@@ -117,7 +109,7 @@
  	
  	\subsubsection{Exercice 3}
  	
- 	On dispose de la réponse indicielle d'un système linéaire à temps invariant, qui est esquissée ci-dessous. Elle a une forme exponentielle croissante.\\
+ 	On dispose de la réponse indicielle d'un système linéaire, qui est esquissée ci-dessous. Elle a une forme exponentielle croissante.\\
  	
  	\begin{figure}[h!]
  		\centering
@@ -132,64 +124,6 @@
  	
  	c. l'excitation est la dérivée de celle utilisée pour obtenir la réponse indicielle.\\
  	
- 	\textbf{\underline{Correction exercice 3}}\\
- 	
- 	Le but de cet exercice est de tracer l'esquisse de la réponse du système, uniquement à partir de l'allure de la réponse indicielle a(t) (obtenue lorsque le système est excité par un échelon unitaire). Il s'agit donc d'un raisonnement intuitif. Néanmoins, pour se convaincre de la justesse des tracés à partir d'un calcul, on pourra considérer que la réponse indicielle est décrite par la fonction suivante : $a(t) = A(1-e^{-\frac{t}{\tau}})$.\\
- 	
- 	a. L'excitation correspond à la fonction porte $\Pi_{[0:1]}(t)$. Elle est la superposition de deux échelons unitaires u(t) et u(t-1), comme le montre la figure ci-dessous. 
- 	\begin{figure}[h!]
- 		\centering
- 		\includegraphics[scale=0.55]{images/excitation_Exo_2_3_a.png} 
- 		\caption{Excitation question a}	
- 	\end{figure}
- 	
- 	Le système étant linéaire à temps invariant, en notant L[] l'opérateur mathématique modélisant l'effet du système, on peut déduire l'allure de la réponse du système directement à partir de celle de la réponse indicielle :
- 	\begin{equation*}
- 	L[e(t)]=L[u(t)-u(t-1)]=L[u(t)]-L(u(t-1))=a(t)-a(t-1)
- 	\end{equation*}
- 	L'allure de la réponse est décrite ci-dessous (les valeurs, les pentes, les temps sont pris dans le cas d'une réponse indicielle égale à une exponentielle, pris à titre d'exemple).\\
- 	\begin{figure}[h!]
- 		\centering
- 		\includegraphics[scale=0.55]{images/allure_exo_2_3_a.png} 
- 		\caption{Allure de la réponse question a}	
- 	\end{figure}
- 
- 	b. L'allure de l'excitation est donnée par la figure ci-dessous :
- 	\begin{figure}[h!]
- 		\centering
- 		\includegraphics[scale=0.55]{images/excitation_exo_2_3_b.png} 
- 		\caption{Excitation question b}	
- 	\end{figure}
- 	On peut remarquer qu'elle est proche de l'excitation précédente, puisqu'on peut l'obtenir à partir de l'intégration entre 0 et t d'une fonction porte. Cependant, il est nécessaire de soustraire une impulsion de Dirac $\delta(t-2)$ pour forcer l'excitation à revenir en 0 en t= 2. L'excitation peut donc s'écrire :
- 	\begin{equation*}
- 	e(t)=\int_{0}^{t}\Pi_{[0:2]}(u)du-2\delta(t-2)=I[\Pi_{[0:2]}(t)]-2\delta(t-2)
- 	\end{equation*}
- 	où I est l'opérateur d'intégration. La réponse du système peut donc se calculer à l'aide de la relation suivante, qui peut se développer en raison de la linéarité du système.
- 	\begin{equation*}
- 	y(t)=L[I[\Pi_{[0:2]}(t)]-2\delta(t-2)]=L[I[\Pi_{[0:2]}(t)]]-2L[\delta(t-2)]
- 	\end{equation*}
-	La réponse présente donc deux membres, que nous allons analyser. Commençons par le premier terme. Le système étant linéaire, si on connait la réponse y(t) à une excitation donnée x(t), la réponse à l'intégrale de x(t) est l'intégrale de y(t). Ainsi, on peut écrire : $ L[I[\Pi_{[0:2]}(t)]=I[L[\Pi_{[0:2]}(t)]]$. Nous connaissons déjà l'allure de la réponse à une fonction porte (voir question a), il suffira donc de représenter l'intégration de la réponse à une fonction porte.
-	
-	Le second terme est la réponse impulsionnelle du système h(t-2). Par définition, il s'agit de la dérivée de la réponse indicielle : $h(t-2)=\frac{da(t-2)}{dt}$. La représentation graphique de ce second terme consistera donc à tracer l'allure de la dérivée de la réponse indicielle. La figure ci-dessous présente l'allure de la réponse du système. La réposne revient en 0 quand t tend vers l'infini, ce qui se comprend physiquement : l'excitation revenant à 0, si le système est stable, alors la réponse revient aussi à 0. 
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[scale=0.55]{images/allure_exo_2_3_b.png} 
-		\caption{Allure de la réponse question b}
-	\end{figure}
-	
- 	
- 	c. L'excitation est donc la dérivée d'un échelon unitaire. Il s'agit donc d'une impulsion de Dirac. La réponse obtenue est donc la réponse impulsionnelle h(t), dérivée de la réponse indicielle : $h(t)=\frac{da}{dt}$. L'allure est présentée ci-dessous\\
- 	\begin{figure}[h!]
- 		\centering
- 		\includegraphics[scale=0.55]{images/allure_exo_2_3_c.png} 
- 		\caption{Allure de la réponse question c}
- 	\end{figure}
- 	
- 	
- 	
- 	
- 	
- 	
  	\subsubsection{Exercice 4}
  	
  	On excite un système linéaire à l'aide du signal suivant : $e(t)=e^{j2\pi t}$. La réponse obtenue, notée y(t), est égale à $y(t)=\frac{1}{2}e^{j(2\pi t+\frac{\pi}{3})}$.\\
@@ -203,7 +137,7 @@
  		\includegraphics[scale=0.5]{images/Exo_2_4.png} 
  	\end{figure} 
  	
- 	c. Calculez la réponse du système à l'excitation suivante : $x(t)=\frac{\sqrt{3}}{2}cos(2\pi t)+\frac{1}{2}sin(2\pi t)$.\\
+ 	c. Calculez la réponse du système à l'excitation suivante : $x(t)=\frac{3\sqrt{3}}{2}cos(2\pi t)+\frac{1}{2}sin(2\pi t)$.\\
  	
  	
  	\textbf{\underline{Correction exercice 4}}\\
@@ -220,7 +154,7 @@
   	
  	\subsubsection{Exercice 5 - Réponse indicielle d'un circuit RC}
  	
- 	On reprend le circuit RC dont on a étudié la réponse dans la partie VI.3. On s'intéresse ici à la tension aux bornes de la résistance R. On considère deux cas : celui où le condensateur est déchargé initialement, puis celui où il est chargé. 
+ 	On reprend le circuit RC dont on a étudié la réponse dans la partie VI.3. On considère deux cas : celui où le condensateur est déchargé initialement, puis celui où il est chargé. 
  	
  	a. Calculez la réponse naturelle du circuit lorsque le condensateur est initialement chargé.
  	
@@ -228,60 +162,7 @@
  	
  	c. Calculez la réponse lorsque le circuit est soumis à un échelon de Heaviside d'amplitude E, dans les deux cas (charge initiale absente ou présente).
  	
- 	d. En déduire la réponse indicielle du circuit.\\
- 	
- 	\textbf{\underline{Correction exercice 5}}\\
- 	
- 	a. La réponse naturelle est déterminée lorsqu'il n'y a pas d'excitation, la réponse étant produite par la condition initiale (le chargement initial du condensateur C). On note $U_{C0}$ la tension aux bornes du condensateur en t = 0. 
- 	
- 	On détermine l'équation différentielle décrivant le fonctionnement du circuit :
- 	\begin{equation*}
- 	U_R+U_C = 0~~\Rightarrow~~U_R+\frac{1}{RC}\int_{0}^{t}U_Rdu=0
- 	\end{equation*}
- 	\begin{equation*}
- 	\frac{dU_R}{dt}+\frac{1}{RC}U_R=0
- 	\end{equation*}
- 	Ce type d'équation différentielle ne peut admettre qu'un seul type de solution : exponentielle complexe, car sa forme ne change pas après dérivation : $U_R(t)=Ae^{pt}$ où A est une constante et p la fréquence naturelle complexe du circuit. En injectant cette solution dans l'équation différentielle, on obtient :
- 	\begin{equation*}
- 	Ape^{pt}+\frac{A}{RC}e^{pt}=0~~\Rightarrow~~p=-\frac{1}{RC}
- 	\end{equation*}
- 	On détermine la constante A à l'aide de la condition initiale : en $t = 0^{+}$, $U_C(O)=U_{C0}$ et $U_R(0)=-U_C(0)=-U_{C0}$, donc on déduit $A=-U_{C0}$. La réponse naturelle du circuit s'écrit donc :
- 	\begin{equation*}
- 	U_R(t)=-U_{C0}e^{-\frac{t}{RC}}~pour~t>0
- 	\end{equation*}
- 	
- 	b. La réponse impulsionnelle h(t) est identique à la réponse naturelle d'un système LTI pour t > 0 , puisque dans le cas de la réponse impulsionnelle, l'excitation disparait pour t > 0. Elle ne fait qu'imposer une nouvelle condition initiale en t = 0.
- 	
- 	Cependant, il nous manque la réponse impulsionnelle en t = 0. En effet, avec la réponse naturelle, nous ne disposons de la réponse que pour t > 0. Si en t = 0 la tension $U_R = U_{C0}$, alors il faut ajouter à la réponse naturelle un terme qui impose cette condition en t = 0 :
- 	\begin{equation*}
- 	h(t)=-U_{C0}e^{-\frac{t}{RC}}+U_{C0}\delta(t)
- 	\end{equation*}
- 	
- 	c. On s'intéresse à la réponse forcée du circuit (ajout d'une excitation). L'effet d'une condition initiale se traduira seulement par l'ajout de la réponse naturelle à la réponse forcée. 
- 	
- 	On considère dans un premier temps l'absence de charge sur le condensateur pour calculer la réponse forcée. On établit l'équation différentielle du circuit :
- 	\begin{equation*}
- 	U_E(t)=U_C(t)+U_R(t)~~\Rightarrow~~E=\frac{1}{RC}\int_{0}^{t}U_R(u)du+U_R
- 	\end{equation*}
- 	\begin{equation*}
- 	0=\frac{1}{RC}U_R+\frac{dU_R}{dt}
- 	\end{equation*}
- 	La solution de l'équation est donc du type : $U_R(t)=Ae^{-\frac{t}{RC}}$, t > 0. On détermine A à l'aide de la condition initiale : en $t = 0^+$, $U_R(0)=E$ puisque le condensateur est déchargé ($U_C=0$).
- 	
- 	La réponse forcée est donc :  $U_R(t)=Ee^{-\frac{t}{RC}}$, t > 0.
- 	
- 	Dans le cas où le condensateur est initialement chargé, la réponse s'obtient en ajoutant la réponse naturelle :
- 	\begin{equation*}
- 	U_R(t)=(E-U_{C0})e^{-\frac{t}{RC}}~,~~t>0
- 	\end{equation*}
- 	
- 	d. La réponse indicielle a(t) correspond à la réponse forcée du circuit, puisqu'un échelon unitaire a été utilisée comme excitation.
- 	\begin{equation*}
- 	a(t)=Ee^{-\frac{t}{RC}}~,~~t>0
- 	\end{equation*}
- 	
- 	On peut vérifier que la dérivée de la réponse indicielle est bien égale à la réponse impulsionnelle (en t = 0, la réponse indicielle est nulle, donc sa dérivée est infinie. On retrouve ainsi l'impulsion de Dirac présent dans la réponse impulsionnelle).
- 	
+ 	d. En déduire la réponse indicielle du circuit.
  	 
  	\vspace{1\baselineskip}
  	
@@ -298,112 +179,7 @@
  	
  	b. On excite ces deux systèmes à l'aide d'un échelon de Heaviside d'amplitude notée E. Déterminez la réponse indicielle de ces deux circuits. 
  	
- 	c. Déterminez les fonctions de transfert de ces deux circuits.\\
- 	
- 	\textbf{\underline{Correction exercice 6}}\\
- 	
- 	a. \underline{Circuit RC :}
- 	
- 	On établit l'équation différentielle décrivant l'évolution de la tension aux bornes du condensateur $U_S$, lorsque le circuit n'est pas excité (effet de la charge initiale du condensateur):
- 	\begin{equation*}
- 	RC\frac{dU_S}{dt}+U_S=0
- 	\end{equation*}
- 	La solution est du type exponentielle complexe : $U_S=Ae^{pt}$, avec p la fréquence naturelle du circuit. En injectant cette solution dans l'équation différentielle, on détermine la fréquence naturelle :
- 	\begin{equation*}
- 	RC.Ap.e^{pt}+A.e^{pt}=0~~\Rightarrow~~p = -\frac{1}{RC}
- 	\end{equation*}
- 	La constante A est déterminée à l'aide de la condition initiale : $U_S(0^+)=U_{C0}$, d'où l'expression suivante pour la réponse naturelle :
- 	\begin{equation*}
- 	U_S(t)=U_{C0}e^{-\frac{t}{RC}}~,~t>0
- 	\end{equation*}
- 	
- 	\underline{Circuit LR :}
- 	
- 	On établit l'équation différentielle décrivant l'évolution de la tension aux bornes du condensateur $U_S$, lorsque le circuit n'est pas excité (effet du courant initial dans la bobine):
- 	\begin{equation*}
- 	\frac{L}{R}\frac{dU_S}{dt}+U_S=0
- 	\end{equation*}
- 	La solution est du type exponentielle complexe : $U_S=Ae^{pt}$, avec p la fréquence naturelle du circuit. En injectant cette solution dans l'équation différentielle, on détermine la fréquence naturelle :
- 	\begin{equation*}
- 	\frac{L}{R}.Ap.e^{pt}+A.e^{pt}=0~~\Rightarrow~~p = -\frac{R}{L}
- 	\end{equation*}
- 	La constante A est déterminée à l'aide de la condition initiale : $U_S(0^+)=Ri_L(0)$, d'où l'expression suivante pour la réponse naturelle :
- 	\begin{equation*}
- 	U_S(t)=Ri_L(0)e^{-\frac{tR}{L}}~,~t>0
- 	\end{equation*}
- 	
- 	Dans les deux cas, l'ordre de l'équation est d'ordre 1, donc les deux systèmes sont d'ordre 1.
- 	
- 	b. On détermine la réponse forcée (pas de condition initiale), puis on ajoutera la réponse naturelle.
- 	
- 	\underline{Circuit RC :}
- 	
- 	
- 	Réponse forcée (condensateur non chargée initialement) : 
- 	\begin{equation*}
- 	U_E=U_R+U_S~~E=RC\frac{dU_S}{dt}+U_S~,~t>0
- 	\end{equation*}
- 	On doit résoudre une équation différentielle avec second membre. Elle se résout en calculant la solution de l'équation homogène (sans second membre), puis en ajoutant une solution particulière.
- 	
- 	Solution de l'équation homogène : $Ae^{-\frac{t}{RC}}$
- 	
- 	La solution générale s'écrit donc : $U_S(t)=Ae^{-\frac{t}{RC}}+B(t)$ où B(t) est une solution particulière de l'équation. En injectant cette solution dans l'équation différentielle, on trouve : $ B(t)=E$. On détermine ensuite A à l'aide de la condition initiale : en t = 0, $U_S(0)=0$ d'où $Ae^{-\frac{0}{RC}}+B=0~\Rightarrow~A=-E$. 
- 	La réponse forcée s'écrit donc : $E(1-e^{-\frac{t}{RC}})$.
- 	
- 	La réponse complète du circuit s'obtient en ajoutant la réponse naturelle :
- 	
- 	\begin{equation*}
- 	U_S(t)=E(1-e^{-\frac{t}{RC}})+U_{C0}e^{-\frac{t}{RC}}~,~t>0
- 	\end{equation*}
- 	
- 	\underline{Circuit LR :}
- 	
- 	
- 	Réponse forcée (pas de courant circulant à travers la bobine initialement) : 
- 	\begin{equation*}
- 	U_E=U_L+U_S~~E=\frac{L}{dt}\frac{dU_S}{dt}+U_S~,~t>0
- 	\end{equation*}
- 	On doit résoudre une équation différentielle avec second membre. Elle se résout en calculant la solution de l'équation homogène (sans second membre), puis en ajoutant une solution particulière.
- 	
- 	Solution de l'équation homogène : $Ae^{-\frac{tR}{L}}$
- 	
- 	La solution générale s'écrit donc : $U_S(t)=Ae^{-\frac{tR}{L}}+B(t)$ où B(t) est une solution particulière de l'équation. En injectant cette solution dans l'équation différentielle, on trouve : $ B(t)=E$. On détermine ensuite A à l'aide de la condition initiale : en t = 0, $U_S(0)=0$ d'où $Ae^{-\frac{0R}{L}}+B=0~\Rightarrow~A=-E$. 
- 	La réponse forcée s'écrit donc : $E(1-e^{-\frac{tR}{L}})$.
- 	
- 	La réponse complète du circuit s'obtient en ajoutant la réponse naturelle :
- 	
- 	\begin{equation*}
- 	U_S(t)=E(1-e^{-\frac{tR}{L}})+Ri_L(0)e^{-\frac{tR}{L}}~,~t>0
- 	\end{equation*}
- 	
- 	c. Pour le calcul de la fonction de transfert, les conditions initiales ne sont pas considérées puisqu'on considère le circuit dans son régime permanent (l'effet des conditions initiales ont donc disparu). L'excitation du circuit est de type exponentielle complexe, que l'on note : $U_E(t)=\hat{U_E}e^{pt}$, où $\hat{U_E}$ est l'amplitude complexe ou phaseur de l'excitation et p la fréquence complexe. La réponse $U_S(t)$ est aussi une exponentielle complexe, de même fréquence complexe p que l'excitation.\\
- 	
- 	\underline{Circuit RC :}
- 	
- 	La réponse s'écrit : $U_S(t)=\hat{U_S}e^{pt}$. En injectant les expressions de l'excitation et de la réponse dans l'équation différentielle du circuit, on trouve :
- 	\begin{equation*}
- 	U_E=RC\frac{dU_S}{dt}+U_S~~\Rightarrow~~\hat{U_E}e^{pt}=RCp\hat{U_S}e^{pt}+\hat{U_S}e^{pt}
- 	\end{equation*}
- 	\begin{equation*}
- 	\hat{U_E}=\hat{U_S}(1+RCp)
- 	\end{equation*}
-	\begin{equation*}
-	H(p)=\frac{\hat{U_S}}{\hat{U_E}}(p)=\frac{1}{(1+RCp)}
-	\end{equation*}
-	
-	\underline{Circuit LR :}
-	
-	La réponse s'écrit : $U_S(t)=\hat{U_S}e^{pt}$. En injectant les expressions de l'excitation et de la réponse dans l'équation différentielle du circuit, on trouve :
-	\begin{equation*}
-	U_E=\frac{L}{R}\frac{dU_S}{dt}+U_S~~\Rightarrow~~\hat{U_E}e^{pt}=\frac{L}{R}p\hat{U_S}e^{pt}+\hat{U_S}e^{pt}
-	\end{equation*}
-	\begin{equation*}
-	\hat{U_E}=\hat{U_S}(1+\frac{L}{R}p)
-	\end{equation*}
-	\begin{equation*}
-	H(p)=\frac{\hat{U_S}}{\hat{U_E}}(p)=\frac{1}{(1+\frac{L}{R}p)}
-	\end{equation*}
-	 	
+ 	c. Déterminez les fonctions de transfert de ces deux circuits.
  	
  	\vspace{1\baselineskip}
  	
