@@ -44,7 +44,7 @@
 	 Le module correspond au gain du filtre, c'est-à-dire le rapport entre les amplitudes de la réponse du filtre et de son excitation. Si le module est important, alors le signal d'entrée est faiblement atténué voire amplifié. Sinon, il est filtré.
 	Si les signaux d'entrée et de sortie représentent le même type de grandeur (par exemple, une tension dans le cas de signaux électriques), le gain est sans unité.\\ 
 	
-	L'argument correspond au déphasage apporté par le filtre. Celui-ci traduit un retard $ \tau $ introduit par le filtre à la fréquence f, déterminé par l'équation \ref{retard}.	
+	L'argument correspond au déphasage apporté par le filtre. Celui-ci traduit un retard $ \tau_p $ introduit par le filtre à la fréquence f, déterminé par l'équation \ref{retard_phase}.	Il caractérise le retard apporté par le filtre sur chaque composante fréquentielle du signal et on parle de retard de phase. Un autre terme de retard courant pour caractériser les filtres est le retard de groupe $ \tau_g $. Par groupe, on entend un groupe de composantes fréquentielles, de fréquences proches, formant le signal qui va traverser le filtre. Chaque composante sera retardé individuellement selon l'argument de la fonction de transfert et la fréquence. Cependant, l'enveloppe du signal, résultante de l'ensemble des composantes fréquentielles présentes, sera affectée par le retard de groupe. Celui-ci est défini par \ref{retard_groupe}. Il dépend de la dérivée fréquentielle de l'argument de la fonction de transfert.  
 	
 	\begin{equation}\label{retard}
 	\tau = \frac{d(Arg(H(f)))}{2\pi df}
