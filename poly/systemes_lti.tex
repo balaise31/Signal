@@ -78,8 +78,8 @@
 	Vérifions d'abord que cet opérateur est linéaire~:
 	Soit $ \p{x_1,x_2,y1,y2}\in L_E^4$ telles que $L\b{x_1}=y_1$ et de même pour $x_2$ et $y_2$. Vérifions que pour toute entrée $x_{3} : t\mapsto x_{1}(t)+\lambda\,x_{2}(t) $ avec $\lambda\in\R$ on ait  :
 	\begin{eqnarray*}
-	L\b{x_1+\lambda x_2} = t \mapsto 2\frac{d}{dt}\p{x_1+\lambda x_2}
-	y_{3}(t)=2a\frac{dx_{1}}{dt}+2b\frac{dx_{2}}{dt}
+	L\b{x_1+\lambda x_2} = t \mapsto 2\frac{d}{dt}\p{x_1+\lambda x_2}~\rightarrow~
+	y_{3}(t)=2a\frac{dx_{1}}{dt}+2b\frac{dx_{2}}{dt}~\rightarrow~
 	y_{3}(t)=ay_{1}(t)+by_{2}(t)
 	\end{eqnarray*}
 	Le système est donc linéaire. Vérifions son invariance temporelle :
@@ -235,7 +235,7 @@
 	\end{equation*}
 	On retrouve une équation du même type que \ref{equa_diff_reponse_naturelle}. La solution de cette équation peut donc s'écrire : $i(t) = Ae^{pt}$, où A est lié aux conditions initiales et p est l'unique fréquence naturelle du système. En intégrant cette solution dans l'équation différentielle, on en déduit l'équation caractéristique de ce circuit (\ref{equa_carac_RC}).
 	\begin{equation*}
-	Ap\cdot e^{pt}+\frac{1}{RC} e^{pt}=0
+	Ap\cdot e^{pt}+\frac{A}{RC} e^{pt}=0
 	\end{equation*}
 	\begin{equation}\label{equa_carac_RC}
 	p+\frac{1}{RC}=p-p_{0}=0
@@ -433,7 +433,7 @@
 	\begin{equation}\label{Dirac}
 	\delta (t-a) = \left \{
 	\begin{array}{l}
-	1~~~si~t = a \\
+	\infty~~~si~t = a \\
 	0~~~sinon \\
 	\end{array}
 	\right . 	
@@ -715,7 +715,7 @@
 	
 	\subsubsection{Exercice 3}
 	
-	On dispose de la réponse indicielle d'un système linéaire, qui est esquissée ci-dessous. Elle a une forme exponentielle croissante.\\
+	On dispose de la réponse indicielle d'un système linéaire à temps invariant, qui est esquissée ci-dessous. Elle a une forme exponentielle croissante.\\
 	
 	\begin{figure}[h!]
 		\centering
@@ -743,7 +743,7 @@
 		\includegraphics[scale=0.5]{images/Exo_2_4.png} 
 	\end{figure} 
 	
-	c. Calculez la réponse du système à l'excitation suivante : $x(t)=\frac{3\sqrt{3}}{2}cos(2\pi t)+\frac{1}{2}sin(2\pi t)$.\\
+	c. Calculez la réponse du système à l'excitation suivante : $x(t)=\frac{\sqrt{3}}{2}cos(2\pi t)+\frac{1}{2}sin(2\pi t)$.\\
 	
 	
 	
