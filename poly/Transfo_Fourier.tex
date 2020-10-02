@@ -177,7 +177,7 @@
 	
 	On peut aussi s'intéresser à la transformée de Fourier inverse d'une impulsion de Dirac, centrée sur une fréquence $f_0$. Une telle distribution se note $\delta(f-f_0)$. Elle indique un spectre dont toute la densité spectrale d'amplitude est concentrée en un point de fréquence $f_0$. L'amplitude du signal temporel associé sera donc finie et il pourra être représentée par une fonction. On peut cependant remarquer qu'un tel spectre ne peut être celui d'un signal réel, puisque le spectre n'est pas symétrique. Le résultat, indiqué ci-dessous, le confirme : la transformée de Fourier inverse d'une impulsion de Dirac est une exponentielle complexe. Dans le cas où l'impulsion de Dirac est centrée en f=0, le spectre redevient symétrique et correspond à celui d'un signal continu égal à 1.
 	\begin{equation}\label{key}
-	\mathcal{F}^{-1}(\delta(f-f_0))=\int_{-\infty}^{+\infty}\delta(f-f_0) e^{+j2\pi ft}df=e^{+j2\pi f_0 t}
+	\mathcal{F}(\delta(f-f_0))=\int_{-\infty}^{+\infty}\delta(f-f_0) e^{+j2\pi ft}df=e^{+j2\pi f_0 t}
 	\end{equation}
 	
 	
@@ -232,7 +232,7 @@
 			\hline
 			Théorème du retard & $x(t-t_0)~\Leftrightarrow~X(f)e^{-j2\pi f t_0}$ \\	
 			\hline
-			Théorème du changement d'échelle $y(t)=x(at)$ & $Y(f)=\frac{1}{|a|}X(\frac{f}{a})$ \\	
+			Théorème du changement d'échelle $y(t)=x(at)$ & $Y(f)=\frac{1}{|a|}X(\frac{f}{|a|})$ \\	
 			\hline
 			Dérivée temporelle & $y(t)=\frac{d^{k}x(t)}{dt^{k}}~\Leftrightarrow~Y(f)=(j2\pi f)^{k}X(f)$ \\
 			\hline
@@ -268,13 +268,13 @@
 			1-\frac{|t|}{\tau}~si~|t|<\tau \\
 			0~sinon \\
 			\end{array}
-			\right .$  & $X(f)=\tau sinc^{2}(\pi \frac{t}{\tau})$ \\	
+			\right .$  & $X(f)=sinc(\pi \frac{t}{\tau})^{2}$ \\	
 			\hline
 			Impulsion de Dirac $\delta(t)$ & 1 \\	
 			\hline
-			Cosinus $\cos(2\pi f_0 t)$ & $\frac{\delta(f-f_0)+\delta(f+f_0)}{2}$ \\	
+			Cosinus $\cos(2\pi f_0 t)$ & $\frac{e^{j2\pi f_0 t}+e^{-j2\pi f_0 t}}{2}$ \\	
 			\hline
-			Sinus $\sin(2\pi f_0 t)$ & $\frac{\delta(f-f_0)-\delta(f+f_0)}{2j}$ \\	
+			Sinus $\sin(2\pi f_0 t)$ & $\frac{e^{j2\pi f_0 t}-e^{-j2\pi f_0 t}}{2j}$ \\	
 			\hline
 			Fonction signe $x(t)=sgn(t)=\frac{t}{|t|}$ & $X(f)=\frac{1}{j\pi f}$ \\	
 			\hline
@@ -284,7 +284,7 @@
 			\hline
 			$x(t)=\frac{\alpha}{2} e^{-\alpha |t|}$ & $X(f)=\frac{\alpha^{2}}{\alpha^{2}+(2\pi f)^{2}}$ \\	
 			\hline
-			$x(t)=\alpha^{2}te^{-\alpha |t|}u(t)$ & $X(f)=\frac{\alpha^{2}}{(\alpha+j2\pi f)^{2}}$ \\	
+			$x(t)=\alpha{2}te^{-\alpha |t|}u(t)$ & $X(f)=\frac{\alpha^{2}}{(\alpha+j2\pi f)^{2}}$ \\	
 			\hline
 			$x(t)=e^{-\alpha t}cos(2 \pi f_0 t)u(t)$ & $X(f)=\frac{\alpha+j2\pi f}{(\alpha+j2\pi f)^{2}+(2\pi f_0)^{2}}$ \\	
 			\hline
@@ -319,11 +319,11 @@
 	\end{equation*}
 	où u(t) est la fonction échelon de Heaviside et $a \in \mathbb{R_{+}^{*}}$. Tracez le graphe de $s_1$. Déterminez sa transformée de Fourier $S_1$.\\
 	
-	2. En utilisant les propriétés de la transformée de Fourier, déterminer après avoir tracé le graphe des signaux $s_2$, $s_3$ et $s_4$ :
+	2. En utilisant les propriétés de la transformée de Fourier, déterminer après avoir tracé le graphe des signaux $s_2$ et $s_3$ :
 	
 	a. la transformée de Fourier $S_2$ du signal $s_2$ défini pour tout réel t par $s_2(t)=e^{at}u(-t)$.\\
 	
-	b.la transformée de Fourier $S_3$ du signal $s_3$ défini pour tout réel t par $s_3(t)=e^{-a|t|}$.\\
+	b.la transformée de Fourier $S_3$ du signal $s_3$ défini pour tout réel t par $s_2(t)=e^{-a|t|}$.\\
 	
 	c. la transformée de Fourier $S_4$ du signal $s_4$ défini pour tout réel t par $s_4(t)=-e^{at}u(-t)+e^{-at}u(t)$.\\
 	
@@ -379,3 +379,7 @@
 	3. Déterminez le spectre de la réponse du filtre.\\
 	
 	4. Calculez la réponse du filtre dans le domaine temporel.\\
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
