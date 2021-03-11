@@ -253,7 +253,9 @@ TSWLatexianTemp*
 
 #backups emacs
 *~
+\#*\#
 
 #python files
 *.pyc
 
+*.orig
