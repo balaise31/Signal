@@ -89,7 +89,7 @@ Par anlogie avec les espaces vectoriels Euclidiens, on va pouvoir manipuler les 
 La \TF{} (Transformée de \Fourier), ou \FT{} (\emph{Fourier
   Transform}) en anglais, s'applique aux fonction continues et utilise
 une base d'ondes complexes
-$\Bf=\p{\caCest{t\mapsto e^{i 2 \pi\,f\,t}}{w_f}}_{f\in\R}$.
+$\Bf=\p{\caCest{t\mapsto e^{i2\pi\,f\,t}}{w_f}}_{f\in\R}$.
 
 \begin{exercice}
 Tentez de retrouver la formule de la transformée et son inverse et d'esquisser le schéma ci-dessous sans le regarder, en se rappelant juste que c'est une application de $$\R\rightarrow\C\;\;\operateur{\TF}\;\;\R\rightarrow\C$$ basée sur le produit scalaire continu noté $\scal{}{}$ avec la base continue $\Bf=\p{w_f}_{f\in\R}$
@@ -125,7 +125,7 @@ Prendre la base $\Bf=\p{w_f}_{f\in\R}$ et utiliser la partie espace indénombrab
 
 
 \subsection{Base des \sdf{}}
-Les \sdf{} (Séries de \Fourier{}), ou \FS{} (\emph{Fourier Series}) s'appliquent aux fonctions continues périodiques et   utilisent une base d'ondes complexes dénombrable $\Bf=\p{\caCest{t\mapsto e^{i \frac{2 \pi}{T_0}\,n\,t}}{w_{T_0}^n}}_{n\in\N}$.
+Les \sdf{} (Séries de \Fourier{}), ou \FS{} (\emph{Fourier Series}) s'appliquent aux fonctions continues périodiques et   utilisent une base dénombrable $\Bf=\p{\caCest{t\mapsto W_{T_0}^{n\,t}=e^{i \frac{2 \pi}{T_0}\,n\,t}}{w_{T_0}^n}}_{n\in\N}$ avec $W_{T_0}=e^{i \frac{2 \pi}{T_0}}$.
 \begin{exercice}
 Tentez de retrouver la formule de la décomposition et recomposition en \sdf{} et d'esquisser le schéma ci-dessous sans le regarder, en se rappelant juste que c'est une application de $$\RT0\rightarrow\C\;\;\operateur{\sdf}\;\;\N\rightarrow\C$$  basée sur le produit scalaire continu périodique noté $\scalp{}{}$ et avec la base discrète $\Bf=\p{W_{T_0}^n}$.
 \end{exercice}
@@ -143,17 +143,19 @@ Tentez de retrouver la formule de la décomposition et recomposition en \sdf{} e
 Bref ! cela fonctionne un peu comme un espace Euclidien fini sans en être un...
 
 \begin{exercice}
-  Prendre la base  $\Bf=\p{t\mapsto \cos\p{\frac{2 \pi}{T_0}\,n\,t}}_{n\in\Z}\cup \p{t\mapsto \sin\p{\frac{2 \pi}{T_0}\,n\,t}}_{n\in\Z^*}$, et voir que l'on retrouve les formules \textbf{à un facteur 2 près !} Et oui ! La base n'est pas normée car un rapide calcul montre que la norme des vecteurs vaut $2$.
+  Prendre la base  $\Bf=\p{t\mapsto \cos\p{\frac{2 \pi}{T_0}\,n\,t}}_{n\in\Z}\cup \p{t\mapsto \sin\p{\frac{2 \pi}{T_0}\,n\,t}}_{n\in\Z^*}$, et voir que l'on retrouve les formules \textbf{à un facteur 2 près !}
+
+  Et oui ! La base n'est pas normée car un rapide calcul montre que la norme des vecteurs vaut~$2$.
 
   En prenant $\Bf=\p{t\mapsto\frac{\cos\p{\frac{2 \pi}{T_0}\,n\,t}}{\sqrt{2}}}_{n\in\Z^*}\cup \p{t\mapsto \frac{sin\p{\frac{2 \pi}{T_0}\,n\,t}}{\sqrt{2}}}_{n\in\Z^*} \cup \p{t\mapsto 1}$ on obtient une définition des \sdf{} chère aux physiciens. On peut ne pas normer les vecteurs mais prendre des pincettes et modifier les formules...
 \end{exercice}
 
 \subsection{Base de la \TFSD{}}
 
-La \TFSD{} (Transformée de \Fourier{} des Signaux Discrets), ou \DTFT{} (\emph{Discrete Time Fourrier Transform} en anglais, s'applique aux fonctions à variable discrète et utilise une base d'ondes complexes indénombrable $\Bf=\p{\caCest{k\mapsto e^{i 2 \pi\,f\,k\,T_e}}{w_{T_e}^f}}_{f\in\SFe{}}$.
+La \TFSD{} (Transformée de \Fourier{} des Signaux Discrets), ou \DTFT{} (\emph{Discrete Time Fourrier Transform} en anglais, s'applique aux fonctions à variable discrète et utilise une base d'ondes complexes indénombrable $\Bf=\p{\caCest{k\mapsto W_{T_e}^{f\,k}=e^{i 2 \pi\,T_e\,f\,k}}{w_{T_e}^f}}_{f\in\SFe{}}$ avec $W_{Te}=e^{i 2 \pi\,T_e}$.
 
 \begin{exercice}
-Tentez de trouver la formule de cette \TFSD{}  et son inverse, d'esquisser le schéma ci-dessous sans le regarder, en pensant que c'est la \og{}duale\fg{} de la \sdf{}. Il s'agit d'une application de $$\N\rightarrow\C\;\;\operateur{\TFSD}\;\;\RFe\rightarrow\C$$ basée sur le produit scalaire discret noté $\scald{}{}$ avec la base continue $\Bf=\p{w_f}_{f\in\SFe}$
+Tentez de trouver la formule de cette \TFSD{}  et son inverse, d'esquisser le schéma ci-dessous sans le regarder, en pensant que c'est la \og{}duale\fg{} de la \sdf{}. Il s'agit d'une application de $$\N\rightarrow\C\;\;\operateur{\TFSD}\;\;\RFe\rightarrow\C$$ basée sur le produit scalaire discret noté $\scald{}{}$ avec la base continue $\Bf=\p{w_{T_e}^f}_{f\in\SFe}$
 \end{exercice}
 
 \graphe{\textwidth}{tfsd}
@@ -177,12 +179,12 @@ On peut difficilement faire l'analogie avec les espaces Euclidiens  car~:
 
 \subsection{Base de la \TFD{} et  \FFT{}}
 
-La \TFD{} (Transformée de \Fourier{} Discrète), ou \DFT{} (\emph{Direct Fourier Transform}) en anglais, s'applique aux fonctions discrètes à support fini et utilisent une base d'ondes complexes discrète finie $\Bf=\p{\caCest{k\mapsto e^{i \frac{2 \pi}{N}\,n\,k}}{W_N^{nk}}}_{n\in\SN0}$.
+La \TFD{} (Transformée de \Fourier{} Discrète), ou \DFT{} (\emph{Direct Fourier Transform}) en anglais, s'applique aux fonctions discrètes à support fini et utilisent une base d'ondes complexes discrète finie $\Bf=\p{\caCest{k\mapsto W_N^{nk}=e^{i \frac{2 \pi}{N}\,n\,k}}{W_N^{n}}}_{n\in\SN0}$ avec $W_N=e^{i \frac{2 \pi}{N}}$.
 
 La $\FFT{}$ (\emph{Fast Fourier Transform} en anglais uniquement) est un algorithme efficace de calcul de la \TFD{}~: c'est donc la même transformation avec les mêmes valeurs~!
 
 \begin{exercice}
-Tentez de trouver la formule de cette \TFD{}  et son inverse, d'esquisser le schéma ci-dessous sans le regarder. Il s'agit d'une application de $$\SN0\rightarrow\C\;\;\operateur{\TFD}\;\;\SN0\rightarrow\C$$ basée sur le p.s. discret périodique noté $\scaldp{}{}$ avec la base continue $\Bf=\p{w_Nnk}_{n\in\SN0}$
+Tentez de trouver la formule de cette \TFD{}  et son inverse, d'esquisser le schéma ci-dessous sans le regarder. Il s'agit d'une application de $$\SN0\rightarrow\C\;\;\operateur{\TFD}\;\;\SN0\rightarrow\C$$ basée sur le p.s. discret périodique noté $\scaldp{}{}$ avec la base continue $\Bf=\p{w_N^{n}}_{n\in\SN0}$
 \end{exercice}
 
 \graphe{\textwidth}{tfd}
