@@ -1,0 +1,38 @@
+﻿\def\morlet#1{exp(-(#1)^2)*cos((#1)*2*pi r)}
+\def\fonc#1{\morlet{(#1)/2}+atan(#1)/90}
+\def\fonction#1{\fonc{(#1)*2+-4}}
+
+
+\begin{tikzpicture}
+	\draw [very thick, dashed] (0,-1.5) -- (0,1)	 ;
+	\draw [very thick, dashed] (2.9,-1.5) -- (2.9,1)	 ;
+	\draw [thick, <->,shorten <= +.1cm, shorten >= .1cm] (0,-1.4) node[below]{0}-- (2.9,-1.4) node[below]{N-1} node[below, xshift=-1.5cm] {$[\![0 ,\, N [\![$}	 ;
+
+	\begin{axis}[	anchor = origin,  x=1cm, y=1cm, 
+								xmin=-4.5, xmax=4.5,
+								axis lines=center, 
+								xlabel={$k\;[\circ]$},
+								ylabel={$\left|f[k]\right|\; [V]$},
+								ylabel style = {anchor=south, thick, black},
+								xlabel style = {anchor=west, thick, black},
+								grid=minor,
+								xticklabels={,,}
+								domain=-4.5:4.5,
+								enlarge y limits=true,
+								help lines
+							]
+%		\addplot[dashed, blue, domain=-5.1:-4]
+%		        plot (\x,{\fonction{\x+6}});
+		\addplot[dashed, blue, mark=*, mark options={fill=white},ycomb,samples at={-4.1,-4,...,-3.1}]
+		        plot (\x,{\fonction{\x+6}});
+		\addplot[dashed, blue, mark=*, mark options={fill=white},ycomb,samples at={-3,-2.9,...,-0.1}]
+		        plot (\x,{\fonction{\x+3}});
+		\addplot[blue,very thick,mark=*, mark options={fill=white},ycomb,samples at={0,0.1,...,2.9}]
+		        plot (\x,{\fonction{\x}});
+		\addplot[dashed, blue, mark=*, mark options={fill=white},ycomb,samples at={3,3.1,...,4.1}]
+		        plot (\x,{\fonction{\x-3}});
+%		\addplot[dashed, blue, domain=4:5.1]
+%		        plot (\x,{\fonction{\x-4}});
+	\end{axis}
+\end{tikzpicture}
+    

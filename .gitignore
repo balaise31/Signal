@@ -253,7 +253,15 @@ TSWLatexianTemp*
 
 #backups emacs
 *~
+\#*\#
 
 #python files
 *.pyc
 
+*.orig
+*.gnuplot
+*.css
+*.html
+*.ncx
+*.epub
+*_epub-epub*

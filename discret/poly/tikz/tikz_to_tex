@@ -1,0 +1,3 @@
+#!/bin/bash
+fichier=$1
+sed  's/<>/\\input{'$1'}/g' tikz_template.pgs > ${fichier%.tikz}.tex

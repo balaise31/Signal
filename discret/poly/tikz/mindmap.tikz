@@ -1,0 +1,99 @@
+\begin{tikzpicture}[scale=1,mindmap,
+level 1 concept/.append style={level distance=130,sibling angle=30},
+extra concept/.append style={color=blue!50,text=black}]
+
+  % Applied area: computer science and its subfields
+  \begin{scope}[mindmap, concept color=orange, text=white]
+    \node [concept] {Informatique \ref{eq:def_linearite}}[clockwise from=-5] 
+      child {node [concept] (log) {Méthodes catégoriques}}
+      child {node [concept] (alg) {Algorithmique}}
+      child {node [concept] (cod) {Compression et transmission}}
+      child {node [concept] (img) {Traitement des images}}
+      child {node [concept] (opt) {Optimisation}}
+      child {node [concept] (res) {Réseaux}};
+  \end{scope}
+  % Applied area: theoretical physics and its subfields
+
+  \begin{scope}[mindmap, concept color=red,text=white]
+    \node [concept] at (-5,-15) {Physique}
+      child [grow=-10, level distance=160]
+        {node [concept] (qin) {Calcul quantique}}
+      child [grow=20] 
+        {node [concept] (csm) {Astronomie et cosmologie}}
+      child [grow=110] 
+        {node [concept] (mat) {Matière condensée}};
+  \end{scope}
+
+  % Applied area: biology and its subfields
+
+  \begin{scope}[mindmap, concept color=green!50!black,text=white]
+    \node [concept] at (6.5,-15) {Biologie} 
+      child [grow=165, level distance=120] 
+        {node [concept] (med) {Medecine}}
+      child [grow=60] 
+        {node [concept] (gen) {Génomique}};
+  \end{scope}
+
+  % Applied area: economics (one subfield)
+
+  \begin{scope}[mindmap, concept color=violet, text=white]
+    \node [concept] at (11,-14) {Économie}
+      child [grow=70, level distance=120] 
+        {node [concept] (dec) {Choix et prise de décision}};
+  \end{scope}
+
+  % Researchers listed by their main specialization in mathematics
+
+  \begin{scope}[mindmap, concept color=blue]
+
+    % Combinatorics and discrete mathematics 
+    \node [concept, text=white] at (5.2,-10.8) 
+      {Combinatoire et mathématiques discrètes} 
+      [clockwise from=150]
+      child [concept color=blue!50] {node [concept] (ver) {Vereschagin}}
+      child [concept color=blue!50, level distance=125] 
+        {node [concept] (kab) {Kabatyanski, Tsfasman, Rybakov, Zykin}}
+      child [concept color=blue!50] 
+        {node [concept] (kch) {Kucherov, Roytberg}}
+      child [concept color=blue!50] {node [concept] (raf) {Raffinot}}
+      child [concept color=blue!50, level distance=135]
+        {node [concept] (ksh) {Koshevoy}};
+
+    % Partial differential equations
+    \node [concept, text=white] at (-3,-11) 
+      {Equations aux dérivées partielles 
+        et méthodes numériques}
+      child [concept color=blue!50, grow=0, level distance=140] 
+        {node [concept] (lhc) {Lohéac}}
+      child [concept color=blue!50, grow=60, level distance=115] 
+        {node [concept] (otr) {OTARIE (Sobo)}}
+      child [concept color=blue!50, grow=95] {node [concept] (ndr) 
+        {Nadirashvili}};
+
+    % Probability
+    \node [concept, text=white] at (-7.2,-3.2) {Probabilités}
+      child [concept color=blue!50, grow=-70, level distance=120] 
+        {node [concept] (rbk) {Rybko}};
+
+    % Logic
+    \node [concept, text=white] at (11.5,-5) {Logique}
+      child [concept color=blue!50, grow=165, level distance=120] 
+        {node [concept] (sht) {Shehtman}};
+  \end{scope}
+
+  % Connections of researchers to applied subfields
+
+  \begin{pgfonlayer}{background}
+    \draw [circle connection bar]
+      (kab) edge (cod)
+      (kch) edge (alg) edge (gen)
+      (lhc) edge (med)
+      (ksh) edge (dec)
+      (ndr) edge (mat)
+      (otr) edge (opt) edge (csm) edge (img)
+      (raf) edge (alg) edge (gen)
+      (rbk) edge (res) edge (mat)
+      (sht) edge (log) edge (dec)
+      (ver) edge (qin) edge (cod);
+  \end{pgfonlayer}
+\end{tikzpicture}
