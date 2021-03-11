@@ -1,0 +1,16 @@
+\documentclass[convert={density=600,outext=.png}]{standalone}
+%\usepackage[french]{babel}
+%\selectlanguage{french}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage[active,pdftex]{preview}
+\usepackage{mathptmx}
+\usepackage{tikz,pgfplots}
+\usetikzlibrary{shapes.geometric,mindmap,backgrounds}
+\PreviewEnvironment[]{tikzpicture}
+\PreviewEnvironment[]{pgfpicture}
+%\input{../latexdefs.tex}
+\begin{document}
+% Ne pas changer ! qtikz ou le script remplacera
+<>
+\end{document}

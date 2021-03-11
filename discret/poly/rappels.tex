@@ -1,0 +1,219 @@
+\chapter{Les bases de Fourier}
+\label{chap:fourier}
+Ce chapitre présente les transformées, séries de \Fourier{} et introduit la transformée de\Fourier{} Discrète en se basant sur une vision d'espace vectoriel Euclidien.
+
+\section{Espaces vectoriels normés pour les fonctions}
+Les produits scalaires pour différents espaces de fonctions sont définis et illustrés dans la \tabref{tab:scalaires}
+\begin{table}[htbp]
+  % \arraystretch=1.2
+  \centering
+  \begin{tabular}{p{0.1\textwidth}|c|c}
+                      &Support infini    & Support fini ou périodique  \\\hline
+                      &  \begin{tabular}{c} \graphe{0.4\textwidth}{fonction_rc}\end{tabular}
+   &  \begin{tabular}{c} \graphe{0.5\textwidth}{fonction_rtc} \end{tabular}                           \\
+    variable continue & $f:\R\mapsto\C$    &  $f:\RT0{}\mapsto\C\;$  ou $f:\;[0,\,T_0[\, \mapsto \C $       \\
+    &$\scal{f}{g}=\intDt{\R}{}{f(t).\conj{g(t)}}$ $\quad\deDim{\frac{V^2}{\Hz}}$ & $\scalp{f}{g}=\frac{1}{T_0}\intDt{0}{T_0}{f(t).\conj{g(t)}}$ $\quad\deDim{V^2}$ \\\hline
+                      &   \begin{tabular}{c} \graphe{0.4\textwidth}{fonction_nc}\end{tabular}
+   &  \begin{tabular}{c} \graphe{0.5\textwidth}{fonction_znc}    \end{tabular}                        \\
+    variable discrète & $\N\mapsto\C$    &  $\ZN0\mapsto\C\;$  ou $\;\semiN{0}{N}\;\mapsto \C$        \\
+                      & $\scald{f}{g}=\somme{k\in\N}{}{f[k].\conj{g[k]}}$ $\quad\deDim{V^2}$& $\scaldp{f}{g}=\somme{k=0}{N-1}{f[k].\conj{g[k]}}$  $\quad\deDim{V^2}$  
+  \end{tabular}
+  \caption{Les produits scalaires adaptés aux différents espaces de fonctions. Par clarté, on ne représente que le module de la fonction qui est dans la cas général complexe.}
+  \label{tab:scalaires}
+\end{table}
+
+\begin{remarque}\remarqueTitre{Pour quoi du complexe pour du réel ?}
+  On considère le cas général des fonctions à valeurs dans $\C$ car cela permet~:
+  \begin{itemize}
+  \item de représenter des signaux de type phaseur (vecteurs en rotation)
+  \item de représenter facilement des signaux réels dont la bande de
+    fréquence est finie (signaux dits \emph{bande étroite})
+  \item de pouvoir appliquer la trasnformée de \Fourier{} à une
+    transformée de \Fourier{} (qui est complexe même pour des signaux
+    réels) et de voir l'opération de transformée comme un isomorphisme
+    et de jouer avec la notion de dual.
+    \end{itemize}
+  \end{remarque}
+  
+  
+  \begin{exercice}\exerciceTitre{Propriété de scalaire et norme dans le cas général}
+  On aurait pu définir ces produits scalaires en ne prenant jamais le
+  conjugué d'une fonction $g$ (ou en considérant des fonction à valeurs réelles de manière à ignorer ce conjugué car $\conj{g}=g$).
+  \begin{enumerate}
+  \item Vérifiez dans le cas réel (sans conjugué) que le produit $\scal{f}{g}$ à les propriété d'un produit scalaire, en déduire la norme induite $\|f\|^2=\scal{f}{f}$ et déterminer la dimention de $\|f\|^2$ : est-ce de la puissance ou de l'énergie, est-ce une valeur ou une densité ?
+  \item Appliquez cette norme (toujours sans le conjugué) au signal imaginaire pur
+    $f: t\mapsto i$. Quelle propriétée de la norme n'est pas respectée ?
+  \item Refaites de même en prenant cette fois-ci les formules de
+    \tabref{tab:scalaires} avec le conjugué de $g$ et vérifiez que
+    cette propriété est vérifiée dans le cas général des fonctions à
+    variables complexes.
+  \item Vérifiez que $\scal{f}{g}=\conj{\scal{g}{f}}$ et que donc le produit scalaire est linéaire à gauche $\forall\lambda\in\C,\; \scal{\lambda\,f}{g}=\lambda\scal{f}{g}$ et \emph{à moitié linéaire} à droite $\forall \lambda\in\C,\; \scal{f}{\lambda\,g}=\conj{\lambda}\scal{f}{g}$
+  \end{enumerate}
+On comprend maintenant pourquoi, dans le cas général des fonctions à valeurs complexes, on utilise le conjugué dans l'expression des produit scalaires et pourquoi on parle de produit \emph{sesqui--linéaire} pour ces produits scalaires~: \emph{sesqui} en latin voulant dire \og{}un et demi\fg{} en latin.  
+\end{exercice}
+
+\subsection{Analyse et synthèse de fonctions dans une base}
+
+Par anlogie avec les espaces vectoriels Euclidiens, on va pouvoir manipuler les fonctions comme indiqué dans la \tabref{tab:hilbert}.
+
+
+%\begin{landscape}
+\begin{table}[htbp]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{p{0.1\textwidth}|p{0.32\textwidth}|p{0.6\textwidth}}
+  & Euclidien fini & Espace de fonctions \\\hline
+  Base   Ortho--normée & une base finie de vecteurs $$\B=\p{\vec{e_n}}_{n\in\ZN0}$$ normés $\|\vec{e_n}\|=1$ et orthogonaux $\scal{\vec{e_n}}{\vec{e_m}}=0$ & base dénombrable de fonctions $\p{\vec{w_n}}_{n\in\N}$ ou indénombrable $\p{\vec{w_f}}_{f\in\R}$ repérées par leur fréquences $f$ ou un indice $n$ associé~;  fonctions d'énergie unitaire $\|\vec{w_n}\|=1$ ou $\|\vec{w_f}\|=1$, et orthogonales $\scalp{\vec{w_n}}{\vec{w_m}}=0$ ou $\scal{\vec{w_{f}}}{\vec{w_{f'}}}=0$\\\hline
+  
+  Analyse &  décomposer un vecteursdans cette base en coefficients $V_n=\scal{\vec{v}}{\vec{e_n}}$ et en donner les coordonnées $$\caCest{\vecDs{V}{\B}}{\rightleftharpoons\vec{v}}=\vvvectBase{V_0=\scal{\vec{v}}{\vec{e_0}}}
+            {\vdots}
+            {V_{N-1}=\scal{\vec{v}}{\vec{e_{N-1}}}}{\B}$$
+                   &  décomposer une fonction $\vec{u}$ en fréquentiel avec la transformée $U(f)$ ou avec les coéfficients $U(n)$ de la série~: $$U(f)=\scal{\vec{u}}{\vec{w_f}}=\scalint{u(t)}{w_f(t)}{t}$$ $$U(n)=\scalp{\vec{u}}{\vec{w_n}}=\scalpint{u(t)}{w_n(t)}{t}$$ \\\hline
+  
+  Synthèse &  recomposer un vecteur dans cette base $\vec{v}=\somme{k\in\ZN0}{}{\caCest{U_0}{\scal{\vec{v}}{\vec{e_0}}}}\,.\,\vec{e_0}$ \graphe{4cm}{projections} &  recomposer une fonction par transformation inverse de $U(f)$  ou recompostion de série $U(n)$~: $$\vec{u}(t) = \int\limits_{-\infty}^{\infty}{\caCest{U(f)}{\scal{\vec{u}}{\vec{w_f}}}\,.\,\vec{w_f}(t)\,\dt} $$ $$\vec{u}(t)=\sum\limits_{n\in\N}\caCest{U(n)}{\scalp{\vec{u}}{\vec{w_n}}}\,.\,\vec{w_n}(t) $$\\\hline
+
+  Projeter avec Plancherel  &  calculer le produit scalaire de vecteurs par leurs composantes~: $$\scal{\vec{u}}{\vec{v}}=\scal{U_{\B}}{V_{\B}}=\Tr{\vecDs{U}{\B}}\,.\,\vecDs{V}{\B}$$ $$\caCest{\hhhect{U_0}{\ldots}{U_{N-1}}}{\Tr{\vecDs{U}{\B}}}\,.\,\vvvect{V_0}{\vdots}{V_{N-1}}$$
+  % au lieu de calculer $$\scal{\vec{u}}{\vec{v}}=\|\vec{u}\|\,\|\vec{v}\|\,\cos\p{\alpha}$$
+                   &  on peut calculer un produit scalaire (utile aux correlations et convolutions) à partir de sa transformée ou composantes de la série~: $$\scal{\vec{u}}{\vec{v}}=\scalint{u(t)}{v(t)}{t} = \scal{U}{V} =  \scalint{U(f)}{V(f)}{f}$$ $$\scalp{\vec{u}}{\vec{v}}=\scalpint{u(t)}{v(t)}{t} = \scaldp{U}{V} =  \scalpdint{U(k)}{V(k)}{k}$$
+  \\\hline
+  
+  Normer avec Parseval  &  Calculer la norme en sommant les carrés des coordonnées~: $$\|\vec{u}\|^2=\|U_{\B}\|^2=\sum {U_n}^2$$ &  calculer la puissance moyenne par la transformée $u(f)$ ou en sommant celle des composantes fréquentielles $U(n)$~: $$\|\vec{u}\|^2=\|U\|^2=\int\limits_{-\infty}^{\infty}{|u(t)|^2\dt}=\int\limits_{-\infty}^{\infty}{|U(f)|^2\df} $$  $$\|\vec{u}\|^2=\|U\|_P^2=\frac{1}{T_0}\int\limits_{0}^{T_0}{|u(t)|^2\dt}=\sum\limits_{k\in\N}{|U(k)|^2} $$
+\end{tabular}
+
+\caption{Structure Euclidiene à structure de Hilbert}
+\label{tab:hilbert}
+\end{table}
+%\end{landscape}
+
+\subsection{Base de la \TF{}}
+
+La \TF{} (Transformée de \Fourier), ou \FT{} (\emph{Fourier
+  Transform}) en anglais, s'applique aux fonction continues et utilise
+une base d'ondes complexes
+$\Bf=\p{\caCest{t\mapsto e^{i 2 \pi\,f\,t}}{w_f}}_{f\in\R}$.
+
+\begin{exercice}
+Tentez de retrouver la formule de la transformée et son inverse et d'esquisser le schéma ci-dessous sans le regarder, en se rappelant juste que c'est une application de $$\R\rightarrow\C\;\;\operateur{\TF}\;\;\R\rightarrow\C$$ basée sur le produit scalaire continu noté $\scal{}{}$ avec la base continue $\Bf=\p{w_f}_{f\in\R}$
+\end{exercice}
+
+\graphe{\textwidth}{tf}
+
+ On peut faire
+l'analogie avec les espaces Euclidiens mais pas l'amalgame, car~:
+\begin{itemize}
+\item le produit scalaire $\scal{}{}$ est défini  dans le cas de fonctions de carré
+intégrable, ou \emph{fonction à énergie finie}, que nous notons $\Leb{2}$,
+\item les vecteurs de la base ne sont pas normés car de norme infinie~;
+\item la base n'est pas finie, ni infinie dénombrable mais infinie indénombrable.
+\end{itemize}
+
+Mais lorsque l'on se place dans le cas de fonctions de carré
+intégrable, ou fonction à énergie finie, que nous notons $\Leb{2}$,
+l'espace est complet (les suites de Cauchy convergent) dont les sommes
+infinies se comporte bien dans $\Leb{2}$~: c'est une espace de
+Banach. De plus le produit scalaire associé à la norme 2 existe et on
+a donc un espace de \Hilbert{} où la norme et le produit scalaire sont
+des application linéaire dans $\Leb{2}$. Comme il s'agit d'une espace
+de dimention infinie, il ne suffit pas d'avoir une base de dimention
+infinie pour couvrir tout l'espace, mais dans le cas de $\Leb{2}$ avec
+la base $\Bf$ on montre que tout l'espace est engendré.
+
+Bref ! ça fonctionne tout comme un espace Euclidien sans en être un.
+
+\begin{exercice}
+Prendre la base $\Bf=\p{w_f}_{f\in\R}$ et utiliser la partie espace indénombrable de la \tabref{tab:hilbert} pour retrouver les formules de \Plancherel{} et \Parseval{}. 
+\end{exercice}
+
+
+\subsection{Base des \sdf{}}
+Les \sdf{} (Séries de \Fourier{}), ou \FS{} (\emph{Fourier Series}) s'appliquent aux fonctions continues périodiques et   utilisent une base d'ondes complexes dénombrable $\Bf=\p{\caCest{t\mapsto e^{i \frac{2 \pi}{T_0}\,n\,t}}{w_{T_0}^n}}_{n\in\N}$.
+\begin{exercice}
+Tentez de retrouver la formule de la décomposition et recomposition en \sdf{} et d'esquisser le schéma ci-dessous sans le regarder, en se rappelant juste que c'est une application de $$\RT0\rightarrow\C\;\;\operateur{\sdf}\;\;\N\rightarrow\C$$  basée sur le produit scalaire continu périodique noté $\scalp{}{}$ et avec la base discrète $\Bf=\p{W_{T_0}^n}$.
+\end{exercice}
+
+\graphe{\textwidth}{sdf}
+
+ On peut faire l'analogie avec les espaces Euclidiens mais pas l'amalgame, car~:
+ \begin{itemize}
+   \item le produit scalaire $\scalp{}{}$ est défini dans le cas de fonctions périodiques de carré intégrable, \emph{fonctions de puissance moyenne finie},  que nous notons $\LebP{2}$
+ \item ce n'est pas un isomorphisme car on passe d'un espace continu périodique à
+   un espace discret~! La transformée inverse se fait avec le produit scalaire discret $\scald{}{}$
+\item la base n'est pas finie, mais infinie dénombrable~;
+\end{itemize}
+
+Bref ! cela fonctionne un peu comme un espace Euclidien fini sans en être un...
+
+\begin{exercice}
+  Prendre la base  $\Bf=\p{t\mapsto \cos\p{\frac{2 \pi}{T_0}\,n\,t}}_{n\in\Z}\cup \p{t\mapsto \sin\p{\frac{2 \pi}{T_0}\,n\,t}}_{n\in\Z^*}$, et voir que l'on retrouve les formules \textbf{à un facteur 2 près !} Et oui ! La base n'est pas normée car un rapide calcul montre que la norme des vecteurs vaut $2$.
+
+  En prenant $\Bf=\p{t\mapsto\frac{\cos\p{\frac{2 \pi}{T_0}\,n\,t}}{\sqrt{2}}}_{n\in\Z^*}\cup \p{t\mapsto \frac{sin\p{\frac{2 \pi}{T_0}\,n\,t}}{\sqrt{2}}}_{n\in\Z^*} \cup \p{t\mapsto 1}$ on obtient une définition des \sdf{} chère aux physiciens. On peut ne pas normer les vecteurs mais prendre des pincettes et modifier les formules...
+\end{exercice}
+
+\subsection{Base de la \TFSD{}}
+
+La \TFSD{} (Transformée de \Fourier{} des Signaux Discrets), ou \DTFT{} (\emph{Discrete Time Fourrier Transform} en anglais, s'applique aux fonctions à variable discrète et utilise une base d'ondes complexes indénombrable $\Bf=\p{\caCest{k\mapsto e^{i 2 \pi\,f\,k\,T_e}}{w_{T_e}^f}}_{f\in\SFe{}}$.
+
+\begin{exercice}
+Tentez de trouver la formule de cette \TFSD{}  et son inverse, d'esquisser le schéma ci-dessous sans le regarder, en pensant que c'est la \og{}duale\fg{} de la \sdf{}. Il s'agit d'une application de $$\N\rightarrow\C\;\;\operateur{\TFSD}\;\;\RFe\rightarrow\C$$ basée sur le produit scalaire discret noté $\scald{}{}$ avec la base continue $\Bf=\p{w_f}_{f\in\SFe}$
+\end{exercice}
+
+\graphe{\textwidth}{tfsd}
+
+
+On peut difficilement faire l'analogie avec les espaces Euclidiens  car~:
+\begin{itemize}
+   \item le produit scalaire $\scald{}{}$ fonctionne dans le cas de suites discretes absoluement convergentes~;
+ \item ce n'est pas un isomorphisme car on passe d'un espace discret à un espace continu périodique~! La transformée inverse se fait avec le produit scalaire continu périodique $\scalp{}{}$ (Attention la période dans l'espace des fréquences est $F_e$)~;
+\item la base n'est pas finie, ni dénombrable  mais infinie indénombrable.
+\end{itemize}
+
+
+\begin{exercice}
+  On admet pour le moment que la \TFSD{} d'un signal $s[k]$ quelconque est une fonction $S(f)$ de période $F_e$. On peut donc voir $S(f)$ comme une fonction de période $F_e$ de la variable réelle $f$ et y appliquer une décomposition en séries de \Fourier{}!
+
+  Faites-le et comparez avec la \TFSD{} inverse. Vous venez de basculer dans un dual ! D'ailleurs on peut voir $s[k]$ comme les coefficients de \Fourier{} d'une fonction de fréquence fondamentale $T_E$ et appliquer une recomposition de la série et trouver $S(f)$.
+
+  Donc \TFSD{}=\sdf{}$^{-1}$ et inversement \sdf{}=\TFSD{}$^{-1}$
+\end{exercice}
+
+\subsection{Base de la \TFD{} et  \FFT{}}
+
+La \TFD{} (Transformée de \Fourier{} Discrète), ou \DFT{} (\emph{Direct Fourier Transform}) en anglais, s'applique aux fonctions discrètes à support fini et utilisent une base d'ondes complexes discrète finie $\Bf=\p{\caCest{k\mapsto e^{i \frac{2 \pi}{N}\,n\,k}}{W_N^{nk}}}_{n\in\SN0}$.
+
+La $\FFT{}$ (\emph{Fast Fourier Transform} en anglais uniquement) est un algorithme efficace de calcul de la \TFD{}~: c'est donc la même transformation avec les mêmes valeurs~!
+
+\begin{exercice}
+Tentez de trouver la formule de cette \TFD{}  et son inverse, d'esquisser le schéma ci-dessous sans le regarder. Il s'agit d'une application de $$\SN0\rightarrow\C\;\;\operateur{\TFD}\;\;\SN0\rightarrow\C$$ basée sur le p.s. discret périodique noté $\scaldp{}{}$ avec la base continue $\Bf=\p{w_Nnk}_{n\in\SN0}$
+\end{exercice}
+
+\graphe{\textwidth}{tfd}
+
+
+
+On peut faire l'analogie avec les espaces Euclidiens finis et \textbf{on peut faire l'amalgame~!} car c'en est un mais dans $\C$ donc~:
+\begin{itemize}
+\item le produit scalaire n'est pas symétrique mais \og{}symétrique et demi\fg{} \cad \emph{sesquilinéaire} car $\scal{u}{v}=\conj{\scal{v}{u}}$.
+\end{itemize}
+
+\begin{remarque}\remarqueTitre{Base pas normée}
+  Le terme $W_N= e^{-i \frac{2 \pi}{N}}$ est en fait une racine $N$ième de l'unité. Le calcul de la norme du vecteur $n$ de la base $\|w_n=k\mapsto W_N^{-nk}\|^2$ devient donc $$\scaldp{w_n}{w_n}=\somme{k=0}{N-1}{e^{i \frac{2 \pi}{N}nk}\,.\,e^{-i \frac{2 \pi}{N}nk}} =\somme{k=0}{N-1}{1}=N $$
+
+  Une formulation normée et symétrique de la \TFD{} ferait donc intervenir un facteur $\frac{1}{\sqrt{N}}$ pour la \TFD{} et son inverse. Pour des raisons de simplicité et de contrainte de calcul numérique, la formulation non normée de la figure est largement utilisé. La \TFD{} n'est pas divisée par $\sqrt{N}$ et donc apparait le terme $\frac{1}{N}$ dans la \TFD{} inverse.
+\end{remarque}
+
+\begin{exercice}
+  Tout comme la \TF{}, la \TFD{} est un isomorphisme bidual. Pour un
+  signal $s$ quelconque, calculez la transformée de la transformée et
+  montrez que
+  $ \caCest{\F\circ \F}{\F^2}\b{s}=\F\b{\F\b{t\mapsto s(t)}} =
+  t\mapsto s(-t)$. Donc si on recalcule deux fois la transformée on obtient le signal d'origine et on montre que $\F^2$ est sa propre réciproque. Déduisez une technique pour calculer la transformée inverse $\F^{-1}$ en utilisant la transformée $\F$.
+
+  Faites de même pour la \TFD{} 
+\end{exercice}
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

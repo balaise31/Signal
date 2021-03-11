@@ -1,0 +1,17 @@
+﻿\def\morlet#1{exp(-(#1)^2)*cos((#1)*2*pi r)}
+
+\begin{tikzpicture}
+	\begin{axis}[	axis x line=center, 
+								axis y line = center,
+								xlabel={$t[s]$},
+								ylabel={$\left|f(t)\right|\; [V]$},
+								enlargelimits=true,
+								grid=minor,
+								domain=-10:10,
+								help lines
+							]
+		\addplot[very thick, blue, samples=512]
+		        plot (\x,{\morlet{x/2}+atan(\x)/180});
+	\end{axis}
+\end{tikzpicture}
+    
