@@ -1,0 +1,20 @@
+﻿\def\morlet#1{exp(-(#1)^2)*cos((#1)*2*pi r)}
+\def\fonc#1{\morlet{(#1)/2}+atan(#1)/90}
+\begin{tikzpicture}
+	\begin{axis}[	anchor = origin,  x=1cm, y=1cm,
+								axis lines=center, 
+								xlabel={$k\;[\bullet]$},
+								ylabel={$\left|f[k]\right|\; [V]$},
+								ylabel style = {anchor=south, thick, black},
+								xlabel style = {anchor=west, thick, black},
+								grid=minor,
+							xticklabels={,,}																					domain=-4.5:4.5,
+								enlarge y limits=true,
+								enlarge x limits=0.02,
+								help lines
+							]
+		\addplot[very thick, blue, mark=*, mark options={fill=white},ycomb,samples at={-4.5,-4.4,...,4.5}]
+		        plot (\x,{\fonc{\x}});
+	\end{axis}
+\end{tikzpicture}
+    
