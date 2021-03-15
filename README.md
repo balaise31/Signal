@@ -12,7 +12,8 @@ Dans une **session linux** ouvrir un terminal (CTRL+ALT+T) et importer le git
     cd Signal
     git checkout discret
     conda init
-
+    source ~/.bashrc
+    
 Une fois le projet récupéré inutile de refaire cela à chaque fois !
 
 ## Lancer jupyter en mode octave/matlab
@@ -24,7 +25,6 @@ Ce n'est pas obligatoire mais bien pratique d'utiliser jupyter pour faire des no
 
 Pour utilser le jupyter notebook avec octave il faut initaliser **à chaque fois** avec
 
-    source ~/.bashrc
     conda activate Octave 
     jupyter-notebook 
     
