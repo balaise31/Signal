@@ -1,1 +1,116 @@
-../../poly/latexdefs.tex
+%math definitions
+\def\P{\mathcal{P}}
+\def\T{\mathcal{T}}
+\def\F{\mathcal{F}}
+\def\L{\mathcal{L}}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\C{\mathbb{C}}
+\def\R{\mathbb{R}}
+\def\priveDe#1{/\left\{#1\right\}}
+
+\def\classe{\mathrm{C}}
+\def\classeZero{\classe^0}
+\def\classeInfini{\classe^{\infty}}
+
+\def\Reel#1{\mathcal{R}\!\!\left[#1\right]}
+
+\def\b#1{\left[#1\right]}
+\def\p#1{\left(#1\right)}
+\def\a#1{\left\{#1\right\}}
+\def\abs#1{\left|#1\right|}
+
+\def\de#1{\!\!\p{#1}}
+
+\def\vect#1{\mathrm{vect}\left(#1\right)}
+\def\ker#1{\mathrm{Ker}\left(#1\right)}
+\def\nullDe#1{\mathrm{0}_{#1}}
+\def\uniteDe#1{\mathrm{1}_{#1}}
+
+\def\derivDe#1{\mathrm{d{#1}}}
+\newcommand{\deriv}{\derivDe{}}
+\def\dt{\derivDe{t}}
+\newcommand{\dDt}{\frac{\deriv}{\derivDe{t}}}
+\def\dDtDe#1{\frac{\derivDe{#1}}{\dt}}
+\def\dDe#1#2{\frac{\derivDe{#1}}{\derivDe{#2}}}
+\def\dDtDeOrdre#1#2{\frac{\deriv^{#2}#1}{{\dt}^{#2}}}
+\def\dDeOrdre#1#2#3{\frac{\deriv^{#3}#1}{{\derivDe{#2}}^{#3}}}
+
+
+\def\scalint#1#2#3{\int\limits_{-\infty}^{\infty}\;#1\,#2\;d#3}
+\def\integ#1#2#3{\int\limits_{#1}^{#2}{#3}}
+\def\intDt#1#2#3{\integ{#1}{#2}{#3\;\dt}}
+
+\def\somme#1#2#3{\sum\limits_{#1}^{#2}{#3}}
+\def\caCest#1#2{\underbrace{#1}_{#2}}
+\def\expo#1{e^{#1}}
+
+\def\application#1#2#3#4{
+    \begin{array}{ccc}
+     #1 & \longrightarrow & #2 \\
+     #3 & \longmapsto & #4 \\
+\end{array}}
+
+
+\def\quads{\;\;\;\;}
+\def\titre#1{\big{\textbf{#1}}}
+
+
+\def\porte{\Pi}
+\def\porteDe#1#2{\porte_{\b{#1 ; #2}}}
+
+\def\Id{\mathrm{Id}}
+\newtheorem{thme}{Th\'{e}or\`{e}me}[chapter]
+\newtheorem{prop}[thme]{Proposition}
+\newtheorem{thdef}[thme]{Théor\`{e}me-Définition}
+\newtheorem{lemme}[thme]{Lemme}
+\newtheorem{exple}[thme]{Exemple}
+\newtheorem{defi}[thme]{D\'{e}finition}
+\newtheorem{prot}[thme]{Propri\'{e}t\'{e}}
+\newtheorem{col}[thme]{Corollaire}
+\newtheorem{rmq}[thme]{Remarque}   
+\newcommand{\dpy}{\displaystyle}
+\newcommand{\gfrac}[2]{\mbox{$\displaystyle{\frac{#1}{#2}}$}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\Frac}[2]{\mbox{$\displaystyle{\frac{#1}{#2}}$}}
+
+\def\grandPonte#1{\textsc{#1}}
+\def\Fourier{\grandPonte{Fourier}}
+\def\Laplace{\grandPonte{Laplace}}
+\def\Bode{\grandPonte{Bode}}
+\def\Euler{\grandPonte{Euler}}
+\def\Dirac{\grandPonte{Dirac}}
+\def\Heaviside{\grandPonte{Heaviside}}
+\def\Dirichlet{\grandPonte{Dirichlet}}
+
+\def\cad{c.-à-d.}
+\def\figref#1{Fig.~\ref{#1}}
+\def\chapref#1{chap.~\ref{#1}}
+
+\def\eempile#1#2{
+  \begin{array}{l}
+    {#1} \\ {#2}
+  \end{array}
+}
+\def\eeempile#1#2#3{
+  \begin{array}{l}
+    {#1} \\ {#2} \\ {#3}
+  \end{array}
+}
+\def\mmmaatrice#1#2#3#4#5#6{
+  \begin{array}{ll}
+    {#1} & {#2}\\
+    {#3} & {#4}\\
+    {#5} & {#6}\\
+  \end{array}
+}
+\def\mmaatrice#1#2#3#4{
+  \begin{array}{ll}
+    {#1} & {#2}\\
+    {#3} & {#4}\\
+  \end{array}
+}
+
+\def\pparMorceaux#1#2#3#4{\left\{\mmaatrice{#1}{#2}{#3}{#4}\right.}
+\def\ppparMorceaux#1#2#3#4#5#6{\left\{\mmmaatrice{#1}{#2}{#3}{#4}{#5}{#6}\right.}
