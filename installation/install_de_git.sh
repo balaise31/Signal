@@ -65,9 +65,11 @@ echo  -n "  copy dans le bureau et lanceur "
 if [ -e "$HOME/Desktop/goSignal.desktop" ]; then
     cp "$DEPOT/installation/goSignal.sh.desktop" "$HOME/Desktop/goSignal.desktop" && echo -ne $OK || echo -e $DEAD
     cp "$DEPOT/installation/goSignalGeek.sh.desktop" "$HOME/Desktop/goSignalGeeke.desktop"&& echo -ne $OK || echo -e $DEAD
+    ln -s "$DEPOT" "$HOME/Desktop/Signal"
 else
     cp "$DEPOT/installation/goSignal.sh.desktop" "$HOME/Bureau/goSignal.desktop" && echo -ne $OK || echo -e $DEAD
     cp "$DEPOT/installation/goSignalGeek.sh.desktop" "$HOME/Bureau/goSignalGeeke.desktop"&& echo -ne $OK || echo -e $DEAD
+    ln -s "$DEPOT" "$HOME/Bureau/Signal"
 fi
 mv "$DEPOT/installation/goSignal.sh.desktop" "$HOME/.local/share/applications/goSignal.desktop"&& echo -ne $OK || echo -e $DEAD
 
