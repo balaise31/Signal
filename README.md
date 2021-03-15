@@ -10,7 +10,7 @@ Dans une **session linux** ouvrir un terminal (CTRL+ALT+T) et importer le git
 
     git clone https://github.com/balaise31/Signal.git
     cd Signal
-    git checkout -b discret
+    git checkout discret
     conda init
 
 Une fois le projet récupéré inutile de refaire cela à chaque fois !
@@ -24,8 +24,8 @@ Ce n'est pas obligatoire mais bien pratique d'utiliser jupyter pour faire des no
 
 Pour utilser le jupyter notebook avec octave il faut initaliser **à chaque fois** avec
 
-    source ~/.initialise_conda.sh 
-    conda init Octave 
+    source ~/.bashrc
+    conda activate Octave 
     jupyter-notebook 
     
 Naviguez dans les répertoires et ouvrez un fichier .ipynb.
