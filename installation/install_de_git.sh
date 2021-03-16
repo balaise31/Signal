@@ -62,7 +62,7 @@ echo  "  Creation du fichier raccourcis goSignal"
 ./.fait_un_lanceur.sh goSignalGeek.sh .geeke.png && echo -e $OK || echo -e $DEAD
 
 echo  -n "  copy dans le bureau et lanceur "
-if [ -e "$HOME/Desktop/goSignal.desktop" ]; then
+if [ -e "$HOME/Desktop" ]; then
     cp "$DEPOT/installation/goSignal.sh.desktop" "$HOME/Desktop/goSignal.desktop" && echo -ne $OK || echo -e $DEAD
     cp "$DEPOT/installation/goSignalGeek.sh.desktop" "$HOME/Desktop/goSignalGeeke.desktop"&& echo -ne $OK || echo -e $DEAD
    ln -s "$DEPOT"  "$HOME/Desktop/Signal" 
