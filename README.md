@@ -2,20 +2,17 @@
 
 Pour récupérer le tout et utiliser les notebooks avec octave/matlab suivez ces instructions.
 
-
-
-## Installation avec  MonTP 
-
-### Récupérer le projet
+# Récupérer le projet
 Allez sur https://montp.insa-toulouse.fr et dans une **session linux** ouvrir un terminal (CTRL+ALT+T) et cloner le git
 avec ces commandes :
 
     cd
     git clone https://github.com/balaise31/Signal.git
     cd Signal
-    git checkout discret    
+    git checkout discret
+La dernière version de la branche discret sera sur votre disque. Pour tenter de mettre à jour faites un *git pull*.
 
-### Lancer le script d'installation
+# Lancer le script d'installation
 
     cd installation
     ./install_de_git.sh
@@ -34,17 +31,15 @@ Ce n'est pas obligatoire mais bien pratique d'utiliser jupyter pour faire des no
   * mixer les deux (fonctions en .m et explications jolies en .ipynb)
 
 Pour utilser le jupyter notebook avec octave il faut initaliser **à chaque fois** avec
-    
-    ./goSignal
-    
-Naviguez dans les répertoires et ouvrez un fichier .ipynb.
-Pour exécuter une cellule de code (SHIFT + ENTER)
 
-Par exemple pour relever le défis paparité :
+  - Cliquer sur l'icone du Bureau *goSignal* 
+  - Naviguez dans les répertoires et ouvrez un fichier .ipynb.
+       Pour exécuter une cellule de code (SHIFT + ENTER)
 
-    cd
+Ou en mode ligne de commande pour faire le défi paparité par exemple:
+
     cd Signal/discret/defis/paparite/
-    jupyter-notebook paparite.ipynb
+    goSignal
 
 Pour écouter le son en ligne de commande :
 
