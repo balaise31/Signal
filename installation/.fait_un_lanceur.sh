@@ -51,7 +51,7 @@ sed -i "s#ICONE#$ICONE_FULL#g" $SCRIPT.desktop
 # là dans les scripts j'ai pas les "\ " mais des espaces pourris " "...
 
 echo "==================="
-echo "Voilà le'icone créée"
+echo "Voilà l'icône créée"
 echo "==================="
 
 cat $SCRIPT.desktop
