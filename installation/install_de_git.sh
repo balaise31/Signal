@@ -22,14 +22,14 @@ creer_initialise_conda () {
     conda init bash && echo -e $OK || echo -e $DEAD
     echo "========================================="
     echo "===Récupération du scrypt OK"
-    mv ~/.bashrc ~/.initialise_conda.sh
+    mv ~/.bashrc ~/.local/bin/initialise_conda.sh
     mv ~/.bashrc.vieux ~/.bashrc
 }
 
 
 echo ""
 echo -n "+  Fichier ~/.initialise_conda.sh "
-if [ -e ~/.initialise_conda.sh ]; then
+if [ -e ~/.local/bin/initialise_conda.sh ]; then
     echo -e $OK
 else
     echo -e " n'existe pas $DEAD"

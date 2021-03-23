@@ -1,11 +1,13 @@
 #!/bin/bash
 
-if [ -e ~/.initialise_conda.sh ]; then
+INIT=~/.local/bin/initialise_conda.sh
+
+if [ -e $INIT ]; then
     if [ -e ~/Signal ]; then
 	
 	cd $HOME/Signal
 	echo "initialisation de conda qui peut durer qq secondes..."
-	source $HOME/.initialise_conda.sh
+	source $INIT
 	echo
 	echo "... je vous l'avias dit"
 
