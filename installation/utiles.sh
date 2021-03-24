@@ -121,7 +121,7 @@ assure_commande() {
 
 
 dans_un_terminal () {
-    echo -e $INDENT Exec de $1 :
+    echo -e $INDENT Exec de "$1" :
     echo -e "$INDENT  $YEUX dans le gnome-terminal nommé \" Exec de $1 \" ..."
 	
 	if $( gnome-terminal --wait \
@@ -130,7 +130,7 @@ dans_un_terminal () {
 	then
 	    echo -e "$INDENT Terminé l'exec de $1" 
 	else
-	    echo -e "$INDENT $MERDE voir $1.log"
+	    echo -e "$INDENT $MERDE voir \"$1\".log"
 	    exit 1
 	fi
 }
@@ -166,7 +166,7 @@ installe_si_marche_pas() {
 	if ( $2 )
 	then
 	    echo -e "$INDENT $TIC $1 "
-	    test -e $3.log && rm $3.log
+	    test -e "$3".log && rm "$3".log
 	else
 	    echo -e "$INDENT $MERDE $3 s'exécute mais le test $2 marche toujours pas !"
 	    test -e "$2.log" && (echo "voici le log"; cat "$2.log")
