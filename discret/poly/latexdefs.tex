@@ -7,6 +7,14 @@
 \def\T{\mathcal{T}}
 \def\F{\mathcal{F}}
 \def\L{\mathcal{L}}
+\def\Sy{\mathrm{Sy}}
+\def\Finv{\mathcal{F}^{\!-1}}
+
+\def\sinc{\mathop{\mathrm{sinc}}}
+\def\mF{\mathop{\mathcal{F}}}
+\def\mTFD{\mathop{\mathrm{TFD}}}
+\def\mat{\mathop{\mathrm{mat}}}
+
 
 \def\N{\mathbb{N}}
 \def\Z{\mathbb{Z}}
@@ -52,6 +60,7 @@
 \def\derivDe#1{\mathrm{d{#1}}}
 \newcommand{\deriv}{\derivDe{}}
 \def\dt{\derivDe{t}}
+\def\dx{\derivDe{x}}
 \def\df{\derivDe{f}}
 \newcommand{\dDt}{\frac{\deriv}{\derivDe{t}}}
 \def\dDtDe#1{\frac{\derivDe{#1}}{\dt}}
@@ -70,6 +79,7 @@
 \def\somme#1#2#3{\sum\limits_{#1}^{#2}{#3}}
 \def\integ#1#2#3{\int\limits_{#1}^{#2}{#3}}
 \def\intDt#1#2#3{\integ{#1}{#2}{#3\;\dt}}
+\def\intDx#1#2#3{\integ{#1}{#2}{#3\;\dx}}
 \def\scalint#1#2#3{\int\limits_{-\infty}^{\infty}\;#1\,\conj{#2}\;d#3}
 \def\scalpint#1#2#3{\frac{1}{T_0}\int\limits_{0}^{T_0}\;#1\,\conj{#2}\;d#3}
 \def\scaldint#1#2#3{\sum\limits_{#3=-\infty}^{\infty}\;#1\,\conj{#2}}
@@ -143,6 +153,7 @@
 \def\FS{FS}
 
 \def\Tr#1{{}^T\!{#1}}
+\def\Hi#1{{#1}^{\star}}
 \def\eenfile#1#2{
   \begin{array}{cc}
     {#1} & {#2}
@@ -165,22 +176,31 @@
   \end{array}
 }
 \def\mmmaatrice#1#2#3#4#5#6{
-  \begin{array}{ll}
+  \begin{array}{cc}
     {#1} & {#2}\\
     {#3} & {#4}\\
     {#5} & {#6}\\
   \end{array}
 }
 \def\mmaatrice#1#2#3#4{
-  \begin{array}{ll}
+  \begin{array}{cc}
     {#1} & {#2}\\
     {#3} & {#4}\\
   \end{array}
 }
+\def\mmmaaatrice#1#2#3#4#5#6#7#8#9{
+  \begin{array}{ccc}
+    {#1} & {#2} & {#3}\\
+    {#4} & {#5} & {#6}\\
+    {#7} & {#8} & {#9}\\
+  \end{array}
+}
+
+
 \def\vec#1{\overrightarrow{#1}}
-\def\vvvect#1#2#3{\left[\eeempile{#1}{#2}{#3}\right]}
+\def\vvvect#1#2#3{\left(\eeempile{#1}{#2}{#3}\right)}
 \def\vvvectBase#1#2#3#4{\vvvect{#1}{#2}{#3}_{#4}}
-\def\hhhect#1#2#3{\left[\eeenfile{#1}{#2}{#3}\right]}
+\def\hhhect#1#2#3{\left(\eeenfile{#1}{#2}{#3}\right)}
 \def\hhhectBase#1#2#3#4{\hhhect{#1}{#2}{#3}_{#4}}
   
 \def\pparMorceaux#1#2#3#4{\left\{\mmaatrice{#1}{#2}{#3}{#4}\right.}
