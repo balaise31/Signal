@@ -320,28 +320,175 @@ On peut faire l'analogie avec les espaces Euclidiens finis et \textbf{on peut fa
   \end{eqnarray}
 \end{remarque}
 
+La transformée s'écrit aisément sous forme matricielle soit en considérant la transformée comme une application linéaire effectuant le changement de coordonnées entre les vecteur de la base canonique et la base fréquentielle, soit en faisant le changement de repère sous forme vectorielle~:
 
+\begin{equation}
+  \label{eq:tfd_matrice}
+  \begin{array}{ll}
+    \mTFD\b{\vec{s}} = \hat{S}=s_{B_F}&=\vvvectBase{\scaldp{s}{w_0}}{\vdots}{\scaldp{s}{w_{N-1}}}{B_F}\\
+    &= \vvvectBase{\Tr{s} \, .\, \conj{w_0}}{\vdots}{\Tr{s} \, .\, \conj{w_{N-1}}}{B_F} = \vvvectBase{\Tr{\conj{w_0}} \, .\, s}{\vdots}{\Tr{\conj{w_{N-1}}} \, .\, s}{B_F}  \\
+                                      &=\caCest{\b{\mmmaaatrice{\conj{w_0[0]}}{\ldots}{\conj{w_0[N-1]}}{\vdots}{}{\vdots}{\conj{w_{N-1}[0]}}{\ldots}{\conj{w_{N-1}[N-1]}}}}{M_{\F}}\;\;.\;\; \caCest{\vvvectBase{s[0]}{\vdots}{s[N-1]}{B_C}}{s_{B_c}} \\
+    &S_{B_F} = M_{\F}\,.\,s_{B_c} 
+  \end{array}
+\end{equation}
 
+On peut donc calculer la \TFD{} d'un signal en multipliant le vecteur du signal temporel par une matrice $M_{\F}$ pour obtenir le vecteur des composantes fréquentielle~: la \TFD{} du signal.
 
+Donc la matrice $M_{\F}$ représente un changement de base d'une base orthonormée canonique $B_c$ vers la  base orthogonale fréquentielle $B_F$, c'est donc la matrice de l'application identité $\Id$ du signal d'une base vers l'autre, ou plus simplement la matrice de passage $M_{\F} = P_{B_F\leftarrow B_c} = \mat\p{\Id,B_F,B_c}$
+\section{Dualité des transformées}
 
+On remarque que la \TF{} et la \TFD{} sont des endomorphismes (de E dans E) isomorphiques (il existe une réciproque), on parle d'automorphisme~:
+\begin{itemize}
+\item la \TF{} transforme une fonction complexe du primal  en fonction complexe du dual et la transformée inverse du dual vers le primal existe~;
+\item la \TFD{} transforme une suite périodique complexe du primal en suite périodique complexe du Dual et la transformée inverse du primal vers le dual existe.
+\end{itemize}
 
+Contrairement aux \sdf{} et \TFSD{} qui sont des isomorphismes (de E dans F et elles sont réciproques entre-elles) ~:
+\begin{itemize}
+\item la \sdf{} transforme une fonction complexe périodique du primal  en suite complexe du dual, sa réciproque est la \TFD{} du dual~;
+\item la \TFSD{} transforme une suite complexe du primal en fonction complexe périodique du Dual.
+\end{itemize}
 
+Sans rentrer dans la véritable définition d'un dual et de la dualité,
+nous pouvons garder cette notion de transformation d'un espace primal
+en son espace dual, et que si l'on retransforme le dual de la même
+manière alors on obtient à nouveau le primal. Le dual est comme une
+application qui est sa propre réciproque mais cela à l'échelle de la
+transformation d'ensemble qui est sa propre réciproque.
 
-
-
+L'idée d'appliquer la \TFSD{} à la \sdf{} $\hat{n\mapsto S[n]}$ de la
+fonction primale $t\mapsto s(t)$, soit de faire le dual du dual, nous
+laisse espérer retomber sur la fonction primale $s$. Et cela marche
+car ces espaces sont duaux.
 
 \begin{exercice}
-  Tout comme la \TF{}, la \TFD{} est un isomorphisme bidual. Pour un
-  signal $s$ quelconque, calculez la transformée de la transformée et
-  montrez que
-  $ \caCest{\F\circ \F}{\F^2}\b{s}=\F\b{\F\b{t\mapsto s(t)}} =
-  t\mapsto s(-t)$. Donc si on recalcule deux fois la transformée on obtient le signal d'origine et on montre que $\F^2$ est sa propre réciproque. Déduisez une technique pour calculer la transformée inverse $\F^{-1}$ en utilisant la transformée $\F$.
+  Prenons le signal constant périodique $s : t\mapsto 1$, toutes ses
+  projections $\scalp{s}{t\mapsto e^{i2\pi\,t\,n\,F_0}}$ sont nulles pour
+  $n\neq0$ sauf pour le vecteur $w_0 : t\mapsto 1$. Donc sa \sdf{} est
+  la suite complexes nulle partout sauf pour n=0 soit  l'impulsion
+  unité en 0 : $n\mapsto\delta_0[n]$.
 
-  Faites de même pour la \TFD{} 
+  Si l'on applique la \TFSD{} à la \sdf{} $\hat{S}$ on obtient la fonction périodique constante et égale $1$ soit la fonction de départ du primal $s$ !
+
+  Essayez de faire cela pour un fonction périodique $s(t)$ quelconque~:  soit montrer que $\TFSD{}\b{\sdf{}\b{s}}=s$ et donc $\TFSD{} \circ \sdf{} = \Id$ où $\Id$ est l'application identité des fonctions périodiques.
+  Ou son dual : soit pour une suite complexe $s[k]$ montrer que $\sdf \circ \TFSD = \Id$ où $\Id$ est l'application identité des suite complexes.
+  
 \end{exercice}
 
 
+La \sdf{} permet de créer l'espace dual des fonctions périodiques, en
+utilisant le produit scalaire avec les signaux de la base de \Fourier,
+qui est alors un espace des suites complexes. La \TFSD{} permet de
+créer le dual des suites complexes, en utilisant le produit scalaire
+avec la base de \Fourier{}, qui est un espace des fonctions
+périodiques.
 
+L'idée d'appliquer la \TF{} à la transformée $\hat{S}$ d'une fonction
+$s$ primale, soit de faire le dual du dual, nous laisse espérer
+retomber sur la même fonction du primal $s$~: cela est vrai au signe
+près~!
+
+
+\begin{exercice}
+  Prenons un signal pair de transformée connue (comme la fonction
+  porte et son sinus cardinal) et calculez la transformée de la
+  transformée (aussi connue à tout les coup). Vous vérifierez que
+  \textbf{pour les fonction paires réelles} $\F{}\circ\F{}=\Id$ des
+  fonctions réelles paires.
+
+  On pourrait faire de même avec des fonctions imaginaires impaires et
+  montrer que le dual du dual est le primal.
+
+  Dans le cas général ce n'est pas vrai, nous allons voir que le signal est retourné dans le temps.
+  
+\end{exercice}
+
+Si on calcule la transformée de $\Sy\b{s} : t\mapsto s(-t)$, \textbf{où 
+$\Sy{}$ est l'opérateur qui retourne une fonction dans le temps}, on
+obtient par changement de variable $x=-t$ la transformée inverse~:
+
+\begin{eqnarray}
+  \label{eq:Transformee_de_Sy}
+  \F\b{\Sy\b{s}}(f)=\F\b{t\mapsto s(-t)}(f)=\intDt{-\infty}{\infty}{s(-t)\,e^{-i2\pi\,f\,t}} & \underset{x=-t}{=} &\intDx{\infty}{-\infty}{s(x)\,e^{i2\pi\,f\,x}} = \Finv\b{s}(f) \nonumber\\
+  \F\circ\Sy &= & \Finv
+\end{eqnarray}
+
+En appliquant cette relation au signal $s$~; à son symétrique~; au signal $\hat{S}$ et à son symétrique, on trouve le graphique \figref{fig:dualite_4_f}. 
+\begin{figure}[ht!]
+  \centering
+  \graphe{0.6\textwidth}{dualite_4}
+  \caption{Dualité de la transformation symétrie temporelle $\Sy$ car le symétrique du symétrique est lui même et bi--dualité de la transformée de \Fourier{} car transformer deux fois un signal c'est le retourner donc $\F{}^2=\Sy{}$ est duale et $\F{}$ est dite biduale.}
+  \label{fig:dualite_4_f}
+\end{figure}
+
+\begin{exercice}
+  Si on applique \eqref{eq:Transformee_de_Sy} au primal (flèches vertes), puis au dual (flèches oranges) et à leurs symétriques on obtient les 4 relations~:
+  \begin{itemize}
+  \item $\F\circ\Sy\b{s} = \Finv\b{s} = ?$
+  \item $\F\circ\Sy\b{\hat{S}} = \Finv\b{\hat{S}} = \Finv\b{\F\b{s}}= ?$
+  \item $\F\circ\Sy\b{t\mapsto s(-t)} = \Finv\b{t\mapsto s(-t)} = ?$
+  \item $\F\circ\Sy\b{f\mapsto \hat{S}(-f)} = \Finv\b{f\mapsto \hat{S}(-f)} = ?$
+  \end{itemize}
+
+Associez ces 4 relations aux quatre couleurs de flèches (vert, orange, cyan, rose) du diagramme et remplacez les \og{}?\fg{}
+
+Prenez en primal le signal porte $s(t)=\Pi(t)=u(t+\frac{1}{2})-u(t-\frac{1}{2})$ (signal nul partout sauf entre $-0,5$ et $0,5$) dont on connaît la transformée sous forme de sinus cardinal $\hat{S}(f)=\sinc\p{\pi\,f}$ (utiliser la transformée de \Laplace, le théorème du retard et la passage à la transformée avec $p=i2\pi\,f$). Appliquez ces formules pour trouver la transformée d'un sinus cardinal (fonction paire !)
+\end{exercice}
+
+
+On obtient ainsi des relations intéressantes du point de vue des
+opérateurs $\F$ et $\Sy$, notamment sur le fait qu'ils commutent bien~:
+\begin{description}
+\item $\F^2\circ\F^2 = \Sy\circ\Sy =\; \Id \;  = \Sy^2 = \F^4$
+\item $\Finv = \F\circ\Sy = \Sy\circ\F$
+\item $\F = \Finv\circ\Sy = \Sy\circ\Finv$
+\end{description}
+\begin{remarque} \remarqueTitre{De même pour la \TFD{}}
+
+  On obtient le même type de diagramme avec la \TFD{} mais avec un
+  retournement temporel discret périodique
+  $\Sy : k \mapsto s[-k]= s[N-k]$ ce qui permet de conserver la
+  relation $\mTFD\circ\Sy=\mTFD^{-1}$ mais avec une base normalisée~!
+  Il faut donc faire attention et préférer la \TFD{} normalisée en la
+  divisant par $\sqrt{N}$.
+
+  Il suffit de partir de la TFD de $s[-k]$ et retrouver la formule de
+  la \TFD{} inverse. On a de plus pour les signaux discrets une
+  représentation matricielle. Ce qui donne pour le retournement
+  temporel d'un signal à 4 points~:
+  \begin{equation}
+    \label{eq:sy_matriciel}
+    \Sy\b{s_4} = \caCest{
+      \left[\begin{array}{cccc}
+      1 & 0 & 0 & 0\\
+      0 & 0 & 0 & 1\\
+      0 & 0 & 1 & 0\\
+      0 & 1 & 0 & 0
+          \end{array}\right]}{M_{\Sy}}\;.\;s_4
+    \end{equation}
+    avec $M_{\Sy}^{-1}=M_{\Sy}$ car $\Sy=Sy^{-1}$
+
+  Et pour la \TFD{} normalisée à 4 points~:
+
+  \begin{equation}
+    \label{eq:tfd4_matriciel}
+    \mTFD\b{s_4} = \widehat{S_4} = \caCest{
+    \frac{1}{2}\left[\begin{array}{cccc}
+      1 & 1 & 1 & 1\\
+      1 & -i & -1 & i\\
+      1 & -1 & 1 & -1\\
+      1 & i & -1 & i
+          \end{array}\right]}{M_{\F}}\;.\;s_4
+    \end{equation}
+    avec $M_{\F}^{-1}=\Tr{M_{\F}}$ la matrice transposée. Car lors
+    d'un changement entre base orthonormée, la matrice de passage est
+    symétrique et orthogonale~: la transposée est aussi l'inverse.
+
+
+    L'équation \eqref{eq:Transformee_de_Sy} devient alors
+    $\TFD\circ\Sy =  \TFD{}^{-1}$ ce qui donne en matriciel
+    $M_{\F}\,M_{\Sy} = M_{\F}^{-1} = \Tr{M_{\F}} $
+  \end{remarque}
 
 %%% Local Variables:
 %%% mode: latex
