@@ -54,6 +54,6 @@ chmod a+x maj
 
 installe_si_marche_pas "script activation et maj" "$INIT" cree_activer_maj
 
-
+dans_un_terminal ./maj
 
 echo -e $INDENT $BIERE

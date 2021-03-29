@@ -1,20 +1,36 @@
 # Installation
 
-## Récup du git
-Voir le readme de la page Github pour voir comment fair egit clone
+Install avec le même script ``./installation/install`` que ce soit sur :
+	* le site montp de l'insa
+	* une install de linux (ou machine virtuelle) avec conda
+	* une install de linux avec virtualenv
 
-## Install Conda comme à l'INSA
+## Récup du git
+	Voir [README](https://github.com/balaise31/Signal/blob/discret/README.md "README du Github") pour voir comment faire un git clone du projet
+	
+## Install Conda comme à l'INSA en local
 
 Si vous voulez installer en utilsant Conda, lancez dans un terminal
    cd ~/Signal/installation
-   ./install_de_git.sh
+   ./install
 
-Cela va utiliser une installation de conda existante ou en faire une en local.
-Puis créer un environement "octave" avec ce qu'il faut pour les notebook Jupyter avec octave. 
+C'est long mais c'est prêt !
+Utilisez une icone goSignal du bureau, ou la commande goSignal dans un terminal.
+
+Cela va :
+
+  * utiliser une installation de conda existante visible (il faut que la commande ocnda existe)
+  * ou utiliser une installation de conda non visible dans $HOME/anaconda3
+  * ou télécharger conda et installer conda dans $HOME/anaconda3
+
+Puis cela va créer un environnement "Octave" avec ce qu'il faut pour les notebook Jupyter avec octave. 
+
+A la fin des icones goSignal et l'alias goSignal sont créés pour démarrer jupyter notebook.
 
 ## Install Virtualenv locale Linux
 
-Si vous voulez installer en utilsant Virtualenv de l'atp de Ubuntu, lancez dans un terminal
+Si vous voulez installer en utilsant Virtualenv de l'atp de Ubuntu (plus léger et rapide que conda), lancez dans un terminal
    cd ~/Signal/installation
-   ./install_de_git.sh venv
+   ./install venv
 
+	

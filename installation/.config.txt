@@ -4,6 +4,6 @@ DEPOT=$HOME/Signal
 TERMINAL=xterm
 
 #Non modifié
-SCRIPT_INSTALL=$DEPOT/install.sh
+SCRIPT_INSTALL=$DEPOT/installation/install
 INIT=$DEPOT/installation/activer
 INIT_ENV=$DEPOT/installation/initialise_$INSTALLATION.sh

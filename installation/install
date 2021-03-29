@@ -34,9 +34,8 @@ fi
 . $CONF
 echo "+ Installation à partir des fichiers de $DEPOT avec ${INSTALLATION}"
 
-echo "+ Test de $INIT_ENV : ça peut êêetre long..." 
+echo "+ Test de $INIT : ça peut êêetre long..." 
 
-dans_terminal_si_marche_pas "script $INIT_ENV" "$INIT_ENV" ./install_${INSTALLATION}_env.sh || exit 1
 dans_terminal_si_marche_pas "script $INIT" "$INIT" ./install_${INSTALLATION}_env.sh || exit 1
 
 

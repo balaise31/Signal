@@ -189,6 +189,22 @@ lance_externe () {
     fi
 }
 
+sans_verif_si_marche_pas(){
+
+    if ( $2 &> /dev/null )
+    then
+	echo -e "$INDENT $TIC $1 "
+    else
+	echo -e "$INDENT $PASTIC $1 :"
+	RETRAIT=$INDENT
+	INDENT=$INDENT"... ->"
+	echo -e "$INDENT alors on lance $3 ..."
+	$3 && echo -e $INDENT $KISS || (echo -e "$INDENT $MERDE raté !"; return 1) 
+	INDENT=${INDENT%%... ->}
+    fi
+}
+
+
 installe_si_marche_pas() {
 
     if ( $2 &> /dev/null )
