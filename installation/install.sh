@@ -5,21 +5,18 @@
 CONF=config.txt
 assure_script "$CONF" "cp -f .config.txt config.txt"
 
-
-pas_dans_apt mate-terminal && (pas_dans_apt gnome-terminal && TERMINAL=xterm || TERMINAL=gnome-terminal) || TERMINAL=mate-terminal
-
+echo On utilise le terminal $TERMINAL avec $TERMINAL $OPTION_TITRE titre $OPTION_EXEC commande
 sed -i "s/TERMINAL=.*$/TERMINAL=$TERMINAL/g" $CONF
+
 ORIGINE=$(dirname $(readlink -f $0))
 DEPOT=${ORIGINE%/installation*}
 echo $DEPOT
 sed -i "s:DEPOT=.*$:DEPOT=$DEPOT:g" $CONF
 
-echo On utilise le terminal $TERMINAL
-
 if [ "$1" = "venv"  ] ; then
  
     echo "Installation avec virtualenv de l'apt de linux"
-    grep venv activer &> /dev/null && echo "trouvé activer avec venv" ||	( rm -f activer; echo "pas de activer avec venv" )
+    grep venv activer &> /dev/null && echo "trouvé activer avec venv" || ( rm -f activer; echo "pas de activer avec venv" )
     sed -i "s/INSTALLATION=.*$/INSTALLATION=venv/g" $CONF
 else
     if [ "$1" = "conda_env" ] ; then
@@ -54,7 +51,7 @@ gerer_alias_bashrc ()
 
     echo -n "    -creation des alias "
 #    echo 'alias goConda="echo \"Initialisation de conda peut prendre quelques secondes...\" && source $INIT && echo \"..je vous l''avais dit !\""'>>~/.bashrc && echo -ne $OK || echo -e $DEAD   
-    echo 'alias goSignal="cd $DEPOT && $INIT && jupyter-notebook"'>>~/.bashrc && echo -e $KISS || echo -e $MERDE
+    echo "alias goSignal=$DEPOT/installation/goSignal.sh">>~/.bashrc && echo -e $KISS || echo -e $MERDE
     
 }
 
