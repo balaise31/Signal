@@ -287,12 +287,12 @@ On peut difficilement faire l'analogie avec les espaces Euclidiens  car~:
 
 \subsection{Base de la \TFD{} et  \FFT{}}
 
-La \TFD{} (Transformée de \Fourier{} Discrète), ou \DFT{} (\emph{Direct Fourier Transform}) en anglais, s'applique aux fonctions discrètes à support fini et utilisent une base d'ondes complexes discrète finie $\Bf=\p{\caCest{k\mapsto W_N^{nk}=e^{i \frac{2 \pi}{N}\,n\,k}}{W_N^{n}}}_{n\in\SN0}$ avec $W_N=e^{i \frac{2 \pi}{N}}$.
+La \TFD{} (Transformée de \Fourier{} Discrète), ou \DFT{} (\emph{Direct Fourier Transform}) en anglais, s'applique aux fonctions discrètes à support fini et utilisent une base d'ondes complexes discrète finie $\Bf=\p{\caCest{k\mapsto W_N^{nk}=e^{i \frac{2 \pi}{N}\,n\,k}}{\vec{W_N^{n}}}}_{n\in\SN0}$ avec $W_N=e^{i \frac{2 \pi}{N}}$.
 
 La $\FFT{}$ (\emph{Fast Fourier Transform} en anglais uniquement) est un algorithme efficace de calcul de la \TFD{}~: c'est donc la même transformation avec les mêmes valeurs~!
 
 \begin{exercice}
-Tentez de trouver la formule de cette \TFD{}  et son inverse, d'esquisser le schéma ci-dessous sans le regarder. Il s'agit d'une application de $$\SN0\rightarrow\C\;\;\operateur{\TFD}\;\;\SN0\rightarrow\C$$ basée sur le p.s. discret périodique noté $\scaldp{}{}$ avec la base continue $\Bf=\p{w_N^{n}}_{n\in\SN0}$
+Tentez de trouver la formule de cette \TFD{}  et son inverse, d'esquisser le schéma ci-dessous sans le regarder. Il s'agit d'une application de $$\SN0\rightarrow\C\;\;\operateur{\TFD}\;\;\SN0\rightarrow\C$$ basée sur le p.s. discret périodique noté $\scaldp{}{}$ avec la base continue $\Bf=\p{\vec{w_N^{n}}}_{n\in\SN0}$
 \end{exercice}
 
 \graphe{\textwidth}{tfd}
