@@ -15,13 +15,14 @@ La dernière version de la branche discret sera sur votre disque. Pour tenter de
 # Lancer le script d'installation
 
     cd installation
-    ./install_de_git.sh
-Eventuellement |chmod a+x ./install_de_git.sh| si pas exécutable.
+    ./install
+Eventuellement ``chmod a+x ./install_de_git.sh`` si pas exécutable.
 
 Un script est installé, votre bash est modifié et deux icones "goSignal" et "Geek" sont crées sur le Bureau.
 
 Une fois le projet récupéré inutile de refaire cela à chaque fois !
 
+Voir [README](https://github.com/balaise31/Signal/tree/install/installation) de ./installation pour plus de détails
 
 ## Lancer jupyter-notebook
 
