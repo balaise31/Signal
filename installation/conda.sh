@@ -10,14 +10,15 @@ installer_conda () {
     cp ~/.bashrc ~/.bashrc.vieux
     SCRIPT_CONDA="Anaconda3-2020.11-Linux-x86_64.sh"
     assure_internet "https://repo.anaconda.com/archive/" $SCRIPT_CONDA
+    chmod a+x $SCRIPT_CONDA
     rm -rf ~/anaconda3
-    lance_externe $SCRIPT_CONDA
+    dans_un_terminal ./$SCRIPT_CONDA
     mv -f ~/.bashrc.vieux ~/.bashrc
 }
 
 if $(pas_dans_path conda)
 then
-    assure_script $BIN_CONDA_LOCAL installer_conda 
+    assure_script $BIN_CONDA_LOCAL installer_conda
     BIN_CONDA=~/anaconda3/bin/conda
 else
     BIN_CONDA=conda

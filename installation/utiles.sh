@@ -20,9 +20,30 @@ function pas_dans_path(){
 function pas_dans_apt(){ 
    return "$(apt -qq list $1 2> /dev/null |wc -l)"
 }
+
 function pas_installe(){ 
    return "$(apt -qq list $1 --installed 2> /dev/null |wc -l)"
 }
+
+
+if ( pas_installe mate-terminal ); then
+    if ( pas_installe gnome-terminal ); then
+	echo $INDENT "ça pue pas de terminal sympa... on prend xterm"
+	TERMINAL=xterm
+	OPTION_TITRE="--title="
+	OPTION_EXEC="--command="
+    else
+	TERMINAL=gnome-terminal
+	OPTION_TITRE="--title="
+	OPTION_EXEC="-- "
+    fi
+else
+    TERMINAL=mate-terminal
+    OPTION_TITRE="--title="
+    OPTION_EXEC="-x "
+fi
+
+
 
 function assure_apt() { 
     unset installe
@@ -55,7 +76,7 @@ function assure_apt() {
     fi
 }
 
-# Internet
+# Internet
 
 chope_sur_internet () {
     echo -ne $INDENT $TELEPHONE
@@ -124,9 +145,9 @@ assure_commande() {
 
 
 dans_un_terminal () {
-    echo -en $INDENT "Exec de $1 dans un terminal~: $YEUX le terminal nommé \" Exec de $1 \" ... "
+    echo -en $INDENT "Exec de $1 dans un terminal : $YEUX le terminal nommé \" Exec de $1 \" ... "
     
-    $TERMINAL -t "$1" -e "bash -c \" \"$1\" | tee  \"$1\".log && echo 0> ./\"$1\".code|| echo 1 > ./\"$1\".code ; echo Appuyez sur une touche ou attendre 10s; read -t 10 -n 1 ; touch \"$1\".lock\" "
+    $TERMINAL $OPTION_TITRE"$1" $OPTION_EXEC bash -c " \"$1\" | tee  \"$1\".log && echo 0> ./\"$1\".code|| echo 1 > ./\"$1\".code ; echo Appuyez sur une touche ou attendre 10s; read -t 10 -n 1 ; touch \"$1\".lock" 
     while [ ! -f ./"$1".lock  ] ;
     do
 	ANIM=$SABLIER
@@ -181,7 +202,7 @@ installe_si_marche_pas() {
 	$3 && echo -e $INDENT $KISS || (echo -e "$INDENT $MERDE raté !"; return 1) 
 	INDENT=${INDENT%%... ->}
     
-	if ( "$2" &> "$2.log")
+	if ( $2 &> "$2.log")
 	then
 	    echo -e "$INDENT $TIC $1 "
 	    test -e "$2".log && rm "$2".log
