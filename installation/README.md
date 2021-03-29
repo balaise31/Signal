@@ -1,12 +1,12 @@
 # Installation
 
 Install avec le même script ``./installation/install`` que ce soit sur :
-	* le site montp de l'insa
-	* une install de linux (ou machine virtuelle) avec conda
-	* une install de linux avec virtualenv
+   * le site montp de l'insa
+   * une install de linux (ou machine virtuelle) avec conda
+   * une install de linux avec virtualenv
 
 ## Récup du git
-	Voir [README](https://github.com/balaise31/Signal/blob/discret/README.md "README du Github") pour voir comment faire un git clone du projet
+Voir [README](https://github.com/balaise31/Signal/blob/discret/README.md "README du Github") pour voir comment faire un git clone du projet
 	
 ## Install Conda comme à l'INSA en local
 
