@@ -1,4 +1,5 @@
 venv
 activer
 maj
-creer_icones_bureau.sh
+config.txt
+initialise_conda.sh

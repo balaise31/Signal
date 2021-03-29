@@ -1,4 +1,6 @@
 #!/bin/bash
+. utiles.sh
+. config.txt
 
 get_abs_filename() {
   # $1 : relative filename
@@ -41,11 +43,11 @@ fi
 
 SCRIPT_FULL=$(get_abs_filename $SCRIPT)
 ICONE_FULL=$(get_abs_filename $ICONE)
-DEPOT=$(cd .. && pwd )
-DEPOT=$(printf "%q" "$DEPOT") 
+
+
 cp .lanceur.desktop.patron $SCRIPT.desktop
-sed -i 's:^DEPOT=.*$:DEPOT="'"$DEPOT"'/":g' $1
-sed -i "s#SCRIPT_FULL#$SCRIPT_FULL#g" $SCRIPT.desktop
+sed -i "s:DEPOT:$DEPOT:g" $SCRIPT.desktop
+sed -i "s#TERMINAL#$TERMINAL#g" $SCRIPT.desktop
 sed -i "s/SCRIPT/$SCRIPT/g" $SCRIPT.desktop
 sed -i "s#ICONE#$ICONE_FULL#g" $SCRIPT.desktop
 # là dans les scripts j'ai pas les "\ " mais des espaces pourris " "...

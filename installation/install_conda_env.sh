@@ -1,23 +1,56 @@
 #!/bin/bash
 . utiles.sh
+. config.txt
 
-MON_INIT_CONDA=~/.local/bin/initialise_conda.sh
-dans_terminal_si_marche_pas "initialise_conda.sh" $MON_INIT_CONDA ./conda.sh
-. $MON_INIT_CONDA
 
+chercher_conda () {
+    if $(pas_dans_path conda)
+    then
+	if [ -f $HOME/anaconda3/bin/conda ] ;
+	then
+	    BIN_CONDA=~/anaconda3/bin/conda
+	else
+	    BIN_CONDA="exit 1"
+	fi
+    else
+	BIN_CONDA=conda
+    fi
+    }
+
+chercher_conda
+
+dans_terminal_si_marche_pas "conda" "$BIN_CONDA" "conda.sh" || exit 1
+ 
+creer_initialise_conda () {
+    touch ~/.bashrc
+    mv -f ~/.bashrc ~/.bashrc.vieux
+    $BIN_CONDA init bash &> /dev/null
+    mv -f ~/.bashrc $INIT_ENV
+    mv ~/.bashrc.vieux ~/.bashrc
+}
+
+
+assure_script $INIT_ENV "creer_initialise_conda" || exit 1
+
+echo -en $INDENT "  Init de conda (peut être long)..." && . $INIT_ENV && echo -e " $KISS je vous l'avais dit" ||exit 1
 
 cree_octave_env () {
-conda create -n octave python=3    
+$BIN_CONDA create -n Octave python=3    
 }
-installe_si_marche_pas "Env. Octave de Conda" "conda activate octave" cree_octave_env
+installe_si_marche_pas "Env. Octave de Conda" "conda activate Octave" cree_octave_env || exit 1
+
+
 
 cree_activer_maj () {
-echo "source $MON_INIT_CONDA && conda activate octave && alias desactiver=\"conda deactivate\"" > activer
-chmod a+x activer
-. activer
+echo "echo -n \"Init de l'env. (peut être long)...\"&& source $INIT_ENV && conda activate Octave && alias desactiver=\"conda deactivate\"&&echo -e \"$KISS je vous l'avais dit !\" " > $INIT
+chmod a+x $INIT
 
-echo ". $PWD/activer && pip install -r requirements.txt" > maj
+echo ". $INIT && pip install -r requirements.txt" > maj
 chmod a+x maj
-dans_terminal_si_marche_pas "Test maj" ./maj ./maj
 }
-cree_activer_maj
+
+installe_si_marche_pas "script activation et maj" "$INIT" cree_activer_maj
+
+
+
+echo -e $INDENT $BIERE

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEPOT="/home/pacco/Documents/gitens/Signal/"
+DEPOT="/home_pers/acco/Signal/"
 echo "_____________________________________________________"
 echo "Normalement il suffit de quelques lignes de commandes"
 echo ">> cd $DEPOT/installation"

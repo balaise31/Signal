@@ -1,22 +1,22 @@
 #!/bin/bash
 . utiles.sh
+. config.txt
 
-DEPOT="/home/pacco/Documents/gitens/Signal/"
+lance_notebook () {
+    if [ -e $DEPOT ]; then
+	
+	cd $DEPOT/installation
+	source ./activer
+	
+	echo "lancement du notebook jupyter"
+	cd ..
+	jupyter-notebook
+    else
+	echo "Le répertoire $DEPOT n'existe pas"
+	echo "soit vous l'avez déplacé soit vous n'avez pas fait l'installation..."
+	echo "Il faut lancer le script $SCRIPT_INSTALL"
+	read -p "Press enter to continue"
+    fi
+}
 
-if [ -e $DEPOT ]; then
-    
-    cd $DEPOT/installation
-    echo "initialisation de l'environnement Python qui peut durer qq secondes..."
-    source ./activer
-    echo
-    echo "... je vous l'avias dit"
-    
-    echo "lancement du notebook jupyter"
-    cd ..
-    jupyter-notebook
-else
-    echo "Le répertoire $DEPOT n'existe pas"
-    echo "soit vous l'avez déplacé soit vous n'avez pas fait l'init"
-    echo "Il faut lancer le script install_de_git.sh"
-    read -p "Press enter to continue"
-fi
+lance_notebook

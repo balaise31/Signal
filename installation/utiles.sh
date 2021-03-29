@@ -7,17 +7,21 @@ TIC="\U2705"
 PASTIC="\U274E"
 TELEPHONE="\U1F4DE"
 YEUX="\U1F440"
+SABLIER_FINI="\U231B"
+SABLIER="\U23F3"
+
+
 
 #paquets
 function pas_dans_path(){ 
-   return "$(which $var 2> /dev/null |wc -l)"
+   return "$(which $1 2> /dev/null |wc -l)"
 }
 
 function pas_dans_apt(){ 
-   return "$(apt -qq list $var 2> /dev/null |wc -l)"
+   return "$(apt -qq list $1 2> /dev/null |wc -l)"
 }
 function pas_installe(){ 
-   return "$(apt -qq list $var --installed 2> /dev/null |wc -l)"
+   return "$(apt -qq list $1 --installed 2> /dev/null |wc -l)"
 }
 
 function assure_apt() { 
@@ -82,26 +86,25 @@ assure_script() {
     
     if [ -e $1 ] ;
     then
-	echo -e "$INDENT  $TIC $1 "
+	echo -e "$INDENT $TIC $1 "
     else
-	echo -e "$INDENT   $PASTIC $1 :"
-	echo -e "$INDENT alors on lance $2 ..."
+	echo -e "$INDENT $PASTIC $1 :"
 	RETRAIT=$INDENT
 	INDENT=$INDENT"... ->"
+	echo -en "$INDENT alors on lance $2 ..."
 	$2 && echo -e $RETRAIT $KISS || echo -e  $RETRAIT $INTERDIT
 	INDENT=${INDENT%%... ->}
-
     
 	if [ ! -e $1 ] ;
 	then
-	    echo -e $INDENT $2 à pas marché !
-	    exit 1
+	    echo -e $INDENT $MERDE $2 à pas marché !
+	    return 1
 	fi
 	
     fi
     if [ ! -x $1 ];
     then
-	chmod a+x $1 || (echo -e "$INDENT $MERDE on peut pas le rendre exécutable !"; exit 1)
+	chmod a+x $1 || (echo -e "$INDENT $MERDE on peut pas le rendre exécutable !"; return 1)
     fi
 }
 
@@ -121,18 +124,33 @@ assure_commande() {
 
 
 dans_un_terminal () {
-    echo -e $INDENT Exec de "$1" :
-    echo -e "$INDENT  $YEUX dans le gnome-terminal nommé \" Exec de $1 \" ..."
-	
-	if $( gnome-terminal --wait \
-		       --title="Exec de $1"\
-		       -- bash -c "./$1 | tee $1.log" )
-	then
-	    echo -e "$INDENT Terminé l'exec de $1" 
-	else
-	    echo -e "$INDENT $MERDE voir \"$1\".log"
-	    exit 1
-	fi
+    echo -en $INDENT "Exec de $1 dans un terminal~: $YEUX le terminal nommé \" Exec de $1 \" ... "
+    
+    $TERMINAL -t "$1" -e "bash -c \" \"$1\" | tee  \"$1\".log && echo 0> ./\"$1\".code|| echo 1 > ./\"$1\".code ; echo Appuyez sur une touche ou attendre 10s; read -t 10 -n 1 ; touch \"$1\".lock\" "
+    while [ ! -f ./"$1".lock  ] ;
+    do
+	ANIM=$SABLIER
+	echo -en "$ANIM\b"
+	sleep 1
+	ANIM=$SABLIER_FINI
+	echo -en "$ANIM\b"
+	sleep 1
+    done
+    code_erreur=$(cat "$1".code)
+    rm ./"$1".lock
+    rm ./"$1".code
+    
+    echo $code_erreur
+    if [[ $code_erreur -eq "0" ]]
+    then
+	echo -e "$INDENT Terminé l'exec de $1"
+	rm -f "$1".log
+	return 0
+    else
+	echo -e "$INDENT $MERDE voir \"$1\".log"
+	cat "$1".log
+	return 1
+    fi
 }
 
 
@@ -160,22 +178,23 @@ installe_si_marche_pas() {
 	RETRAIT=$INDENT
 	INDENT=$INDENT"... ->"
 	echo -e "$INDENT alors on lance $3 ..."
-	$3 && echo -e $INDENT $KISS || (echo -e "$INDENT $MERDE raté !"; exit 1) 
+	$3 && echo -e $INDENT $KISS || (echo -e "$INDENT $MERDE raté !"; return 1) 
 	INDENT=${INDENT%%... ->}
     
-	if ( $2 )
+	if ( "$2" &> "$2.log")
 	then
 	    echo -e "$INDENT $TIC $1 "
-	    test -e "$3".log && rm "$3".log
+	    test -e "$2".log && rm "$2".log
+	    return 0
 	else
 	    echo -e "$INDENT $MERDE $3 s'exécute mais le test $2 marche toujours pas !"
 	    test -e "$2.log" && (echo "voici le log"; cat "$2.log")
-	    exit 1
+	    return 1
 	fi
 	
     fi
 }
 
 dans_terminal_si_marche_pas () {
-    installe_si_marche_pas "$1" "$2" "dans_un_terminal $3"
+    installe_si_marche_pas "$1" "$2" "dans_un_terminal $3" && return 0 ||return 1
 }
