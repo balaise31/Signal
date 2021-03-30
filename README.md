@@ -19,7 +19,7 @@ cd ~/Signal/installation
 git pull
 ./install
 ```
-Eventuellement ``chmod a+x ./install_de_git.sh`` si pas exécutable.
+Eventuellement ``chmod a+x ./install`` si pas exécutable.
 
 Un script est installé, votre bash est modifié et deux icones "goSignal" et "Geek" sont crées sur le Bureau.
 
