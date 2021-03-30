@@ -26,7 +26,7 @@ Un script est installé, votre bash est modifié et deux icones "goSignal" et "G
 
 Une fois le projet récupéré inutile de refaire cela à chaque fois !
 
-Voir [README](https://github.com/balaise31/Signal/tree/install/installation) de ./installation pour plus de détails
+Voir [README](https://github.com/balaise31/Signal/tree/discret/installation) de ./installation pour plus de détails
 
 ## Lancer jupyter-notebook
 
