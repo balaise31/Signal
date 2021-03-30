@@ -18,6 +18,7 @@ La dernière version de la branche discret sera sur votre disque. Pour tenter de
 cd ~/Signal/installation
 git pull
 ./install
+goSignal
 ```
 Eventuellement ``chmod a+x ./install`` si pas exécutable.
 
