@@ -11,9 +11,11 @@ Voir [README](https://github.com/balaise31/Signal/blob/discret/README.md "README
 ## Install Conda comme à l'INSA en local
 
 Si vous voulez installer en utilsant Conda, lancez dans un terminal
-``   cd ~/Signal/installation
-   ./install
-``
+
+```bash   
+cd ~/Signal/installation
+./install
+```
 C'est long mais c'est prêt !
 Utilisez une icone goSignal du bureau, ou la commande goSignal dans un terminal.
 
@@ -30,7 +32,9 @@ A la fin des icones goSignal et l'alias goSignal sont créés pour démarrer jup
 ## Install Virtualenv locale Linux
 
 Si vous voulez installer en utilsant Virtualenv de l'atp de Ubuntu (plus léger et rapide que conda), lancez dans un terminal
-``   cd ~/Signal/installation
+
+```bash
+cd ~/Signal/installation
    ./install venv
-`` 
+```
 	
