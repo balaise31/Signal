@@ -14,7 +14,9 @@ Si vous voulez installer en utilsant Conda, lancez dans un terminal
 
 ```bash   
 cd ~/Signal/installation
+git pull
 ./install
+goSignal
 ```
 C'est long mais c'est prêt !
 Utilisez une icone goSignal du bureau, ou la commande goSignal dans un terminal.
@@ -35,6 +37,23 @@ Si vous voulez installer en utilsant Virtualenv de l'atp de Ubuntu (plus léger 
 
 ```bash
 cd ~/Signal/installation
-   ./install venv
+git pull
+./install venv
+goSignal
 ```
-	
+## Install sur OSx
+ A vous de jouer !
+ Si conda est installé alors tentez les même commandes git pour récupérer le projet puis 
+
+
+    conda init
+    conda install octave-kernel
+    jupyter-notebook
+
+A vous de proposer des scripts !
+
+## Install sur windows
+ Utiliser Tortoise GIt ou l'appli github pour récupérer le projet.
+ Si conda est installé tentez le jupyter notebook...
+
+A vous de proposer des tutoriels ou scripts.
