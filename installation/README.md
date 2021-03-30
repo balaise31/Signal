@@ -6,7 +6,7 @@ Install avec le même script ``./installation/install`` que ce soit sur :
    * une install de linux avec virtualenv
 
 ## Récup du git
-Voir [README](https://github.com/balaise31/Signal/blob/discret/README.md "README du Github") pour voir comment faire un git clone du projet
+Voir [README](../README.md "README du Github") pour voir comment faire un git clone du projet
 	
 ## Install Conda comme à l'INSA en local
 

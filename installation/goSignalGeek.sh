@@ -1,6 +1,6 @@
 #!/bin/bash
-
-DEPOT="/home_pers/acco/Signal/"
+. utiles.sh
+. config.txt
 echo "_____________________________________________________"
 echo "Normalement il suffit de quelques lignes de commandes"
 echo ">> cd $DEPOT/installation"
