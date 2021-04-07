@@ -1,0 +1,176 @@
+\chapter{Systèmes discrets}
+
+
+L'analogie avec les systèmes continus est forte, nous étudions de même
+le cas des sysèmes linéaires invariants dans le temps avec une vision
+par opérateurs.
+
+
+\section{Systèmes linéaires}
+
+\begin{definition}{Système}
+
+Un système discret (resp. continu) relie à chaque signal d'entrée $x$
+un signal de sortie unique $y$. Les signaux $x$ et $y$ sont des
+fonctions de la variables réelle discrète $k$ (resp. $t$) appartenant
+à un espace de fonction le plus général possible noté ici $L_E$. La
+relation entrée-sortie est donc modélisée par une application
+mathématique de $L_E$ dans $L_E$ notée $L$ (resp. $L_c$ en continu) et
+définie ainsi~:
+\begin{eqnarray}
+  L : \qquad \application{L_E}{L_E}{x : \; k\mapsto x\b{k}\quad{}}{\quad y :\; k\mapsto y\b{k}} \\
+  L_c: \qquad \application{L_E}{L_E}{x : \; t\mapsto x\p{t}\quad{}}{\quad y :\; t\mapsto y\p{t}} 
+    % DONE : correction TYPAGE et remarque notation
+\end{eqnarray}
+\end{definition}
+
+Une classe de système fondamentale est la classe des systèmes
+linéaires car elle offre de nombreux outils et propriétés
+mathématiques.
+
+\begin{definition}{Système linéaire}
+  \label{def:linearite}
+  
+  Une système est dit linéaire si et seulement si
+  l'application $L$ associée est linéaire, soit pour tout
+  $\p{x_1,x_2,\lambda} \in L_E^2 \times \R$~:
+  \begin{eqnarray}
+    \label{eq:def_linearite}
+    \forall t \in \R \qquad L\b{x_1 + \lambda\, x_2}(t) = L\b{x_1}(t) + \lambda\,L\b{y_2}(t) \nonumber\\
+    \text{ou bien } \qquad L\b{x_1 + \lambda\,x_2} = L\b{x_1} +\lambda L\b{x_2 }
+  \end{eqnarray}
+\end{definition}
+
+Une des conséquences de la linéarité est la possibilité d'appliquer le
+principe de superposition cher à l'électronicienne~: la réponse du
+système à une entrée est la combinaison linéaire des réponses à chaque
+signaux composant l'entrée par combinaison la même combinaison
+linéaire.
+	
+Les trois systèmes linéaires de base que nous considérons dans
+l'étude des systèmes linéaires continus sont :
+\begin{description}
+\item[le gain $a.x$]~: $t \mapsto a\,x\p{t}$ où a est une constante
+\item[le dérivateur $\oder\b{x}=\oder\circ x$]~: $ t \mapsto \dDtDe{x}\p{t} $
+\item[l'intégrateur $\oint\b{x}=\oint\circ x$]~: $ t \mapsto \integ{0}{t}{x\p{\nu}\derivDe{\nu}}$ 
+\end{description}
+On peut aisément vérifier que ces systèmes respectent la condition de
+linéarité~\ref{eq:def_linearite}. On aimerait que les opérateurs
+dérivateur $\oder$ et intégrale $\oint$ commutent et soient
+réciproque~: $\oder\circ\oint=\oint\circ\oder=\Id$. Pour que cela soit
+vrai même avec les fonctions discontinues, il faut introduire les
+distributions de \Dirac{} voir \chapref{sec:deriv_discontinues}.
+
+Dans le cas des systèmes discret, les systèmes élémentaires sont :
+\begin{description}
+\item[le gain $a.x$]~: $ k \mapsto a\,x\b{k}$ où a est une constante.
+\item[le retard unité $\oret\b{x}=\oret\circ x$]~: $ k \mapsto x\b{k-1}$.
+\item[l'avance unité $\oavance\b{x}=\oavance\circ x$]~: $ k \mapsto x\b{k+1} $ 
+\end{description}
+
+On peut aisément vérifier que ces systèmes respectent la condition de
+linéarité~\ref{eq:def_linearite}. La commutation et réciprocité des
+opérateurs retard $\oret$ et avance $\oavance$ est évidente et ne pose
+pas de problème théorique.
+
+\begin{exemple}
+  \label{exemple:differentiateur_lineaire}
+  L'effet du système \emph{différentiateur} sur le signal d'entrée est d'écrit par
+  l'opérateur ~: $$L : x \mapsto y=\frac{x-\oret\b{x}}{T_e}$$
+
+  Vérifions d'abord que cet opérateur est linéaire~:
+  \begin{eqnarray*}
+    L\b{x_1+\lambda x_2}\b{k} &= L\b{x_1+\lambda x_2}\b{k}\\
+                         &= \frac{x_1\b{k}+\lambda x_2\b{k} - \oret\b{x_1+\lambda x_2}\b{k}}{T_e}\\
+                         &= \frac{x_1\b{k}+\lambda x_2\b{k} - \p{x_1\b{k-1}+\lambda x_2\b{k-1}}}{T_e} = A\\
+   L\b{x_{1}}\b{k}+\lambda\,L\b{x_{2}}\b{k}  &= \frac{x_1\b{k} - x_1\b{k-1}}{T_e}+\lambda\,\frac{x_2\b{k} - x_2\b{k-1}}{T_e}=A
+  \end{eqnarray*}
+  Le système est donc linéaire.
+\end{exemple}
+
+
+% \begin{remarque}
+%   Pour résoudre les complexes équations différentielles des
+%   télégraphistes, \Heaviside{} utilise ces opérateurs de base et
+%   introduit le \emph{calcul opérationnel}. Cela consiste à représenter
+%   l'application de l'opérateur dérivée sur une fonction $f$ comme une
+%   simple multiplication par un nombre $p$. Ainsi une équation
+%   différentielle $a\,y'' + 2y' -y = 3\int x$ est associée à l'équation
+%   symbolique $a\,p^2\,y + 2\,p\,y - y = \frac{3}{p}x$. Il est alors
+%   possible de résoudre algébriquement l'équation sous forme de
+%   fractions rationnelles ce qui donnerait avec notre exemple~:
+%   $y = \frac{3/p}{a\,p^2+2p+1} x$. Rappelons que $x$ et $y$ sont des
+%   fonctions et non des réels et que dans ce cas les opérations ne sont
+%   pas de simple multiplication et addition de réels mais bien des
+%   multiplications et additions de fonctions. La variable symbolique
+%   $p$ est utilisée comme un nombre réel mais n'est en aucun cas un
+%   réel...
+% \end{remarque}
+	
+\section{Systèmes invariants}
+Il est fréquent, et surtout théoriquement utile, qu'un système
+réagisse de la même manière indépendemment de l'instant où est
+appliqué le signal d'entrée. Ce qui conduit à la définition suivante~:
+\begin{definition}{Système invariant dans le temps}
+  Un système discrète (resp. continu) est dit invariant dans le temps si et seulement
+  si son application associée $L$ (resp. $L_c$) vérifie~:
+  \begin{eqnarray}
+    \forall x\in L_E, \forall (k,k_0)\in \N^2, \quads L[k\mapsto x(k-k_{0})] = L[x](k-k_{0}) \\
+    \forall x\in L_E, \forall (t,t_0)\in \R^2, \quads L_c[t\mapsto x(t-t_{0})] = L[x](t-t_{0}) 
+  \end{eqnarray}
+  
+  En terme d'opérateur~;  un système $L$ est invariant dans
+  le temps si, et seulement si, son opérateur commute avec  tout opérateur
+  retard de $k_0$ noté $\oretDe{k_0}=\oret^{k_0}\b{x}= k\mapsto x\b{k-k_0}$~:
+  \begin{eqnarray}
+    \label{eq:sys_invariant}
+    L\circ\oretDe{k_0} \; = \; \oretDe{k_0}\circ L  \qquad \iff \qquad  L\b{\oretDe{k_0}\b{x}} = \oretDe{k_0}\b{L\b{x}}
+    \\
+    L_c\circ\oretDe{\tau} \; = \; \oretDe{\tau}\circ L_c  \qquad \iff \qquad  L_c\b{\oretDe{\tau}\b{x}} = \oretDe{\tau}\b{L_c\b{x}}
+  \end{eqnarray}
+\end{definition}
+
+Autrement dit \og{} la réponse du système à un signal retardé est le
+retard de la réponse du système.\fg{} 
+
+En d'autres termes, la réponse du système ne dépend pas de l'origine
+des temps choisie.
+        
+\begin{exemple}
+  Reprenons l'exemple du \emph{différentiateur} \ref{exemple:differentiateur_lineaire} d'écrit par
+  l'opérateur ~: $$L : x \mapsto y=\frac{x-\oret\b{x}}{T_e}$$
+  
+  Vérifions qu'il est invariant~:
+  \begin{eqnarray*}
+    \forall k_0 \quads L\b{\oretDe{k_0}\b{x}}\b{k} &= L\b{k\mapsto x\b{k-k_0}}\b{k}\\
+                                                   &= \frac{x\b{k-k_0}-x\b{k-k_0-1}}{T_e} = B\\
+    \forall k_0 \quads \oretDe{k_0}\b{L\b{x}}\b{k} &= \oretDe{k_0}\b{k\mapsto \frac{x\b{k-1}-x\b{k}}{T_e}}\b{k}\\
+                                                   &= \frac{x\b{k-k_0}-x\b{k-k_0-1}}{T_e} = B
+  \end{eqnarray*}
+  
+  On a bien exprimé le fait que $L$ commute avec tout retard
+  $\oretDe{k_0}$, en d'autres termes~: \emph{la différence du retard est le retard de la différence.}
+\end{exemple}
+
+
+\begin{remarque}
+  Il est facile de vérifier que les systèmes discrets élémentaires que
+  sont le gain~; le retard unitaire et l'avance unitaire (gain,
+  dérivateur et intégrateur pour le continu) sont invariants.  Il en
+  est de même pour tout système constitué de combinaisons linéaires
+  et de composition de systèmes élémentaires.
+
+  Il suffit alors de montrer que le système se décompose avec des
+  \emph{coefficients constants} avec des systèmes élémentaires en le
+  mettant sous forme \emph{d'équation aux différence} ou
+  \emph{récurrence} à coefficients constants (\emph{equations
+    différentielle} en continu) ou en un schéma bloc à coefficients
+  constant.
+\end{remarque}
+
+
+
+%%% Local Variables:
+%%% mode: latexqn
+%%% TeX-master: "main"
+%%% End:

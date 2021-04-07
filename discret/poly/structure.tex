@@ -35,6 +35,7 @@
 \usepackage{lscape}
 \usepackage{xcolor} % Required for specifying colors by name
 \definecolor{ocre}{RGB}{243,102,25} % Define the orange color used for highlighting throughout the book
+\definecolor{vert}{RGB}{102,243,25} % Define the orange color used for highlighting throughout the book
 
 %----------------------------------------------------------------------------------------
 %	MARGINS
@@ -353,6 +354,7 @@ innerbottommargin=5pt]{cBox}
 \def\remarqueTitre#1{\textcolor{ocre}{\textbf{#1}}\\}
 \def\exerciceTitre#1{\textcolor{ocre}{\textbf{#1}}\\}
 
+\newenvironment{quizz}{\begin{eBox} QUIZZ}{\hfill{\color{vert}}\end{eBox}}				  
 
 
 %----------------------------------------------------------------------------------------
@@ -526,6 +528,10 @@ addtohook={%
 \fi
 }
 }
+
+
+
+
 
 %%% Local Variables:
 %%% mode: latex
