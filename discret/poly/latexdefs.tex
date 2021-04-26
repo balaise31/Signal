@@ -1,3 +1,5 @@
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
 \def\Hz{\textsc{Hz}}
 \def\noDim{\bullet}
 \def\deDim#1{\;\Join\!\!\left[#1\right]}
@@ -5,10 +7,18 @@
 %math definitions
 \def\P{\mathcal{P}}
 \def\T{\mathcal{T}}
-\def\F{\mathcal{F}}
-\def\L{\mathcal{L}}
+\def\F{\mathpzc{F}}
+\def\L{\mathpzc{L}}
 \def\Sy{\mathrm{Sy}}
-\def\Finv{\mathcal{F}^{\!-1}}
+\def\Finv{\F^{\!-1}}
+
+\def\zm#1{z^{-#1}}
+\def\zmu{z^{-1}}
+
+\def\TZ{\mathpzc{Z}}
+\def\teZ{transformée en $\TZ$}
+\def\tZ{$\TZ$}
+\def\TZde#1{\widehat{#1}}
 
 \def\sinc{\mathop{\mathrm{sinc}}}
 \def\mF{\mathop{\mathcal{F}}}
@@ -39,7 +49,8 @@
 \def\classe{\mathrm{C}}
 \def\classeZero{\classe^0}
 \def\classeInfini{\classe^{\infty}}
-
+\def\domDe#1{\mathpzc{D}_{#1}
+}
 \def\Reel#1{\mathcal{R}\!\!\left[#1\right]}
 \def\Imag#1{\mathcal{I}\!\!\left[#1\right]}
 \def\conj#1{\overline{#1}}
@@ -68,7 +79,11 @@
 \def\dDtDeOrdre#1#2{\frac{\deriv^{#2}#1}{{\dt}^{#2}}}
 \def\dDeOrdre#1#2#3{\frac{\deriv^{#3}#1}{{\derivDe{#2}}^{#3}}}
 
-
+\def\oret{\mathrm{T}}
+\def\oavance{\mathrm{A}}
+\def\oretDe#1{\oret_{#1}}
+\def\oder{\mathrm{D}}
+\def\oint{\mathrm{I}}
 
 \def\llbracket{[\![}
 \def\rrbracket{]\!]}
@@ -88,6 +103,8 @@
 \def\scalp#1#2{\langle#1,#2{\rangle}_P}
 \def\scald#1#2{\llangle#1,#2\rrangle}
 \def\scaldp#1#2{\llangle#1,#2{\rrangle}_P}
+
+\def\conv{\ast}
 
 \def\Bc{\mathrm{B_c}}
 \def\Bf{\mathrm{B_F}}

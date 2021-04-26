@@ -356,7 +356,7 @@ manière alors on obtient à nouveau le primal. Le dual est comme une
 application qui est sa propre réciproque mais cela à l'échelle de la
 transformation d'ensemble qui est sa propre réciproque.
 
-L'idée d'appliquer la \TFSD{} à la \sdf{} $\hat{n\mapsto S[n]}$ de la
+L'idée d'appliquer la \TFSD{} à la \sdf{} $n\mapsto \hat{S}[n]$ de la
 fonction primale $t\mapsto s(t)$, soit de faire le dual du dual, nous
 laisse espérer retomber sur la fonction primale $s$. Et cela marche
 car ces espaces sont duaux.
@@ -444,14 +444,14 @@ opérateurs $\F$ et $\Sy$, notamment sur le fait qu'ils commutent bien~:
 \item $\F = \Finv\circ\Sy = \Sy\circ\Finv$
 \end{description}
 \begin{remarque} \remarqueTitre{De même pour la \TFD{}}
-
+  
   On obtient le même type de diagramme avec la \TFD{} mais avec un
   retournement temporel discret périodique
   $\Sy : k \mapsto s[-k]= s[N-k]$ ce qui permet de conserver la
   relation $\mTFD\circ\Sy=\mTFD^{-1}$ mais avec une base normalisée~!
   Il faut donc faire attention et préférer la \TFD{} normalisée en la
   divisant par $\sqrt{N}$.
-
+  
   Il suffit de partir de la TFD de $s[-k]$ et retrouver la formule de
   la \TFD{} inverse. On a de plus pour les signaux discrets une
   représentation matricielle. Ce qui donne pour le retournement
@@ -459,36 +459,40 @@ opérateurs $\F$ et $\Sy$, notamment sur le fait qu'ils commutent bien~:
   \begin{equation}
     \label{eq:sy_matriciel}
     \Sy\b{s_4} = \caCest{
-      \left[\begin{array}{cccc}
-      1 & 0 & 0 & 0\\
-      0 & 0 & 0 & 1\\
-      0 & 0 & 1 & 0\\
-      0 & 1 & 0 & 0
-          \end{array}\right]}{M_{\Sy}}\;.\;s_4
-    \end{equation}
-    avec $M_{\Sy}^{-1}=M_{\Sy}$ car $\Sy=Sy^{-1}$
-
+      \left[
+        \begin{array}{cccc}
+          1 & 0 & 0 & 0\\
+          0 & 0 & 0 & 1\\
+          0 & 0 & 1 & 0\\
+          0 & 1 & 0 & 0
+        \end{array}\right]}{M_{\Sy}}\;.\;s_4
+  \end{equation}
+  avec $M_{\Sy}^{-1}=M_{\Sy}$ car $\Sy=Sy^{-1}$
+      
   Et pour la \TFD{} normalisée à 4 points~:
-
+  
   \begin{equation}
     \label{eq:tfd4_matriciel}
     \mTFD\b{s_4} = \widehat{S_4} = \caCest{
-    \frac{1}{2}\left[\begin{array}{cccc}
-      1 & 1 & 1 & 1\\
-      1 & -i & -1 & i\\
-      1 & -1 & 1 & -1\\
-      1 & i & -1 & i
-          \end{array}\right]}{M_{\F}}\;.\;s_4
-    \end{equation}
-    avec $M_{\F}^{-1}=\Tr{M_{\F}}$ la matrice transposée. Car lors
-    d'un changement entre base orthonormée, la matrice de passage est
-    symétrique et orthogonale~: la transposée est aussi l'inverse.
+      \frac{1}{2}\left[
+        \begin{array}{cccc}
+          1 & 1 & 1 & 1\\
+          1 & -i & -1 & i\\
+          1 & -1 & 1 & -1\\
+          1 & i & -1 & -i
+        \end{array}
+      \right]}{M_{\F}}\;.\;s_4
+  \end{equation}
+  avec $M_{\F}^{-1}=\Tr{M_{\F}}$ la matrice transposée. Car lors
+  d'un changement entre base orthonormées, la matrice de passage est
+  symétrique et orthogonale~: la transposée est aussi l'inverse.
+  
+  
+  L'équation \eqref{eq:Transformee_de_Sy} devient alors
+  $\TFD\circ\Sy =  \TFD{}^{-1}$ ce qui donne en matriciel
+  $M_{\F}\,M_{\Sy} = M_{\F}^{-1} = \Tr{M_{\F}} $
+\end{remarque}
 
-
-    L'équation \eqref{eq:Transformee_de_Sy} devient alors
-    $\TFD\circ\Sy =  \TFD{}^{-1}$ ce qui donne en matriciel
-    $M_{\F}\,M_{\Sy} = M_{\F}^{-1} = \Tr{M_{\F}} $
-  \end{remarque}
 
 %%% Local Variables:
 %%% mode: latex
