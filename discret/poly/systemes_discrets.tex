@@ -1,0 +1,755 @@
+\chapter{Systèmes discrets}
+
+
+L'analogie avec les systèmes continus est forte, nous étudions de-même
+le cas des systèmes discrets linéaires invariants dans le temps avec
+une vision par opérateurs.
+
+
+\section{Systèmes linéaires}
+
+\begin{definition}{Système SISO (Single Input Single Output}
+  
+  Un système discret SISO (resp. continu SISO) relie à un signal d'entrée $x$
+  un signal de sortie unique $y$. Les signaux $x$ et $y$ sont des
+  fonctions de la variables réelle discrète $k$ (resp. $t$) appartenant
+  à un espace de fonction le plus général possible noté ici $L_E$.
+
+  La relation entrée-sortie est donc modélisée par une application
+  mathématique de $L_E$ dans $L_E$ notée $L$ (resp. $L_c$ en continu)
+  et définie ainsi~:
+  \begin{eqnarray}
+    L : \qquad \application{L_E}{L_E}{x : \; k\mapsto x\b{k}\quad{}}{\quad y :\; k\mapsto y\b{k}} \\
+    L_c: \qquad \application{L_E}{L_E}{x : \; t\mapsto x\p{t}\quad{}}{\quad y :\; t\mapsto y\p{t}} 
+    % DONE : correction TYPAGE et remarque notation
+  \end{eqnarray}
+\end{definition}
+
+Une classe de système fondamentale est la classe des systèmes
+linéaires car elle offre de nombreux outils et propriétés
+mathématiques.
+
+\begin{definition}{Système linéaire}
+  \label{def:linearite}
+  
+  Une système est dit linéaire si, et seulement si, l'application $L$
+  associée est linéaire, soit pour tout
+  $\p{x_1,x_2,\lambda} \in L_E^2 \times \R$~:
+  \begin{eqnarray}
+    \label{eq:def_linearite}
+    \forall t \in \R \qquad L\b{x_1 + \lambda\, x_2}(t) = L\b{x_1}(t) + \lambda\,L\b{y_2}(t) \nonumber\\
+    \iff \qquad L\b{x_1 + \lambda\,x_2} = L\b{x_1} +\lambda L\b{x_2 }
+  \end{eqnarray}
+\end{definition}
+
+Une des conséquences de la linéarité est la possibilité d'appliquer le
+principe de superposition cher à l'électronicienne~: \og{} la réponse
+du système à une combinaison linéaire d'entrées est la combinaison des
+réponses de chaque entrée.\fg{}
+
+\begin{definition}{Systèmes continus élémentaires}
+  \label{def:systeme_elementaires_continus}
+  
+Les trois systèmes linéaires élémentaires que nous considérons dans
+l'étude des systèmes linéaires continus sont :
+\begin{description}
+\item[le gain $a.x$]~: $t \mapsto a\,x\p{t}$ où a est une constante
+  scalaire réelle ou complexe
+\item[le dérivateur $\oder\b{x}=\oder\circ x$]~: $ t \mapsto \dDtDe{x}\p{t} $
+\item[l'intégrateur $\oint\b{x}=\oint\circ x$]~: $ t \mapsto \integ{0}{t}{x\p{\nu}\derivDe{\nu}}$ 
+\end{description}
+\end{definition}
+
+On peut aisément vérifier que ces systèmes respectent la condition de
+linéarité~\ref{eq:def_linearite}.
+
+\begin{remarque}
+  De manière implicite, on choisi un espace de fonction $L_c$ qui est
+  stable par toute combinaison de compositions de ces opérateurs (même
+  une infinité de composition de $\oder$ par exemple) soit un espace
+  complet de fonctions.
+
+  On aimerait que les opérateurs dérivateur $\oder$ et intégrale
+  $\oint$ commutent et soient réciproque sur $L_c$~:
+  $\oder\circ\oint=\oint\circ\oder=\Id$. De manière à obtenir une
+  composition de ces opérateurs qui ait la même propriété qu'un
+  produit algébrique inversible.
+  
+  Pour que cela soit vrai même avec les fonctions discontinues, il
+  faut introduire les distributions de \Dirac{} voir
+  \chapref{sec:deriv_discontinues}.
+\end{remarque}
+
+\begin{definition}{Système élémentaires discrets}
+  
+Dans le cas des systèmes discret, les systèmes élémentaires sont :
+\begin{description}
+\item[le gain $a.x$]~: $ k \mapsto a\,x\b{k}$ où a est une constante
+  scalaire réelle ou complexe
+\item[le retard unité $\oret\b{x}=\oret\circ x$]~: $ k \mapsto x\b{k-1}$.
+\item[l'avance unité $\oavance\b{x}=\oavance\circ x$]~: $ k \mapsto x\b{k+1} $ 
+\end{description}
+\end{definition}
+
+On peut aisément vérifier que ces systèmes respectent la condition de
+linéarité~\ref{eq:def_linearite}.
+
+\begin{remarque}
+  La commutation et réciprocité des opérateurs retard $\oret$ et
+  avance $\oavance$ est évidente et ne pose pas de problème théorique,
+  contrairement au cas continus~:
+  $\oret\circ\oavance=\oavance\circ\oret=\Id$.
+
+  La composition~$\circ$ de ces opérateurs avec l'opérateur somme de
+  systèmes $+$ a donc une structure d'anneau commutatif~: $\circ$ et
+  $+$ des systèmes se comporte comme $\times$ et $+$ des nombres
+  réels.
+
+  L'espace des signaux $L_e$ (ou des suites complexes) est stable et
+  complet par l'application des opérateurs élémentaires.
+\end{remarque}
+
+L'opérateur dérivée n'as pas de sens en discret car la limite
+$s'(x)=\lim\limits_{h\to 0} \frac{s(x+h)-s(x)}{h}$ n'aurait pas de
+sens pour $h$ entier. On peut s'approcher de cet opérateur avec des
+combinasons plus ou moins complexes et précises des opérateusr avance et
+retard élémentaires.
+
+\begin{exemple}
+  \label{exemple:differentiateur_lineaire}
+  L'effet du système \emph{différentiateur} sur le signal d'entrée est d'écrit par
+  l'opérateur ~: $$L : x \mapsto y=\frac{x-\oret\b{x}}{T_e}$$
+  
+  Vérifions d'abord que cet opérateur est linéaire~:
+  \begin{eqnarray*}
+    L\b{x_1+\lambda x_2}\b{k} &= L\b{x_1+\lambda x_2}\b{k}\\
+                              &= \frac{x_1\b{k}+\lambda x_2\b{k} - \oret\b{x_1+\lambda x_2}\b{k}}{T_e}\\
+                              &= \frac{x_1\b{k}+\lambda x_2\b{k} - \p{x_1\b{k-1}+\lambda x_2\b{k-1}}}{T_e} = A\\
+    L\b{x_{1}}\b{k}+\lambda\,L\b{x_{2}}\b{k}  &= \frac{x_1\b{k} - x_1\b{k-1}}{T_e}+\lambda\,\frac{x_2\b{k} - x_2\b{k-1}}{T_e}=A
+  \end{eqnarray*}
+  Le système est donc linéaire.
+\end{exemple}
+
+
+% \begin{remarque}
+%   Pour résoudre les complexes équations différentielles des
+%   télégraphistes, \Heaviside{} utilise ces opérateurs de base et
+%   introduit le \emph{calcul opérationnel}. Cela consiste à représenter
+%   l'application de l'opérateur dérivée sur une fonction $f$ comme une
+%   simple multiplication par un nombre $p$. Ainsi une équation
+%   différentielle $a\,y'' + 2y' -y = 3\int x$ est associée à l'équation
+%   symbolique $a\,p^2\,y + 2\,p\,y - y = \frac{3}{p}x$. Il est alors
+%   possible de résoudre algébriquement l'équation sous forme de
+%   fractions rationnelles ce qui donnerait avec notre exemple~:
+%   $y = \frac{3/p}{a\,p^2+2p+1} x$. Rappelons que $x$ et $y$ sont des
+%   fonctions et non des réels et que dans ce cas les opérations ne sont
+%   pas de simple multiplication et addition de réels mais bien des
+%   multiplications et additions de fonctions. La variable symbolique
+%   $p$ est utilisée comme un nombre réel mais n'est en aucun cas un
+%   réel...
+% \end{remarque}
+
+\section{Systèmes invariants}
+Il est fréquent, et surtout théoriquement utile, qu'un système
+réagisse de la même manière indépendemment de l'instant où est
+appliqué le signal d'entrée. Ce qui conduit à la définition suivante~:
+\begin{definition}{Système invariant dans le temps}
+  Un système discrète (resp. continu) est dit invariant dans le temps si et seulement
+  si son application associée $L$ (resp. $L_c$) vérifie~:
+  \begin{eqnarray}
+    \forall x\in L_E, \forall (k,k_0)\in \N^2, \quads L[k\mapsto x(k-k_{0})] = L[x](k-k_{0}) \\
+    \forall x\in L_E, \forall (t,t_0)\in \R^2, \quads L_c[t\mapsto x(t-t_{0})] = L[x](t-t_{0}) 
+  \end{eqnarray}
+  
+  En terme d'opérateur~;  un système $L$ est invariant dans
+  le temps si, et seulement si, son opérateur commute avec  tout opérateur
+  retard de $k_0$ noté $\oretDe{k_0}=\oret^{k_0}\b{x}= k\mapsto x\b{k-k_0}$~:
+  \begin{eqnarray}
+    \label{eq:sys_invariant}
+    L\circ\oretDe{k_0} \; = \; \oretDe{k_0}\circ L  \qquad \iff \qquad  L\b{\oretDe{k_0}\b{x}} = \oretDe{k_0}\b{L\b{x}}
+    \\
+    L_c\circ\oretDe{\tau} \; = \; \oretDe{\tau}\circ L_c  \qquad \iff \qquad  L_c\b{\oretDe{\tau}\b{x}} = \oretDe{\tau}\b{L_c\b{x}}
+  \end{eqnarray}
+\end{definition}
+
+Autrement dit \og{}la réponse du système à un signal retardé est le
+retard de la réponse du système.\fg{}~; ou encore \og{} la réponse du
+système ne dépend pas de l'origine des temps choisie.\fg{}
+
+Cette propriété est souvent liée à la propriété de \emph{causalité}
+d'un système~:
+\begin{definition}{Système causal}
+  
+  Un système $L$ (resp. $L_c$ en continu) est dit causal en $k_0$
+  (resp. en $t_0$ pour le continus) si toute réponse à un signal nul
+  avant l'instant $k_0$ (resp. $t_0$) est nulle aux instants $k<k_0$
+  (resp. $t<t_0$).
+
+  Dans le cas de systèmes invariants, cette définition peut s'écrire
+  en prenant arbitrairement $0$ comme instant de référence~:
+
+  \begin{align}
+    \label{eq:systeme_causal}    
+    \forall x\in L_e, \forall k\in\N^*, \quad &x\b{-k}=0 \quad \implies \quad L\b{x}\b{-k}=y\b{-k}=0 \\
+    \forall x\in L_c, \forall t\in\R^{+*}, \quad &x\b{-t}=0 \quad \implies \quad L_c\b{x}\p{-t}=y\p{-t}=0   
+  \end{align}
+\end{definition}
+
+Autrement dit \og{}l'effet ne précède pas la cause.\fg{}
+\begin{exemple}
+  Reprenons l'exemple du \emph{différentiateur} \ref{exemple:differentiateur_lineaire} d'écrit par l'opérateur ~: $$L : x \mapsto y=\frac{x-\oret\b{x}}{T_e}$$
+  
+  Vérifions qu'il est invariant~:
+  \begin{eqnarray*}
+    \forall k_0 \quads L\b{\oretDe{k_0}\b{x}}\b{k} &= L\b{k\mapsto x\b{k-k_0}}\b{k}\\
+                                                   &= \frac{x\b{k-k_0}-x\b{k-k_0-1}}{T_e} = B\\
+    \forall k_0 \quads \oretDe{k_0}\b{L\b{x}}\b{k} &= \oretDe{k_0}\b{k\mapsto \frac{x\b{k-1}-x\b{k}}{T_e}}\b{k}\\
+                                                   &= \frac{x\b{k-k_0}-x\b{k-k_0-1}}{T_e} = B
+  \end{eqnarray*}
+  
+  On a bien exprimé le fait que $L$ commute avec tout retard
+  $\oretDe{k_0}$, en d'autres termes~: \emph{la différence du retard est le retard de la différence.}
+\end{exemple}
+
+
+\begin{remarque}
+  Il est facile de vérifier que les systèmes discrets élémentaires que
+  sont le gain~; le retard unitaire et l'avance unitaire (gain,
+  dérivateur et intégrateur pour le continu) sont invariants.  Il en
+  est de même pour tout système constitué de combinaisons linéaires
+  et de composition de systèmes élémentaires.
+  
+  Il suffit alors de montrer que le système se décompose avec des
+  \emph{coefficients constants} avec des systèmes élémentaires en le
+  mettant sous forme \emph{d'équation aux différence} ou
+  \emph{récurrence} à coefficients constants (\emph{equations
+    différentielle} en continu) ou en un schéma bloc à coefficients
+  constant.
+\end{remarque}
+
+\section{Calcul opérationnel~: \teZ{}}
+
+La \teZ{} joue le même rôle pour les systèmes discrets que la
+transformée de \Laplace{} pour les systèmes continus. Elles permettent
+de définir une \emph{fonction de transfert} du système et de manipuler
+les systèmes algébriquement sous formes de fonctions de la variable
+complexe (comme des fractions rationnelles polynomiales pour les
+systèmes linéaires invariants).
+
+Plutôt que de présenter sans justifier ces formules de transformées,
+nous allons introduire la vision par calcul opérationnel qui consiste
+justement à manipuler les opérateurs comme des nombres
+algébriques. Cette méthode a été développée et fortement utilisée par
+\Heaviside{} pour résoudre notamment l'équation des
+télégraphistes. Les justifications théoriques de cette approche et la
+relation entre l'opérateur $p$ de \Heaviside{} et la variable $s$ de
+la transofrmée de \Laplace{} n'est apparue que plus tard.
+
+\begin{citations} Mathematics is an experimental science, and definitions do not come
+  first, but later on.
+
+  \hfill Olivier \Heaviside{} (1850--1925)
+\end{citations}
+
+\subsection{Principe du calcul opérationnel}
+\label{sec:calcul_operationnel}
+Tout système discret linéaire invariant possédant une seule entrée $x$ et
+une seule sortie $y$ se représente par une équation aux différences du
+type suivant~:
+\begin{eqnarray}
+  \label{eq:systeme_recurrence}
+  a_n\,y\b{k-n} \,+\, \ldots  \,+\,  a_1\,y\b{k-1} \,+\, a_0.y\b{k} \;=\; b_m\,x\b{k-m} \,+\, \ldots \,+\, b_0 x\b{k} \quad,\quad \forall k\in\Z
+\end{eqnarray}
+Les opérateurs discrets de base, retard unitaire, avance unitaire,
+gain commutent entre-eux (pour les systèmes invariants) et se combinent
+linéairement (pour les systèmes linéaires). On peut donc représenter la
+relation entrée/sortie par une combinaison linéaire de ces opérateurs
+de base~:
+\begin{eqnarray}
+  \label{eq:systeme_operationnel}
+  \p{a_n\,\circ\,\caCest{\oret\circ...\circ \oret}{\text{n fois}}}\b{y}\; +\; \ldots \;+\; \caCest{\p{a_1\circ\oret}\b{y}}{k\mapsto a_1.y\b{k-1}} \;+\; \caCest{\p{a_0 \,\circ\, \Id}\b{y}}{a_0.y} \\
+  =\quad \p{b_m\,\circ\,\caCest{\oret\circ...\circ \oret}{\text{m fois}}}\b{x} \;+\; \ldots \;+\; \p{b_0 \,\circ\,\Id}\b{x}
+\end{eqnarray}
+
+\begin{remarque}
+  Remarquons bien que dans \eqref{eq:systeme_recurrence} les termes
+  sont des scalaires réels ou complexe~; alors que dans l'écriture
+  opérationnelle \eqref{eq:systeme_operationnel} les termes sont des
+  fonctions (ou signaux ou plutôt des suites réelles ou complexes). Au
+  lieu de prendre une égalité valable pour tout entier $k$~; nous
+  passons à une équation de systèmes (ou opérateurs) prenant en
+  argument des signaux.
+\end{remarque}
+
+
+Comme l'opérateur gain est invariant et qu'il commute avec l'opérateur
+retard on peut noter la composition $\circ$ comme un simple produit
+car elle possède les mêmes propriétés de commutativité, associativité
+etc. La récurrence devient ainsi~:
+\begin{eqnarray}
+ \caCest{\p{a_n.\oret^n}}{\text{opérateur}}\caCest{\b{y}}{\text{de fonction}}\; +\; \ldots \;+\; \p{a_1.\oret}\b{y} \;+\; \caCest{a_0\b{y}}{k\mapsto a_0\,y\b{k}}  = \quad \p{b_m.\oret^m}\b{x} \;+\; \ldots \;+\; b_0\b{x}
+\end{eqnarray}
+
+\begin{exemple}
+  Reprenons l'exemple du \emph{différentiateur} \ref{exemple:differentiateur_lineaire} d'écrit par l'opérateur ~: $$L : x \mapsto y=\frac{x-\oret\b{x}}{T_e}$$
+  
+  Nous obtenons avec la notation algébrique la relation entrée/sortie~:
+  $$
+  T_e.y = x - \oret\b{x}
+  $$
+  Qui correspond à l'équation aux différences~:
+  $$
+  y\b{k} = \caCest{\frac{1}{T_e}}{b_0}\,x\b{k}-\caCest{\frac{1}{T_e}}{b_1}\,x\b{k-1}
+  $$
+  
+\end{exemple}
+
+\begin{remarque}
+  On ne peut pas noter des produits du type $a_n.T^n.y$, car cela
+  signifierait la composition $a_n\circ T^n\circ y$. Alors que les
+  systèmes gain et retard se composent et commutent (car se sont des
+  opérateurs qui transforment des signaux discrets de $L_E$ en signaux
+  discrets de $L_E$), la fonction $y$ est un signal discret de $L_E$
+  qui transforme un entier $\Z$ en un scalaire complexe $\C$ et ne
+  peut se composer avec un opérateur~: la composition (à droite ou à
+  gauche) serait mal définie car~:
+  \begin{equation*}
+    \begin{array}{ccccc}
+      a_n   & \circ &   T^n  & \circ &  y \\
+      L_E \overset{a_n}{\longleftarrow} L_E & =  & L_E \overset{\oret^n}{\longleftarrow} L_E & \neq  & \C \leftarrow \Z 
+    \end{array}
+  \end{equation*}
+
+  Rappelons que les opérateurs $a_n$ et $\oret$ sont des
+  \og{}fonctions de fonctions discrètes donnant des fonctions
+  discrètes\fg{}.
+
+  La composition $a_n\circ y$ est donc mal définie et sa notation
+  $a_n.y$ est fausse quand $a_n$ désigne l'opérateur (ou système)
+  gain. En revanche la notation $a_n.y$ où $a_n$ est un scalaire est
+  ambiguë mais correcte car elle peut désigner le produit d'un
+  scalaire par une fonction. A part le système gain qui est noté comme
+  un scalaire, les autres opérateurs comme $T^k$ ne se composent pas
+  avec une fonction et les notation $T^k.y$ et $T^k\circ y$ restent
+  fausse sans ambiguïté~!
+\end{remarque}
+
+
+
+Pour mener une approche par calcul opérationnel, il faut transformer
+la fonction $y$ en un opérateur qui puisse commuter avec les autres.
+Or, comme le montre la remarque précédente, une fonction discrète prend
+un entier en argument pour donner un complexe, alors qu'un opérateur
+(ou système) prend une fonction pour la transformer en fonction.
+
+Pour contourner ce problème, on remplace le signal $y$ par un système
+noté $Y$ dont la réponse à une excitation unitaire est le signal $y$
+lui-même. Dans le cas de systèmes discrets, on choisi comme signal
+unitaire l'impulsion unité $\delta_{0}$.
+
+\begin{definition}
+  \label{def:impulsion_unite}
+  L'impulsion unité, notée $\delta_0$ ou simplement $\delta$, est le signal discret tel que :
+  $$
+  \delta_0\b{k}=\pparMorceaux{1}{\text{si } k=0}{0}{\text{sinon}} \quad k\in\Z
+  $$
+
+  L'impulsion unités centrée en $a$ est notée $\delta_a$ et définie par~:
+  $$
+  \delta_a\b{k}=\delta_0\b{k-a} = \pparMorceaux{1}{\text{si } k=a}{0}{\text{sinon}}
+  $$
+
+  Bien qu'utilisant le même symbole $\delta$, il ne faut pas confondre
+  l'impulsion unité discrète avec l'impulsion de \Dirac. L'impulsion
+  unité est un signal discret tout à fait classique d'amplitude égale
+  à $1$ alors que l'impulsion de \Dirac{} est une fonction généralisée
+  ou distribution, voir \chapref{sec:dirac}, d'amplitude infinie et de
+  poids unité.
+\end{definition}
+
+Ainsi au lieu de considérer un signal $y$, on considère le système discret $Y$ dont la réponse impulsionnelle est~:
+\begin{equation}
+  y = Y\!\b{\delta_0}
+\end{equation}
+
+
+
+On exprime ainsi l'équation aux différences sous la forme pure
+d'opérateurs, ou systèmes, qui commutent entre-eux et se distribuent
+avec l'addition tout comme une multiplication classique~:
+
+\begin{eqnarray}
+  a_n.\oret^n.Y\; +\; \ldots \;+\; a_1.\oret.Y \;+\; a_0.Y \quad  = \quad b_m.\oret^m.X \;+\; \ldots \;+\; b_0.X
+\end{eqnarray}
+
+\begin{remarque}
+  Dans le cas des systèmes continus, on exprime les équations
+  différentielles sous forme opérationnelle en remplaçant l'opérateur
+  discret de retard $\oret$ par l'opérateur de dérivation $\oder$. Un
+  signal $y$ est de même remplacé par un système $Y$ dont la réponse
+  impulsionnelle (à une impulsion de \Dirac{} cette fois-ci) est le
+  signal $y$.
+
+  Initialement, \Heaviside{} avait introduit l'échelon unité, ou
+  échelon éponyme, comme signal d'excitation de référence à la place
+  de l'impulsion de \Dirac{} qui n'était pas encore définie à
+  l'époque. Voir le \secref{sec:dirac_derivee} pour une définition de
+  l'opérateur réciproque de la dérivée nécessitant l'impulsion de
+  \Dirac{}.
+\end{remarque}
+
+Nous obtenons avec cette notation une écriture de l'équation aux
+différences qui ressemble à une équation algébrique polynomiale
+classique. Dans le calcul opérationnel, l'opérateur d'avance
+$\oavance$ (resp. $\oret$) est assimilé à un nombre que l'on notera
+$z$ (resp. $\zmu$), les signaux $x$ et $y$ sont remplacés par leurs
+systèmes générateurs $X$ et $Y$ à partir de leur réponse
+impulsionnelle. Les systèmes générateurs $X$ et $Y$ pouvant être
+eux-même exprimés en fonction de l'opérateur $z$, ils sont représentés
+comme des fonctions de $z$ soit $X\p{z}$ et $Y\p{z}$. Nous verrons
+dans la suite que les fonctions $X\p{z}$ et $Y\p{z}$ sont les
+transformées en $\TZ$ des signaux (ou systèmes) $x$ et $y$.
+
+Nous obtenons finalement l'équation algébrique associée à la récurrence
+\eqref{eq:systeme_recurrence}~:
+\begin{eqnarray}
+  \label{eq:systeme_algebrique}
+  a_n\,z^{-n}\,Y\p{z}\; +\; \ldots \;+\; a_1\,\zmu\;Y\p{z} \;+\; a_0\,Y\p{z} \quad  = \quad b_m\,z^{-m}\,X\p{z} \;+\; \ldots \;+\; b_0\,X\p{z}
+\end{eqnarray}
+
+Les opérateurs réciproques $\oret$ et $\oavance$ sont associés aux
+nombres $z$ et $\zmu$ car la division et la multiplication sont
+réciproques~: comme la composition d'une avance et d'un retard
+$\oavance \circ \oret = \Id$ donne le système identité, le produit
+algébrique $z\,\zmu=z\,\frac{1}{z}=1$ donne l'unité. L'unité
+algébrique $1$ est donc associée au \og{}système identité \fg{} (qui
+ne change pas le signal) dont la réponse impulsionnelle est
+l'impulsion unité $\delta_0$.
+
+La résolution de l'équation aux différences peut alors se faire en
+traitant l'équation algébrique sous forme de fraction rationnelle puis
+de décomposition en éléments simples~:
+\begin{eqnarray}
+  \label{eq:systeme_algebrique}
+ \frac{Y\p{z}}{X\p{z}} = \frac{b_m\,z^{-m} + \ldots + b_0}{a_n\,z^{-n}+ \ldots +  a_1\,\zmu + a_0} = \caCest{\frac{\beta_0}{z-\alpha_0}}{\text{premier ordre}} + \ldots + \caCest{\frac{\mu_0+\nu_0\,z}{z^2+b_0\,z+c_0}}{\text{second ordre}} + \ldots
+\end{eqnarray}
+
+On décompose alors un système linéaire invariant comme une combinaison
+linéaire de systèmes de premier ordre et de second ordre. La
+résolution se fait alors par lecture de table de \teZ{} comme pour les
+transformées de \Laplace{} dans le cas des systèmes continus.
+
+\begin{exemple}
+  \label{exemple:forward_euler}
+  Dans l'exemple du \emph{différentiateur}
+  \ref{exemple:differentiateur_lineaire} d'écrit par
+  $T_e.y = x - \oret\b{x}$, nous pouvons remplacer $x$ et $y$ par les
+  systèmes générateurs $X\p{z}$ et $Y\p{z}$ et finalement remplacer la
+  composition avec $\oret$ par une multiplication par $\zmu$. On
+  obtient la fonction de transfert du système différentiateur~:
+  $$H_d\de{z}=\frac{Y\de{z}}{X\de{z}}= \frac{1-\zmu}{T_e}$$
+
+  Il est alors facile de trouver l'opérateur \emph{intégrateur} $H_i$
+  réciproque du différentiateur $H_d$ en se basant sur la propriété
+  $H_i\circ H_d = H_d \circ H_i = \Id$ qui donne en équation
+  algébrique~:
+  $$
+  H_i\de{z}\,H_d\de{z}=1 \implies H_i\de{z} = \frac{1}{H_d\de{z}} = \frac{Y\de{z}}{X\de{z}}=\frac{T_e}{1-\zmu}
+  $$
+  On obtient ainsi l'équation de récurrence de l'intégrateur dit \emph{Backward Euler}~:
+  \begin{align}
+    \label{eq:forward_euler}
+    Y\de{z}\p{1-\zmu}=T_e\, X\de{z}  \iff & Y\de{z}=\zmu\,Y\de{z} + T_e\, X\de{z}&\nonumber\\
+                                          &  y\b{k} = y\b{k-1} + T_e\, x\b{k} &, \forall k\in\Z \\
+    \text{ou bien }   \quad                     &  y\b{k+1} = y\b{k} + T_e\, x\b{k+1} &, \forall k\in\Z \nonumber
+  \end{align}
+\end{exemple}
+
+\begin{exercice}
+  \exerciceTitre{Trois intégrateurs différents et trois différentiateurs associés}
+
+  L'exemple~\ref{exemple:forward_euler} pécédent de l'intégrateur
+  \emph{Backward Euler} est illustré ci-dessous avec deux autres
+  méthodes. On identifie alors dans \eqref{eq:forward_euler} que
+  l'incrément de surface $ds$ ajouté à l'intégrale de $x$ à l'instant
+  $k+1$ est la surface du rectangle bleu~:
+  $y\b{k+1} = y\b{k} + \caCest{T_e\,x\b{k+1}}{ds}$
+
+  \graphe{0.9\textwidth}{integrales}
+
+  \begin{itemize}
+  \item Écrivez alors les récurrences correspondantes aux intégrateurs
+    \emph{Forward Euler} et \emph{trapézoïdale} en adaptant la valeur
+    de l'incrément de surface $ds$ en fonction de $T_e$, $x\b{k}$
+    et/ou $x\b{k+1}$.
+  \item De manière inverse à l'exemple précédent, retrouvez les
+    fonctions de transfert $H_i\p{z}$ de ces trois intégrateurs
+    (remplacer $x\b{k}$  par $X\p{z}$, $x\b{k+1}$ par $z\,X\p{z}$ car
+    $z$ est associé à l'avance unitaire).
+  \end{itemize}
+  On remarque que l'écriture de la récurrence en
+  $y\b{k+1}=y\b{k}+\ldots$ donne naturellement une fonction de
+  transfert exprimée en $z$, alors que l'écriture en
+  $y\b{k}=y\b{k-1}+\ldots$ donne une écriture en $\zmu$ parfaitement
+  équivalente~: par exemple pour le \emph{Backward Euler} on obtient
+  les fonctions de transfert
+  $H_i\p{z}=\frac{T_e}{1-\zmu}=\frac{T_e\,z}{z-1}$
+
+  \begin{itemize}
+  \item On peut alors inverser algébriquement ces fonctions de
+    transfert d'intégrateur $H_i$ pour obtenir des fonctions de
+    transfert de dérivateurs $H_d\p{z}=H_i\p{z}^{-1}$ associées.
+  \item On peut, de même, donner les récurrences $y_d\b{k}=\ldots$ à
+    partir des fonctions de transfert $H_d\p{z}$ permettant d'obtenir
+    différentes approximations de la dérivée du signal d'entrée $x$.
+  \end{itemize}
+
+  On obtient ainsi des approximations linéaires discrètes exprimées en
+  $z$ (l'avance unitaire) de l'opérateur dérivée en continue $p$ (ou
+  variable de \Laplace{} notée $s$)~:
+  \begin{equation}
+    \label{eq:approx_de_p}
+    \oder=\dDtDe{} \leftrightarrow p \leftrightarrow \caCest{\frac{1}{T_e}\p{1-\zmu}}{\text{Forward Euler}}\leftrightarrow \caCest{\frac{1}{T_e}\p{z-1}}{\text{Backward Euler}} \leftrightarrow \caCest{\frac{2}{T_e}\frac{1-\zmu}{1+\zmu}}{\text{Bilinéaire ou Tustin}} 
+  \end{equation}  
+\end{exercice}
+
+\subsection{Transformée en \tZ{} de systèmes élémentaires}
+\label{sec:transformee_en_z}
+Nous allons définir les signaux élémentaires, associés à des systèmes
+élémentaires, permettant de constituer une table de transformées en
+\tZ{} utile à la résolution d'équations aux différences
+\eqref{eq:systeme_recurrence} par la méthode de calcul opérationnel
+vue au chapitre précédent.
+
+\subsubsection{Transformée en \tZ{} d'un signal quelconque}
+
+Soit un signal quelconque $s\b{k}$, il peut être généré par des
+retards et des avances unitaires de l'impulsion unité $\delta_0$
+d'amplitude $s\b{k}$.
+
+\begin{figure}[ht!]
+  \centering
+  \graphe{\textwidth}{transformee_en_z}
+  \caption{Décomposition d'un signal en combinaison linéaire
+    d'opérateurs unitaires $\oret$ appliquée au signal unité
+    $\delta_0$. La notation en calcul opérationnel, avec $\zmu$ le
+    nombre associé à l'opérateur $\oret$, donne la \teZ.}
+  \label{fig:decomposition_unite}
+\end{figure}
+Le système $S$, composé d'opérateurs avance
+$\oavance$ et retard $\oret$ unitaires, générant le signal quelconque
+$s$ en réponse à l'impulsion unité est donc le suivant~:
+\begin{equation}
+  \label{eq:decomposition_unite}
+  \begin{array}{cll}
+    \caCest{s\b{k}}{\text{scalaire}\in\C} &= \ldots +  s\b{-1} \caCest{\delta_0\b{k+1}}{\delta_{-1}\b{k}} + s\b{0} \delta_0\b{k} + s\b{1} \caCest{\delta_0\b{k-1}}{\delta_1\b{k}} + \ldots &= \somme{j=-\infty}{\infty}{\caCest{s\b{j}}{\in\C}.\caCest{\delta_0\b{k-j}}{\in\C}} \\
+    \caCest{s}{\text{signal}} &= \ldots +  s\b{-1} \caCest{\delta_{-1}}{\oavance\b{\delta_0}} + s\b{0} \caCest{\delta_0}{\Id\b{\delta_0}} + s\b{1} \caCest{\delta_{1}}{\oret\b{\delta_0}} +  \ldots &= \somme{j=-\infty}{\infty}{\caCest{s\b{j}}{\in\C}.\caCest{\delta_{j}}{\text{signal de k}}} \\
+    \caCest{S\p{\oret}}{\text{opérateur}} &= \ldots + s\b{-1} \caCest{\oavance}{\oret^{-1}} + s\b{0}
+                                            \caCest{\Id}{\oret^0} + s\b{1} \oret + \ldots &= \somme{j=-\infty}{\infty}{\caCest{s\b{j}}{\in\C}\caCest{\oret^{j}}{\text{opérateur}}}\\
+    \caCest{\TZlui{S}\p{z}}{\text{scalaire}\in\C} &= \ldots + s\b{-1} \caCest{z}{\text{avance}} + s\b{0}
+    \caCest{1}{z^0} + s\b{1} \caCest{\zmu}{\text{retard}}+ \ldots &= \somme{j=-\infty}{\infty}{\caCest{s\b{j}}{\in\C}\caCest{z^{-j}}{\in\C}}   
+  \end{array}
+\end{equation}
+
+On obtient ainsi la définition de la \teZ{} bilatérale en utilisant la
+variable opérationnelle $\zmu\leftrightarrow \oret$ associée au retard
+unitaire.
+
+\begin{definition} La \emph{\teZ{} bilatérale} d'un signal discret $s$
+  quelconque est la fonction holomorphe
+\begin{equation}
+  \label{eq:transformee_en_z}
+  \TZ\b{s} = \TZlui{S} : \quad z\mapsto \sum_{k=-\infty}^{+\infty}s\b{k}z^{-k} \quad\quad z \in \domDe{s}= \left\lbrace z\in\mathbb{C} \; \Big| \; \sum_{k=-\infty}^{+\infty}s\b{k}z^{-k} \quad \mathrm{converge}\right\rbrace
+\end{equation}
+où $\domDe{s}$ est le \emph{domaine de convergence} de la transformée.
+
+
+La \emph{\teZ{} unilatérale} d'un signal discret $s$
+  quelconque est la fonction holomorphe
+\begin{equation}
+  \label{eq:transformee_en_z_unilaterale}
+  \TZ\b{s} = \TZlui{S} : \quad z\mapsto \sum_{k=0}^{+\infty}s\b{k}z^{-k} \quad\quad z \in \domDe{s}
+\end{equation}
+\end{definition}
+
+Tout comme la transformée de \Laplace{} bilatérale, la convergence sur
+la branche en $-\infty$ est souvent assurée en considérant un signal
+causal dont les termes sont tous nuls avant le rang $k=0$, sans perte
+de généralité. Cela revient à utiliser systématiquement l'échelon
+unité pour annuler les signaux considérés. L'écriture est alors
+facilitée en utilisant la transformée unilatérale considérant par
+définition le signal nul aux rangs négatifs.
+
+\begin{remarque}
+  La \teZ{} est bien une série entière de terme général
+  $ u_n= a_n x^n$ où la suite $a_n$ est le signal $s\b{k}$~; et où
+  la variable $x$ est la variable $z$ complexe. Rappelons que le
+  domaine de convergence des séries entières possèdent un rayon de
+  convergence $R$ pour lequel
+  $$
+  \begin{array}{ll}
+    |z|<R \implies  & \sum a_n z^n \text{ converge} \\
+    |z|>R \implies  & \sum a_n z^n \text{ diverge} \\
+    |z|=R  & \text{ conclure au cas par cas} \\
+
+  \end{array}
+  $$
+
+  On peut retrouver aisément le rayon
+  $R$ et cette propriété en utilisant, par exemple, le critère de
+  d'Alembert~: si $a_n\neq0$ à partir d'un certain rang et si $
+  \lim\limits_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|=l \in
+  \overline{\R_+}$, alors $R=\frac{1}{l}$.
+\end{remarque}
+
+\subsubsection{Impulsion unité et retard}
+
+L'impulsion unité $\delta_0$ définie dans \defref{def:impulsion_unite}
+est utilisée comme signal de référence pour associer un système à un
+signal en prenant sa réponse impulsionnelle~: $y=Y\b{\delta_0}$.
+
+Le système dont la réponse impulsionnelle est l'impulsion unité
+elle-même est donc l'opérateur identité $\Id$. On a donc pour ce
+système $\frac{Y\p{z}}{X\p{z}}=\frac{X\p{z}}{X\p{z}}=1$ puisque la
+sortie $y$ du système identité pour une entrée $x$ est le signal
+$y=x$.
+
+On a donc par définition~:
+\begin{align}
+  \label{eq:z_impulsion}
+  \TZ\b{\delta_0}=\TZlui{\delta_0} : \quad &z \mapsto 1 \nonumber\\
+  &\TZlui{\delta_0}\p{z} = 1 & \abs{z}<R = \infty
+\end{align}
+
+De même le système avance $\oavance$ (resp. retard $\oret$) est
+associé par calcul opérationnel au nombre complexe $z$
+(resp. $\zmu$). La réponse impulsionnelle du système retard $\oret^m$
+est donc l'impulsion retardée de $m$ unitées de temps soit
+$\delta_m$. On obtient ainsi la \teZ{} de $\delta_m$~:
+
+\begin{align}
+  \label{eq:z_retard}
+  \TZ\b{\delta_m}=\TZlui{\delta_m}: \quad &z \mapsto z^{-m} &, m\in\Z \nonumber\\
+  &\TZlui{\delta_m}\p{z} = z^{-m}  &  \abs{z}<R = \infty
+\end{align}
+
+\begin{exercice}
+  Retrouvez les transformées \eqref{eq:z_impulsion} et \eqref{eq:z_retard} en employant la formule générale \eqref{eq:transformee_en_z}. Vous remarquerez la similitude de rôle de \og{} sélection ou mesure \fg{} de l'impulsion unité sous la somme avec le rôle du \Dirac{} sous l'intégrale vu au \secref{sec:dirac_sous_integrale}.
+\end{exercice}
+\subsubsection{Exponentielle complexe et suite géométrique}
+\subsubsection{Echelon unité, rampes et ses intégrales}
+
+\section{Réponse d'un système~: filtrage}
+Rappelons qu'un système peut aussi bien représenter un correcteur dans
+une boucle d'asservissement, qu'un filtre utilisé en boucle ouverte,
+ou bien un modèle de système à commander ou observer~: calculer la
+réponse d'un système à un signal c'est donc s'intéresser à l'opération
+de filtrage avec une vision temporelle entrée/sortie ou \og{}faire du
+filtrage.\fg{}
+
+Nous allons d'abord montrer que l'opération de filtrage consiste en
+temporel à effectuer une convolution du signal d'entrée $x$ avec la
+réponse impulsionnelle $h$ du système $H$ ainsi défini.
+
+En un second temps nous montrons que l'opération duale du filtrage
+temporel est un \emph{fenêtrage fréquentiel} ou multiplication par la
+transformée de la réponse impulsionnelle $\TZ\p{h}=\TZlui{H}$.
+
+\subsection{Filtrage temporel}
+Dans le cas discret, l'obtention de la réponse d'un système par
+convolution avec la réponse impulsionnelle s'obtient en appliquant le
+principe de linéarité du système $H$ à un signal quelconque défini
+comme dans \secref{sec:transformee_en_z}.
+
+
+Contrairement au cas continu, un signal d'entrée quelconque $x$ se
+décompose facilement en impulsions unité. La
+\figref{fig:reponse_convolution} reprend la décomposition en
+impulsions d'un signal d'entrée nommé $s$
+\eqref{eq:decomposition_unite} et applique un système $H$ de réponse
+impulsionnelle $h$ à chaque impulsion pour obtenir la réponse $y$ du
+système. On retrouve ainsi la formule de convolution temporelle de
+$y=s\conv h$. Le résultat est démontré dans l'équation
+\eqref{eq:reponse_convolution} en utilisant les propriétés de
+linéarité et invariance du système.
+
+\begin{figure}[ht!]
+  \centering \graphe{0.9\textwidth}{reponse_convolution}
+  \caption{La réponse d'un système linéaire invariant $y$ est la somme
+    des réponses impulsionnelles des impulsions qui composent le
+    signal d'entrée $s$.}
+  \label{fig:reponse_convolution}
+\end{figure}
+
+\begin{align}
+  \label{eq:reponse_convolution}
+  \caCest{x = \somme{j=-\infty}{\infty}{x\b{j}\delta_{j}}}{\text{signal}}\quad \implies\quad &y=H\b{x}=H\b{\somme{j=-\infty}{\infty}{x\b{j}\delta_{j}}} \nonumber\\
+  \underset{\text{linéarité de H}}{\implies}\quad &y=\somme{j=-\infty}{\infty}{H\b{ \;\caCest{x\!\!\b{j}}{\text{constante !}}\delta_{j}\;}} \underset{\text{linéarite de H}}{=} \;\;\somme{j=-\infty}{\infty}{x\!\b{j}\caCest{H\b{\delta_j}}{H.\oret^j\b{\delta_0}}} \nonumber \\
+  \implies \quad &y=\somme{j=-\infty}{\infty}{x\b{j}.H.\oret^j\!\b{\delta_{0}}} \underset{\text{invariance de H}}{=} \;\;\somme{j=-\infty}{\infty}{x\b{j}.\oret^j\,.\,\caCest{H\b{\delta_{0}}}{h}}\nonumber\\
+  \implies \quad & y= \somme{j=-\infty}{\infty}{x\b{j}.\caCest{\oret^j\b{h}}{k\mapsto h\b{k-j}}}=x\conv h \nonumber\\
+  \implies \quad & \forall k\in\Z,\quad  y\b{k}= \somme{j=-\infty}{\infty}{x\b{j}\,h\!\b{k-j}} = x\conv h\b{k}
+\end{align}
+où l'opérateur $\conv$ est la convolution discrète définie ci-après.
+
+\begin{definition}{Convolution discrète}
+  \label{def:convolution_discrete}
+  
+  La convolution de signaux discret $u$ et $v$ notée $u\conv v$ est le
+  signal discret défini par~:
+  \begin{align}
+    \label{eq:convolution_discrete}
+    &u\conv v \quad &:& \quad k \mapsto u\conv v\b{k} =\somme{j=-\infty}{\infty}{u\ded{j}.v\ded{k-j}} &\underset{j\leftrightarrow j+k}{=}&  \somme{j=-\infty}{\infty}{u\ded{j+k}.v\ded{-j}} \nonumber\\
+    &u\conv v \quad & = &\quad\scald{u}{\caCest{\conj{\oret^k.\,\Sy\ded{v}}}{\conj{j\mapsto v\ded{k-j}}}} &=& \scald{\oret^{-k}\ded{u}}{\conj{\Sy\ded{v}}} 
+  \end{align}
+  où $\oret^k$ est le retard de $k$ échantillons et
+  $\oret^{-k}=\oavance^k$ son opérateur réciproque (inverse
+  algébrique)~: l'avance de $k$ échantillons.
+\end{definition}
+
+\begin{remarque}
+  \textbf{Attention à l'ordre des opérations~: la symétrie et le
+    retard ne commutent pas~!}
+
+  Même si nous avons vu dans \secref{sec:dualite} que les opérateurs
+  $\Sy$ et $\F$ commutent~: $\F\circ\Sy=\Sy\circ\F=\Finv$, il n'en est
+  pas de même pour les opérateurs $\Sy$ et $\oret$~!
+
+  Prendre un signal $s$ de la variable discrète $j$, l'avancer de $k$
+  échantillons avec $\oavance^k=\oret^{-k}$ puis le retourner avec
+  $\Sy$ donne
+  $$\caCest{\Sy\;\circ}{\text{Symétrie de }}\;\caCest{\oret^{-k}}{\text{avance }\oavance^k}\b{s} = \Sy\b{\caCest{\oret^{-k}\b{s}}{j\mapsto s\ded{j+k}}}\,: j\mapsto s\ded{\caCest{\p{-j}}{\text{symétrie}}+k}=s\ded{k-j}$$
+
+  Alors que prendre un signal, le retourner avec $\Sy$ puis l'avancer
+  avec $\oret^{-k}$ donne
+  $$\caCest{\oret^{-k}\;\circ}{\text{Avance }\oavance^k\text{ de }}\;\caCest{\Sy}{\text{symétrie}}\b{s}= \oret^{-k}\b{\caCest{\Sy\b{s}}{j\mapsto s\ded{-j}}}\,: j\mapsto s
+  \ded{-\caCest{\p{j+k}}{\text{avance}}}=s\ded{-j-k}$$
+
+  On remarque donc que $\oret^{-k}\circ\Sy\neq\Sy\circ\oret^{-k}$. En
+  revanche prendre un signal, le retourner avec $\Sy$ puis le \emph{retarder}
+  avec $\oret^{k}$ donne
+  $$\caCest{\oret^{k}\;\circ}{\text{Retard de }}\;\caCest{\Sy}{\text{symétrie}}\b{s}= \oret^{k}\b{\caCest{\Sy\b{s}}{j\mapsto s\ded{-j}}}\,: j\mapsto s\ded{-\p{j-k}}=s\ded{k-j}$$
+
+  Donc la commutation donne $\Sy\circ\oret^{-k}=\oret^{k}\circ\Sy$,
+  autrement dit soit~:
+
+\emph{  \og{} La symétrie de l'avance d'un signal est le retard de son
+  symétrique\fg.}
+\end{remarque}
+
+L'analogie avec la convolution de signaux continu $u$ et $v$ notée
+$u\conv v$ fonctionne aussi en utilisant le produit scalaire continu
+$\scald{u}{\Sy.\oret^k.v}$ au lieu du produit scalaire discret.
+
+\begin{definition}{Convolution continue}
+  \begin{align}
+    \label{eq:convolution_continue}
+    &u\conv v \quad &:& \quad  t \;\mapsto\; u\conv v\de{t} =\integ{x=-\infty}{\infty}{u\de{x}.v\de{t-x}\dx} &=& \integ{t=-\infty}{\infty}{u\de{x+t}.v\de{-x}\dx} \nonumber\\
+    &u\conv v & = & \quad \scal{u}{\conj{\Sy.\oret^k.v}} &=& \quad\scal{\oret^{-k}.u}{\conj{\Sy.v}} 
+  \end{align}
+\end{definition}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
+

@@ -5,24 +5,28 @@ Pour récupérer le tout et utiliser les notebooks avec octave/matlab suivez ces
 # Récupérer le projet
 Allez sur https://montp.insa-toulouse.fr et dans une **session linux** ouvrir un terminal (CTRL+ALT+T) et cloner le git
 avec ces commandes :
-
-    cd
-    git clone https://github.com/balaise31/Signal.git
-    cd Signal
-    git checkout discret
+```bash
+ cd
+ git clone https://github.com/balaise31/Signal.git
+ cd Signal
+ git checkout discret
+ ```
 La dernière version de la branche discret sera sur votre disque. Pour tenter de mettre à jour faites un *git pull*.
 
 # Lancer le script d'installation
-
-    cd installation
-    ./install
-Eventuellement ``chmod a+x ./install_de_git.sh`` si pas exécutable.
+```bash
+cd ~/Signal/installation
+git pull
+./install
+goSignal
+```
+Eventuellement ``chmod a+x ./install`` si pas exécutable.
 
 Un script est installé, votre bash est modifié et deux icones "goSignal" et "Geek" sont crées sur le Bureau.
 
 Une fois le projet récupéré inutile de refaire cela à chaque fois !
 
-Voir [README](https://github.com/balaise31/Signal/tree/install/installation) de ./installation pour plus de détails
+Voir [README](https://github.com/balaise31/Signal/tree/discret/installation) de ./installation pour plus de détails
 
 ## Lancer jupyter-notebook
 
@@ -38,10 +42,10 @@ Pour utilser le jupyter notebook avec octave il faut initaliser **à chaque fois
        Pour exécuter une cellule de code (SHIFT + ENTER)
 
 Ou en mode ligne de commande pour faire le défi paparité par exemple:
-
-    cd Signal/discret/defis/paparite/
-    goSignal
-
+```bash
+cd Signal/discret/defis/paparite/
+goSignal
+```
 Pour écouter le son en ligne de commande :
 
     rhythmbox paparite.ogg &

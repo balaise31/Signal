@@ -1,4 +1,4 @@
-\documentclass[11pt]{book}
+\documentclass[11pt,fleqn]{book}
 \usepackage[french]{babel}
 \selectlanguage{french}
 \usepackage[T1]{fontenc}
@@ -11,6 +11,7 @@
 \usetikzlibrary{shapes.geometric,mindmap,backgrounds}
 
 \begin{document}
+
 %\input{poly/titre.tex}
 
 % -------------------------------------------------------------------------
@@ -26,7 +27,12 @@
 %	CHAPITRES
 % -------------------------------------------------------------------------
 
-\input{rappels.tex}
+\tableofcontents
+\setcounter{tocdepth}{4}
+\cleardoublepage
 
+
+\input{rappels.tex}
+\input{systemes_discrets.tex}
 \input{dirac.tex}
 \end{document}

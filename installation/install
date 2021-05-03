@@ -50,7 +50,7 @@ gerer_alias_bashrc ()
 
     echo -n "    -creation des alias "
 #    echo 'alias goConda="echo \"Initialisation de conda peut prendre quelques secondes...\" && source $INIT && echo \"..je vous l''avais dit !\""'>>~/.bashrc && echo -ne $OK || echo -e $DEAD   
-    echo "alias goSignal=$DEPOT/installation/goSignal.sh">>~/.bashrc && echo -e $KISS || echo -e $MERDE
+    echo "alias goSignal=\"cd $DEPOT/installation && ./goSignal.sh\"">>~/.bashrc && echo -e $KISS || echo -e $MERDE
     
 }
 
