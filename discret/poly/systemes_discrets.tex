@@ -243,7 +243,7 @@ algébriques. Cette méthode a été développée et fortement utilisée par
 \Heaviside{} pour résoudre notamment l'équation des
 télégraphistes. Les justifications théoriques de cette approche et la
 relation entre l'opérateur $p$ de \Heaviside{} et la variable $s$ de
-la transofrmée de \Laplace n'est apparue que plus tard.
+la transofrmée de \Laplace{} n'est apparue que plus tard.
 
 \begin{citations} Mathematics is an experimental science, and definitions do not come
   first, but later on.
@@ -252,7 +252,7 @@ la transofrmée de \Laplace n'est apparue que plus tard.
 \end{citations}
 
 \subsection{Principe du calcul opérationnel}
-
+\label{sec:calcul_operationnel}
 Tout système discret linéaire invariant possédant une seule entrée $x$ et
 une seule sortie $y$ se représente par une équation aux différences du
 type suivant~:
@@ -345,7 +345,7 @@ un entier en argument pour donner un complexe, alors qu'un opérateur
 Pour contourner ce problème, on remplace le signal $y$ par un système
 noté $Y$ dont la réponse à une excitation unitaire est le signal $y$
 lui-même. Dans le cas de systèmes discrets, on choisi comme signal
-unitaire l'impulsion unité $\delta_{0}$
+unitaire l'impulsion unité $\delta_{0}$.
 
 \begin{definition}
   \label{def:impulsion_unite}
@@ -669,12 +669,15 @@ impulsions d'un signal d'entrée nommé $s$
 \eqref{eq:decomposition_unite} et applique un système $H$ de réponse
 impulsionnelle $h$ à chaque impulsion pour obtenir la réponse $y$ du
 système. On retrouve ainsi la formule de convolution temporelle de
-$y=s\conv h$. Le résultat est démontré dans l'équation \eqref{eq:reponse_convolution} en utilisant les propriétés de linéarité et invariance du système.
+$y=s\conv h$. Le résultat est démontré dans l'équation
+\eqref{eq:reponse_convolution} en utilisant les propriétés de
+linéarité et invariance du système.
 
 \begin{figure}[ht!]
-  \centering
-  \graphe{0.9\textwidth}{reponse_convolution}
-  \caption{La réponse d'un système linéaire invariant $y$ est la somme des réponses impulsionnelles des impulsions qui composent le signal d'entrée $s$.}
+  \centering \graphe{0.9\textwidth}{reponse_convolution}
+  \caption{La réponse d'un système linéaire invariant $y$ est la somme
+    des réponses impulsionnelles des impulsions qui composent le
+    signal d'entrée $s$.}
   \label{fig:reponse_convolution}
 \end{figure}
 
@@ -696,7 +699,7 @@ où l'opérateur $\conv$ est la convolution discrète définie ci-après.
   \begin{align}
     \label{eq:convolution_discrete}
     &u\conv v \quad &:& \quad k \mapsto u\conv v\b{k} =\somme{j=-\infty}{\infty}{u\ded{j}.v\ded{k-j}} &\underset{j\leftrightarrow j+k}{=}&  \somme{j=-\infty}{\infty}{u\ded{j+k}.v\ded{-j}} \nonumber\\
-    &u\conv v \quad & = &\quad\scald{u}{\oret^k.\,\Sy\ded{v}} &=& \scald{\oret^{-k}\ded{u}}{\Sy\ded{v}} 
+    &u\conv v \quad & = &\quad\scald{u}{\caCest{\conj{\oret^k.\,\Sy\ded{v}}}{\conj{j\mapsto v\ded{k-j}}}} &=& \scald{\oret^{-k}\ded{u}}{\conj{\Sy\ded{v}}} 
   \end{align}
   où $\oret^k$ est le retard de $k$ échantillons et
   $\oret^{-k}=\oavance^k$ son opérateur réciproque (inverse
@@ -704,7 +707,8 @@ où l'opérateur $\conv$ est la convolution discrète définie ci-après.
 \end{definition}
 
 \begin{remarque}
-  \textbf{Attention !}
+  \textbf{Attention à l'ordre des opérations~: la symétrie et le
+    retard ne commutent pas~!}
 
   Même si nous avons vu dans \secref{sec:dualite} que les opérateurs
   $\Sy$ et $\F$ commutent~: $\F\circ\Sy=\Sy\circ\F=\Finv$, il n'en est
@@ -713,21 +717,24 @@ où l'opérateur $\conv$ est la convolution discrète définie ci-après.
   Prendre un signal $s$ de la variable discrète $j$, l'avancer de $k$
   échantillons avec $\oavance^k=\oret^{-k}$ puis le retourner avec
   $\Sy$ donne
-  $$\caCest{\Sy\;\circ}{\text{Symétrie de }}\;\caCest{\oret^{-k}}{\text{avance }\oavance^k}\b{s} = \Sy\b{\caCest{\oret^{-k}\b{s}}{j\mapsto s\ded{j+k}}}\,: j\mapsto s\ded{\p{-j}+k}=s\ded{k-j}$$
+  $$\caCest{\Sy\;\circ}{\text{Symétrie de }}\;\caCest{\oret^{-k}}{\text{avance }\oavance^k}\b{s} = \Sy\b{\caCest{\oret^{-k}\b{s}}{j\mapsto s\ded{j+k}}}\,: j\mapsto s\ded{\caCest{\p{-j}}{\text{symétrie}}+k}=s\ded{k-j}$$
 
   Alors que prendre un signal, le retourner avec $\Sy$ puis l'avancer
   avec $\oret^{-k}$ donne
-  $$\caCest{\oret^{-k}\;\circ}{\text{Avance }\oavance^k\text{ de }}\;\caCest{\Sy}{\text{symétrie}}\b{s}= \oret^{-k}\b{\caCest{\Sy\b{s}}{j\mapsto s\ded{-j}}}\,: j\mapsto s\ded{-\p{j+k}}=s\ded{-j-k}$$
+  $$\caCest{\oret^{-k}\;\circ}{\text{Avance }\oavance^k\text{ de }}\;\caCest{\Sy}{\text{symétrie}}\b{s}= \oret^{-k}\b{\caCest{\Sy\b{s}}{j\mapsto s\ded{-j}}}\,: j\mapsto s
+  \ded{-\caCest{\p{j+k}}{\text{avance}}}=s\ded{-j-k}$$
 
-  En revanche prendre un signal, le retourner avec $\Sy$ puis le
-  retarder avec $\oret^{k}$ donne
+  On remarque donc que $\oret^{-k}\circ\Sy\neq\Sy\circ\oret^{-k}$. En
+  revanche prendre un signal, le retourner avec $\Sy$ puis le \emph{retarder}
+  avec $\oret^{k}$ donne
   $$\caCest{\oret^{k}\;\circ}{\text{Retard de }}\;\caCest{\Sy}{\text{symétrie}}\b{s}= \oret^{k}\b{\caCest{\Sy\b{s}}{j\mapsto s\ded{-j}}}\,: j\mapsto s\ded{-\p{j-k}}=s\ded{k-j}$$
 
-  Donc la commutation donne $\Sy\circ\oret^{-k}=\oret^{k}\circ\Sy$, autrement dit soit~:
+  Donc la commutation donne $\Sy\circ\oret^{-k}=\oret^{k}\circ\Sy$,
+  autrement dit soit~:
 
-  \og{} La symétrie de l'avance d'un signal est le retard de son
-  symétrique\fg.
- \end{remarque}
+\emph{  \og{} La symétrie de l'avance d'un signal est le retard de son
+  symétrique\fg.}
+\end{remarque}
 
 L'analogie avec la convolution de signaux continu $u$ et $v$ notée
 $u\conv v$ fonctionne aussi en utilisant le produit scalaire continu
@@ -737,7 +744,7 @@ $\scald{u}{\Sy.\oret^k.v}$ au lieu du produit scalaire discret.
   \begin{align}
     \label{eq:convolution_continue}
     &u\conv v \quad &:& \quad  t \;\mapsto\; u\conv v\de{t} =\integ{x=-\infty}{\infty}{u\de{x}.v\de{t-x}\dx} &=& \integ{t=-\infty}{\infty}{u\de{x+t}.v\de{-x}\dx} \nonumber\\
-    &u\conv v & = & \quad \scal{u}{\Sy.\oret^k.v} &=& \quad\scal{\oret^{-k}.u}{\Sy.v} 
+    &u\conv v & = & \quad \scal{u}{\conj{\Sy.\oret^k.v}} &=& \quad\scal{\oret^{-k}.u}{\conj{\Sy.v}} 
   \end{align}
 \end{definition}
 

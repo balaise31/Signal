@@ -12,6 +12,7 @@
 \def\Sy{\mathrm{Sy}}
 \def\Finv{\F^{\!-1}}
 
+\def\pmu{^{-1}}
 \def\zm#1{z^{-#1}}
 \def\zmu{z^{-1}}
 
@@ -44,13 +45,16 @@
 \def\RFe{\R_{F_e}}
 \def\SFe{\left[0,\;F_e\right[}
 
+
 \def\Leb#1{\mathcal{L}_{#1}}
 \def\LebP#1{\mathcal{L}_{p #1}}
 \def\classe{\mathrm{C}}
 \def\classeZero{\classe^0}
 \def\classeInfini{\classe^{\infty}}
+\def\Dis{\mathpzc{D}\p{\Omega}}
 \def\domDe#1{\mathpzc{D}_{#1}
 }
+
 \def\Reel#1{\mathcal{R}\!\!\left[#1\right]}
 \def\Imag#1{\mathcal{I}\!\!\left[#1\right]}
 \def\conj#1{\overline{#1}}
@@ -100,10 +104,10 @@
 \def\scalpint#1#2#3{\frac{1}{T_0}\int\limits_{0}^{T_0}\;#1\,\conj{#2}\;d#3}
 \def\scaldint#1#2#3{\sum\limits_{#3=-\infty}^{\infty}\;#1\,\conj{#2}}
 \def\scalpdint#1#2#3{\sum\limits_{#3=0}^{N_0-1}\;#1\,\conj{#2}}
-\def\scal#1#2{\langle#1,#2\rangle}
-\def\scalp#1#2{\langle#1,#2{\rangle}_P}
+\def\scal#1#2{\langle#1\,,\,#2\rangle}
+\def\scalp#1#2{\langle#1\,,\,#2{\rangle}_P}
 \def\scald#1#2{\llangle#1\,,\,#2\rrangle}
-\def\scaldp#1#2{\llangle#1,#2{\rrangle}_P}
+\def\scaldp#1#2{\llangle#1\,,\,#2{\rrangle}_P}
 
 \def\conv{\!\ast\!}
 
