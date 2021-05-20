@@ -48,7 +48,7 @@ cree_activer_maj () {
 echo "echo -n \"Init de l'env. (peut être long)...\"&& source $INIT_ENV && $BIN_CONDA activate Octave && alias desactiver=\"$BIN_CONDA deactivate\"&&echo -e \"$KISS je vous l'avais dit !\" " > $INIT
 chmod a+x $INIT
 
-echo ". $INIT && pip install -r requirements.txt" > maj
+echo ". $INIT && conda install --file requirements.txt" > maj
 chmod a+x maj
 }
 
