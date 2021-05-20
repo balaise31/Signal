@@ -227,7 +227,7 @@ Autrement dit \og{}l'effet ne précède pas la cause.\fg{}
   constant.
 \end{remarque}
 
-\section{Calcul opérationnel~: \teZ{}}
+\section{Calcul opérationnel~: Transformée en Z}
 
 La \teZ{} joue le même rôle pour les systèmes discrets que la
 transformée de \Laplace{} pour les systèmes continus. Elles permettent
@@ -430,7 +430,6 @@ La résolution de l'équation aux différences peut alors se faire en
 traitant l'équation algébrique sous forme de fraction rationnelle puis
 de décomposition en éléments simples~:
 \begin{eqnarray}
-  \label{eq:systeme_algebrique}
  \frac{Y\p{z}}{X\p{z}} = \frac{b_m\,z^{-m} + \ldots + b_0}{a_n\,z^{-n}+ \ldots +  a_1\,\zmu + a_0} = \caCest{\frac{\beta_0}{z-\alpha_0}}{\text{premier ordre}} + \ldots + \caCest{\frac{\mu_0+\nu_0\,z}{z^2+b_0\,z+c_0}}{\text{second ordre}} + \ldots
 \end{eqnarray}
 
@@ -513,7 +512,7 @@ transformées de \Laplace{} dans le cas des systèmes continus.
   \end{equation}  
 \end{exercice}
 
-\subsection{Transformée en \tZ{} de systèmes élémentaires}
+\subsection{Transformée en Z de systèmes élémentaires}
 \label{sec:transformee_en_z}
 Nous allons définir les signaux élémentaires, associés à des systèmes
 élémentaires, permettant de constituer une table de transformées en
@@ -738,13 +737,13 @@ où l'opérateur $\conv$ est la convolution discrète définie ci-après.
 
 L'analogie avec la convolution de signaux continu $u$ et $v$ notée
 $u\conv v$ fonctionne aussi en utilisant le produit scalaire continu
-$\scald{u}{\Sy.\oret^k.v}$ au lieu du produit scalaire discret.
+$\scald{u}{\conj{\oret^k.\Sy\b{v}}}$ au lieu du produit scalaire discret.
 
 \begin{definition}{Convolution continue}
   \begin{align}
     \label{eq:convolution_continue}
     &u\conv v \quad &:& \quad  t \;\mapsto\; u\conv v\de{t} =\integ{x=-\infty}{\infty}{u\de{x}.v\de{t-x}\dx} &=& \integ{t=-\infty}{\infty}{u\de{x+t}.v\de{-x}\dx} \nonumber\\
-    &u\conv v & = & \quad \scal{u}{\conj{\Sy.\oret^k.v}} &=& \quad\scal{\oret^{-k}.u}{\conj{\Sy.v}} 
+    &u\conv v & = & \quad \scal{u}{\conj{\oret^k\Sy\b{v}}} &=& \quad\scal{\oret^{-k}\b{u}}{\conj{\Sy\b{v}}} 
   \end{align}
 \end{definition}
 

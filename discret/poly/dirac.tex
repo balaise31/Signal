@@ -173,7 +173,7 @@ Pour pouvoir manipuler les signaux comme des opérateurs et pouvoir
 écrire $\oder\circ y= y\circ\oder$ permettant d'avoir une algèbre
 d'anneau commutatif. On assimile un signal $y$ au système $Y$
 permettant de le générer à partir de sa réponse impulsionnelle
-(réponse à une impulsion de \Dirac{} $\delta_0$~:
+(réponse à une impulsion de \Dirac{} $\delta_0$)~:
 $$
 y \quad\leftrightarrow\quad Y \text{ tel que } \; Y\b{\delta_0}=y
 $$
@@ -204,12 +204,12 @@ donc associé au nombre $1$ qui représente donc l'impulsion de \Dirac{}
 de poids $1$.
 
 Si l'on borne les signaux $y$ et $e$ à des signaux générés par des
-systèmes linéaire invariants $Y$ et $E$ alors nous obtenons une
-représentation du signal $y$ par une fraction rationnelle $Y(p)$ et
-$E(p)$ en appliquant l'équation \eqref{eq:equation_algebrique} pour
-une entrée impulsionnelle qui vaut $1$. Donc on associe le système $Y$
-à une fonction algébrique de $p$ notée $Y\de{p}$. De même pour le
-système $E$ associé à la fonction $E\de{p}$
+systèmes linéaire invariants $Y$ et $E$ à partir de l'entrée
+$\delta_0$, alors nous obtenons une représentation du signal $y$ par
+une equation algébrique \eqref{eq:equation_algebrique_p} calculée pour
+une entrée $E(p)=1$ (impulsion de \Dirac{}). Le système $Y$ est donc
+représenté par une fraction rationnelle $Y\p{p}$. Il en est de même
+pour le signal $e$ qui est représenté par le système $E\p{p}$
 
 C'est ainsi que \Heaviside{} à remarqué que la composition des
 dérivées de fonctions et leurs associations linéaires dans les
@@ -265,13 +265,11 @@ On peut définir l'opérateur de convolution, noté $\conv$, à l'aide du produi
 
 De même pour les signaux discret à support infini, on définit la convolution~:
 \begin{equation}
-  \label{eq:convolution_discrete}
   u\conv v[k] = \somme{-\infty}{\infty}{u[l]\,v[k-l]} = \scald{u}{\conj{l\mapsto v(k-l)}}
 \end{equation}
 
 Et la convolution cyclique pour les signaux discrets périodiques de $N$ points~:
 \begin{equation}
-  \label{eq:convolution_discrete}
   u\conv v[k] = \somme{0}{N-1}{u[l]\,v[k-l]} = \scaldp{u}{\conj{l\mapsto v(k-l)}}
 \end{equation}
 
