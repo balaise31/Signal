@@ -1,0 +1,2 @@
+{"rule":"AGREEMENT_NUMERAL_SINGULAR","sentence":"^\\QS1 Ch2 p34-36 2.1, 4 signaux de base et phaseurs\nS2 Ch2 2.2, 1  systèmes linéaires et réponse impulsionnelle\\E$"}
+{"rule":"AGREEMENT_NUMERAL_SINGULAR","sentence":"^\\QS1 Ch. 2 p34-36 2.1, 4 signaux de base et phaseurs\nS2 Ch. 2 2.2, 1 systèmes linéaires et réponse impulsionnelle\\E$"}
