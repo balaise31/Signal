@@ -4,7 +4,7 @@ Pour récupérer le tout et utiliser les notebooks avec octave/matlab suivez ces
 
 Sinon cliquez ici pour pouvoir créer et modifier les notebook avec binder
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/tps)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/tps?filepath=continu/tps/pourquoi_octave.ipynb)
 
 # Récupérer le projet
 Allez sur https://montp.insa-toulouse.fr et dans une **session linux** ouvrir un terminal (CTRL+ALT+T) et cloner le git
