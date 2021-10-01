@@ -3,7 +3,7 @@
 Pour récupérer le tout et utiliser les notebooks avec octave/matlab suivez ces instructions.
 
 Sinon cliquez ici pour pouvoir créer et modifier les notebook avec binder
-
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/balaise31/Signal/tps?filepath=index.ipynb)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/tps?filepath=continu/tps/pourquoi_octave.ipynb)
 
 # Récupérer le projet
