@@ -2,6 +2,10 @@
 
 Pour récupérer le tout et utiliser les notebooks avec octave/matlab suivez ces instructions.
 
+Sinon cliquez ici pour pouvoir créer et modifier les notebook avec binder
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/tps)
+
 # Récupérer le projet
 Allez sur https://montp.insa-toulouse.fr et dans une **session linux** ouvrir un terminal (CTRL+ALT+T) et cloner le git
 avec ces commandes :
