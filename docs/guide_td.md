@@ -1,6 +1,5 @@
 ---
-title: Déroulement des TDs
-permalink: deroulement_td.html
+title: Guide TD continu (2IMACS)
 ---
 
 # Exercices à avoir vu
