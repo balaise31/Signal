@@ -1,6 +1,6 @@
 ---
-title : Déroulement des TDs
-permalink : deroulement_td.html
+title: Déroulement des TDs
+permalink: deroulement_td.html
 ---
 
 # Exercices à avoir vu
