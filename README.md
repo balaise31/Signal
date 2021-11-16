@@ -1,9 +1,13 @@
-# Octave on mybinder.org
+# Signal continu et discret
 
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/binder-examples/octave/master?filepath=index.ipynb)
+Cours, TD et TP de filtrage numérique en continu et discret (enseignements de l'INSA de Toulouse en IMACS2 et 3)
 
-An example of using Octave on [mybinder.org](https://mybinder.org/).
+Vous y trouverez :
+    - poly de cours
+    - guide de td
+    - Tps et guides de TP
+    - installation de Notebooks Jupyter avec octave
 
-This shows you how to make Matlab code that works with [Octave](https://www.gnu.org/software/octave/) run on [mybinder.org](https://mybinder.org/).
 
-The [example notebook](index.ipynb) is taken from the [octave_kernel](https://github.com/Calysto/octave_kernel) repository.
+Allez sur [la page du projet](https://balaise31.github.io/Signal)
+
