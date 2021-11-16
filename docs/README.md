@@ -1,5 +1,6 @@
 ---
 title: Traitement du signal
+permalink: index.html
 ---
 
 ---
