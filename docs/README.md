@@ -1,4 +1,8 @@
 ---
+layout: post
+title: Blogging Like a Hacker
+---
+---
 # Déroulement des TDs
 ---
 
