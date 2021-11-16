@@ -1,6 +1,5 @@
 ---
-title: Blogging Like a Hacker
-permalink: index.html
+title: Traitement du signal
 ---
 
 ---
