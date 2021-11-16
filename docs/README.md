@@ -6,4 +6,8 @@ permalink: index.html
 
 # Signal continu (2IMACS)
 
-[Consignes de TD](continu/tds/README.md)
+[Guide de TD](guide_tds)
+
+# Signal discret (3IMACS)
+
+[Poly de systèmes discrets](poly_discret.pdf)
