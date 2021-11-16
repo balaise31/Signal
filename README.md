@@ -9,5 +9,6 @@ Vous y trouverez :
     - installation de Notebooks Jupyter avec octave
 
 
-Allez sur [la page du projet](https://balaise31.github.io/Signal)
+Allez sur [la page du projet](https://balaise31.github.io/Signal/index.html)
+
 
