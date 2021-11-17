@@ -270,3 +270,4 @@ TSWLatexianTemp*
 
 #octave/matlab
 octave-workspace
+.vscode/ltex.disabledRules.fr.txt

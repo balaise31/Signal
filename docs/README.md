@@ -11,8 +11,9 @@ permalink: index.html
 [Moodle 2IMACS](https://moodle.insa-toulouse.fr/course/view.php?id=708) | [Poly](https://moodle.insa-toulouse.fr/mod/resource/view.php?id=24741) | [Guide de TD](guide_td) | Guide de TP
 
 
-<img src="sdf.png"  height="200"/> | <img src="tf.png"  height="200"/>
----|---
+<img src="sdf.png"  width="300"/> Série de Fourier (SdF) et réciproque (TFSD)
+
+<img src="tf.png"  width="300"/> Transformée de Fourier
 
 
 # Signal discret (3IMACS)
@@ -21,8 +22,9 @@ permalink: index.html
 [Moodle 3IMACS](https://moodle.insa-toulouse.fr/course/view.php?id=997) | [Poly](poly_discret.pdf) | [Guide de TD](https://github.com/balaise31/Signal/tree/master/discret/td) | [Guide de TP](https://github.com/balaise31/Signal/tree/master/discret/tp) | [Défis](https://github.com/balaise31/Signal/tree/master/discret/defis)
 
 
-<img src="tfsd.png"  height="200"/> | <img src="tfd.png"  height="200"/>
----|---
+<img src="tfsd.png"  width="300"/> Transformée de Fourier d'un Signal Discret (TFSD) et réciproque (SdF)
+
+<img src="tfd.png"  width="300"/> Transformée de Fourier Discrète (algo rapide FFT)
 
 
 # Installation
