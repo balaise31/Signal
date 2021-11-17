@@ -10,14 +10,8 @@ permalink: index.html
 
 [Moodle 2IMACS](https://moodle.insa-toulouse.fr/course/view.php?id=708) | [Poly](https://moodle.insa-toulouse.fr/mod/resource/view.php?id=24741) | [Guide de TD](guide_td) | Guide de TP
 
-![](../discret/poly/dessins/sdf.png){:height="360px" width="360px"}
 
-![smile]
-
-[smile]: ../discret/poly/dessins/sdf.png
-{: height="36px" width="36px"}
-
-<img src="../discret/poly/dessins/sdf.png" alt="{% picture ../discret/poly/dessins/sdf.png %}" height="200"/> <img src="../discret/poly/dessins/tf.png" alt="Séries de Fourier" height="200"/>
+<img src="../discret/poly/dessins/sdf.png"  height="200"/> <img src="../discret/poly/dessins/tf.png"  height="200"/>
 
 # Signal discret (3IMACS)
 ---
