@@ -27,7 +27,7 @@ S2     | Ch. 2      | 2.2, 1   |    [Ondes complexes et systèmes linéaires](ht
 S3     | Ch. 2      | 2.1b + Laplace, 1  |    [Décomposition linéarité et laplace](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/ch2_s3_linearite_et_laplace.ipynb)
 S4     | Ch. 3    | 1,2,3  |    [Transformées de Laplace](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/ch3_s4_laplace.ipynb)
 S5     | Ch. 3    | 3 (5,6 opt)  |    [Equa. Diff. avec Laplace](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/ch3_s5_equa_diff.ipynb)
-S6     | Ch. 5    |   1.3,7,2  |    [S.d.F.](ch5_s6_series.ipynb) et l' [Intro/récap](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/intro_series.ipynb)
+S6     | Ch. 5    |   1.3,7,2  |    [S.d.F.](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/ch5_s6_series.ipynb) et l' [Intro/récap](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/intro_series.ipynb)
 S7     | TD Matlab/octave    | moodle  |    [TD Octave](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/intro_octave.ipynb) 
 S8     | TD Matlab/octave    | moodle  |    [TD Octave](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/intro_octave.ipynb)
 S9 / S10    | Ch. 5    |  1fin,2fin,3  | [S.d.F. suite](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/ch5_s9_series.ipynb)   

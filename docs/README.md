@@ -8,7 +8,7 @@ permalink: index.html
 ---
 
 
-[Moodle 2IMACS](https://moodle.insa-toulouse.fr/course/view.php?id=708) | [Poly](https://moodle.insa-toulouse.fr/mod/resource/view.php?id=24741) | [Guide de TD](guide_td) | Guide de TP
+[Moodle 2IMACS](https://moodle.insa-toulouse.fr/course/view.php?id=708) | [Poly](https://moodle.insa-toulouse.fr/mod/resource/view.php?id=24741) | [Guide de TD](guide_td) | [Guide de TP](guide_tp)
 
 
 <img src="sdf.png"  width="300"/> Série de Fourier (SdF) et réciproque (TFSD)
