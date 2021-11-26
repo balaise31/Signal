@@ -62,11 +62,12 @@ De la même manière, vous allez calculer l'énergie sur une période ou la puis
 
 ## Révisions sur octave
 
-1. Retournez sur la page de [TD d'init à octave](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/intro_octave. ipynb) et rovoyez votre code
+1. Retournez sur la page de [TD d'init à octave](https://nbviewer.org/github/balaise31/Signal/tree/master/continu/tds/intro_octave. ipynb) et rovoyez votre code
 
-2. En guise de correction regardez ce qui est fait pour l'[exo 3 des SdF en octave](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/Series_exo3_pour_TP.ipynb) : c'est quasiment le corrigé du TP1 ! En séance repartez de 0 et faites vos scripts en vous inspirant de ce que vous avez compris.
+2. En guise de correction regardez ce qui est fait pour l'[exo 3 des SdF en octave](https://nbviewer.org/github/balaise31/Signal/tree/master/continu/tds/Series_exo3_pour_TP.ipynb) : c'est quasiment le corrigé du TP1 ! En séance repartez de 0 et faites vos scripts en vous inspirant de ce que vous avez compris.
 
-### 
+### Consignes sur les scripts
+
 En TP vous calculerez numériquement la valeur des $c(n), a(n), b(n)$ pour quelques valeurs de $n$.  
 Ce script devra donner les mêmes valeurs que la formule trouvée analityquement.
 
