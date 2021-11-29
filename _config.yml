@@ -4,6 +4,5 @@ safe: true
 source: docs
 title: Signal
 email: pascalacco@gmail.com
-baseurl: "/docs"
 url: "https://balaise31.github.io/Signal" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  balaise31
