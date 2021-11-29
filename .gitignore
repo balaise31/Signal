@@ -271,3 +271,10 @@ TSWLatexianTemp*
 #octave/matlab
 octave-workspace
 .vscode/ltex.disabledRules.fr.txt
+
+#jekyll
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
