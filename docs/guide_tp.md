@@ -5,7 +5,7 @@
 
 Il y a deux sujets de TP :
 
-1. Décomposition en séries de Fourier [TP1](https://moodle.insa-toulouse.fr/mod/resource/view.php?id=24774) en 1 séances
+1. Décomposition en séries de Fourier [TP1](https://moodle.insa-toulouse.fr/mod/resource/view.php?id=24774) en 1 séance
   - un script `noms_binones_Gpe_X_TP1_1.m` pour la decomposition numérique + calculs **à remettre sur moodle**
   - un script `noms_binones_Gpe_X_TP1_2.m` pour le calcul de la puissance moyenne en numérique + calcul **à remettre sur moodle**
     
@@ -62,7 +62,7 @@ De la même manière, vous allez calculer l'énergie sur une période ou la puis
 
 ## Révisions sur octave
 
-1. Retournez sur la page de [TD d'init à octave](https://nbviewer.org/github/balaise31/Signal/tree/master/continu/tds/intro_octave. ipynb) et rovoyez votre code
+1. Retournez sur la page de [TD d'init à octave](https://nbviewer.org/github/balaise31/Signal/tree/master/continu/tds/intro_octave. ipynb) et revoyez votre code
 
 2. En guise de correction regardez ce qui est fait pour l'[exo 3 des SdF en octave](https://nbviewer.org/github/balaise31/Signal/tree/master/continu/tds/Series_exo3_pour_TP.ipynb) : c'est quasiment le corrigé du TP1 ! En séance repartez de 0 et faites vos scripts en vous inspirant de ce que vous avez compris.
 
@@ -77,9 +77,9 @@ Ce script devra donner les mêmes valeurs que la formule trouvée analityquement
 > - on n'a pas le temps ni le talent pour le faire 
 
 Il peut être utile/élégant/lisible de définir **vous-mêmes** les versions numériques des opérateurs :
-- **intégrale** d'un vecteur de valeurs `integ = @(f_de_t, Te) ...` 
-- **produit scalaire périodique** entre deux signaux `scalp = @(f_de_t, g_de_t, Te) ...` 
-- **Série de Fourier** d'un signal `sdf = @(f_de_t,Te,n) ...`
+- **intégrale** d'un vecteur de valeurs `integ = @(signal_de_t, Te) ...` 
+- **produit scalaire périodique** entre deux signaux `scalp = @(gauche_de_t, droite_de_t, periode, Te) ...` 
+- **Série de Fourier** d'un signal `sdf = @(temps, signal_de_t, periode, Te) ...`
 
 Votre script pourra s'adapter à n'importe quelle fonction. Dans un script **on ne demande jamais à l'utilisatice de rentrer des valeurs pendant l'exécution !** : ce serait pénible voir impossible de demander "quelle est la fonction"...
 
@@ -95,9 +95,9 @@ clc
 
 %%____________________________________________________________________
 %% Configs utilisatrice
-% Entrez ici votre fonction et sa période
+% Entrez ici votre fonction f et sa période T0
 f = @(t) abs(sin(t)) ;
-T0 = 0.1 ;
+T0 = 2*pi ;
 
 % Parametrez la période d'échantillonage et la fenêtre d'observation 
 Te = 0.1 ;
@@ -109,17 +109,14 @@ tmax = T0 ;
 
 
 %% Fonctions utiles
-integ = @(f_de_t,Te) sum(f_de_t)*Te ;
+integ = @(signal_de_t,Te) sum(signal_de_t)*Te ;
 
 %% Calculs 
 t = tmin:Te:tmax ;
 f_de_t = f(t) ;
-...
 
 %% Affichage
-...
 plot(t,f_de_t)
-...
 
 
 ```
