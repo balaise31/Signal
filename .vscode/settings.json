@@ -1,3 +1,4 @@
 {
-    "jupyter.jupyterServerType": "remote"
+    "jupyter.jupyterServerType": "remote",
+    "python.pythonPath": "/home/pacco/anaconda3/envs/Octave/bin/python"
 }
