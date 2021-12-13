@@ -34,6 +34,6 @@ S9 / S10    | Ch. 5    |  1fin,2fin,3  | [S.d.F. suite](https://nbviewer.org/git
 S11    | Ch. 5    |  3fin, 1fin, 6(mix 2 Fourier)   |   [mix S.d.F et TF](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/ch6_mix_series.ipynb) 
 S12 / S13  | Ch. 6    |  2fin (mix 6 Series),3 (pistes)  |  [TF](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/ch6_tf.ipynb) 
 S14    | Ch. 6    |  3fin(questions),1, 5 vs Chap4 exo 6  |    
-S15    | Ch. 7    |  2.1, 3, 5    |    
-S16 (supplément)    | Ch. 8    |  ch7fin, 1b, 1a, 1d vs 4.1, 7  |    
+S15    | Ch. 7    |  2.1, 3, 5    |            [Convolutions](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/ch7_convolutions.ipynb)
+S16 (supplément)    | Ch. 8    |  ch7fin, 1b, 1a, 1d vs 4.1, 7  |    [Correlation et energie](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/ch8_correlation.ipynb) 
 
