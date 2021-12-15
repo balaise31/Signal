@@ -20,6 +20,7 @@ Energie, convolution |  Ch8 [poly 8.7 page 141](https://moodle.insa-toulouse.fr/
 # Déroulement 0xACC0
 ---
 
+
 Séance | Chapitre | Exercices |   Page d'aide
 -------|----------|-----------|-----------------
 S1     |  Ch. 2 p34-36   | 2.1, 4 |  [Signaux de base et phaseurs](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/ch2_s1_signaux_base_et_phaseur.ipynb)
@@ -37,3 +38,4 @@ S14    | Ch. 6    |  3fin(questions),1, 5 vs Chap4 exo 6  |
 S15    | Ch. 7    |  2.1, 3, 5    |            [Convolutions](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/ch7_convolutions.ipynb)
 S16 (supplément)    | Ch. 8    |  ch7fin, 1b, 1a, 1d vs 4.1, 7  |    [Correlation et energie](https://nbviewer.org/github/balaise31/Signal/blob/master/continu/tds/ch8_correlation.ipynb) 
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD/continu/tds) pour exécuter les notebooks Octave en ligne

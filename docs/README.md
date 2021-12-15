@@ -29,6 +29,12 @@ permalink: index.html
 
 # Installation
 
-[Utiliser/installer Octave](../continu/tds/intro_octave.ipynb)
+Vous accedez à ce notebook en ligne. 
 
-[Install avec ce git](../installation/README.md)
+Cliquez sur ce badge  
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD)
+Pour exécuter les notebooks Octave/Matlab/python de manière interractive 
+
+[Utiliser/installer Octave](continu/tds/intro_octave.ipynb)
+
+[Install avec ce git](installation/README.md)
