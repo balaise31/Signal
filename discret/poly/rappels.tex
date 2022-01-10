@@ -1,14 +1,15 @@
 \chapter{Les bases de Fourier}
 \label{chap:fourier}
-Ce chapitre présente les transformées, séries de \Fourier{} et introduit la transformée de\Fourier{} Discrète en se basant sur une analogie entre les espaces vectoriels Euclidiens et les espaces de Hilbert où~:
+Ce chapitre présente les transformées, séries de \Fourier{} et introduit la transformée de 
+\Fourier{} Discrète en se basant sur une analogie entre les espaces vectoriels Euclidiens et les espaces de Hilbert où~:
 \begin{itemize}
 \item un vecteur est un signal sous forme d'une fonction de $\R\rightarrow\C$~;
 \item le produit scalaire de deux vecteurs est sous forme d'intégrale (ou somme) du produit~;
-\item les coefficients peuvent être complexe $\C$-espace vectoriel et non $\R$-espace vectoriel comme  pour les Euclidiens, ce qui change la propriété de symétrie du produit scalaire.
+\item les coefficients peuvent être complexes $\C$-espace vectoriel et non $\R$-espace vectoriel comme  pour les Euclidiens, ce qui change la propriété de symétrie du produit scalaire.
 \end{itemize}
 
 
-La \figref{fig:espaces} mets en évidence cette analogie et souligne le fait que transformer un signal avec un produit scalaire revient à a effectuer un changement de base.
+La \figref{fig:espaces} mets en évidence cette analogie et souligne le fait que transformer un signal avec un produit scalaire revient à effectuer un changement de base.
 
 \begin{figure}[ht]
   \centering
@@ -19,7 +20,8 @@ La \figref{fig:espaces} mets en évidence cette analogie et souligne le fait que
 
 On utilise par habitude la variable $t$ car l'espace de départ est souvent des \emph{fonctions du temps}. On nomme \emph{espace primal} ce premier espace considéré.
 
-En décomposant un signal vecteur dans une base, on va pouvoir représenter ce signal par ses coordonnées dans la base d'arrivée, on dit plutôt composantes pour un signal. On obtient alors un \og{}signal des composantes\fg{} dans un espace que l'on appelle \emph{espace dual}. Comme l'on utilise la plupart des temps des  bases dites fréquentielles, la variable de l'espace dual est notée $f$ et correspond aux \emph{fonctions de la fréquence}.
+En décomposant un signal vecteur dans une base, on va pouvoir représenter ce signal par ses coordonnées dans la base d'arrivée, on dit plutôt composantes pour un signal. On obtient alors un \og{}signal des composantes\fg{} dans un espace que l'on appelle \emph{espace dual}. Comme l'on utilise la plupart du
+ temps des  bases dites fréquentielles, la variable de l'espace dual est notée $f$ et correspond aux \emph{fonctions de la fréquence}.
 
 \begin{remarque}\remarqueTitre{Pourquoi du complexe pour du réel ?}
   On considère le cas général des fonctions à valeurs dans $\C$ car cela permet~:
@@ -36,7 +38,7 @@ En décomposant un signal vecteur dans une base, on va pouvoir représenter ce s
   
 
 La base de vecteurs utilisée dans les transformées de \Fourier{}
-$\p{t\mapsto e^{2\pi\,f\,t}}_{f\in\R}$ va être déclinée en différentes
+$\p{t\mapsto e^{i\,2\pi\,f\,t}}_{f\in\R}$ va être déclinée en différentes
 bases selon que l'on va discrétiser une des variables~:
 
 \begin{description}
@@ -45,8 +47,8 @@ bases selon que l'on va discrétiser une des variables~:
 \end{description}
 
 Selon la dimention continue (infinie indénombrable) ou discrète
-(infinie dénombrable ou finie) des espaces primal et dual, on utiliser
-différents produis scalaires pour effectuer différente transformées
+(infinie dénombrable ou finie) des espaces primal et dual, on utilisera
+différents produis scalaires pour effectuer différentes transformées
 entre primal et dual.
 
 \section{Les espaces et produits scalaires associés}
@@ -58,7 +60,7 @@ en dehors du support de manière périodique, plutôt que par des zéros, car ce
 Les produits scalaires pour différents espaces de fonctions sont définis et illustrés dans la \tabref{tab:scalaires} en prenant~:
 \begin{itemize}
 \item  en rangées du tableau les signaux de la \emph{variable continue} (intégrale continue) ou bien de la \emph{variable discrète} (somme discrète)~;
-\item en colonnes du tableau les \emph{supports infinis} (de $-\infty$ à $\infty$) ou bien support \emph{périodiques/borné} (de $0$ à $T_0$ ou $N$).
+\item en colonnes du tableau les \emph{supports infinis} (de $-\infty$ à $\infty$) ou bien support \emph{périodique/borné} (de $0$ à $T_0$ ou $N$).
 \end{itemize}
 
 \begin{table}[!ht]
@@ -73,17 +75,17 @@ Les produits scalaires pour différents espaces de fonctions sont définis et il
     variable discrète & $\N\rightarrow\C$    &  $\ZN0\rightarrow\C\;$  ou $\;\semiN{0}{N}\;\rightarrow \C$        \\
     & $\scald{f}{g}=\somme{k\in\N}{}{f[k].\conj{g[k]}}$ $\quad\deDim{V^2}$& $\scaldp{f}{g}=\somme{k=0}{N-1}{f[k].\conj{g[k]}}$  $\quad\deDim{V^2}$  
   \end{tabular}
-  \caption{Les produits scalaires adaptés aux différents espaces de fonctions. Par clarté, on ne représente que le module de la fonction qui est dans la cas général complexe.}
+  \caption{Les produits scalaires adaptés aux différents espaces de fonctions. Par clarté, on ne représente que le module de la fonction qui est dans le cas général complexe.}
   \label{tab:scalaires}
 \end{table}
   
 \begin{exercice}\exerciceTitre{Propriété de scalaire et norme dans le cas général}
   On aurait pu définir ces produits scalaires en ne prenant jamais le
-  conjugué d'une fonction $g$ (ou en considérant des fonction à
+  conjugué d'une fonction $g$ (ou en considérant des fonctions à
   valeurs réelles de manière à ignorer ce conjugué car $\conj{g}=g$).
   \begin{enumerate}
   \item Vérifiez dans le cas réel (sans conjugué) que le produit
-    $\scal{f}{g}$ à les propriété d'un produit scalaire, en déduire la
+    $\scal{f}{g}$ a les propriétés d'un produit scalaire, en déduire la
     norme induite $\|f\|^2=\scal{f}{f}$ et déterminer la dimention de
     $\|f\|^2$ : est-ce de la puissance ou de l'énergie, est-ce une
     valeur ou une densité ?
@@ -95,7 +97,7 @@ Les produits scalaires pour différents espaces de fonctions sont définis et il
     variables complexes.
   \item Vérifiez que $\scal{f}{g}=\conj{\scal{g}{f}}$ et que donc le produit scalaire est linéaire à gauche $\forall\lambda\in\C,\; \scal{\lambda\,f}{g}=\lambda\scal{f}{g}$ et \emph{à moitié linéaire} à droite $\forall \lambda\in\C,\; \scal{f}{\lambda\,g}=\conj{\lambda}\scal{f}{g}$
   \end{enumerate}
-On comprend maintenant pourquoi, dans le cas général des fonctions à valeurs complexes, on utilise le conjugué dans l'expression des produit scalaires et pourquoi on parle de produit \emph{sesqui--linéaire} pour ces produits scalaires~: \emph{sesqui} en latin voulant dire \og{}un et demi\fg{} en latin.  
+On comprend maintenant pourquoi, dans le cas général des fonctions à valeurs complexes, on utilise le conjugué dans l'expression des produits scalaires et pourquoi on parle de produit \emph{sesqui--linéaire} pour ces produits scalaires~: \emph{sesqui} en latin voulant dire \og{}un et demi\fg{} en latin.  
 \end{exercice}
 
 Le produit scalaire est très utile car il permet d'obtenir~:
@@ -140,16 +142,16 @@ La \tabref{tab:hilbert} montre le parallèle entre l'utilisation du produit scal
 
 \section{Les transformations}
 
-En prenant la base des ondes complexes adaptée à chaque espaces de
+En prenant la base des ondes complexes adaptée à chaque espace de
 signaux (discrétisée ou non, sur un intervalle infini ou
 borné/périodique), et en utilisant les produits scalaires adaptés, on
-peut définir quatre types de transformations et leur réciproques entre
+peut définir quatre types de transformations et leurs réciproques entre
 un primal avec une base canonique purement localisée dans le temps (et
 infiniment étendue en fréquence) et un dual composé d'une base d'ondes
 purement localisées fréquentielles (et infiniment étendue en dans le
 temps).
 
-Le schéma ci dessous résume ces transformées, leurs base et les
+Le schéma ci-dessous résume ces transformées, leurs bases et les
 produits scalaires associés à chaque transformation~:
 
 
@@ -158,7 +160,7 @@ produits scalaires associés à chaque transformation~:
 \subsection{Base de la \TF{}}
 
 La \TF{} (Transformée de \Fourier), ou \FT{} (\emph{Fourier
-  Transform}) en anglais, s'applique aux fonction continues et utilise
+  Transform}) en anglais, s'applique aux fonctions continues et utilise
 une base d'ondes complexes
 $\Bf=\p{\caCest{t\mapsto e^{i2\pi\,f\,t}}{w_f}}_{f\in\R}$.
 
@@ -183,12 +185,12 @@ l'espace est complet (les suites de Cauchy convergent) dont les sommes
 infinies se comporte bien dans $\Leb{2}$~: c'est une espace de
 Banach. De plus le produit scalaire associé à la norme 2 existe et on
 a donc un espace de \Hilbert{} où la norme et le produit scalaire sont
-des application linéaire dans $\Leb{2}$. Comme il s'agit d'une espace
+des applications linéaires dans $\Leb{2}$. Comme il s'agit d'une espace
 de dimention infinie, il ne suffit pas d'avoir une base de dimention
 infinie pour couvrir tout l'espace, mais dans le cas de $\Leb{2}$ avec
 la base $\Bf$ on montre que tout l'espace est engendré.
 
-Bref ! ça fonctionne tout comme un espace Euclidien sans en être un.
+Bref ! Cela fonctionne tout comme un espace Euclidien sans en être un.
 
 \begin{exercice}
 Prendre la base $\Bf=\p{w_f}_{f\in\R}$ et utiliser la partie espace indénombrable de la \tabref{tab:hilbert} pour retrouver les formules de \Plancherel{} et \Parseval{}. 
@@ -206,12 +208,12 @@ Tentez de retrouver la formule de la décomposition et recomposition en \sdf{} e
  On peut faire l'analogie avec les espaces Euclidiens mais pas l'amalgame, car~:
  \begin{itemize}
    \item le produit scalaire $\scalp{}{}$ est défini dans le cas de fonctions périodiques de carré intégrable, \emph{fonctions de puissance moyenne finie},  que nous notons $\LebP{2}$
- \item ce n'est pas un isomorphisme car on passe d'un espace continu périodique à
+ \item ce n'est pas un isomorphisme car, on passe d'un espace continu périodique à
    un espace discret~! La transformée inverse se fait avec le produit scalaire discret $\scald{}{}$
 \item la base n'est pas finie, mais infinie dénombrable~;
 \end{itemize}
 
-Bref ! cela fonctionne un peu comme un espace Euclidien fini sans en être un...
+Bref ! ela fonctionne un peu comme un espace Euclidien fini sans en être un...
 
 \begin{exercice}
   Prendre la base  $$\Bf=\p{\caCest{t\mapsto \cos\p{\frac{2 \pi}{T_0}\,n\,t}}{\cos_n}}_{\!\!\!\!n\geq 1}\cup \p{\caCest{t\mapsto \sin\p{\frac{2 \pi}{T_0}\,n\,t}}{\sin_n}}_{\!\!\!\!n\geq 1}\cup \p{t\mapsto 1}$$ et voir que l'on retrouve les formules des coefficients $a\b{n}$, $b\b{n}$ et $a_0$ \textbf{à un facteur 2 près !}
