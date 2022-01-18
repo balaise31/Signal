@@ -1,0 +1,126 @@
+
+\subsection{Transformée en Z de systèmes élémentaires}
+\label{sec:transformee_en_z}
+Nous allons définir les signaux élémentaires, associés à des systèmes
+élémentaires, permettant de constituer une table de transformées en
+\tZ{} utile à la résolution d'équations aux différences
+\eqref{eq:systeme_recurrence} par la méthode de calcul opérationnel
+vue au chapitre précédent.
+
+\subsubsection{Transformée en \tZ{} d'un signal quelconque}
+
+Soit un signal quelconque $s\b{k}$, il peut être généré par des
+retards et des avances unitaires de l'impulsion unité $\delta_0$
+d'amplitude $s\b{k}$.
+
+\begin{figure}[ht!]
+  \centering
+  \graphe{\textwidth}{transformee_en_z}
+  \caption{Décomposition d'un signal en combinaison linéaire
+    d'opérateurs unitaires $\oret$ appliquée au signal unité
+    $\delta_0$. La notation en calcul opérationnel, avec $\zmu$ le
+    nombre associé à l'opérateur $\oret$, donne la \teZ.}
+  \label{fig:decomposition_unite}
+\end{figure}
+Le système $S$, composé d'opérateurs avance
+$\oavance$ et retard $\oret$ unitaires, générant le signal quelconque
+$s$ en réponse à l'impulsion unité est donc le suivant~:
+\begin{equation}
+  \label{eq:decomposition_unite}
+  \begin{array}{cll}
+    \caCest{s\b{k}}{\text{scalaire}\in\C} &= \ldots +  s\b{-1} \caCest{\delta_0\b{k+1}}{\delta_{-1}\b{k}} + s\b{0} \delta_0\b{k} + s\b{1} \caCest{\delta_0\b{k-1}}{\delta_1\b{k}} + \ldots &= \somme{j=-\infty}{\infty}{\caCest{s\b{j}}{\in\C}.\caCest{\delta_0\b{k-j}}{\in\C}} \\
+    \caCest{s}{\text{signal}} &= \ldots +  s\b{-1} \caCest{\delta_{-1}}{\oavance\b{\delta_0}} + s\b{0} \caCest{\delta_0}{\Id\b{\delta_0}} + s\b{1} \caCest{\delta_{1}}{\oret\b{\delta_0}} +  \ldots &= \somme{j=-\infty}{\infty}{\caCest{s\b{j}}{\in\C}.\caCest{\delta_{j}}{\text{signal de k}}} \\
+    \caCest{S\p{\oret}}{\text{opérateur}} &= \ldots + s\b{-1} \caCest{\oavance}{\oret^{-1}} + s\b{0}
+                                            \caCest{\Id}{\oret^0} + s\b{1} \oret + \ldots &= \somme{j=-\infty}{\infty}{\caCest{s\b{j}}{\in\C}\caCest{\oret^{j}}{\text{opérateur}}}\\
+    \caCest{\TZlui{S}\p{z}}{\text{scalaire}\in\C} &= \ldots + s\b{-1} \caCest{z}{\text{avance}} + s\b{0}
+    \caCest{1}{z^0} + s\b{1} \caCest{\zmu}{\text{retard}}+ \ldots &= \somme{j=-\infty}{\infty}{\caCest{s\b{j}}{\in\C}\caCest{z^{-j}}{\in\C}}   
+  \end{array}
+\end{equation}
+
+On obtient ainsi la définition de la \teZ{} bilatérale en utilisant la
+variable opérationnelle $\zmu\leftrightarrow \oret$ associée au retard
+unitaire.
+
+\begin{definition} La \emph{\teZ{} bilatérale} d'un signal discret $s$
+  quelconque est la fonction holomorphe
+\begin{equation}
+  \label{eq:transformee_en_z}
+  \TZ\b{s} = \TZlui{S} : \quad z\mapsto \sum_{k=-\infty}^{+\infty}s\b{k}z^{-k} \quad\quad z \in \domDe{s}= \left\lbrace z\in\mathbb{C} \; \Big| \; \sum_{k=-\infty}^{+\infty}s\b{k}z^{-k} \quad \mathrm{converge}\right\rbrace
+\end{equation}
+où $\domDe{s}$ est le \emph{domaine de convergence} de la transformée.
+
+
+La \emph{\teZ{} unilatérale} d'un signal discret $s$
+  quelconque est la fonction holomorphe
+\begin{equation}
+  \label{eq:transformee_en_z_unilaterale}
+  \TZ\b{s} = \TZlui{S} : \quad z\mapsto \sum_{k=0}^{+\infty}s\b{k}z^{-k} \quad\quad z \in \domDe{s}
+\end{equation}
+\end{definition}
+
+Tout comme la transformée de \Laplace{} bilatérale, la convergence sur
+la branche en $-\infty$ est souvent assurée en considérant un signal
+causal dont les termes sont tous nuls avant le rang $k=0$, sans perte
+de généralité. Cela revient à utiliser systématiquement l'échelon
+unité pour annuler les signaux considérés. L'écriture est alors
+facilitée en utilisant la transformée unilatérale considérant par
+définition le signal nul aux rangs négatifs.
+
+\begin{remarque}
+  La \teZ{} est bien une série entière de terme général
+  $ u_n= a_n x^n$ où la suite $a_n$ est le signal $s\b{k}$~; et où
+  la variable $x$ est la variable $z$ complexe. Rappelons que le
+  domaine de convergence des séries entières possèdent un rayon de
+  convergence $R$ pour lequel
+  $$
+  \begin{array}{ll}
+    |z|<R \implies  & \sum a_n z^n \text{ converge} \\
+    |z|>R \implies  & \sum a_n z^n \text{ diverge} \\
+    |z|=R  & \text{ conclure au cas par cas} \\
+
+  \end{array}
+  $$
+
+  On peut retrouver aisément le rayon
+  $R$ et cette propriété en utilisant, par exemple, le critère de
+  d'Alembert~: si $a_n\neq0$ à partir d'un certain rang et si $
+  \lim\limits_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|=l \in
+  \overline{\R_+}$, alors $R=\frac{1}{l}$.
+\end{remarque}
+
+\subsubsection{Impulsion unité et retard}
+
+L'impulsion unité $\delta_0$ définie dans \defref{def:impulsion_unite}
+est utilisée comme signal de référence pour associer un système à un
+signal en prenant sa réponse impulsionnelle~: $y=Y\b{\delta_0}$.
+
+Le système dont la réponse impulsionnelle est l'impulsion unité
+elle-même est donc l'opérateur identité $\Id$. On a donc pour ce
+système $\frac{Y\p{z}}{X\p{z}}=\frac{X\p{z}}{X\p{z}}=1$ puisque la
+sortie $y$ du système identité pour une entrée $x$ est le signal
+$y=x$.
+
+On a donc par définition~:
+\begin{align}
+  \label{eq:z_impulsion}
+  \TZ\b{\delta_0}=\TZlui{\delta_0} : \quad &z \mapsto 1 \nonumber\\
+  &\TZlui{\delta_0}\p{z} = 1 & \abs{z}<R = \infty
+\end{align}
+
+De même le système avance $\oavance$ (resp. retard $\oret$) est
+associé par calcul opérationnel au nombre complexe $z$
+(resp. $\zmu$). La réponse impulsionnelle du système retard $\oret^m$
+est donc l'impulsion retardée de $m$ unitées de temps soit
+$\delta_m$. On obtient ainsi la \teZ{} de $\delta_m$~:
+
+\begin{align}
+  \label{eq:z_retard}
+  \TZ\b{\delta_m}=\TZlui{\delta_m}: \quad &z \mapsto z^{-m} &, m\in\Z \nonumber\\
+  &\TZlui{\delta_m}\p{z} = z^{-m}  &  \abs{z}<R = \infty
+\end{align}
+
+\begin{exercice}
+  Retrouvez les transformées \eqref{eq:z_impulsion} et \eqref{eq:z_retard} en employant la formule générale \eqref{eq:transformee_en_z}. Vous remarquerez la similitude de rôle de \og{} sélection ou mesure \fg{} de l'impulsion unité sous la somme avec le rôle du \Dirac{} sous l'intégrale vu au \secref{sec:dirac_sous_integrale}.
+\end{exercice}
+\subsubsection{Exponentielle complexe et suite géométrique}
+\subsubsection{Echelon unité, rampes et ses intégrales}

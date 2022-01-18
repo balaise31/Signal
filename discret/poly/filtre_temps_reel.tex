@@ -1,0 +1,36 @@
+Cette propriété est souvent liée à la propriété de \emph{causalité}
+d'un système~:
+\begin{definition}{Système causal}
+  
+  Un système $L$ (resp. $L_c$ en continu) est dit causal en $k_0$
+  (resp. en $t_0$ pour le continus) si toute réponse à un signal nul
+  avant l'instant $k_0$ (resp. $t_0$) est nulle aux instants $k<k_0$
+  (resp. $t<t_0$).
+
+  Dans le cas de systèmes invariants, cette définition peut s'écrire
+  en prenant arbitrairement $0$ comme instant de référence~:
+
+  \begin{align}
+    \label{eq:systeme_causal}    
+    \forall x\in L_e, \forall k\in\N^*, \quad &x\b{-k}=0 \quad \implies \quad L\b{x}\b{-k}=y\b{-k}=0 \\
+    \forall x\in L_c, \forall t\in\R^{+*}, \quad &x\p{-t}=0 \quad \implies \quad L_c\b{x}\p{-t}=y\p{-t}=0   
+  \end{align}
+\end{definition}
+
+Autrement dit \og{}l'effet ne précède pas la cause.\fg{}
+\begin{exemple}
+  Reprenons l'exemple du \emph{différentiateur} \ref{exemple:differentiateur_lineaire} d'écrit par l'opérateur ~: $$L : x \mapsto y=\frac{x-\oret\b{x}}{T_e}$$
+  
+  Vérifions qu'il est invariant~:
+  \begin{eqnarray*}
+    \forall k_0 \quads L\b{\oretDe{k_0}\b{x}}\b{k} &= L\b{k\mapsto x\b{k-k_0}}\b{k}\\
+                                                   &= \frac{x\b{k-k_0}-x\b{k-k_0-1}}{T_e} = B\\
+    \forall k_0 \quads \oretDe{k_0}\b{L\b{x}}\b{k} &= \oretDe{k_0}\b{k\mapsto \frac{x\b{k}-x\b{k-1}}{T_e}}\b{k}\\
+                                                   &= \frac{x\b{k-k_0}-x\b{k-k_0-1}}{T_e} = B
+  \end{eqnarray*}
+  
+  On a bien exprimé le fait que $L$ commute avec tout retard
+  $\oretDe{k_0}$, en d'autres termes~: \emph{la différence du retard est le retard de la différence.}
+\end{exemple}
+
+
