@@ -2,31 +2,23 @@
 
 Pour récupérer le tout et utiliser les notebooks avec octave/matlab suivez ces instructions.
 
-# Récupérer le projet
-Allez sur https://montp.insa-toulouse.fr et dans une **session linux** ouvrir un terminal (CTRL+ALT+T) et cloner le git
-avec ces commandes :
-```bash
- cd
- git clone https://github.com/balaise31/Signal.git
- cd Signal
- git checkout discret
- ```
-La dernière version de la branche discret sera sur votre disque. Pour tenter de mettre à jour faites un *git pull*.
+# Installation rapide
 
-# Lancer le script d'installation
+Voir dans [instruction d'installation](./installation/README.md) les prérequis et instructions détaillées
+
+Pour les Geekettes pressées qui ont déjà `conda` et `git` installé, la suite suffit :
 ```bash
-cd ~/Signal/installation
-git pull
-./install
-goSignal
+cd
+git clone https://github.com/balaise31/Signal.git
+cd Signal/installation
+conda env create -f ./octavelab.yaml
+cd
+echo "alias goSignal='cd ~/Signal/ && conda activate octavelab && jupyter-lab'">>.bashrc
+source .bashrc
 ```
-Eventuellement ``chmod a+x ./install`` si pas exécutable.
 
-Un script est installé, votre bash est modifié et deux icones "goSignal" et "Geek" sont crées sur le Bureau.
+Jupyter-lab est lancé d'un terminal avec la commande `goSignal`
 
-Une fois le projet récupéré inutile de refaire cela à chaque fois !
-
-Voir [README](https://github.com/balaise31/Signal/tree/discret/installation) de ./installation pour plus de détails
 
 ## Lancer jupyter-notebook
 
