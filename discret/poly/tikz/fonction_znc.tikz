@@ -6,7 +6,7 @@
 \begin{tikzpicture}
 	\draw [very thick, dashed] (0,-1.5) -- (0,1)	 ;
 	\draw [very thick, dashed] (2.9,-1.5) -- (2.9,1)	 ;
-	\draw [thick, <->,shorten <= +.1cm, shorten >= .1cm] (0,-1.4) node[below]{0}-- (2.9,-1.4) node[below]{N-1} node[below, xshift=-1.5cm] {$[\![0 ,\, N [\![$}	 ;
+	\draw [thick, <->,shorten <= +.1cm, shorten >= .1cm] (0,-1.4) node[below]{0}-- (2.9,-1.4) node[below]{$N_0-1$} node[below, xshift=-1.5cm] {$N_0$}	 ;
 
 	\begin{axis}[	anchor = origin,  x=1cm, y=1cm, 
 								xmin=-4.5, xmax=4.5,

@@ -3,7 +3,7 @@
 \begin{tikzpicture}
 	\begin{axis}[	anchor = origin,  x=1cm, y=1cm,
 								axis lines=center, 
-								xlabel={$k\;[\bullet]$},
+								xlabel={$k\;[~]$},
 								ylabel={$\left|f[k]\right|\; [V]$},
 								ylabel style = {anchor=south, thick, black},
 								xlabel style = {anchor=west, thick, black},

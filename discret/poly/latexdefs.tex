@@ -1,5 +1,9 @@
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 
+\usepackage[OT2,T1]{fontenc}
+\DeclareSymbolFont{cyrletters}{OT2}{wncyr}{m}{n}
+\DeclareMathSymbol{\Sha}{\mathalpha}{cyrletters}{"58}
+
 \def\Hz{\textsc{Hz}}
 \def\noDim{\bullet}
 \def\deDim#1{\;\Join\!\!\left[#1\right]}
@@ -33,6 +37,21 @@
 \def\R{\mathbb{R}}
 \def\priveDe#1{/\left\{#1\right\}}
 
+\def\RN0{\R_{N_0}}
+\def\CN0{\C_{N_0}}
+
+
+\def\RN{\R^{\N}}
+\def\CN{\C^{\N}}
+
+\def\RNborne{\R^{\SN0}}
+\def\CNborne{\C^{\SN0}}
+\def\RNper{\R^{\SN0}_P}
+\def\CNper{\C^{\SN0}_P}
+\def\RNdctII{\R^{\SN0}_{DCT-II}}
+\def\RNdctI{\C^{\SN0}_{DCT-I}}
+
+
 \def\seg#1#2{{\b{#1,\,#2}}} 
 \def\segN#1#2{{\llbracket #1,\,#2\rrbracket}} 
 \def\semiN#1#2{{\llbracket #1,\,#2\llbracket}} 
@@ -44,7 +63,7 @@
 \def\ST0{\left[0,\;T_0\right[}
 \def\RFe{\R_{F_e}}
 \def\SFe{\left[0,\;F_e\right[}
-
+\def\DFe{\Delta_{F_e}}
 
 \def\Leb#1{\mathcal{L}_{#1}}
 \def\LebP#1{\mathcal{L}_{p #1}}
@@ -110,6 +129,7 @@
 \def\scaldp#1#2{\llangle#1\,,\,#2{\rrangle}_P}
 
 \def\conv{\!\ast\!}
+\def\compo{\!\circ\!}
 
 \def\Bc{\mathrm{B_c}}
 \def\Bf{\mathrm{B_F}}

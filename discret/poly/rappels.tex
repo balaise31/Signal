@@ -1,30 +1,160 @@
-\chapter{Les bases de Fourier}
+\chapter{Les bases de \Fourier{}}
 \label{chap:fourier}
-Ce chapitre présente les transformées, séries de \Fourier{} et introduit la transformée de 
-\Fourier{} Discrète en se basant sur une analogie entre les espaces vectoriels Euclidiens et les espaces de Hilbert où~:
-\begin{itemize}
-\item un vecteur est un signal sous forme d'une fonction de $\R\rightarrow\C$~;
-\item le produit scalaire de deux vecteurs est sous forme d'intégrale (ou somme) du produit~;
-\item les coefficients peuvent être complexes $\C$-espace vectoriel et non $\R$-espace vectoriel comme  pour les Euclidiens, ce qui change la propriété de symétrie du produit scalaire.
-\end{itemize}
+Ce chapitre aborde les signaux et leurs transformées avec le point de
+vue des espaces vectoriels. Les notions apprises pour les signaux
+continus sont ainsi revues et étendues au signaux discrets.
 
 
-La \figref{fig:espaces} mets en évidence cette analogie et souligne le fait que transformer un signal avec un produit scalaire revient à effectuer un changement de base.
+
+\section{Signaux et espaces vectoriels}
+
+La \figref{fig:espaces_vectoriels} illustre le cas d'un espace
+vectoriel de dimension 3 et d'une relation possible avec les espaces
+des fonctions continues et discrètes.
+
+% TODO évoquer le 2D
+
+\begin{figure}[htbp]
+  \centering
+  \graphe{0.9\textwidth}{espaces_vectoriels}
+  \caption{Liens entre l'espace Euclidien $\R^3$ et les espaces de fonctions. La notions de sous espace vectoriel est illustrée par l'exemple des sous espaces pair (violet) et impair(rouge).}
+  \label{fig:espaces_vectoriels}
+\end{figure}
+
+
+\begin{remarque}\remarqueTitre{Notation et rigueur}
+  On apelle et notera indiféremment un signal signal $s$~; la fonction
+  $s$ (ou dans le cas discret la suite numérique $(s_n)_{n\in\Z}$ sera
+  simplement notée $s$)~; et le vecteur $\vec{s}$ de l'espace des
+  signaux associé.
+
+  On différencie, en notant $s[k]$, l'évaluation de la fonction
+  discrète $s: \Z\to\C$ à l'instant $k$ de celle d'un signal continu
+  $s: \R\to\C$ à un instant $t$ classiquement notée $s(t)$.
+  
+  Le segment discret est noté $\semiN{n}{m} \quad =\left\{k \in\Z \;|\; n\leq k < m\right\}$ différemment d'un segment continu $\semi{a}{b} \quad =\left\{t\in\R \;|\; a\leq t < b\right\}$
+
+  La notation des espaces $\R^\R$ choisie est assez courante et
+  s'explique par l'extension de la notation des produits carthésiens
+  $\times$ car~:
+  $$ \R^3 = \caCest{\R\times\R\times\R}{\text{3 fois}} = \left\{ (a, b, c) \quad|\quad a,b,c \in \R \right\}$$
+  En indiquant que le nombre de produits est associé aux éléments $k$ d'un ensemble discret, et prenant cette fois-ci des valeurs complexes, on note~:
+  
+  $$ \C^3 = \C^{\left\{0, 1, 2\right\}} = \caCest{\C}{k=0}\caCest{\times\C}{k=1}\caCest{\times\C}{k=2} \quad\text{ avec } (\caCest{a_0, }{k=0}\caCest{a_1, }{k=1}\caCest{a_2}{k=2}) \in  \C^{\semiN{0}{3}} = \left\{ (z_0, z_1, z_2) \in \C^3 \right\}$$
+  En prenant un ensemble de dimension infini dénombrable comme $\Z$  par exemple~:
+
+  $$ \R^\Z = \ldots \times \caCest{\R}{k=-1} \caCest{\times\R}{k=0} \caCest{\times\R}{k=1} \times \ldots \quad\text{ avec } s=(\ldots, \caCest{s_{-1}, }{k=-1}\caCest{s_0, }{k=0}\caCest{s_1}{k=1}, \ldots) \in  \R^{\Z}= \left\{\Z\to\R\right\}$$
+  Un élément est donc un n-uplet de dimension infini dénombrable qui
+  est le graphe d'une application de $\Z\to\R$ et donc celui d'une
+  suite numérique $\left(s_k\right)_{k\in\Z}$ que l'on appelle signal
+  discret $s$. On note donc $s[1]$ l'évaluation de $s$ pour $k=1$ qui
+  est la valeur $s_1$ représenté dans ce n-uplet. On assimilera donc
+  ces deux notations $s_k=s[k]$, l'une indiquant le terme de rang $k$
+  de la suite $s$ et l'autre l'évaluation de l'application $s$ avec
+  l'argument $k$.
+
+  La preprésentation d'un tel graphe se fait sous forme de graphe en
+  \og{} batonnets\fg{} comme en bas à droite de la
+  \figref{fig:espaces_vectoriels}
+
+  
+  La puissance du continu est obtenu en prenant l'ensemble infini
+  indénombrable $\R$ ce qui donne~:
+  $$ \C^\R = \ldots \caCest{\times\R}{t=0} \times \ldots \caCest{\times\R}{t=\pi} \times \ldots \quad\text{ avec } s=(\ldots, \caCest{z_0, }{t=0} \ldots, \caCest{z_\pi, }{t=\pi} \ldots) \in  \C^{\Z}$$
+
+  Un élément de cet ensemble est donc un n-uplet de dimension infinie
+  indénombrable (remarquez qu'il y a une infinité indénombrable de
+  valeurs entre $z_0$ et $ z_\pi$ !). Ce n-uplet constitue le graphe
+  d'une fonction de $\R\to\C$ et donc celui du signal continu
+  $s$. Contrairement aux suites numériques du discret, il est rare de
+  voir noté $s_t$ une évaluation de cette fonction à l'instant $t$ et
+  la notation $s(t)$ sera toujours utilisée.
+\end{remarque}
+
+
+Ainsi que ce soit en continu avec le cas le plus général des fonctions
+de $\R\to\C$, ou en discret celui des suites complexes de $\N\to\C$,
+on manipulera les signaux comme des vecteurs et utiliserons les
+notions de ~:
+ \begin{description}
+ \item[produit scalaire $\scal{\vec{f}}{\vec{g}}$]--- sera un scalaire
+   complexe dont le module indiquera si deux fonctions $f$ et $g$ se
+   ressemblent. Calculer le produit scalaire entre $f$ et $g$ avec
+   différents retards $\tau$ appliqués à $g$ permet de définir la
+   \emph{fonction de correlation}~;
+ \item[norme de vecteur (au carré)
+   $\|\vec{s}\|^2=\scal{\vec{s}}{\vec{s}}$]--- sera associé à l'énergie
+   totale du signal, ou puissance moyenne dans le cas de signaux à
+   support fini comme l'espace des fonctions périodiques etc.
+ \item[bases vectorielles]--- permet de représenter de
+   signaux par des signaux de base. Deux bases seront importantes~:
+   une base temporelle faite de signaux localisés autour d'un instant
+   mais diffus en fréquence~; et une base fréquentielle faites de
+   signaux localisés en fréquence et diffus dans le temps.
+ \item[projection sur un sous-espace]--- Revient à trouver un signal
+   d'un sous espace vectoriel qui soit le plus proche d'u Porjeter sur
+   un sous-espaces en enlevant des vecteurs d'une base correspond à un
+   sous-échantillonnage du signal et ajouter des vecteurs à une base
+   (avec des composantes nulles)
+ \item[changement de base]--- correspond aux transformations de
+   \Fourier{} (base temporelle vers fréquentielle) et aux transformée
+   inverses. Dans le cas des signaux discrets bornés, la base étant
+   finie on peut représenter la transformée \TFD{} (algorithme \FFT)
+   par une matrice de passage. Le calcul de la transofrmée se fait par
+   produit matriciel et l'inverse par le produit avec la matrice
+   inverse.
+\end{description}
+ 
+% \begin{description}
+% \item{signal vecteur} : un signal continu ou discret comme vecteur d'un espace vectoriel qui sera un espace de fonctions ou suites~;
+% \item un produit scalaire sous forme d'intégrale (somme le discret)
+%   d'un produit de fonctions ou suite ~;
+% \item une norme issue de ce p.s. qui sera reliée à l'énergie ou
+%   puissance moyenne du signal selon les espaces de fonction~;
+% \item des bases temporelles constituées de signaux dont l'énergie est
+%   concentrée autour d'un instant, et des bases fréquencielles où
+%   l'énergie/puissance d'un vecteur sera concentrée autour d'une
+%   fréquence~;
+% \item une décompostion dans une base permettra d'obtenir les
+%   coordonnées d'un signal qui seront les échantillons pour une base
+%   temporelle, ou les coefficients de transformée pour le fréquenciel~;
+% \item un changement de base passant d'une représentation à l'autre
+%   sera une transformée de \Fourier{} ou son inverse~;
+% \item une projection sur un sous espace vectoriel correspondra à
+%   trouver dans un espace de signaux, le sgnal le plus proche d'un
+%   autre en terme d'énergie/puissance (sorte d'optimisation aux
+%   moindres carrés)~;
+% \item \ldots
+% \end{description}
+
+La \figref{fig:espaces} mets en évidence l'analogie du changement de
+base et d'une transformée.
 
 \begin{figure}[ht]
   \centering
   \graphe{0.9\textwidth}{espaces}
-  \caption{Changement de base d'un vecteur dans un espace Euclidien de $\R^3$ et transformation d'une fonction de $\R\rightarrow\C$ dans un espace de Hilbert. }
+  \caption{Changement de base d'un vecteur dans un espace Euclidien de
+    $\R^3$ et transformation d'une fonction de $\R\rightarrow\C$ dans
+    un espace de Hilbert.}
   \label{fig:espaces}
 \end{figure}
 
-On utilise par habitude la variable $t$ car l'espace de départ est souvent des \emph{fonctions du temps}. On nomme \emph{espace primal} ce premier espace considéré.
+On utilise par habitude la variable $t$, car l'espace de départ est
+souvent des \emph{fonctions du temps}. Dans certains cas cet espace
+primal peux avoir une variable autre que le temps, comme une longueur
+voir même des fréquences etc. En revanche, on nomme \emph{espace
+  primal} le premier espace considéré.
 
-En décomposant un signal vecteur dans une base, on va pouvoir représenter ce signal par ses coordonnées dans la base d'arrivée, on dit plutôt composantes pour un signal. On obtient alors un \og{}signal des composantes\fg{} dans un espace que l'on appelle \emph{espace dual}. Comme l'on utilise la plupart du
- temps des  bases dites fréquentielles, la variable de l'espace dual est notée $f$ et correspond aux \emph{fonctions de la fréquence}.
+En décomposant un signal vecteur dans une base, on va pouvoir
+représenter ce signal par ses coordonnées dans la base d'arrivée, on
+dit plutôt composantes pour un signal. On obtient alors un \og{}signal
+des composantes\fg{} dans un espace que l'on appelle \emph{espace
+  dual}. Comme l'on utilise la plupart du temps des bases dites
+fréquentielles, la variable de l'espace dual est notée $f$ et
+correspond aux \emph{fonctions de la fréquence}.
 
 \begin{remarque}\remarqueTitre{Pourquoi du complexe pour du réel ?}
-  On considère le cas général des fonctions à valeurs dans $\C$ car cela permet~:
+  On considère le cas général des fonctions à valeurs dans $\C$, car cela permet~:
   \begin{itemize}
   \item de représenter des signaux de type phaseur (vecteurs en rotation)
   \item de représenter facilement des signaux réels dont la bande de
@@ -46,18 +176,280 @@ bases selon que l'on va discrétiser une des variables~:
 \item[frequences discrètes] où la variable $f\in\R$ sera remplacée par une variable discrète $n\in\N$ avec la relation $f=n\,\Delta_f$ où $\Delta_f$ est la valeur qui sépare deux échantillons en fréquence est nommé \emph{résolution fréquentielle}
 \end{description}
 
-Selon la dimention continue (infinie indénombrable) ou discrète
+Selon la dimension continue (infinie indénombrable) ou discrète
 (infinie dénombrable ou finie) des espaces primal et dual, on utilisera
 différents produis scalaires pour effectuer différentes transformées
 entre primal et dual.
 
 \section{Les bases temporelles et espaces}
+Nous allons définir les différents espaces des signaux (fonctions) et
+y associer une base vectorielle \og canonique\fg{} et parfois des
+variantes. Comme ces vecteurs de bases seront choisi de manière à être
+très localisés dans le temps, la majorité de l'énergie est localisée
+autour d'un instant, les bases seront dites temporelles.
 
-\subsection{Espaces discrets à support finit ou périodiques}
+Le plus simple est de considérer une suite finie de nombres :
+incontournable lorsque l'on traite le signal avec des processeurs
+numériques.  La mémoire étant finie, on ne peut qu'utiliser des
+mesures faites périodiquements dans le temps (temps discret) nommées
+\emph{échantillons} et de plus sur une durée finie (nombre
+d'échantillons fini).
+
 
 \subsection{Espaces discrets de dimension infinie}
 
-\subsection{Espaces continus à support finit ou périodiques}
+L'espace des signaux discrets réels (resp. complexes) à support infini
+est l'ensemble des applications de $\Z$ dans $\R$ (resp. $\C$) noté
+$\RN = \left\{s : \N \to \R \right\}$ (resp.
+$\CN = \left\{s : \N \to \C \right\}$).
+
+
+Un élément de cet espace est donc une fonction d'une variable discrète
+que l'on notera souvent $k$ lorsqu'il s'agit d'un indice du temps avec
+la relation $t \leftrightarrow k\,T_e$, ou bien $n$ lorsque l'indice
+est relié aux fréquences par $f \leftrightarrow n.F_0$. Une fonction
+de la variable continue évaluée à un instant $t$ étant notée $f(t)$,
+on utilisera des crochets et notera $f[k]$ une fonction de la variable
+discrète évaluée en $k$.
+
+Pour différencier la notation d'une fonction de celle de son
+évaluation en un point car $f\neq f(t)$, on notera de manière allégée
+$f\p{\bullet}$ la fonction continue $t\mapsto f\p{t}$ où $\bullet$
+remplace la variable muette $t$. De même on différencie le scalaire
+$f\b{k}$ de la fonction $k\mapsto f\b{k}$ en notant simplement une
+fonction $f\b{\bullet}$.
+
+On veut trouver une base permettant de décomposer un signal/vecteur
+$\vec{f}$ quelconque avec des vecteurs/signaux $\vec{\omega_i}$ d'une
+base qui sera dite temporelle si le signal est localisé autour d'un
+instant. La fonction discrète la plus localisée dans le temps que l'on
+puisse utiliser pour construire cette base est \emph{l'impulsion
+  unitée} que l'on définit ci-dessous.
+\begin{definition}
+  \label{def:impulsion_unite}
+  L'\textbf{impulsion unité}, notée $\delta_0$ ou simplement $\delta$,
+  est le signal discret tel que :
+  $$
+  \delta=\delta_0~:\application{\N}{\R \text{ ou } \C}{ k}{\delta_0\b{k}=\pparMorceaux{1}{\text{si } k=0}{0}{\text{sinon}}} 
+  $$
+
+  L'\textbf{impulsion unité centrée en $a$} est notée $\delta_a$ et définie par~:
+  $$
+  \delta_a = \delta_0\b{\bullet-a}~: \application{\N}{\R \text{ ou } \C}{k}{\delta\b{k-a} =  \pparMorceaux{1}{\text{si } k=a}{0}{\text{sinon}}}
+  $$
+\end{definition}
+
+\begin{remarque}
+  Bien qu'utilisant le même symbole $\delta$, il ne faut pas confondre
+l'impulsion unité discrète avec l'impulsion de \Dirac. L'impulsion
+unité est un signal discret tout à fait classique d'amplitude égale à
+$1$ ; alors que l'impulsion de \Dirac{} est une fonction généralisée ou
+distribution, voir \chapref{sec:dirac}, d'amplitude infinie et de
+poids unité.
+\end{remarque}
+
+Ainsi on peut définir l'espace vectoriel des fonctions discrètes en
+donnant une base canonique.
+
+\begin{definition}
+  \label{def:signal_discret}
+  L'\textbf{espace des signaux discrets réels $\RN$} (on précisera si
+  nécessaire \textbf{à support infini}) est l'espace vectoriel de
+  dimension infinie dénombrable des suites réelles défini par la base
+  vectorielle $B_{\Z}=(\delta_j)_{j\in\Z}$. Un vecteur/signal
+  $\vec{s}$ de $\RN$ a donc des coordonnées avec une infinité de
+  composantes :
+  \begin{equation}
+    \vec{s}  = (\ldots,s\b{-1}, s\b{0}, s\b{1}, \ldots)_{B_{\Z}} = \quad \ldots + s\b{-1}.\delta_{-1} + s\b{0}.\delta_0 + s\b{1}.\delta_1 + \ldots =\quad \somme{j\in\Z}{}{s\b{j}.\delta_j}
+  \end{equation}
+\end{definition}
+
+Cet espace est utile du point de vue théorique car il permet de
+modéliser l'échantillonnage d'un signal continu. En revanche, en
+pratique, il est impossible de stocker une quantitée infinie
+d'échantillons dans la mémoire d'un système. On va donc utiliser une
+fenêtre d'observation pour limiter cette quantité d'information.
+
+
+\subsection{Espaces discrets à support fini ou périodique}
+Ainsi un échnatillonnage de $N_0$ points réels (resp. complexes) est
+un vecteur de $\R^{N_0}$ (resp. $\C^{N_0}$). On peut établir des bijections
+entre ce vecteur et différents \emph{sous-espaces} de l'ensemble des signaux
+discrets à support infini $\RN$.
+
+
+
+\subsubsection{Signal discret borné :  $\RNborne$ ou $\CNborne$}
+L'ensemble des signaux discrets bornés à valeurs réelles (resp. complexes) $\left\{s : \SN0 \to \R \right\}$ (resp. $\left\{s : \SN0 \to \R \right\}$) est défini uniquement pour $k\in\SN0$. On plonge ces fonctions dans $\RN$ (resp. $\CN$) avec un prolongement nul pour $k$ en dehors de l'intervale de définition (appelé parfois fenêtre d'observation naturelle).
+
+\begin{definition}
+  \label{def:signal_discret_borne}
+  Un \textbf{signal discret borné} est un sous espace vectoriel noté
+  $\RNborne$ (resp. $\CNborne$) des suites réelles $\RN$ (resp. suite
+  complexes $\CN$) défini pas la base vectorielle
+  $B_{N_0}^b=\left(\delta_j\right)_{j\in\SN0}$. Ce signal est donc, sans perte de
+  généralité, nul pour tout $k<0$ et $ N_0\leq k$ et se décompose ainsi
+  :
+  \begin{equation}
+    (\ldots,0, s[0], \dots, s[N_0-1], 0, \ldots) \quad \leftrightarrow \quad s[0].\delta_0 + \dots s[N_0-1].\delta_{N_0-1} = \somme{0\leq j< N_0}{}{s[j].\delta_j}
+  \end{equation}
+\end{definition}
+
+Remarquons que l'indice $j$ est un indice indiquant un vecteur de la
+base temporelle qui est différents de la variable muette $k$ que nous
+utilisons pour désigner l'argument dune fonction discrète. Ainsi il
+faut bien analyser la somme précédente décomposant un signal $s$ par~:
+\begin{equation}
+  s = \somme{0\leq j< N_0}{}{s[j].\delta_j}~: \application{\N}{\R \text{ ou } \C}{k}{\somme{0\leq j< N_0}{}{s[j].\delta_j\b{k}}={\somme{0\leq j< N_0}{}{s[j].\delta\b{k-j}}}}
+\end{equation}
+
+\begin{exemple}
+  On associe un enregistrement de 3 échantillons discrets de valeur 1,
+  2 puis 3 au vecteur $(1, 2, 3)\in\R^3$. On fait une bijection entre
+  ce vecteur de $\R^3$ et le signal discret
+  $s=1.\delta_0+2.\delta_1+3.\delta_2$ en échangeant la base canonique
+  de $\R^3$ ayant par exemple pour vecteur $\vec{e_0}=(1,0,0)$ avec le
+  signal/vecteur de la base canonique des signaux discrets borné
+  $B_3^b=\left(\delta_j\right)_{0\leq j<3}$ correspondant :
+  $\vec{w_0} = \delta_0$.
+
+  Nous avons bien un sous-espace vectoriel de dimension 3 de l'espace
+  des suites réelles (resp. complexes) avec
+  $$\vec{s} = \vvvectBase{1}{2}{3}{B_3^b} = 1.\vec{w_0}+2\vec{w_1}+3\vec{w_2} = 1.\delta_0+2.\delta_1+3.\delta_2$$
+
+   On obtient le signal :
+  $$
+  \begin{array}{llcccccccc}
+     &1.\delta_0 & =(\ldots, &0 , &1, &0, &0, &0, &0, &\ldots)\\
+    +&2.\delta_1 & =(\ldots, &0 , &0, &2, &0, &0, &0, &\ldots)\\
+    +&3.\delta_2 & =(\ldots, &0 , &0, &0, &3, &0, &0, &\ldots)\\\hline
+    =& s  & =(\ldots, &0 , &1, &2, &3, &0, &0, &\ldots)
+  \end{array}
+  $$
+\end{exemple}
+
+\begin{remarque}
+  Si l'on veut décomposer un signal discret borné dans une base fréquentielle, avec des signaux étalés dans le temps mais localisés en fréquences, nous verons que toutes les fréquences $f$ du segment continu $\SFe$ sont nécessaires et que les composantes fréquentielles sont périodiques de période $F_e$ :
+
+nous obtiendrons \textbf{la transformée de \Fourier{} des signaux discrets (TFSD)} pour représenter un \textbf{signal discret borné}
+\end{remarque}
+
+
+\subsubsection{Signal discret périodique : $\RNper$ ou $\CNper$}
+En prolongeant le signal de manière périodique, nous obtenons une
+représentation fréquentielle plus légère qui sera aussi une fonction
+discrète périodique (au lieu d'une fonction continue périodique dans
+le cas des TFSD précédent).
+
+Pour cela nous devons introduire la version périodique de l'impulsion unité.
+
+\begin{definition}
+  Un \textbf{peigne d'impulsions de période $N_0$} est le signal noté
+  $\Sha$ (lettre cyrilique \emph{Sha}) définit par :
+  
+  \begin{equation}
+    \Sha_{N_0} = \sum\limits_{m\in\mathbb{Z}} \delta_{m.N_0}: \application{\Z}{\R \text{ ou } \C}{k}{\delta_0[k\mod{}N_0]=\pparMorceaux{1}{\text{ si } k = m.N_0,\quad m\in\Z}{0}{\text{ sinon}}}
+\end{equation}
+
+\end{definition}
+
+Nous pouvons utiliser les peignes d'impulsions comme base de signaux pour définir le sous-espace vectoriel des signaux discrets périodiques :
+\begin{definition}
+  \label{def:signal_discret_periodique}
+  Un \textbf{signal discret $N_0$-périodique}  est un sous espace vectoriel noté
+  $\RNper$ (resp. $\CNper$) des suites réelles (resp. suite
+  complexes) définit par la base vectorielle \\$B_{N_0}^p=\left(\Sha_{N_0}\b{\bullet-j}\right)_{0\leq j<N_0}$. Ce signal est donc de période $N_0$ et se décompose ainsi :
+  \begin{equation}
+  s = s[0].\Sha_{N_0} + \dots + s[N_0-1].\Sha_{N_0}\b{\bullet-(N_0-1)} = \somme{0\leq j< N_0}{}{s[j].\Sha_{N_0}\b{\bullet-j}}
+  \end{equation}
+\end{definition}
+
+Ne pas confondre l'indice
+$j$ de la base temporelle et la variable muette
+$k$ que nous utilisons pour désigner l'argument dune fonction
+discrète. Ainsi il faut bien analyser la somme précédente décomposant
+un signal $s$ par~:
+\begin{equation}
+  s[k] = \somme{0\leq j< N_0}{}{s[j].\Sha_{N_0}\b{k-j}}
+\end{equation}
+
+\begin{exemple}
+  
+  On associe maintenant $(1, 2, 3)\in\R^3$ au signal discret
+  périodique
+  $s=1.\Sha_{3}+2.\Sha_{3}\b{\bullet-1}+3.\Sha_{3}\b{\bullet-2}$ qui
+  est 3-périodique.
+
+  Nous avons bien un sous-espace vectoriel de
+  dimension 3 de l'espace des suites réelles (resp. complexes) avec
+  $$\vec{s} = \vvvectBase{1}{2}{3}{B_3^p} = 1.\vec{w_0}+2\vec{w_1}+3\vec{w_2} = 1.\Sha_{3}+2.\Sha_{3}\b{\bullet-1}+3.\Sha_{3}\b{\bullet-2}$$
+
+  On obtient le signal :
+  $$
+  \begin{array}{llcccccccc}
+     &1.\Sha_{3}            & =(\ldots, &1 , &0, &0, &1, &0, &0, &\ldots)\\
+    +&2.\Sha_{3}[\bullet-1] & =(\ldots, &0 , &2, &0, &0, &2, &0, &\ldots)\\
+    +&3.\Sha_{3}[\bullet-2] & =(\ldots, &0 , &0, &3, &0, &0, &3, &\ldots)\\\hline
+    =& s  & =(\ldots, &1 , &2, &3, &1, &2, &3, &\ldots)
+  \end{array}
+  $$
+\end{exemple}
+
+\begin{remarque}
+  Si l'on veut décomposer un signal discret $N_0$-périodique dans une
+  base fréquentielle, nous verons que seul $N_0$ fréquences discrètes
+  du segment $\SFe$ sont nécessaires et que les composantes
+  fréquentielles sont périodiques de période $F_e$ :
+
+
+  Nous obtiendrons \textbf{la transformée de \Fourier{} discrète (TFD)}
+  pour représenter un \textbf{signal discret périodique}. Un algorithme
+  optimisé de calcul de la TFD est la \textbf{Fast Fourier Transform
+    (FFT)}
+\end{remarque}
+
+\subsection{Signal discret périodique pair~: $\RNdctII$}
+Deux inconvénients du  prolongement périodique précédant sont :
+\begin{itemize}
+  \item une parité quelconque d'un signal  réel fait que sa transformée est complexe,
+  \item le signal n'est pas forcément continu au point de raccordements périodique
+\end{itemize}
+Il en résulte une transformée de signaux réels qui est imaginaire et l'introduction de composantes haute fréquences due à l'introduction d'une discontinuité périodique.
+
+En continu, le développement en série de cosinus (CT pour Cosine
+Transform) est facile à définir car :il y n'y a qu'un seul prolongement pair de période double
+d'un signal à support borné $\ST0$. C'est donc une
+version réelle des SdF $c(n)$ où l'on prend une période double avec :
+$$CT[n] = a(\frac{n}{2}) = \int\limits_0^{T_0} f(t) . \cos\left(2\pi n \frac{t}{2.T_0}\right) dt$$
+
+\textbf{Il n'y a pas de $b(n)$} ! Et tout est réel, en revanche la
+résolution fréquentielle est double :$\frac{F_0}{2}$
+
+En discret pour prolonger la suite bornée (a, b, c), il y a deux choix à
+faire à chaque borne : 
+\begin{itemize}
+  \item $a$ est à l'instant 0 et donc non répété : $\ldots b,a,b,\ldots{}$
+  \item a est répété et donc à l'instant $\frac{T_e}{2}$ : $\ldots, b, a, a, b$
+  \item d est non répété et donc à $(N-1).T_e$ de l'échantillon a : $\ldots, c, d, c$ 
+  \item d est répété et donc à l'instant $(N-1).T_e + \frac{T_e}{2}$ de a : $\ldots, c, d, d, c$    
+\end{itemize}
+
+\begin{quote}
+En discret il y a 4 prolongements pairs donnant 4 \textbf{Direct Cosine
+Transform} DCT car il y a 4 prolongements pairs ``aux deux bornes'' conduisant à 4
+espaces pairs périodiques, et 4 prolongements pairs en ``a'' et impair en
+``b''
+\end{quote}
+
+\begin{tabular}{lllll}
+\hline
+Type de DCT & Prolongement (N=4) & Décalage de ``a'' & parité en ``b'' &
+Période \\
+\hline
+Type-I & $(\ldots, a, b, c, d, c, b, \quad a, b, \ldots)$ & 0 & pair & 2.(N-1) \\
+Type-II & (a, b, c, c, b, a) & +1/2 & pair & 2.N \\
+\hline
+\end{tabular}
 
 \subsection{Espaces continus}
 
@@ -79,14 +471,14 @@ Les produits scalaires pour différents espaces de fonctions sont définis et il
     &Support infini    & Support fini ou périodique  \\\hline
     &  \begin{tabular}{c} \graphe{0.4\textwidth}{fonction_rc}\end{tabular}
                        &  \begin{tabular}{c} \graphe{0.5\textwidth}{fonction_rtc} \end{tabular}                           \\
-    variable continue & $f:\R\rightarrow\C$    &  $f:\RT0{}\rightarrow\C\;$  ou $f:\;[0,\,T_0[\, \mapsto \C $       \\
+    variable continue & $f:\R\rightarrow\C$    &  $f:\;[0,\,T_0[\, \mapsto \C $       \\
     &$\scal{f}{g}=\intDt{\R}{}{f(t).\conj{g(t)}}$ $\quad\deDim{\frac{V^2}{\Hz}}$ & $\scalp{f}{g}=\frac{1}{T_0}\intDt{0}{T_0}{f(t).\conj{g(t)}}$ $\quad\deDim{V^2}$ \\\hline
     &   \begin{tabular}{c} \graphe{0.4\textwidth}{fonction_nc}\end{tabular}
                        &  \begin{tabular}{c} \graphe{0.5\textwidth}{fonction_znc}    \end{tabular}                        \\
-    variable discrète & $\N\rightarrow\C$    &  $\ZN0\rightarrow\C\;$  ou $\;\semiN{0}{N}\;\rightarrow \C$        \\
-    & $\scald{f}{g}=\somme{k\in\N}{}{f[k].\conj{g[k]}}$ $\quad\deDim{V^2}$& $\scaldp{f}{g}=\somme{k=0}{N-1}{f[k].\conj{g[k]}}$  $\quad\deDim{V^2}$  
+    variable discrète & $\N\rightarrow\C$    & $\;\semiN{0}{N_0}\;\rightarrow \C$        \\
+    & $\scald{f}{g}=\somme{k\in\N}{}{f[k].\conj{g[k]}}$ $\quad\deDim{V^2}$& $\scaldp{f}{g}=\frac{1}{N_0}\somme{k=0}{N_0-1}{f[k].\conj{g[k]}}$  $\quad\deDim{V^2}$  
   \end{tabular}
-  \caption{Les produits scalaires adaptés aux différents espaces de fonctions. Par clarté, on ne représente que le module de la fonction qui est dans le cas général complexe.}
+  \caption{Les proxduits scalaires adaptés aux différents espaces de fonctions. Par clarté, on ne représente que le module de la fonction qui est dans le cas général complexe.}
   \label{tab:scalaires}
 \end{table}
   
@@ -97,7 +489,7 @@ Les produits scalaires pour différents espaces de fonctions sont définis et il
   \begin{enumerate}
   \item Vérifiez dans le cas réel (sans conjugué) que le produit
     $\scal{f}{g}$ a les propriétés d'un produit scalaire, en déduire la
-    norme induite $\|f\|^2=\scal{f}{f}$ et déterminer la dimention de
+    norme induite $\|f\|^2=\scal{f}{f}$ et déterminer la dimension de
     $\|f\|^2$ : est-ce de la puissance ou de l'énergie, est-ce une
     valeur ou une densité ?
   \item Appliquez cette norme (toujours sans le conjugué) au signal imaginaire pur
@@ -197,7 +589,7 @@ infinies se comporte bien dans $\Leb{2}$~: c'est une espace de
 Banach. De plus le produit scalaire associé à la norme 2 existe et on
 a donc un espace de \Hilbert{} où la norme et le produit scalaire sont
 des applications linéaires dans $\Leb{2}$. Comme il s'agit d'une espace
-de dimention infinie, il ne suffit pas d'avoir une base de dimention
+de dimension infinie, il ne suffit pas d'avoir une base de dimension
 infinie pour couvrir tout l'espace, mais dans le cas de $\Leb{2}$ avec
 la base $\Bf$ on montre que tout l'espace est engendré.
 

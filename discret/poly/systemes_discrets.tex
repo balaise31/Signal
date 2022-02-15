@@ -242,7 +242,7 @@ linéarité et invariance du système.
   \label{eq:reponse_convolution}
   \caCest{x = \somme{j=-\infty}{\infty}{x\b{j}\delta_{j}}}{\text{signal}}\quad \implies\quad &y=H\b{x}=H\b{\somme{j=-\infty}{\infty}{x\b{j}\delta_{j}}} \nonumber\\
   \underset{\text{linéarité de H}}{\implies}\quad &y=\somme{j=-\infty}{\infty}{H\b{ \;\caCest{x\!\!\b{j}}{\text{constante !}}\delta_{j}\;}} \underset{\text{linéarite de H}}{=} \;\;\somme{j=-\infty}{\infty}{x\!\b{j}\caCest{H\b{\delta_j}}{H.\oret^j\b{\delta_0}}} \nonumber \\
-  \implies \quad &y=\somme{j=-\infty}{\infty}{x\b{j}.H.\oret^j\!\b{\delta_{0}}} \underset{\text{invariance de H}}{=} \;\;\somme{j=-\infty}{\infty}{x\b{j}.\oret^j\,.\,\caCest{H\b{\delta_{0}}}{h}}\nonumber\\
+  \implies \quad &y=\somme{j=-\infty}{\infty}{x\b{j}.H\compo\oret^j\!\b{\delta_{0}}} \underset{\text{invariance de H}}{=} \;\;\somme{j=-\infty}{\infty}{x\b{j}.\oret^j\compo\caCest{H\b{\delta_{0}}}{h}}\nonumber\\
   \implies \quad & y= \somme{j=-\infty}{\infty}{x\b{j}.\caCest{\oret^j\b{h}}{k\mapsto h\b{k-j}}}=x\conv h \nonumber\\
   \implies \quad & \forall k\in\Z,\quad  y\b{k}= \somme{j=-\infty}{\infty}{x\b{j}\,h\!\b{k-j}} = x\conv h\b{k}
 \end{align}
