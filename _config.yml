@@ -1,1 +1,12 @@
-theme: jekyll-theme-hacker
+theme: jekyll-theme-midnight
+safe: true
+source: docs
+
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+incremental: false
+kramdown:
+    math-engine: katex
+

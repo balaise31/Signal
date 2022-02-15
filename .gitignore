@@ -40,6 +40,7 @@
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
+*_region_.*
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
@@ -265,3 +266,15 @@ TSWLatexianTemp*
 *.ncx
 *.epub
 *_epub-epub*
+*.autosave.*
+
+#octave/matlab
+octave-workspace
+.vscode/ltex.disabledRules.fr.txt
+
+#jekyll
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor

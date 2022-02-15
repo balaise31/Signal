@@ -1,8 +1,35 @@
 # Signal continu et discret
+---
+Cours, TD et TP de filtrage numérique en continu et discret (enseignements de l'INSA de Toulouse en IMACS2 et 3)
 
-Pour récupérer le tout et utiliser les notebooks avec octave/matlab suivez ces instructions.
+Vous y trouverez :
+  - poly de cours
+  - guide de td
+  - Tps et guides de TP
+  - installation de Notebooks Jupyter avec octave
 
-# Installation rapide
+
+Allez sur [la page du projet](https://balaise31.github.io/Signal/index.html) pour accéder aux polys, instructions etc.
+
+
+## Utilisation en ligne
+---
+Cliquez sur les "badges" ci-dessous pour lancer jupyter-lab sur un serveur et naviguer pour lancer les notebooks  ".ipynb" :
+
+Vous pouvez naviguer en Interactif avec Jupyter Lab (conseillé) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?urlpath=lab)
+---|---
+Interactif avec Jupyter Notebook | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?urlpath=tree)
+Interactif avec nteract | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?urlpath=nteract)
+
+Le premier lancement peut être long, voire nécessiter de recharger la page, mais après ça va...
+
+Vous pouvez aussi juste naviguer sans modifier, mais toujours connectée :
+  - **Naviguer avec [gitHub](https://github.com/balaise31/Signal)**  cliquer sur un notebook (fichier de type **.ipynb**) et laisser git le visualiser
+  - **Naviguer et Visualiser avec nbviewer** en cliquant sur ce badge [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.org/github/balaise31/Signal/tree/master/)
+
+
+## Installation locale rapide
+---
 
 Voir dans [instruction d'installation](./installation/README.md) les prérequis et instructions détaillées
 
@@ -19,29 +46,3 @@ source .bashrc
 
 Jupyter-lab est lancé d'un terminal avec la commande `goSignal`
 
-
-## Lancer jupyter-notebook
-
-Ce n'est pas obligatoire mais bien pratique d'utiliser jupyter pour faire des notebook bien commentés de code octave/matlab.
-  * on peut lancer octave (ou matlab mais sous windows à l'INSA) et commenter les .m
-  * faire un notebook jupyter en mode octave
-  * mixer les deux (fonctions en .m et explications jolies en .ipynb)
-
-Pour utilser le jupyter notebook avec octave il faut initaliser **à chaque fois** avec
-
-  - Cliquer sur l'icone du Bureau *goSignal* 
-  - Naviguez dans les répertoires et ouvrez un fichier .ipynb.
-       Pour exécuter une cellule de code (SHIFT + ENTER)
-
-Ou en mode ligne de commande pour faire le défi paparité par exemple:
-```bash
-cd Signal/discret/defis/paparite/
-goSignal
-```
-Pour écouter le son en ligne de commande :
-
-    rhythmbox paparite.ogg &
-
- Faire CTRL-C CTRL-C pour stopper le notebook.
- 
-Enjoy !

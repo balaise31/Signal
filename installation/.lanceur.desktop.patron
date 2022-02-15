@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Terminal=true
-Exec=bash -c "DEPOT/installation/lance_term.sh SCRIPT"
-Name=SCRIPT
-Comment="lanceur du script SCRIPT"
-Icon=ICONE
-GenericName[fr_FR.UTF-8]="lanceur du script SCRIPT"

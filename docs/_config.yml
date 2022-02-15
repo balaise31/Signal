@@ -1,0 +1,22 @@
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+title: "Signal"
+email: "pascalacco@gmail.com"
+description: "Enseignement du traitement du signal"
+github_username:  pascalacco
+domain: balaise31.github.io     
+url: https://balaise31.github.io
+baseurl: /Signal/   
+
+# Build settings
+remote_theme: pages-themes/midnight@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
+
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+incremental: false
+kramdown:
+    math-engine: katex
