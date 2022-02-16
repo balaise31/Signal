@@ -1,59 +1,66 @@
 # Installation
 
-Install avec le même script ``./installation/install`` que ce soit sur :
-   * le site montp de l'insa
-   * une install de linux (ou machine virtuelle) avec conda
-   * une install de linux avec virtualenv
+Pour installer sur sa machine de quoi lire les notebooks, modifier et exécuter des notebooks, et développer du code octave/python. Voici les instructions à tenter.
 
-## Récup du git
-Voir [README](../README.md "README du Github") pour voir comment faire un git clone du projet
-	
-## Install Conda comme à l'INSA en local
+Que ce soit sur Windows/Mac/Linux on suppose que :
+   - vous avez un client `git` avec ligne de commande qui marche
+      * Sous windows installez un `git bash`
+      * Sous mac git doit y être. Sinon un bon conseil est d'utiliser `macport` ou `brew` pour installer des softs dans le style ligne de commande
+      * Sous Linux ça y est déjà ou un simple `sudo apt get install git` fera l'affaire.
+   - Vous avez une installation de python (plûtot 3.7) `conda` ou `pip`
+      * Sous windows allez sur le site de `conda` et faite une install avec .exe
+      * Sous mac on peut installer conda avec un .dmg ou utiliser macport ou brew pour installer pip avec
+       `sudo port install pip`
+      * Sous linux ça y est déjà ou sinon `sudo apt install python3`
 
-Si vous voulez installer en utilsant Conda, lancez dans un terminal
+## Récup de ce dépôt git
+---
+
+Ouvrez un terminal (git bash) et lancez la commande
+```bash
+cd ~
+git clone  https://github.com/balaise31/Signal.git Signal
+```
+Si vous n'arrivez pas à avoir un compte git avec une authentification qui marche ? Vous pouvez toujours 
+[télécharger le zip](https://github.com/balaise31/Signal/archive/refs/heads/master.zip) et gérér les mises à jour à l'ancienne
+
+De temps en temps, vous pourrez importer les mises à jour en faisant un `git pull`.
+
+## Installation de l'environnement avec conda
+---
+En utilisant conda, on va créer un environnement `octavelab` contenant tous les paquets nécessaires
 
 ```bash   
 cd ~/Signal/installation
-git pull
-./install
-goSignal
+conda env create -f ./octavelab.yaml
 ```
-C'est long mais c'est prêt !
-Utilisez une icone goSignal du bureau, ou la commande goSignal dans un terminal.
+C'est long, mais à la fin c'est prêt !
+Normalement si vous faites `conda env list`, l'environnement octavelab doit apparaître parmi d'autres.
 
-Cela va :
 
-  * utiliser une installation de conda existante visible (il faut que la commande ocnda existe)
-  * ou utiliser une installation de conda non visible dans $HOME/anaconda3
-  * ou télécharger conda et installer conda dans $HOME/anaconda3
+## Lancement de jupyter-lab
+---
 
-Puis cela va créer un environnement "Octave" avec ce qu'il faut pour les notebook Jupyter avec octave. 
-
-A la fin des icones goSignal et l'alias goSignal sont créés pour démarrer jupyter notebook.
-
-## Install Virtualenv locale Linux
-
-Si vous voulez installer en utilsant Virtualenv de l'atp de Ubuntu (plus léger et rapide que conda), lancez dans un terminal
-
+Dans un terminal exécutez la commande :
 ```bash
-cd ~/Signal/installation
-git pull
-./install venv
-goSignal
+cd ~/Signal
+conda activate octavelab
+jupyter-lab
 ```
-## Install sur OSx
- A vous de jouer !
- Si conda est installé alors tentez les même commandes git pour récupérer le projet puis 
 
+Cela lance un serveur `jupyter-lab` et un navigateur qui s'y connecte capable d'exécuter des notebooks (fichier .ipynb)
+ mélangeant cellules de texte et cellules de code (python, octave, etc.) 
 
-    conda init
-    conda install octave-kernel
-    jupyter-notebook
+Naviguez par exemple jusqu'à `Signal\Installation\test.ipynb`, ouvrez la page et exécutez les cellules de code avec MAJ+ENTREE.
 
-A vous de proposer des scripts !
+Vous pouvez créer un alias goSignal qui fait cela à chaque fois en ajoutant la ligne suivante à la fin de votre `~/.bashrc` :
 
-## Install sur windows
- Utiliser Tortoise GIt ou l'appli github pour récupérer le projet.
- Si conda est installé tentez le jupyter notebook...
+`alias goSignal='cd ~/Signal/ && conda activate octavelab && jupyter-lab'`
 
-A vous de proposer des tutoriels ou scripts.
+Cela peut se faire en exécutant la ligne suivante :
+```bash
+cd ~
+echo "alias goSignal='cd ~/Signal/ && conda activate octavelab && jupyter-lab'">>.bashrc
+source .bashrc
+```
+Ainsi dans un terminal la commande `goSignal` lancera jupyterlab dans le répertoire Signal.
