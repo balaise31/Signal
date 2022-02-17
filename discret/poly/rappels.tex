@@ -37,13 +37,13 @@ des fonctions continues et discrètes.
   La notation des espaces $\R^\R$ choisie est assez courante et
   s'explique par l'extension de la notation des produits carthésiens
   $\times$ car~:
-  $$ \R^3 = \caCest{\R\times\R\times\R}{\text{3 fois}} = \left\{ (a, b, c) \quad|\quad a,b,c \in \R \right\}$$
+  $$ \R^3 = \caCest{\R\times\R\times\R}{\text{3 fois}} = \left\{ (z_0, z_1, z_2) \quad|\quad a,b,c \in \R \right\}$$
   En indiquant que le nombre de produits est associé aux éléments $k$ d'un ensemble discret, et prenant cette fois-ci des valeurs complexes, on note~:
   
   $$ \C^3 = \C^{\left\{0, 1, 2\right\}} = \caCest{\C}{k=0}\caCest{\times\C}{k=1}\caCest{\times\C}{k=2} \quad\text{ avec } (\caCest{a_0, }{k=0}\caCest{a_1, }{k=1}\caCest{a_2}{k=2}) \in  \C^{\semiN{0}{3}} = \left\{ (z_0, z_1, z_2) \in \C^3 \right\}$$
   En prenant un ensemble de dimension infini dénombrable comme $\Z$  par exemple~:
 
-  $$ \R^\Z = \ldots \times \caCest{\R}{k=-1} \caCest{\times\R}{k=0} \caCest{\times\R}{k=1} \times \ldots \quad\text{ avec } s=(\ldots, \caCest{s_{-1}, }{k=-1}\caCest{s_0, }{k=0}\caCest{s_1}{k=1}, \ldots) \in  \R^{\Z}= \left\{\Z\to\R\right\}$$
+  $$ \R^\Z = \ldots \times \caCest{\R}{k=-1} \caCest{\times\R}{k=0} \caCest{\times\R}{k=1} \times \ldots \quad\text{ avec } s=(\ldots, \caCest{s_{-1}, }{k=-1}\caCest{s_0, }{k=0}\caCest{s_1}{k=1}, \ldots) \in  \R^{\Z}= \Z\to\R$$
   Un élément est donc un n-uplet de dimension infini dénombrable qui
   est le graphe d'une application de $\Z\to\R$ et donc celui d'une
   suite numérique $\left(s_k\right)_{k\in\Z}$ que l'on appelle signal
@@ -60,15 +60,15 @@ des fonctions continues et discrètes.
   
   La puissance du continu est obtenu en prenant l'ensemble infini
   indénombrable $\R$ ce qui donne~:
-  $$ \C^\R = \ldots \caCest{\times\R}{t=0} \times \ldots \caCest{\times\R}{t=\pi} \times \ldots \quad\text{ avec } s=(\ldots, \caCest{z_0, }{t=0} \ldots, \caCest{z_\pi, }{t=\pi} \ldots) \in  \C^{\Z}$$
+  $$ \C^\R = \ldots \caCest{\times\C}{t=0} \times \ldots \caCest{\times\C}{t=\pi} \times \ldots \quad\text{ avec } s=(\ldots, \caCest{z_0, }{t=0} \ldots, \caCest{z_\pi, }{t=\pi} \ldots) \in  \C^{\Z}=\R\to\C$$
 
-  Un élément de cet ensemble est donc un n-uplet de dimension infinie
-  indénombrable (remarquez qu'il y a une infinité indénombrable de
-  valeurs entre $z_0$ et $ z_\pi$ !). Ce n-uplet constitue le graphe
-  d'une fonction de $\R\to\C$ et donc celui du signal continu
-  $s$. Contrairement aux suites numériques du discret, il est rare de
-  voir noté $s_t$ une évaluation de cette fonction à l'instant $t$ et
-  la notation $s(t)$ sera toujours utilisée.
+Un élément de cet ensemble est donc un n-uplet de dimension infinie
+indénombrable (remarquez qu'il y a une infinité indénombrable de
+valeurs entre $z_0$ et $ z_\pi$ !). Ce n-uplet constitue le graphe
+d'une fonction de $\R\to\C$ et donc celui du signal continu
+$s$. Contrairement aux suites numériques du discret, il est rare de
+voir noté $s_t$ une évaluation de cette fonction à l'instant $t$ et la
+notation $s(t)$ sera toujours utilisée.
 \end{remarque}
 
 
@@ -86,7 +86,7 @@ notions de ~:
    $\|\vec{s}\|^2=\scal{\vec{s}}{\vec{s}}$]--- sera associé à l'énergie
    totale du signal, ou puissance moyenne dans le cas de signaux à
    support fini comme l'espace des fonctions périodiques etc.
- \item[bases vectorielles]--- permet de représenter de
+ \item[bases vectorielles]--- permet de représenter des
    signaux par des signaux de base. Deux bases seront importantes~:
    une base temporelle faite de signaux localisés autour d'un instant
    mais diffus en fréquence~; et une base fréquentielle faites de
@@ -127,6 +127,7 @@ notions de ~:
 % \item \ldots
 % \end{description}
 
+\subsection{Transformations par changement de base}
 La \figref{fig:espaces} mets en évidence l'analogie du changement de
 base et d'une transformée.
 
@@ -139,47 +140,229 @@ base et d'une transformée.
   \label{fig:espaces}
 \end{figure}
 
-On utilise par habitude la variable $t$, car l'espace de départ est
-souvent des \emph{fonctions du temps}. Dans certains cas cet espace
-primal peux avoir une variable autre que le temps, comme une longueur
-voir même des fréquences etc. En revanche, on nomme \emph{espace
-  primal} le premier espace considéré.
+Si l'on note $E$ un espace vectoriel des signaux qui pourrait être~:
 
-En décomposant un signal vecteur dans une base, on va pouvoir
-représenter ce signal par ses coordonnées dans la base d'arrivée, on
-dit plutôt composantes pour un signal. On obtient alors un \og{}signal
-des composantes\fg{} dans un espace que l'on appelle \emph{espace
-  dual}. Comme l'on utilise la plupart du temps des bases dites
-fréquentielles, la variable de l'espace dual est notée $f$ et
-correspond aux \emph{fonctions de la fréquence}.
+\begin{itemize}
+\item $L_2 = \left\{s \in \C^\R \quad|\quad \norme{s}_2 \in \R\right\}$ -- celui des
+signaux continus à énergie finie pour les transformées de \Fourier{}
+(TF)~;
+\item $L_2^p$ les signaux continus et périodiques à puissance moyenne
+  finie pour les séries de \Fourier{} (\sdf)~;
+\item les signaux discret de carré sommable pour les transformées de \Fourier{}
+  des signaux discrets (TFSD)~;
+\item les signaux discrets périodiques pour les transformées de
+  \Fourier{} discrètes (TFD) avec son algorithme de calcul optimisé
+  \emph{Fast Fourier Transform} (FFT).
+\end{itemize}
 
-\begin{remarque}\remarqueTitre{Pourquoi du complexe pour du réel ?}
-  On considère le cas général des fonctions à valeurs dans $\C$, car cela permet~:
-  \begin{itemize}
-  \item de représenter des signaux de type phaseur (vecteurs en rotation)
-  \item de représenter facilement des signaux réels dont la bande de
-    fréquence est finie (signaux dits \emph{bande étroite})
-  \item de pouvoir appliquer la trasnformée de \Fourier{} à une
-    transformée de \Fourier{} (qui est complexe même pour des signaux
-    réels) et de voir l'opération de transformée comme un isomorphisme
-    et de jouer avec la notion de dual.
-    \end{itemize}
-  \end{remarque}
-  
-
-La base de vecteurs utilisée dans les transformées de \Fourier{}
-$\p{t\mapsto e^{i\,2\pi\,f\,t}}_{f\in\R}$ va être déclinée en différentes
-bases selon que l'on va discrétiser une des variables~:
-
+On peut obtenir des fonctions/suites de coordonnées dans deux bases incontournables~:
 \begin{description}
-\item[temps discret] où la variable $t\in\R$ sera remplacée par une variable discrète $k\in\N$ avec la relation $t=k\,T_e$ où $T_e$ est la valeur qui sépare deux échantillons en temps est nommé \emph{période d'échantillonnage}.
-\item[frequences discrètes] où la variable $f\in\R$ sera remplacée par une variable discrète $n\in\N$ avec la relation $f=n\,\Delta_f$ où $\Delta_f$ est la valeur qui sépare deux échantillons en fréquence est nommé \emph{résolution fréquentielle}
+\item[Espace temporel (souvent le primal) --- $\left(E, B_c\right)$
+  ---] Un signal $\vec{s}\in E$ peut être décomposé dans une base
+  temporelle canonique $B_c=\left(e_\tau\right)_{\tau\in\R}$ de
+  dimension infinie indénombrable où chaque vecteur $e_\tau$ de la
+  base est un signal continu. Souvent considéré en premier, cet espace
+  est appelé \emph{l'espace primal}.
+
+  Les coordonnées sont alors exprimées sous la forme d'une fonction
+  $s:\R\to\C$ qui, pour chaque instant réel $\tau\in\R$ associé à un
+  vecteur $\vec{e_\tau}$, indique l'amplitude $s(\tau)$ de sa
+  composante.
+
+  Si l'on a une base orthonormée, alors cette composante
+  s'obtient en projetant $\vec{s}$ sur chaque vecteur $\vec{e_\tau}$
+  de la base avec le produit scalaire~:
+  $$ s : \application{\R}{\C}{\tau}{\scal{\vec{s}}{\vec{e_\tau}}=s(\tau)}$$
+
+  Dans le cas du temps discret on a une base infinie dénombrable
+  $B_c=\left(e_j\right)_{j\in\Z}$ de signaux discrets et les
+  coordonnées sont~:
+  $$ s : \application{\Z}{\C}{j}{\scal{\vec{s}}{\vec{e_j}}=s\b{j}}$$
+
+\item[Espace fréquenciel (souvent le dual) --- $\left(E, B_w\right)$
+  ---] Ce même signal $\vec{s}\in E$ peut être décomposé dans une
+  base fréquencielle $Bw=\left(w_f\right)_{f\in\R}$ où chaque vecteur
+  $\vec{w_f}$ de la base est un signal localisé en fréquence.
+
+  Les coordonnées sont alors exprimées sous la forme d'une fonction
+  $\hat{S}:\R\to\C$ qui, pour
+  chaque fréquence réelle $f$ associée à un vecteur $\vec{w_f}$,
+  indique l'amplitude $\hat{S}(f)$ de cette composante.
+
+  On retrouve la formule de transformée en utilisant le produit
+  scalaire ainsi~:
+  $$ \hat{S} : \application{\R}{\C}{f}{\scal{\vec{s}}{\vec{w_f}}=\hat{S}(f)}$$
+  Dans le cas des \emph{fréquences discrètes}, la base est infinie
+  dénombrable $Bw=\left(w_n\right)_{n\in\Z}$ et les coordonnées sont~:
+  $$ \hat{S} : \application{\Z}{\C}{n}{\scal{\vec{s}}{\vec{w_n}}=\hat{S}\b{n}}$$
+  
 \end{description}
+Pour une physicienne, une fonction du temps n'est pas la même chose
+qu'une fonction de la fréquence. Pour une mathématicienne ce sont
+toutes les deux des fonctions de la variable réelle~!
+
+Ainsi le signal $\vec{s}$ est associé à une fonction $s:\R\to\C$ dans
+la base temporelle et à une fonction $\hat{S}:\R\to\C$ dans la base
+fréquencielle. 
+
+On peut s'abstraire et considérer $\hat{S}:\R\to\C$ dans la base
+temporelle~: ce qui donnera un signal différent de $\vec{s}$. Et aussi
+considérer $s:\R\to$ dans la base fréquentielle ce qui donnera encore
+un autre signal différent.
+
+\begin{remarque}\remarqueTitre{Notation et rigueur}
+  On peut alors être tentée d'écrire $s(t)$ et $\hat{S}(t)$ pour
+  indiquer que ces fonctions sont des coordonnées dans une base
+  temporelle. Mais c'est une erreur de typage car $s(t)\in\C$ dans le
+  cas général et on veut parler de fonctions de $\C^\R$. La fonction
+  se note $s$, son évaluation en un point $s(t)$ et si l'on veut
+  évoquer la fonction en insistant qu'elle est dans une base
+  temporelle on peut noter $t\mapsto s(t)$.
+
+  Cette notation est lourde, on utilisera la notation \emph{assez rare
+    et scpécifique} suivante qui remplace la variable $t$ qui pourrait
+  aussi bien être $x$ ou $f$ (on parle de variable muette) par le
+  symbole $\bullet$. Ainsi on note :
+  $$ s = t\mapsto s(t) = f \mapsto s(f) = s(\bullet)$$
+\end{remarque}
+
+
+Une transformée de \Fourier{} est donc l'opérateur identité dans
+l'espace vectoriel des signaux E qui consiste juste à changer de
+système de coordonnées.
+$$\F := I_d :  \application{E}{E}{\vec{s}}{\vec{s}}
+$$
+
+En revanche pour ce qui est des fonctions
+(coordonnées) associées, une transformée est une application linéaire
+qui transforme une fonction en une fonction~:
+
+$$\F : \application{(E,B_c)}{(E,B_w)}{s : t\mapsto \;\scal{\vec{s}}{\vec{e_t}}=s(t)}{\hat{S} : f \mapsto \; \scal{\vec{s}}{\vec{w_f}}=\hat{S}(f)}
+$$
+
+\subsection{Projection par échantillonnage}
+
+La base fréquencielle de \Fourier{} permet au moins de décrire
+l'espace des fonctions de carré sommable (noté $L_2$) dont la
+dimension est infinie indénombrable et possède la puissance du
+continu. La décomposition d'un signal dans cette base constitue la
+\TF.
+
+\begin{definition}
+L'\emph{échantillonnage} (on dira \emph{decimation} dans le cas
+d'espaces de puissance discrète) est un type de projection d'un espace
+de dimention infinie dans un espace de dimention inférieure. Il
+consiste à prélever un sous-ensemble de vecteurs d'une base de manière
+régulière~: avec un espacement constant nommé \emph{période
+  d'échantillonnage} et parfois \emph{résolution}.
+\end{definition}
+
+\begin{remarque}
+  On peut échantillonner aussi bien~:
+  \begin{itemize}
+  \item des bases temporelles continues et on parlera
+    d'échantillonnage de période $T_e\in\R$ pour obtenir un signal
+    primal discret~;
+  \item des bases temporelles discrètes où on nommera
+    \emph{décimation} l'opération avec un paramètre $M\in\N$ nommé
+    \emph{facteur de décimation} (on garde un point tout les M points)
+    pour obtenir un dual discret~;
+  \item des bases fréquentielles continues et on parlera
+    d'\emph{échantillonnage en fréquence} avec une période notée $F_0$
+    (qui évoque les \sdf{}) et parfois $\Delta_f$ pour évoquer la
+    \emph{résolution fréquencielle}~;
+  \item des bases fréquentielles discrètes et on parlera de
+    \emph{décimation en fréquence}.
+\end{itemize}
+\end{remarque}
+
+On peut discrétiser la base de \Fourier{}
+$\p{t\mapsto e^{i\,2\pi\,f\,t}}_{f\in\R}$ qui est continue en temps et en fréquences selon le temps, la fréquence ou les deux~:
+\begin{description}
+\item[temps discret] où la variable $t\in\R$ sera remplacée par une
+  variable discrète $k\in\N$ avec la relation $t=k\,T_e$ où $T_e$ est
+  la valeur qui sépare deux échantillons en temps est nommé
+  \emph{période d'échantillonnage} et parfois \emph{résolution
+    temporelle} notée $\Delta_t$ à ce moment.
+\item[frequences discrètes] où la variable $f\in\R$ sera remplacée par
+  une variable discrète $n\in\N$ avec la relation $f=n\,\Delta_f$ où
+  $\Delta_f$ est la valeur qui sépare deux échantillons en fréquence
+  est nommé \emph{résolution fréquentielle}. On peut noter $F_0$ cette
+  même \emph{période d'échantillonnage en fréquence} pour évoquer le
+  cas des \sdf.
+\end{description}
+
+\begin{quizz} ---  On note la fonction $w(t,f)=e^{i2\pi\,f\,t}$
+  \begin{description}
+  \item[Q1 - Typage~:] la fonction $w$ est un vecteur de l'espace~:
+    \begin{enumerate}
+    \item $L_2$ : l'espace des fonctions à énergie finie
+    \item $\C^\R$
+    \item $\R^2\to\C$
+    \item ${\R^2}^\C$ mais ça fait bizarre
+    \end{enumerate}
+  \item[Q2 - Discret temporel:]~: je dispose d'un enregistrement audio 256 kb/s en 8bit~:
+    \begin{enumerate}
+    \item je suis à temps discret car en 8bit la résolution temporelle est $T_e=1/2^8$~; 
+    \item temps discret et ma période d'échantillonnage est
+      plus rapide ou égale à $T_e=\frac{256}{8}\; kHz$~;
+    \item une base fréquentielle peut être~: $\left( k\mapsto e^{i2\pi\,f\,k T_e}\right)_{f\in\R}$
+    \item un vecteur de la base fréquencielle peut être ~: $w_n= k\mapsto e^{i2\pi\,n F_0\, k T_e}$
+    \end{enumerate} 
+  \item[Q2 - Discret frequenciel:] ~: un vecteur d'une base fréquencielle discrète pourrait s'écrire
+    \begin{enumerate}
+    \item $w_n\b{k} = \sin\p{2\pi\,n F_0\,k T_e},\; k\in\Z$ 
+    \item $w_f = f\mapsto\sin\p{2\pi f\,k\,T_e} = \sin\p{2\pi \bullet \,k\,T_e}$ 
+    \item $w_f = k\mapsto\sin\p{2\pi f\,k\,T_e} = \sin\p{2\pi f \,k\,T_e}$ 
+    \item $w_n = t\mapsto \sin\p{2\pi\, \frac{n}{T_0}\,t}$
+    \end{enumerate}
+  \end{description}
+\end{quizz}
+
 
 Selon la dimension continue (infinie indénombrable) ou discrète
 (infinie dénombrable ou finie) des espaces primal et dual, on utilisera
 différents produis scalaires pour effectuer différentes transformées
 entre primal et dual.
+
+L'appelation primal/dual est utilisée car elle exprime le fait qu'il
+existe une opération permettant de passer de primal au dual et que
+cette \emph{même opération} appliquée cette fois au dual permet de
+revenir au primal~: comme appliquer deux fois un conjugué à un nombre
+complexe, ou deux fois la transposée à une matrice.
+
+La section \secref{sec:dualite} montre que la transformée de \Fourier{} et sa
+version discrète sont toutes deux des opérateurs bi-duaux car~:
+$$\ldots \;\toOp{\F}\; s \;\toOp{\F}\; \hat{S} \;\toOp{\F}\; s\p{-\bullet} \;\toOp{\F}\; \hat{S}\p{-\bullet} \;\toOp{\F}\; s \;\toOp{\F}\; \ldots $$
+
+et donc $\quad\ldots \;\toOp{\F\circ\F}\; s \;\toOp{\F\circ\F}\; s\p{-\bullet} \;\toOp{\F\circ\F}\; s \;\toOp{\F\circ\F}\; \ldots$
+
+L'opérateur $\F^2$ transforme donc un signal $s$ en un signal inversé,
+appelé \emph{antipodal}, $s\p{-\bullet}$ qui est le dual de $s$. De
+même le dual de $\hat{S}$ est son antipodal $\hat{S}\p{-\bullet}$.
+
+On dit que $s$ est le dual de $\hat{S}$ un peu par abus.
+
+\begin{remarque}\remarqueTitre{Pourquoi des signaux complexes alors
+    qu'ils sont toujours réels ?}
+  Cela permet justement d'appliquer plusieurs fois un même changement
+  de base, comme la transformée de \Fourier{} à un signal. Ainsi si
+  l'on considère uniquement des signaux de $\RR$
+
+  $$ \application{\R^\R}{\C^\R}{f}{\hat{F}=T\{f\}} \eempile{\not\subset}{\neq} \application{\R^\R}{\C^\R}{g}{\hat{G}}$$
+
+  Car la transformée d'un signal réel est dans le cas général un signal à valeur complexe ($a(f)$ et $b(f)$). En considérant le cas général $\CR$ on peut composer les tansformées~:
+
+  $$ \ldots\application{\C^\R}{\C^\R}{f}{\hat{F}=T\{f\}} \eempile{=}{=} \application{\C^\R}{\C^\R}{g=\hat{F}}{\hat{G}=s\p{-\bullet}} \ldots$$
+
+  De plus il est pratique de considérer des bases imaginaires $B_w=\left(t\mapsto e^{i2\pi\,f\,t}\right)_{f\in\R}$, quitte à admettre des fréquences négatives, et avoir une seule fonction de coordonnées $f\mapsto c(f)\in\CR$.
+
+  Alors qu'en restant en réel avec des fréquences positives il faut traiter une union de deux bases $B_w = \left(t\mapsto \cos\p{2\pi\,f\,t}\right)_{f\in\R^+} \quad \bigcup \quad \left(t\mapsto \sin\p{2\pi\,f\,t}\right)_{f\in\R^{\star +}}$ et deux fonctions de coordonnées $f\mapsto a(f)\in\R^{\R^+}$ et $f\mapsto b(f)\in\R^{\R^{\star +}}$ 
+
+\end{remarque}
+  
+
+
 
 \section{Les bases temporelles et espaces}
 Nous allons définir les différents espaces des signaux (fonctions) et
@@ -187,6 +370,23 @@ y associer une base vectorielle \og canonique\fg{} et parfois des
 variantes. Comme ces vecteurs de bases seront choisi de manière à être
 très localisés dans le temps, la majorité de l'énergie est localisée
 autour d'un instant, les bases seront dites temporelles.
+
+Nous cherchons donc une famille de fonctions $t\mapsto p_\tau\p{t}$
+($p$ comme impulsion) localisées autour d'un instant $\tau$ en
+continu~; et des suites $k\mapsto p_{j}\b{k}$ localisées autour de
+l'échantillon de rang $j$ pour le temps discret.
+
+Ainsi un vecteur $\vec{s}$ d'un espace vectoriel de signaux discrets $E$ sera décomposé dans la base temporelle par~:
+$$ \vec{s} = \sum\limits_j s\b{j}\;.\;\vec{k \mapsto p\b{k-j}}$$
+où le coefficient $s\b{j}$ de la composante à l'instant $j$ est obtenu
+par projection~:
+$$ s\b{j} = \scald{\vec{s}}{\vec{k \mapsto p\b{k-j}}}$$
+
+Dans le cas continu nous avons~:
+$$ \vec{s} = \int s\p{\tau}\;.\;\vec{t \mapsto p\b{t-\tau}}\; d\tau$$
+où le coefficient $s\p{\tau}$ de la composante à l'instant $\tau$ est obtenu
+par projection~:
+$$ s\b{j} = \scal{\vec{s}}{\vec{k \mapsto p\b{k-j}}}$$
 
 Le plus simple est de considérer une suite finie de nombres :
 incontournable lorsque l'on traite le signal avec des processeurs
