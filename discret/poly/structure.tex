@@ -258,6 +258,7 @@
 \numberwithin{dummy}{section}
 \theoremstyle{ocrenumbox}
 \newtheorem{theoremeT}[dummy]{Theorème}
+\newtheorem{demoT}[]{Démonstration}
 \newtheorem{probleme}{Problème}[chapter]
 \newtheorem{exerciseT}{Exercice}[chapter]
 \theoremstyle{blacknumex}
@@ -339,6 +340,7 @@ innerbottommargin=5pt]{cBox}
 
 % Creates an environment for each type of theorem and assigns it a theorem text style from the "Theorem Styles" section above and a colored box from above
 \newenvironment{theoreme}{\begin{tBox}\begin{theoremeT}}{\end{theoremeT}\end{tBox}}
+\newenvironment{demo}{\begin{cBox}\begin{demoT}}{\hfill{\color{ocre}\tiny\ensuremath{\blacksquare}}\end{demoT}\end{cBox}}			
 \newenvironment{exercise}{\begin{eBox}\begin{exerciseT}}{\hfill{\color{ocre}\tiny\ensuremath{\blacksquare}}\end{exerciseT}\end{eBox}}				  
 \newenvironment{definition}{\begin{eBox}\begin{definitionT}}{\end{definitionT}\end{eBox}}	
 \newenvironment{exemple}{\begin{exempleT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{exempleT}}		

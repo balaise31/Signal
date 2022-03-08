@@ -1,16 +1,29 @@
 \documentclass[convert={density=600,outext=.png}]{standalone}
-%\usepackage[french]{babel}
-%\selectlanguage{french}
 \usepackage[T1]{fontenc}
+\usepackage{relsize}
+\usepackage[binary-units = true,load-configurations=binary]{siunitx}
 \usepackage[utf8x]{inputenc}
-\usepackage[active,pdftex]{preview}
 \usepackage{mathptmx}
-\usepackage{tikz,pgfplots}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{statistics}
+\usepackage{pgf}
+\pgfplotsset{compat=1.11}
+\usepackage{tikz}
 \usetikzlibrary{shapes.geometric,mindmap,backgrounds}
+% -----------------------------------------------------------------------------
+% Layers
+% -----------------------------------------------------------------------------
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{bg_input}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{bg_input,background,main,foreground}
+
+% Template for kTikz/qTikz
+\usepackage[active,pdftex,tightpage]{preview}
 \PreviewEnvironment[]{tikzpicture}
 \PreviewEnvironment[]{pgfpicture}
-%\input{../latexdefs.tex}
 \begin{document}
-% Ne pas changer ! qtikz ou le script remplacera
 <>
 \end{document}
+

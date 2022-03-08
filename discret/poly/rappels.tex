@@ -377,16 +377,16 @@ continu~; et des suites $k\mapsto p_{j}\b{k}$ localisées autour de
 l'échantillon de rang $j$ pour le temps discret.
 
 Ainsi un vecteur $\vec{s}$ d'un espace vectoriel de signaux discrets $E$ sera décomposé dans la base temporelle par~:
-$$ \vec{s} = \sum\limits_j s\b{j}\;.\;\vec{k \mapsto p\b{k-j}}$$
+$$ \vec{s} = \sum\limits_j s\b{j}\;.\;\vec{k \mapsto p\b{k-j}} \;=\; \sum\limits_j  s\b{j}\;.\;\vec{p\b{\bullet-j}} $$
 où le coefficient $s\b{j}$ de la composante à l'instant $j$ est obtenu
 par projection~:
-$$ s\b{j} = \scald{\vec{s}}{\vec{k \mapsto p\b{k-j}}}$$
+$$ s\b{j} = \scald{\vec{s}}{\vec{p\b{\bullet-j}}}$$
 
 Dans le cas continu nous avons~:
-$$ \vec{s} = \int s\p{\tau}\;.\;\vec{t \mapsto p\b{t-\tau}}\; d\tau$$
+$$ \vec{s} = \int s\p{\tau}\;.\;\vec{t \mapsto p\p{t-\tau}}\; d\tau$$
 où le coefficient $s\p{\tau}$ de la composante à l'instant $\tau$ est obtenu
 par projection~:
-$$ s\b{j} = \scal{\vec{s}}{\vec{k \mapsto p\b{k-j}}}$$
+$$ s\b{\tau} = \scal{\vec{s}}{\vec{t \mapsto p\p{t-\tau}}}$$
 
 Le plus simple est de considérer une suite finie de nombres :
 incontournable lorsque l'on traite le signal avec des processeurs
@@ -397,13 +397,13 @@ d'échantillons fini).
 
 
 \subsection{Espaces discrets de dimension infinie}
-
+\label{sec:RN}
 L'espace des signaux discrets réels (resp. complexes) à support infini
 est l'ensemble des applications de $\Z$ dans $\R$ (resp. $\C$) noté
 $\RN = \left\{s : \N \to \R \right\}$ (resp.
 $\CN = \left\{s : \N \to \C \right\}$).
 
-
+\begin{remarque}\remarqueTitre{Rappel sur les notationsaz}
 Un élément de cet espace est donc une fonction d'une variable discrète
 que l'on notera souvent $k$ lorsqu'il s'agit d'un indice du temps avec
 la relation $t \leftrightarrow k\,T_e$, ou bien $n$ lorsque l'indice
@@ -418,7 +418,7 @@ $f\p{\bullet}$ la fonction continue $t\mapsto f\p{t}$ où $\bullet$
 remplace la variable muette $t$. De même on différencie le scalaire
 $f\b{k}$ de la fonction $k\mapsto f\b{k}$ en notant simplement une
 fonction $f\b{\bullet}$.
-
+\end{remarque}
 On veut trouver une base permettant de décomposer un signal/vecteur
 $\vec{f}$ quelconque avec des vecteurs/signaux $\vec{\omega_i}$ d'une
 base qui sera dite temporelle si le signal est localisé autour d'un
@@ -429,14 +429,25 @@ puisse utiliser pour construire cette base est \emph{l'impulsion
   \label{def:impulsion_unite}
   L'\textbf{impulsion unité}, notée $\delta_0$ ou simplement $\delta$,
   est le signal discret tel que :
-  $$
-  \delta=\delta_0~:\application{\N}{\R \text{ ou } \C}{ k}{\delta_0\b{k}=\pparMorceaux{1}{\text{si } k=0}{0}{\text{sinon}}} 
-  $$
 
-  L'\textbf{impulsion unité centrée en $a$} est notée $\delta_a$ et définie par~:
-  $$
-  \delta_a = \delta_0\b{\bullet-a}~: \application{\N}{\R \text{ ou } \C}{k}{\delta\b{k-a} =  \pparMorceaux{1}{\text{si } k=a}{0}{\text{sinon}}}
-  $$
+
+  \begin{minipage}[l]{0.5\linewidth}
+  $ \delta=\delta_0~:\application{\N}{\R \text{ ou } \C}{ k}{\delta_0\b{k}=\pparMorceaux{1}{\text{si } k=0}{0}{\text{sinon}}} $
+\end{minipage}
+\begin{minipage}[l]{0.5\linewidth}
+\graphe{0.9\linewidth}{impulsion}  
+\end{minipage}
+
+
+L'\textbf{impulsion unité centrée en $a$} est notée $\delta_a$ et définie par~:
+
+
+\begin{minipage}[l]{0.5\linewidth}
+$\delta_a = \delta_0\b{\bullet-a}~: \application{\N}{\R \text{ ou } \C}{k}{\pparMorceaux{1}{\text{si } k=a}{0}{\text{sinon}}}$ 
+\end{minipage}
+\begin{minipage}[l]{0.5\linewidth}
+\graphe{0.9\linewidth}{impulsion_a}
+\end{minipage}
 \end{definition}
 
 \begin{remarque}
@@ -453,15 +464,18 @@ donnant une base canonique.
 
 \begin{definition}
   \label{def:signal_discret}
-  L'\textbf{espace des signaux discrets réels $\RN$} (on précisera si
-  nécessaire \textbf{à support infini}) est l'espace vectoriel de
+  --- L'\textbf{espace des signaux discrets $\RN$ ou $\CN$} ( \textbf{à support infini})
+
+  Est l'espace vectoriel de
   dimension infinie dénombrable des suites réelles défini par la base
   vectorielle $B_{\Z}=(\delta_j)_{j\in\Z}$. Un vecteur/signal
   $\vec{s}$ de $\RN$ a donc des coordonnées avec une infinité de
   composantes :
-  \begin{equation}
+  \begin{equation*}
     \vec{s}  = (\ldots,s\b{-1}, s\b{0}, s\b{1}, \ldots)_{B_{\Z}} = \quad \ldots + s\b{-1}.\delta_{-1} + s\b{0}.\delta_0 + s\b{1}.\delta_1 + \ldots =\quad \somme{j\in\Z}{}{s\b{j}.\delta_j}
-  \end{equation}
+  \end{equation*}
+
+  \center{\graphe{0.8\linewidth}{signal_RN}}
 \end{definition}
 
 Cet espace est utile du point de vue théorique car il permet de
@@ -484,15 +498,19 @@ L'ensemble des signaux discrets bornés à valeurs réelles (resp. complexes) $\
 
 \begin{definition}
   \label{def:signal_discret_borne}
-  Un \textbf{signal discret borné} est un sous espace vectoriel noté
-  $\RNborne$ (resp. $\CNborne$) des suites réelles $\RN$ (resp. suite
-  complexes $\CN$) défini pas la base vectorielle
-  $B_{N_0}^b=\left(\delta_j\right)_{j\in\SN0}$. Ce signal est donc, sans perte de
-  généralité, nul pour tout $k<0$ et $ N_0\leq k$ et se décompose ainsi
-  :
-  \begin{equation}
+  --- L' \textbf{espace des signaux discret borné $\RNborne$ ou $\CNborne$ (à support fini)} 
+
+  Est un sous espace vectoriel noté $\RNborne$ (resp. $\CNborne$) des
+  suites réelles $\RN$ (resp. suite complexes $\CN$) défini pas la
+  base vectorielle $B_{N_0}^b=\left(\delta_j\right)_{j\in\SN0}$. Ce
+  signal est donc, sans perte de généralité, nul pour tout $k<0$ et
+  $ N_0\leq k$ et se décompose ainsi :
+  \begin{equation*}
     (\ldots,0, s[0], \dots, s[N_0-1], 0, \ldots) \quad \leftrightarrow \quad s[0].\delta_0 + \dots s[N_0-1].\delta_{N_0-1} = \somme{0\leq j< N_0}{}{s[j].\delta_j}
-  \end{equation}
+  \end{equation*}
+
+  \center{\graphe{0.8\linewidth}{signal_RNb}}
+  
 \end{definition}
 
 Remarquons que l'indice $j$ est un indice indiquant un vecteur de la
@@ -529,9 +547,14 @@ faut bien analyser la somme précédente décomposant un signal $s$ par~:
 \end{exemple}
 
 \begin{remarque}
-  Si l'on veut décomposer un signal discret borné dans une base fréquentielle, avec des signaux étalés dans le temps mais localisés en fréquences, nous verons que toutes les fréquences $f$ du segment continu $\SFe$ sont nécessaires et que les composantes fréquentielles sont périodiques de période $F_e$ :
+  Si l'on veut décomposer un signal discret borné dans une base
+  fréquentielle, avec des signaux étalés dans le temps mais localisés
+  en fréquences, nous verons que toutes les fréquences $f$ du segment
+  continu $\SFe$ sont nécessaires et que les composantes
+  fréquentielles sont périodiques de période $F_e$ :
 
-nous obtiendrons \textbf{la transformée de \Fourier{} des signaux discrets (TFSD)} pour représenter un \textbf{signal discret borné}
+  nous obtiendrons \textbf{la transformée de \Fourier{} des signaux
+    discrets (TFSD)} pour représenter un \textbf{signal discret borné}
 \end{remarque}
 
 
@@ -547,21 +570,28 @@ Pour cela nous devons introduire la version périodique de l'impulsion unité.
   Un \textbf{peigne d'impulsions de période $N_0$} est le signal noté
   $\Sha$ (lettre cyrilique \emph{Sha}) définit par :
   
-  \begin{equation}
+  \begin{equation*}
     \Sha_{N_0} = \sum\limits_{m\in\mathbb{Z}} \delta_{m.N_0}: \application{\Z}{\R \text{ ou } \C}{k}{\delta_0[k\mod{}N_0]=\pparMorceaux{1}{\text{ si } k = m.N_0,\quad m\in\Z}{0}{\text{ sinon}}}
-\end{equation}
+\end{equation*}
 
+\graphe{0.9\linewidth}{peigne}
 \end{definition}
 
 Nous pouvons utiliser les peignes d'impulsions comme base de signaux pour définir le sous-espace vectoriel des signaux discrets périodiques :
 \begin{definition}
   \label{def:signal_discret_periodique}
-  Un \textbf{signal discret $N_0$-périodique}  est un sous espace vectoriel noté
-  $\RNper$ (resp. $\CNper$) des suites réelles (resp. suite
-  complexes) définit par la base vectorielle \\$B_{N_0}^p=\left(\Sha_{N_0}\b{\bullet-j}\right)_{0\leq j<N_0}$. Ce signal est donc de période $N_0$ et se décompose ainsi :
-  \begin{equation}
-  s = s[0].\Sha_{N_0} + \dots + s[N_0-1].\Sha_{N_0}\b{\bullet-(N_0-1)} = \somme{0\leq j< N_0}{}{s[j].\Sha_{N_0}\b{\bullet-j}}
-  \end{equation}
+  --- L' \textbf{espace des signaux discrets $N_0$-périodiques $\RNper$ ou $\CNper$}
+
+  Est un sous espace vectoriel noté $\RNper$ (resp. $\CNper$) des
+  suites réelles (resp. suite complexes) définit par la base
+  vectorielle \\$B_{N_0}^p=\left(\Sha_{N_0}\b{\bullet-j}\right)_{0\leq
+    j<N_0}$. Ce signal est donc de période
+  $N_0$ et se décompose ainsi :
+  \begin{equation*}
+    s = s[0].\Sha_{N_0} + \dots + s[N_0-1].\Sha_{N_0}\b{\bullet-(N_0-1)} = \somme{0\leq j< N_0}{}{s[j].\Sha_{N_0}\b{\bullet-j}}
+  \end{equation*}
+ 
+  \graphe{0.9\linewidth}{signal_RNp}
 \end{definition}
 
 Ne pas confondre l'indice
@@ -616,42 +646,67 @@ Deux inconvénients du  prolongement périodique précédant sont :
 \end{itemize}
 Il en résulte une transformée de signaux réels qui est imaginaire et l'introduction de composantes haute fréquences due à l'introduction d'une discontinuité périodique.
 
+\paragraph{Prolongement pair en continu~: CT -- \emph{Cosine Transform}}
 En continu, le développement en série de cosinus (CT pour Cosine
-Transform) est facile à définir car :il y n'y a qu'un seul prolongement pair de période double
-d'un signal à support borné $\ST0$. C'est donc une
-version réelle des SdF $c(n)$ où l'on prend une période double avec :
-$$CT[n] = a(\frac{n}{2}) = \int\limits_0^{T_0} f(t) . \cos\left(2\pi n \frac{t}{2.T_0}\right) dt$$
+Transform) est facile à définir car :il y n'y a qu'un seul
+prolongement pair de période double d'un signal à support borné
+$\ST0$. C'est donc une version réelle des SdF $c(n)$ où l'on prend une
+période double avec :
+$$CT[n] = a(\frac{n}{2}) = \frac{2}{2\,T_0}\int\limits_0^{2\,T_0} f_{\text{paire}}(t) . \cos\left(2\pi n \frac{t}{2.T_0}\right) dt \overset{\text{parité}}{=} \frac{2}{T_0}\int\limits_0^{T_0} f(t) . \cos\left(2\pi n \frac{t}{2.T_0}\right) dt$$
 
 \textbf{Il n'y a pas de $b(n)$} ! Et tout est réel, en revanche la
 résolution fréquentielle est double :$\frac{F_0}{2}$
 
-En discret pour prolonger la suite bornée (a, b, c), il y a deux choix à
-faire à chaque borne : 
+\paragraph{Prolongements pairs en discret~: DCT -- \emph{Discrete Cosine Transform}}
+
+En discret pour prolonger la suite bornée (a, b, c, d) par exemple, il
+y a deux choix à faire à chaque borne :
 \begin{itemize}
   \item $a$ est à l'instant 0 et donc non répété : $\ldots b,a,b,\ldots{}$
-  \item a est répété et donc à l'instant $\frac{T_e}{2}$ : $\ldots, b, a, a, b$
-  \item d est non répété et donc à $(N-1).T_e$ de l'échantillon a : $\ldots, c, d, c$ 
-  \item d est répété et donc à l'instant $(N-1).T_e + \frac{T_e}{2}$ de a : $\ldots, c, d, d, c$    
+  \item $a$ est répété et donc à l'instant $\frac{T_e}{2}$ : $\ldots, b, a, a, b, \dots$
+  \item $d$ est non répété et donc à $(N-1).T_e$ de l'échantillon a : $\ldots, c, d, c, \dots$ 
+  \item $d$ est répété et donc à l'instant $(N-1).T_e + \frac{T_e}{2}$ de a : $\ldots, c, d, d, c, \dots$    
 \end{itemize}
 
-\begin{quote}
+La \figref{fig_DCT_II} illustre un prolongement pair dit de type II où toutes les valeurs sont répétées de manière paires.
+\begin{figure}[htbp]
+  \centering \graphe{0.8\linewidth}{signal_DCT_II}
+  \caption{Un prolongement pair possible en discret dit de type II~:
+    exemple donnant la transformée DCT-II. La parité s'obtient en
+    décalalant l'axe temporel avec la reltation $t=k\,T_e$ qui devient
+    $t=k\,Te + \frac{T_e}{2}$ }
+  \label{fig:DCT_II}
+\end{figure}
+
+
+\begin{remarque}
 En discret il y a 4 prolongements pairs donnant 4 \textbf{Direct Cosine
 Transform} DCT car il y a 4 prolongements pairs ``aux deux bornes'' conduisant à 4
 espaces pairs périodiques, et 4 prolongements pairs en ``a'' et impair en
-``b''
-\end{quote}
+``d''.
 
 \begin{tabular}{lllll}
 \hline
-Type de DCT & Prolongement (N=4) & Décalage de ``a'' & parité en ``b'' &
+  Type de DCT & Prolongement (N=4) & Décalage de ``a'' & parité en ``d'' &
 Période \\
 \hline
 Type-I & $(\ldots, a, b, c, d, c, b, \quad a, b, \ldots)$ & 0 & pair & 2.(N-1) \\
-Type-II & (a, b, c, c, b, a) & +1/2 & pair & 2.N \\
+Type-II & $(\dots, a, b, c, d, d, c, b, a,\dots)$ & +1/2 & pair & 2.N \\
 \hline
 \end{tabular}
 
-\subsection{Espaces continus}
+Le prolongement de type II est très utilisé dans les algorithmes de
+compressions d'image et de son (mpeg, avi etc.) car la transformée
+DCT-II se calcule de manière efficace avec le mêm algorithme \FFT{}
+utilisé pour les \TFD{} et de plus le prolongement n'ajoute pas de
+discontinuïté ce qui fait les composantes hautes fréquences
+deviennnent négligeables. Ces dernières sont ignorées ou codées avec
+une faible résolution au moment de la réduction de la taille du
+stockage~: ce type de compression est appelé \emph{compression avec
+  pertes} ou \emph{lossy compression}.
+\end{remarque}
+
+
 
 
 \section{Les espaces et produits scalaires associés}
@@ -908,7 +963,8 @@ On peut faire l'analogie avec les espaces Euclidiens finis et \textbf{on peut fa
 \item le produit scalaire n'est pas symétrique mais \og{}symétrique et demi\fg{} \cad \emph{sesquilinéaire} car $\scal{u}{v}=\conj{\scal{v}{u}}$.
 \end{itemize}
 
-\begin{remarque}\remarqueTitre{Base pas normée}
+\begin{remarque}\remarqueTitre{Base orthogonale non normée}
+  Au  produit scalaire $\scalp{f}{g}=$
   Le terme $W_N= e^{-i \frac{2 \pi}{N}}$ est en fait une racine $N$ième de l'unité. Le calcul de la norme $\norme{w_n}$ du vecteur de la base $w_n=k\mapsto W_N^{-nk}$ devient donc~: $$\scaldp{w_n}{w_n}=\somme{k=0}{N-1}{e^{i \frac{2 \pi}{N}nk}\,.\,e^{-i \frac{2 \pi}{N}nk}} =\somme{k=0}{N-1}{1}=N $$
 
   La formulation normée et symétrique de la \TFD{} \eqref{eq:tfd_normee} fait donc intervenir un facteur $\frac{1}{\sqrt{N}}$ pour la \TFD{} et son inverse~:

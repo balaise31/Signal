@@ -220,15 +220,12 @@ décomposant le signal d'entrée $x$ dans la base temporelle canonique.
 
 
 Contrairement au cas continu, un signal d'entrée quelconque $x$ se
-décompose facilement en impulsions unité. La
-\figref{fig:reponse_convolution} reprend la décomposition en
-impulsions d'un signal d'entrée nommé $s$
-\eqref{eq:decomposition_unite} et applique un système $H$ de réponse
-impulsionnelle $h$ à chaque impulsion pour obtenir la réponse $y$ du
-système. On retrouve ainsi la formule de convolution temporelle de
-$y=s\conv h$. Le résultat est démontré dans l'équation
-\eqref{eq:reponse_convolution} en utilisant les propriétés de
-linéarité et invariance du système.
+décompose facilement en impulsions unité (voir la base temporelle de
+$\RN$ dans \secref{sec:RN}). La \figref{fig:reponse_convolution}
+reprend la décomposition en impulsions d'un signal d'entrée
+$s=k\mapsto \somme{j\in\Z}{}{s[j].d_j\ded{k}}$ et applique un
+système $H$ de réponse impulsionnelle $h$ à chaque impulsion pour
+obtenir la réponse $y$ du système.
 
 \begin{figure}[ht!]
   \centering \graphe{0.9\textwidth}{reponse_convolution}
@@ -237,6 +234,12 @@ linéarité et invariance du système.
     signal d'entrée $s$.}
   \label{fig:reponse_convolution}
 \end{figure}
+
+On retrouve ainsi la formule de convolution temporelle de
+$y=s\conv h$. Le résultat est démontré dans l'équation
+\eqref{eq:reponse_convolution} en utilisant les propriétés de
+linéarité et invariance du système.
+
 
 \begin{align}
   \label{eq:reponse_convolution}
@@ -308,6 +311,115 @@ $\scald{u}{\conj{\oret^k.\Sy\b{v}}}$ au lieu du produit scalaire discret.
 
 \section{Stabilité d'un système LTI}
 
+La réponse impulsionnelle (notée \RIP{}) caractérise entièrement un
+système LTI, puisque l'opération de convolution permet d'obtenir la
+sortie d'un système pour n'importe qu'elle entrée.
+
+Nous alons caractériser deux types de stabilité des systèmes LTI à
+partir de leur \RIP{}~:
+\begin{description}
+\item[Stabilité BIBO] (\emph{Borned Imput Borned Output}, il n'y pas
+  de sigle Français d'usage courant) associée à la propriété de donner
+  des réponses bornées pour toutes entrée bornée~;
+\item[Stabilité simple] chère aux automaticienne qui exprime le fait
+  qu'un système relâché (dont l'entrée reste nulle à partir d'un
+  instant) retourne vers son état d'équilibre qui, dans le cas de
+  systèmes linéaires, correspond à l'état null et à une sortie nulle.
+\end{description}
+
+En pratique, la stabilité BIBO garantit qu'un système numérique puisse
+toujours calculer une valeur finie et donc codable à partir d'un
+signal réel forcément borné.
+
+\begin{remarque}\remarqueTitre{Notations}
+  On rappelle qu'un signal $s$ est borné ssi~:
+  $$\exists A\in\R \tq{} \forall k\in \Z, \quad \abs{s\ded{k}}\leq A $$
+
+  On note de manière concise $\abs{x}\leq A$, cette proposition.
+
+  Un signal non bornée est, par négation de la proposition, tel que~:
+  $$\forall A\in\R, \exists k\in \Z \tq  \abs{s\ded{k}} > A $$
+
+  Cela revient à dire que la suite $\p{s\ded{k}}_{k\in\Z}$ diverge
+  vers l'infini (ne pas confondre avec simplement divergente qui est
+  la négation de convergente~; par exemple $k\mapsto \sin\ded{k}$ est
+  divergente mais pas divergente vers l'infini).
+
+  On notera de manière concise $s\to\infty$ le fait que $s$ soit
+  non-borné.
+  
+\end{remarque}
+
+\begin{definition} Un système $H$ est \textbf{stable en entrée bornée
+    / sortie bornée} ou \textbf{stable BIBO} ssi pour
+  toute entrée $x$ bornée la réponse $y=H\b{x}$ du système est bornée~:
+
+  $$\forall x, \quad \abs{x}\leq A \quad\implies\quad \abs{y}\leq B $$
+\end{definition}
+
+
+\begin{theoreme}
+  Un système $H$ est stable BIBO si, et seulement si, sa réponse
+  impulsionnelle $k\mapsto h\b{k}$ est de module sommable, i. e., la série $\left\{h\b{k}\right\}_{k\in\Z}$ est absolument convergente~:
+  $$ H \text{ stable BIBO} \iff\sum\limits_{k\in\Z} |h\ded{k}| \in \R$$
+\end{theoreme}
+
+La démonstration est intéressante et simple~:
+
+\begin{demo} --- Stabilité BIBO
+
+  
+  Nous démontrons l'équivalence pour tout système $H$ de réponse impulsionnelle $h$~:
+  $$ \sum \abs{h}\in\R \iff \text{stable BIBO} \overset{\Delta}{\iff} \p{\forall x, \;\;\abs{x}<A \implies \abs{y}<B}$$  par
+  double implication.
+  
+  \paragraph{\underline{$\implies$~:}}
+  Supposons que $\sum\limits_{k\in\Z} \left|h\ded{k}\right|=C\in\R^+$
+  et que $\abs{x}\leq A$~; et montrons que $\abs{y}\leq B$.
+
+  Si l'on écrit la réponse $y$ du système à ce $x$ borné en utilisant
+  la convolution \eqref{eq:convolution} et que l'on majore les termes
+  par leurs valeurs absolues~:
+
+  \begin{align*}
+    y=x\conv{}h &: k\mapsto \somme{j=-\infty}{\infty}{h\ded{j}.x\ded{k-j}} \\
+    \forall k\in\Z,\quad y\ded{k} & \leq \somme{j=-\infty}{\infty}{\left|h\ded{j}.x\ded{k-j}\right|} = \somme{j=-\infty}{\infty}{|h\ded{j}|.|x\ded{k-j}|}\\
+    \implies  y\ded{k} & \leq \somme{j=-\infty}{\infty}{|h\ded{j}| . A}\quad \text{car x est bornée par A}\\
+    \implies  y\ded{k} & \leq \;A.\somme{j=-\infty}{\infty}{|h\ded{j}|} = A.C \in \R^+\quad \text{car h est absoluement sommable}\\
+    \implies & \quad\exists B=A.C\in\R^+ \mathrel{}\mid\mathrel{}\quad \forall k\in\Z, \; |y\ded{k}|\leq B \implies \abs{y}\leq B
+  \end{align*}
+
+  \paragraph{\underline{$\impliedby$ :}}
+  La réciproque est plus astucieuse et s'exprime par~:
+  $$\forall h,\quad \underbrace{\p{\forall x,\; \abs{x}\leq A \implies \abs{x\conv h}\leq B}}_{P} \implies \underbrace{\sum|h|\in\R}_{Q}$$
+  Par disjontion de cas, soit~:
+  \begin{description}
+  \item[Q :] la réciproque est alors triviale car rappelons que
+    $\p{P\implies Q}\iff \overline{P} \text{ ou } Q$~: et dans ce cas
+    $Q$ est vraie par supposition.
+  \item[Non Q :] Dans ce cas $\sum|h|\; DV$ et il faut montrer
+    $\overline{P}$. Pour cela montrons que pour $\sum|h|\; DV$ on
+    a~:
+    $$\exists x \tq \abs{x}\leq A \text{ et } \abs{x\conv
+      h}\to\infty $$ Pour cela nous construisons un signal $x$ tel
+    que, de manière arbitraire,
+    $y\ded{0}=x\star h\ded{0} = \sum\abs{h}$ et donc diverge (par
+    hypothèse sur $h$).
+
+  En prenant la formule de convolution pour $k=0$, nous cherchons $x$ tel que~:
+  $$ x\conv h\ded{0}= \somme{j=-\infty}{\infty}{x\ded{j}.h\ded{0-j}} =  \somme{j=-\infty}{\infty}{|h\ded{j}|} = +\infty$$
+
+  On montre donc que ce signal existe en prenant
+  $x[j]=\sign\p{h\ded{-j}}=\frac{h\ded{-j}}{\abs{h\ded{-j}}}$. La
+  fonction signe peut être prise ici telle $\sign\p{0}=0$.  Ce qui
+  permet de conclure la réciproque avec~:
+
+  $$\exists x=\sign\p{h\ded{-\bullet}} \tq x\conv h = \somme{j=-\infty}{\infty}{\underbrace{\sign\p{h\ded{-j}}}_{x\ded{j}}.h\ded{0-j}}= \somme{j=-\infty}{\infty}{\abs{h\ded{-j}}}=+\infty$$
+
+  L'implication et sa réciproque sont donc vraies~: CDFQ.
+  
+\end{description}
+\end{demo}
 \section{Calcul opérationnel}
 \subsection{Dualité entre signal et système}
 \subsection{Systèmes élémentaires : fonction de transfert en Z }
