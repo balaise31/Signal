@@ -1,21 +1,42 @@
 \chapter{La distribution de Dirac}
 \label{sec:dirac}
 
-L'impulsion de \Dirac{} est incontournable en traitement du signal et système~; nous allons progressivement lever le voile~!
+L'impulsion de \Dirac{} est incontournable en traitement du signal et
+système~; nous allons progressivement lever le voile~!
 
 \section{La notion de densité}
 
-Retournons sur 3 notions de densité avec phénomène de localisation intense~:
+Retournons sur 3 notions de densité avec phénomène de localisation
+intense~:
 \begin{description}
-\item [la densité de masse] -- est une notion physique que l'on peut comprendre aisément avec l'exemple d'une mousse au chocolat dont la \emph{densité de masse} est plus ou moins aérée \emph{selon une position réelle} sur un axe de découpe du gateau. On considère la pépite pure de chocolat de $1$g \emph{concentrée à un endroit} infinitésimallement bon du gateau.
-\item[la densité de probabilité] -- on considère la \emph{densité de probabilité} d'un nombre tiré au hasard entre $1$ et $10$\emph{ selon la valeur réelle} de ce nombre. Le tirage d'un dé à 6 faces sera la \emph{concentration infinie autour de valeurs précises} de la densité de probabilité.
-\item[la densité d'amplitude (ou de puissance)] -- dans le cas d'une transformation de \Fourier{}, on considère la \emph{densité d'amplitude} des composantes d'un signal \emph{selon une fréquence réelle}. La décomposition en série de \Fourier{} sera la \emph{concentration infinie autour de fréquences} harmoniques de cette densité d'amplitude.    
+\item [la densité de masse] -- est une notion physique que l'on peut
+  comprendre aisément avec l'exemple d'une mousse au chocolat dont la
+  \emph{densité de masse} est plus ou moins aérée \emph{selon une
+    position réelle} sur un axe de découpe du gateau. On considère la
+  pépite pure de chocolat de $1$~g \emph{concentrée à un endroit}
+  infinitésimallement bon du gateau.
+\item[la densité de probabilité] -- on considère la \emph{densité de
+    probabilité} d'un nombre tiré au hasard entre $1$ et $10$\emph{
+    selon la valeur réelle} de ce nombre. Le tirage d'un dé à 6 faces
+  sera la \emph{concentration infinie autour de valeurs précises} de
+  la densité de probabilité.
+\item[la densité d'amplitude (ou de puissance)] -- dans le cas d'une
+  transformation de \Fourier, on considère la \emph{densité
+    d'amplitude} des composantes d'un signal \emph{selon une fréquence
+    réelle}. La décomposition en série de \Fourier{} sera la
+  \emph{concentration infinie autour de fréquences} harmoniques de
+  cette densité d'amplitude.
 \end{description}
 
 
-Dans les année 20, \Dirac{} a eu besoin de représenter la concentration de densité de probabilité de particules élémentaires autour de valeurs précises et discrètes pour développer la mécanique quantique.
+Dans les années 20, \Dirac{} a eu besoin de représenter la
+concentration de densité de probabilité de particules élémentaires
+autour de valeurs précises et discrètes pour développer la mécanique
+quantique.
 
-Une densité $f$ n'as de sens, ou est utile, uniquement en l'intègrant pour avoir une \og{} mesure\fg{} de la masse, ou de la probabilité ou de l'amplitude sur un segment de valeurs $[a, b]$~:
+Une densité $f$ n'as de sens, ou est utile, uniquement en l'intègrant
+pour avoir une \og{} mesure\fg{} de la masse, ou de la probabilité ou
+de l'amplitude sur un segment de valeurs $[a, b]$~:
 
 \begin{equation}
   \label{eq:densite_mesure}
@@ -24,59 +45,74 @@ Une densité $f$ n'as de sens, ou est utile, uniquement en l'intègrant pour avo
 
 On voit que dans le cas discret, il faut dériver une fonction
 cumulative \og{} en escalier \fg{} et donc dériver des discontinuités
-pour obtenir une densitée continue d'une variable discrète. Or la dérivée d'ubne discontinuité est mal définie ! Nous allons le voir dans la section suivante.
+pour obtenir une densitée continue d'une variable discrète. Or la
+dérivée d'ubne discontinuité est mal définie ! Nous allons le voir
+dans la section suivante.
 
 \clearpage
 
 \begin{figure}[ht!]\centering
-    \graphe{\textwidth}{densites}
-    \caption{A gauche une variable aléatoire continue $\seg{0}{6}$. A droite une variable aléatoire discrète $\segN{1}{6}$. En bas une mesure de probabilité de tirer une valeur autour de 3 dans $]2, 4[$~; au milieu la fonction cumulative $F_x$ ou probabilité d'avoir une valeur inférieure à $t$, en haut une tentative de densité de probabilité.}
-    \label{fig:densites}
-  \end{figure}
+  \graphe{\textwidth}{densites}
+  \caption{À gauche une variable aléatoire continue $\seg{0}{6}$. À
+    droite une variable aléatoire discrète $\segN{1}{6}$. En bas une
+    mesure de probabilité de tirer une valeur autour de 3 dans
+    $]2, 4[$~; au milieu la fonction cumulative $F_x$ ou probabilité
+    d'avoir une valeur inférieure à $t$, en haut une tentative de
+    densité de probabilité.}
+  \label{fig:densites}
+\end{figure}
   
 \begin{quizz}
 
   
   En regardant la \figref{fig:densites} répondez à ces questions~:
   \begin{description}
-  \item[Q1 -] la probabilité d'avoir un tirage unique à exactement 3 est de 
+  \item[Q1 -] la probabilité d'avoir un tirage unique à exactement 3
+    est de
     \begin{enumerate}
     \item 0 pour t=3 en continu et 1/6 pour k=3 en discret
     \item 1/6 pour t=3 en continu et 1/6 pour k=3 en discret
     \item 1/6 pour t=3 en continu et $\infty$ pour k=3 en discret
     \item c'est pas 3 que je veux mais 20/20 !
     \end{enumerate}
-  \item[Q2 -] la probabilité d'avoir un tirage unique $ <3$ est de 
+  \item[Q2 -] la probabilité d'avoir un tirage unique $ <3$ est de
     \begin{enumerate}
     \item 1/2 pour <t=3 en continu et 1/2 pour <k=3 en discret
     \item 1/2 pour <t=3 en continu et 1/3 pour <k=3 en discret
-    \item pareil que pour $t\leq3$ en continus et pareil que pour $k\leq3$ en discret
+    \item pareil que pour $t\leq3$ en continus et pareil que pour
+      $k\leq3$ en discret
     \item si on met la bonne réponse toujours au début c'est débile~!
     \end{enumerate}
-   \item[Q3 -] la densité de probabilité pour la valeur exacte 3 est de 
+  \item[Q3 -] la densité de probabilité pour la valeur exacte 3 est de
     \begin{enumerate}
     \item 0 pour t=3 en continu et 1/6 pour k=3 en discret
     \item 1/6 pour t=3 en continu et 1/6 pour k=3 en discret
     \item 1/6 pour t=3 en continu et $\infty$ pour k=3 en discret
     \item je préfère rester discrète sur la question...
     \end{enumerate}
-  \item[Q4] Parmi les transformées représentées sur la figure suivante, lesquelles sont des densitées et dans quelles unités (on suppose un signal primal temporel en Volts)~:
+  \item[Q4] Parmi les transformées représentées sur la figure
+    suivante, lesquelles sont des densitées et dans quelles unités (on
+    suppose un signal primal temporel en Volts)~:
     \begin{enumerate}
     \item $\hat{S}(f)$ de la \TF{} est une densité continue en $V$~;
-    \item $\hat{S}(f)$ de la \TF{} est une densité continue en $V/Hz$~;
-    \item $\hat{S}(n)$ (impulsions unités) de la \sdf{} est une densité discrète $V/Hz$~;
-    \item $\hat{S}(f)$ (diracs) de la \sdf{} est une densité en $V/Hz$~;
-    \item au moins avec un choix unique, je fais qu'une erreur par question...
+    \item $\hat{S}(f)$ de la \TF{} est une densité continue en
+      $V/Hz$~;
+    \item $\hat{S}(n)$ (impulsions unités) de la \sdf{} est une
+      densité discrète $V/Hz$~;
+    \item $\hat{S}(f)$ (diracs) de la \sdf{} est une densité en
+      $V/Hz$~;
+    \item au moins avec un choix unique, je fais qu'une erreur par
+      question...
     \end{enumerate}
 
-      \graphe{0.7\textwidth}{transformees}
-\end{description}
+    \graphe{0.7\textwidth}{transformees}
+  \end{description}
 \end{quizz}
 
 \section{Dérivée de fonctions discontinues}
 \label{sec:deriv_discontinues}
-La densité de fonction discrètes nous pousse à dériver des fonctions
-discontinues de première espèce (pas d'infinité à droite ni à gauche). 
+La densité de fonctions discrètes nous pousse à dériver des fonctions
+discontinues de première espèce (pas d'infinité à droite ni à gauche).
 
 Prenon la fonction de \Heaviside{} ou échelon unité noté $u(t)$ pour
 modéliser toute discontinuité dans un signal, le but est de définir
@@ -84,19 +120,29 @@ une dérivée de cette fonction, voir~\figref{fig:derivee_echelon} et
 d'obtenir à nouveau $u(t)$ par intégration.
 
 \begin{figure}[ht!]
-  \centering
-  \graphe{0.8\textwidth}{derivee_echelon}  
-  \caption{Dérivées de l'échelon, de fonctions constantes et d'une fonction continue convergeant vers l'échelons pour $T\to0$}
+  \centering \graphe{0.8\textwidth}{derivee_echelon}
+  \caption{Dérivées de l'échelon, de fonctions constantes et d'une
+    fonction continue convergeant vers l'échelon pour $T\to0$}
   \label{fig:derivee_echelon}
 \end{figure}
 
-Or la dérivée $u'(t)$ n'est pas définie en $0$ (elle vaudrait $+\infty$), il faut donc trouver un prolongement pour la définir partout~:
+Or la dérivée $u'(t)$ n'est pas définie en $0$ (elle vaudrait
+$+\infty$), il faut donc trouver un prolongement pour la définir
+partout~:
 \begin{itemize}
-\item $u'(0)=0$ par continuité, on obtient alors la fonction nulle. Sa primite est la fonction nulle et donc on ne retrouve pas $u(t)$ en intégrant la dérivée~;
-\item $u'(0)=a, a\in \R$, la fonction est discontinue en $0$, on doit intégrer en deux fois $$u(t>0)=\intDx{-\infty}{t>0}{u'(x)}=\lim\limits_{\epsilon\to 0}\intDx{-\infty}{-\epsilon}{\caCest{u'(x)}{=0}}+\lim\limits_{\epsilon\to 0}\intDx{\epsilon}{t}{\caCest{u'(x)}{=0}}=0$$ 
+\item $u'(0)=0$ par continuité, on obtient alors la fonction nulle. Sa
+  primite est la fonction nulle et donc on ne retrouve pas $u(t)$ en
+  intégrant la dérivée~;
+\item $u'(0)=a, a\in \R$, la fonction est discontinue en $0$, on doit
+  intégrer en deux
+  fois
+  $$u(t>0)=\intDx{-\infty}{t>0}{u'(x)}=\lim\limits_{\epsilon\to
+    0}\intDx{-\infty}{-\epsilon}{\caCest{u'(x)}{=0}}+\lim\limits_{\epsilon\to
+    0}\intDx{\epsilon}{t}{\caCest{u'(x)}{=0}}=0$$
 \end{itemize}
 
-La dérivée de l'échelon est donc la fonction nulle \og{} presque partout \fg{} ( $\norme{u'}_2=0$).
+La dérivée de l'échelon est donc la fonction nulle \og{} presque
+partout \fg{} ($\norme{u'}_2=0$).
 
 On peut essayer d'aprocher l'échelon avec deux fonctions rampes comme
 illustré sur la figure, et obtenir une dérivée définie partout (sauf
@@ -107,10 +153,10 @@ fonction porte reste la fonction nulle presque partout !
 
 \section{Opérateur dérivée et sa réciproque}
 \label{sec:dirac_derivee}
-Le fait que plusieurs fonctions ont pour image la même fonction
-nulle, rend l'opérateur dérivée (noté $p$ en calcul opérationnel ou
-$D$) font que l'application dérivée qui transforme une fonction de
-$L_1$ en fonction de $L_1$ n'est pas injective.
+Le fait que plusieurs fonctions ont pour image la même fonction nulle,
+rend l'opérateur dérivée (noté $p$ en calcul opérationnel ou $D$) font
+que l'application dérivée qui transforme une fonction de $L_1$ en
+fonction de $L_1$ n'est pas injective.
 
 \begin{equation}
   \label{eq:application_derivee}
@@ -124,33 +170,34 @@ l'intuition montre que l'on a besoin d'établir un objet mathématique
 qui soit la dérivée de l'échelon et dont une primitive soit
 $u(t)$. Cette fonction généralisée ou fonction imaginaire est
 l'impulsion de \Dirac{} introduite et utilisée par le scientifique
-éponyme dans les année 1920 et établie mathématiquement par Schwartz
-dans les année 1950.
+éponyme dans les années 1920 et établie mathématiquement par Schwartz
+dans les années 1950.
 
 Comme l'indique la \figref{fig:fonctions_et_distributions} on crée une
 fonction imaginaire étant la dérivée de discontinuité et dont
 l'intégrale réciproque donne une discontinuité.
 \begin{figure}[ht!]
-  \centering
-  \graphe{\textwidth}{fonctions_et_distributions}
-  \caption{L'espace des fonctions usuelles où l'opérateur dérivée n'est pas injectif, et l'espace des distributions où l'opérateur est bijectif. }
+  \centering \graphe{\textwidth}{fonctions_et_distributions}
+  \caption{L'espace des fonctions usuelles où l'opérateur dérivée
+    n'est pas injectif et l'espace des distributions où l'opérateur
+    est bijectif. }
   \label{fig:fonctions_et_distributions}
 \end{figure}
 
 
 Cela permet de définir un opérateur inversible et d'introduire le
 calcul opérationnel où l'opérateur $D$ possède une réciproque $D^{-1}$
-tel que $D\circ D^{-1}=\Id$. La notation $D^{-1}$ n'est pas anodine
+tel que $D\circ D^{-1}=\Id$. La notation $D^{-1}$ n'est pas anodine, 
 car on assimile une réciproque d'opérateur à un inverse algébrique (du
 nombre $D$). C'est l'approche par \emph{calcul opérationnel} vu dans
 la \secref{sec:calcul_operationnel} pour les systèmes discrets.
 
 \subsection{Calcul opérationnel en continu}
-On obtient donc dans l'espace des distribution, noté $\Dis$, un
+On obtient donc dans l'espace des distributions, noté $\Dis$, un
 opérateur $\oder$ qui admet un réciproque $\oint=\oder\pmu$ capable de
 commuter, s'associer se distribuer et s'inverser avec l'addition~: une
 algèbre d'anneau commutatif comme celles de $+$ et $\times$ sur les
-réels. L'approche opérationnelle assimile c'est opérateur $\oder$ à un
+réels. L'approche opérationnelle assimile cet opérateur $\oder$ à un
 nombre complexe $p$ que l'on manipule algébriquement~: ce nombre peut
 être assimilé à la variable de $\Laplace$ notée $s$ lorsque le signal
 de référence choisi est l'impulsion de $\Dirac$.
@@ -165,8 +212,8 @@ $$
 que l'on peut noter sous forme opérationnelle :
 $$
 a_n\,\caCest{D\circ\ldots\circ D}{\text{n fois}}\b{y} + \ldots +a_1\,
-D\b{y} + a_0\b{y} = b_m\,\caCest{D\circ\ldots\circ D}{\text{m fois}}\b{e} + \ldots +b_1\,
-D\b{e} + b_0\b{e}
+D\b{y} + a_0\b{y} = b_m\,\caCest{D\circ\ldots\circ D}{\text{m
+    fois}}\b{e} + \ldots +b_1\, D\b{e} + b_0\b{e}
 $$
 
 Pour pouvoir manipuler les signaux comme des opérateurs et pouvoir
@@ -178,14 +225,15 @@ $$
 y \quad\leftrightarrow\quad Y \text{ tel que } \; Y\b{\delta_0}=y
 $$
 
-Nous avons donc les opérateurs élémentaires gain $a_n$, dérivée $\oder$
-et l'opérateur $Y$ associé au signal $y$ qui se composent et
+Nous avons donc les opérateurs élémentaires gain $a_n$, dérivée
+$\oder$ et l'opérateur $Y$ associé au signal $y$ qui se composent et
 commutent~: $a_n\circ\oder\circ Y = Y\circ\oder\circ a_n =
-\dots$. Comme avec ces opérateurs élémentaires les opération $\circ$
+\dots$. Comme avec ces opérateurs élémentaires les opérations $\circ$
 et $+$ ont une structure d'anneau commutatif, on adopte la notation
 algébrique classique pour ces opérateurs~:
 $$
-a_n\,D^n\,Y + \ldots +a_1\, D \, Y + a_0 \,Y = b_m\,D^m.E + \ldots +b_1\, D\, E + b_0 \,E
+a_n\,D^n\,Y + \ldots +a_1\, D \, Y + a_0 \,Y = b_m\,D^m.E + \ldots
++b_1\, D\, E + b_0 \,E
 $$
 
 Comme l'opérateur $D$ possède une réciproque notée $D^{-1}$ puisque
@@ -207,68 +255,80 @@ Si l'on borne les signaux $y$ et $e$ à des signaux générés par des
 systèmes linéaire invariants $Y$ et $E$ à partir de l'entrée
 $\delta_0$, alors nous obtenons une représentation du signal $y$ par
 une equation algébrique \eqref{eq:equation_algebrique_p} calculée pour
-une entrée $E(p)=1$ (impulsion de \Dirac{}). Le système $Y$ est donc
+une entrée $E(p)=1$ (impulsion de \Dirac). Le système $Y$ est donc
 représenté par une fraction rationnelle $Y\p{p}$. Il en est de même
 pour le signal $e$ qui est représenté par le système $E\p{p}$
 
-C'est ainsi que \Heaviside{} à remarqué que la composition des
+C'est ainsi que \Heaviside{} a remarqué que la composition des
 dérivées de fonctions et leurs associations linéaires dans les
 équations différentielle se comportait comme une algèbre
 classique. L'idée est venue de manipuler $D$ comme un nombre ce qui
 l'a conduit à l'utilisation du calcul opérationnel comme celui
 effectué avec la transformée de \Laplace{} où $p$ joue le rôle de
-l'opérateur dérivé mais est une nombre complexe.
+l'opérateur dérivé mais est un nombre complexe.
 
 Et donc passer le pas et de calculer la solution en faisant une
-fraction rationnelle d'opérateur dérivés et une décomposition en
-éléments simples d'opérateurs dérives comme pour des nombres avec la fameuse \emph{fonction de transfert} du système~:
+fraction rationnelle d'opérateurs dérivés et une décomposition en
+éléments simples d'opérateurs dérives comme pour des nombres avec la
+fameuse \emph{fonction de transfert} du système~:
 $$
-\frac{Y\de{p}}{E\de{p}} = \frac{\p{b_m\,p^m + \ldots +b_1\, p + b_0}}{\p{a_n\,p^n + \ldots +a_1\, p + a_0}}=
-\frac{\beta_n}{p + \alpha_n} + \ldots + \frac{\beta_0}{p +
-  \alpha_0}
+\frac{Y\de{p}}{E\de{p}} = \frac{\p{b_m\,p^m + \ldots +b_1\, p +
+    b_0}}{\p{a_n\,p^n + \ldots +a_1\, p + a_0}}= \frac{\beta_n}{p +
+  \alpha_n} + \ldots + \frac{\beta_0}{p + \alpha_0}
 $$
 
 Le tout sans avoir défini la transformée de \Laplace{} qui est venue
 plus tard avec la formule de Carson.
 
 
-\section{Propriété sous l'intégrale de l'impulsion de \Dirac{} et de l'impulsion unité}
+\section{Propriété sous l'intégrale de l'impulsion de \Dirac{} et de
+  l'impulsion unité}
 \label{sec:dirac_sous_integrale}
 Nous avons donc une fonction de densité $\delta_0$ qui une fois
 intégrée peut enfin donner une fonction de répartition discontinue en
 $0$. On peut appliquer l'opérateur de retard sur cet objet et définir
-$\delta_a$ la densité d'une fonction $u(t-a)$ discontinue en $a$. On peut définir par abus de notation~:
+$\delta_a$ la densité d'une fonction $u(t-a)$ discontinue en $a$. On
+peut définir par abus de notation~:
 $$
 \delta_a(t)= \delta_0(t-a)
 $$
 
-Cela permet aussi de représenter l'opérateur d'échantillonnage idéal d'un signal continu à un instant $a$ donné en multipliant le signal $s(t)$ par la densité de mesure en $a$ ce qui est représenté par la~\figref{fig:delta_mesure}
+Cela permet aussi de représenter l'opérateur d'échantillonnage idéal
+d'un signal continu à un instant $a$ donné en multipliant le signal
+$s(t)$ par la densité de mesure en $a$ ce qui est représenté par
+la~\figref{fig:delta_mesure}
 \begin{figure}[ht!]
-  \centering
-  \graphe{\textwidth}{delta_mesure}
-  \caption{A droite l'impulsion unitaire discrète qui effectue une mesure "sous la somme" ou à travers le produit scalaire. A gauche l'impulsion de \Dirac{} qui effectue la mesure idéale d'une fonction continue.}
+  \centering \graphe{\textwidth}{delta_mesure}
+  \caption{À droite l'impulsion unitaire discrète qui effectue une
+    mesure "sous la somme" ou à travers le produit scalaire. À gauche
+    l'impulsion de \Dirac{} qui effectue la mesure idéale d'une
+    fonction continue.}
   \label{fig:delta_mesure}
 \end{figure}
 
 Nous avons donc les propriétés~:
 $$
-\scal{s}{\delta_a}=s(a) \text{ en continu et en discret } \scald{s}{\delta_a}=s[a] 
+\scal{s}{\delta_a}=s(a) \text{ en continu et en discret }
+\scald{s}{\delta_a}=s[a]
 $$
 
-\section{Propriété de convolution avec le \Dirac{} et impulsion unité}
+\section{Propriété de convolution avec le \Dirac{} et l'impulsion unité}
 
-On peut définir l'opérateur de convolution, noté $\conv$, à l'aide du produit scalaire puisque~:
+On peut définir l'opérateur de convolution, noté $\conv$, à l'aide du
+produit scalaire puisque~:
 \begin{equation}
   \label{eq:convolution}
   u\conv v(t) = \intDx{-\infty}{\infty}{u(x)\,v(t-x)} = \scal{u}{\conj{x\mapsto v(t-x)}\,}
 \end{equation}
 
-De même pour les signaux discret à support infini, on définit la convolution~:
+De même pour les signaux discrets à support infini, on définit la
+convolution~:
 \begin{equation}
   u\conv v[k] = \somme{-\infty}{\infty}{u[l]\,v[k-l]} = \scald{u}{\conj{l\mapsto v(k-l)}}
 \end{equation}
 
-Et la convolution cyclique pour les signaux discrets périodiques de $N$ points~:
+Et la convolution cyclique pour les signaux discrets périodiques de
+$N$ points~:
 \begin{equation}
   u\conv v[k] = \somme{0}{N-1}{u[l]\,v[k-l]} = \scaldp{u}{\conj{l\mapsto v(k-l)}}
 \end{equation}

@@ -1,8 +1,8 @@
-\chapter{Les bases de \Fourier{}}
+\chapter{Les bases de \Fourier}
 \label{chap:fourier}
 Ce chapitre aborde les signaux et leurs transformées avec le point de
 vue des espaces vectoriels. Les notions apprises pour les signaux
-continus sont ainsi revues et étendues au signaux discrets.
+continus sont ainsi revues et étendues aux signaux discrets.
 
 
 
@@ -15,15 +15,16 @@ des fonctions continues et discrètes.
 % TODO évoquer le 2D
 
 \begin{figure}[htbp]
-  \centering
-  \graphe{0.9\textwidth}{espaces_vectoriels}
-  \caption{Liens entre l'espace Euclidien $\R^3$ et les espaces de fonctions. La notions de sous espace vectoriel est illustrée par l'exemple des sous espaces pair (violet) et impair(rouge).}
+  \centering \graphe{0.9\textwidth}{espaces_vectoriels}
+  \caption{Liens entre l'espace Euclidien $\R^3$ et les espaces de
+    fonctions. La notion de sous espace vectoriel est illustrée par
+    l'exemple des sous espaces pair (violet) et impair(rouge).}
   \label{fig:espaces_vectoriels}
 \end{figure}
 
 
 \begin{remarque}\remarqueTitre{Notation et rigueur}
-  On apelle et notera indiféremment un signal signal $s$~; la fonction
+  On apelle et notera indiféremment un signal $s$~; la fonction
   $s$ (ou dans le cas discret la suite numérique $(s_n)_{n\in\Z}$ sera
   simplement notée $s$)~; et le vecteur $\vec{s}$ de l'espace des
   signaux associé.
@@ -32,16 +33,22 @@ des fonctions continues et discrètes.
   discrète $s: \Z\to\C$ à l'instant $k$ de celle d'un signal continu
   $s: \R\to\C$ à un instant $t$ classiquement notée $s(t)$.
   
-  Le segment discret est noté $\semiN{n}{m} \quad =\left\{k \in\Z \;|\; n\leq k < m\right\}$ différemment d'un segment continu $\semi{a}{b} \quad =\left\{t\in\R \;|\; a\leq t < b\right\}$
+  Le segment discret est noté
+  $\semiN{n}{m} \quad =\left\{k \in\Z \;|\; n\leq k < m\right\}$
+  différemment d'un segment continu
+  $\semi{a}{b} \quad =\left\{t\in\R \;|\; a\leq t < b\right\}$
 
   La notation des espaces $\R^\R$ choisie est assez courante et
   s'explique par l'extension de la notation des produits carthésiens
   $\times$ car~:
   $$ \R^3 = \caCest{\R\times\R\times\R}{\text{3 fois}} = \left\{ (z_0, z_1, z_2) \quad|\quad a,b,c \in \R \right\}$$
-  En indiquant que le nombre de produits est associé aux éléments $k$ d'un ensemble discret, et prenant cette fois-ci des valeurs complexes, on note~:
+  En indiquant que le nombre de produits est associé aux éléments $k$
+  d'un ensemble discret et prenant cette fois-ci des valeurs
+  complexes, on note~:
   
   $$ \C^3 = \C^{\left\{0, 1, 2\right\}} = \caCest{\C}{k=0}\caCest{\times\C}{k=1}\caCest{\times\C}{k=2} \quad\text{ avec } (\caCest{a_0, }{k=0}\caCest{a_1, }{k=1}\caCest{a_2}{k=2}) \in  \C^{\semiN{0}{3}} = \left\{ (z_0, z_1, z_2) \in \C^3 \right\}$$
-  En prenant un ensemble de dimension infini dénombrable comme $\Z$  par exemple~:
+  En prenant un ensemble de dimension infini dénombrable comme $\Z$
+  par exemple~:
 
   $$ \R^\Z = \ldots \times \caCest{\R}{k=-1} \caCest{\times\R}{k=0} \caCest{\times\R}{k=1} \times \ldots \quad\text{ avec } s=(\ldots, \caCest{s_{-1}, }{k=-1}\caCest{s_0, }{k=0}\caCest{s_1}{k=1}, \ldots) \in  \R^{\Z}= \Z\to\R$$
   Un élément est donc un n-uplet de dimension infini dénombrable qui
@@ -62,13 +69,13 @@ des fonctions continues et discrètes.
   indénombrable $\R$ ce qui donne~:
   $$ \C^\R = \ldots \caCest{\times\C}{t=0} \times \ldots \caCest{\times\C}{t=\pi} \times \ldots \quad\text{ avec } s=(\ldots, \caCest{z_0, }{t=0} \ldots, \caCest{z_\pi, }{t=\pi} \ldots) \in  \C^{\Z}=\R\to\C$$
 
-Un élément de cet ensemble est donc un n-uplet de dimension infinie
-indénombrable (remarquez qu'il y a une infinité indénombrable de
-valeurs entre $z_0$ et $ z_\pi$ !). Ce n-uplet constitue le graphe
-d'une fonction de $\R\to\C$ et donc celui du signal continu
-$s$. Contrairement aux suites numériques du discret, il est rare de
-voir noté $s_t$ une évaluation de cette fonction à l'instant $t$ et la
-notation $s(t)$ sera toujours utilisée.
+  Un élément de cet ensemble est donc un n-uplet de dimension infinie
+  indénombrable (remarquez qu'il y a une infinité indénombrable de
+  valeurs entre $z_0$ et $ z_\pi$ !). Ce n-uplet constitue le graphe
+  d'une fonction de $\R\to\C$ et donc celui du signal continu
+  $s$. Contrairement aux suites numériques du discret, il est rare de
+  voir noté $s_t$ une évaluation de cette fonction à l'instant $t$ et
+  la notation $s(t)$ sera toujours utilisée.
 \end{remarque}
 
 
@@ -76,48 +83,51 @@ Ainsi que ce soit en continu avec le cas le plus général des fonctions
 de $\R\to\C$, ou en discret celui des suites complexes de $\N\to\C$,
 on manipulera les signaux comme des vecteurs et utiliserons les
 notions de ~:
- \begin{description}
- \item[produit scalaire $\scal{\vec{f}}{\vec{g}}$]--- sera un scalaire
-   complexe dont le module indiquera si deux fonctions $f$ et $g$ se
-   ressemblent. Calculer le produit scalaire entre $f$ et $g$ avec
-   différents retards $\tau$ appliqués à $g$ permet de définir la
-   \emph{fonction de correlation}~;
- \item[norme de vecteur (au carré)
-   $\|\vec{s}\|^2=\scal{\vec{s}}{\vec{s}}$]--- sera associé à l'énergie
-   totale du signal, ou puissance moyenne dans le cas de signaux à
-   support fini comme l'espace des fonctions périodiques etc.
- \item[bases vectorielles]--- permet de représenter des
-   signaux par des signaux de base. Deux bases seront importantes~:
-   une base temporelle faite de signaux localisés autour d'un instant
-   mais diffus en fréquence~; et une base fréquentielle faites de
-   signaux localisés en fréquence et diffus dans le temps.
- \item[projection sur un sous-espace]--- Revient à trouver un signal
-   d'un sous espace vectoriel qui soit le plus proche d'u Porjeter sur
-   un sous-espaces en enlevant des vecteurs d'une base correspond à un
-   sous-échantillonnage du signal et ajouter des vecteurs à une base
-   (avec des composantes nulles)
- \item[changement de base]--- correspond aux transformations de
-   \Fourier{} (base temporelle vers fréquentielle) et aux transformée
-   inverses. Dans le cas des signaux discrets bornés, la base étant
-   finie on peut représenter la transformée \TFD{} (algorithme \FFT)
-   par une matrice de passage. Le calcul de la transofrmée se fait par
-   produit matriciel et l'inverse par le produit avec la matrice
-   inverse.
+\begin{description}
+\item[produit scalaire $\scal{\vec{f}}{\vec{g}}$]--- sera un scalaire
+  complexe dont le module indiquera si deux fonctions $f$ et $g$ se
+  ressemblent. Calculer le produit scalaire entre $f$ et $g$ avec
+  différents retards $\tau$ appliqués à $g$ permet de définir la
+  \emph{fonction de correlation}~;
+\item[norme de vecteur (au carré)
+  $\|\vec{s}\|^2=\scal{\vec{s}}{\vec{s}}$]--- sera associé à l'énergie
+  totale du signal ou à la puissance moyenne dans le cas de signaux à
+  support fini comme l'espace des fonctions périodiques, etc.
+\item[bases vectorielles]--- permet de représenter des signaux par des
+  signaux de base. Deux bases seront importantes~: une base temporelle
+  faite de signaux localisés autour d'un instant mais diffus en
+  fréquence~; et une base fréquentielle faite de signaux localisés en
+  fréquence et diffus dans le temps.
+\item[projection sur un sous-espace]--- Revient à trouver un signal
+  d'un sous espace vectoriel qui soit le plus proche du signal projeté.
+   Porjeter sur
+  un sous-espace en enlevant des vecteurs d'une base correspond à un
+  sous-échantillonnage du signal et ajouter des vecteurs à une base
+  (avec des composantes nulles)
+\item[changement de base]--- correspond aux transformations de
+  \Fourier{} (base temporelle vers fréquentielle) et aux transformées
+  inverses. Dans le cas des signaux discrets bornés, la base étant
+  finie on peut représenter la transformée \TFD{} (algorithme \FFT)
+  par une matrice de passage. Le calcul de la transofrmée se fait par
+  produit matriciel et l'inverse par le produit avec la matrice
+  inverse.
 \end{description}
  
 % \begin{description}
-% \item{signal vecteur} : un signal continu ou discret comme vecteur d'un espace vectoriel qui sera un espace de fonctions ou suites~;
+% \item{signal vecteur} : un signal continu ou discret comme vecteur
+%   d'un espace vectoriel qui sera un espace de fonctions ou suites~;
 % \item un produit scalaire sous forme d'intégrale (somme le discret)
 %   d'un produit de fonctions ou suite ~;
 % \item une norme issue de ce p.s. qui sera reliée à l'énergie ou
 %   puissance moyenne du signal selon les espaces de fonction~;
-% \item des bases temporelles constituées de signaux dont l'énergie est
-%   concentrée autour d'un instant, et des bases fréquencielles où
+% \item des bases temporelles constituées de signaux dont l'énergie
+%   est concentrée autour d'un instant, et des bases fréquencielles où
 %   l'énergie/puissance d'un vecteur sera concentrée autour d'une
 %   fréquence~;
 % \item une décompostion dans une base permettra d'obtenir les
 %   coordonnées d'un signal qui seront les échantillons pour une base
-%   temporelle, ou les coefficients de transformée pour le fréquenciel~;
+%   temporelle, ou les coefficients de transformée pour le
+%   fréquenciel~;
 % \item un changement de base passant d'une représentation à l'autre
 %   sera une transformée de \Fourier{} ou son inverse~;
 % \item une projection sur un sous espace vectoriel correspondra à
@@ -132,8 +142,7 @@ La \figref{fig:espaces} mets en évidence l'analogie du changement de
 base et d'une transformée.
 
 \begin{figure}[ht]
-  \centering
-  \graphe{0.9\textwidth}{espaces}
+  \centering \graphe{0.9\textwidth}{espaces}
   \caption{Changement de base d'un vecteur dans un espace Euclidien de
     $\R^3$ et transformation d'une fonction de $\R\rightarrow\C$ dans
     un espace de Hilbert.}
@@ -143,19 +152,21 @@ base et d'une transformée.
 Si l'on note $E$ un espace vectoriel des signaux qui pourrait être~:
 
 \begin{itemize}
-\item $L_2 = \left\{s \in \C^\R \quad|\quad \norme{s}_2 \in \R\right\}$ -- celui des
-signaux continus à énergie finie pour les transformées de \Fourier{}
-(TF)~;
+\item
+  $L_2 = \left\{s \in \C^\R \quad|\quad \norme{s}_2 \in \R\right\}$ --
+  celui des signaux continus à énergie finie pour les transformées de
+  \Fourier{} (TF)~;
 \item $L_2^p$ les signaux continus et périodiques à puissance moyenne
   finie pour les séries de \Fourier{} (\sdf)~;
-\item les signaux discret de carré sommable pour les transformées de \Fourier{}
-  des signaux discrets (TFSD)~;
+\item les signaux discrets de carré sommable pour les transformées de
+  \Fourier{} des signaux discrets (TFSD)~;
 \item les signaux discrets périodiques pour les transformées de
   \Fourier{} discrètes (TFD) avec son algorithme de calcul optimisé
   \emph{Fast Fourier Transform} (FFT).
 \end{itemize}
 
-On peut obtenir des fonctions/suites de coordonnées dans deux bases incontournables~:
+On peut obtenir des fonctions/suites de coordonnées dans deux bases
+incontournables~:
 \begin{description}
 \item[Espace temporel (souvent le primal) --- $\left(E, B_c\right)$
   ---] Un signal $\vec{s}\in E$ peut être décomposé dans une base
@@ -169,9 +180,9 @@ On peut obtenir des fonctions/suites de coordonnées dans deux bases incontourna
   vecteur $\vec{e_\tau}$, indique l'amplitude $s(\tau)$ de sa
   composante.
 
-  Si l'on a une base orthonormée, alors cette composante
-  s'obtient en projetant $\vec{s}$ sur chaque vecteur $\vec{e_\tau}$
-  de la base avec le produit scalaire~:
+  Si l'on a une base orthonormée, alors cette composante s'obtient en
+  projetant $\vec{s}$ sur chaque vecteur $\vec{e_\tau}$ de la base
+  avec le produit scalaire~:
   $$ s : \application{\R}{\C}{\tau}{\scal{\vec{s}}{\vec{e_\tau}}=s(\tau)}$$
 
   Dans le cas du temps discret on a une base infinie dénombrable
@@ -180,14 +191,14 @@ On peut obtenir des fonctions/suites de coordonnées dans deux bases incontourna
   $$ s : \application{\Z}{\C}{j}{\scal{\vec{s}}{\vec{e_j}}=s\b{j}}$$
 
 \item[Espace fréquenciel (souvent le dual) --- $\left(E, B_w\right)$
-  ---] Ce même signal $\vec{s}\in E$ peut être décomposé dans une
-  base fréquencielle $Bw=\left(w_f\right)_{f\in\R}$ où chaque vecteur
+  ---] Ce même signal $\vec{s}\in E$ peut être décomposé dans une base
+  fréquencielle $Bw=\left(w_f\right)_{f\in\R}$ où chaque vecteur
   $\vec{w_f}$ de la base est un signal localisé en fréquence.
 
   Les coordonnées sont alors exprimées sous la forme d'une fonction
-  $\hat{S}:\R\to\C$ qui, pour
-  chaque fréquence réelle $f$ associée à un vecteur $\vec{w_f}$,
-  indique l'amplitude $\hat{S}(f)$ de cette composante.
+  $\hat{S}:\R\to\C$ qui, pour chaque fréquence réelle $f$ associée à
+  un vecteur $\vec{w_f}$, indique l'amplitude $\hat{S}(f)$ de cette
+  composante.
 
   On retrouve la formule de transformée en utilisant le produit
   scalaire ainsi~:
@@ -203,7 +214,7 @@ toutes les deux des fonctions de la variable réelle~!
 
 Ainsi le signal $\vec{s}$ est associé à une fonction $s:\R\to\C$ dans
 la base temporelle et à une fonction $\hat{S}:\R\to\C$ dans la base
-fréquencielle. 
+fréquencielle.
 
 On peut s'abstraire et considérer $\hat{S}:\R\to\C$ dans la base
 temporelle~: ce qui donnera un signal différent de $\vec{s}$. Et aussi
@@ -213,7 +224,7 @@ un autre signal différent.
 \begin{remarque}\remarqueTitre{Notation et rigueur}
   On peut alors être tentée d'écrire $s(t)$ et $\hat{S}(t)$ pour
   indiquer que ces fonctions sont des coordonnées dans une base
-  temporelle. Mais c'est une erreur de typage car $s(t)\in\C$ dans le
+  temporelle. Mais c'est une erreur de typage, car $s(t)\in\C$ dans le
   cas général et on veut parler de fonctions de $\C^\R$. La fonction
   se note $s$, son évaluation en un point $s(t)$ et si l'on veut
   évoquer la fonction en insistant qu'elle est dans une base
@@ -226,16 +237,15 @@ un autre signal différent.
   $$ s = t\mapsto s(t) = f \mapsto s(f) = s(\bullet)$$
 \end{remarque}
 
-
-Une transformée de \Fourier{} est donc l'opérateur identité dans
+La transformée de \Fourier{} est donc l'opérateur identité dans
 l'espace vectoriel des signaux E qui consiste juste à changer de
 système de coordonnées.
 $$\F := I_d :  \application{E}{E}{\vec{s}}{\vec{s}}
 $$
 
-En revanche pour ce qui est des fonctions
-(coordonnées) associées, une transformée est une application linéaire
-qui transforme une fonction en une fonction~:
+En revanche pour ce qui est des fonctions (coordonnées) associées, une
+transformée est une application linéaire qui transforme une fonction
+en une fonction~:
 
 $$\F : \application{(E,B_c)}{(E,B_w)}{s : t\mapsto \;\scal{\vec{s}}{\vec{e_t}}=s(t)}{\hat{S} : f \mapsto \; \scal{\vec{s}}{\vec{w_f}}=\hat{S}(f)}
 $$
@@ -249,12 +259,12 @@ continu. La décomposition d'un signal dans cette base constitue la
 \TF.
 
 \begin{definition}
-L'\emph{échantillonnage} (on dira \emph{decimation} dans le cas
-d'espaces de puissance discrète) est un type de projection d'un espace
-de dimention infinie dans un espace de dimention inférieure. Il
-consiste à prélever un sous-ensemble de vecteurs d'une base de manière
-régulière~: avec un espacement constant nommé \emph{période
-  d'échantillonnage} et parfois \emph{résolution}.
+  L'\emph{échantillonnage} (on dira \emph{decimation} dans le cas
+  d'espaces de puissance discrète) est un type de projection d'un
+  espace de dimention infinie dans un espace de dimention
+  inférieure. Il consiste à prélever un sous-ensemble de vecteurs
+  d'une base de manière régulière~: avec un espacement constant nommé
+  \emph{période d'échantillonnage} et parfois \emph{résolution}.
 \end{definition}
 
 \begin{remarque}
@@ -269,15 +279,16 @@ régulière~: avec un espacement constant nommé \emph{période
     pour obtenir un dual discret~;
   \item des bases fréquentielles continues et on parlera
     d'\emph{échantillonnage en fréquence} avec une période notée $F_0$
-    (qui évoque les \sdf{}) et parfois $\Delta_f$ pour évoquer la
+    (qui évoque les \sdf) et parfois $\Delta_f$ pour évoquer la
     \emph{résolution fréquencielle}~;
   \item des bases fréquentielles discrètes et on parlera de
     \emph{décimation en fréquence}.
-\end{itemize}
+  \end{itemize}
 \end{remarque}
 
 On peut discrétiser la base de \Fourier{}
-$\p{t\mapsto e^{i\,2\pi\,f\,t}}_{f\in\R}$ qui est continue en temps et en fréquences selon le temps, la fréquence ou les deux~:
+$\p{t\mapsto e^{i\,2\pi\,f\,t}}_{f\in\R}$ qui est continue en temps et
+en fréquences selon le temps, la fréquence ou les deux~:
 \begin{description}
 \item[temps discret] où la variable $t\in\R$ sera remplacée par une
   variable discrète $k\in\N$ avec la relation $t=k\,T_e$ où $T_e$ est
@@ -292,7 +303,7 @@ $\p{t\mapsto e^{i\,2\pi\,f\,t}}_{f\in\R}$ qui est continue en temps et en fréqu
   cas des \sdf.
 \end{description}
 
-\begin{quizz} ---  On note la fonction $w(t,f)=e^{i2\pi\,f\,t}$
+\begin{quizz} --- On note la fonction $w(t,f)=e^{i2\pi\,f\,t}$
   \begin{description}
   \item[Q1 - Typage~:] la fonction $w$ est un vecteur de l'espace~:
     \begin{enumerate}
@@ -301,19 +312,27 @@ $\p{t\mapsto e^{i\,2\pi\,f\,t}}_{f\in\R}$ qui est continue en temps et en fréqu
     \item $\R^2\to\C$
     \item ${\R^2}^\C$ mais ça fait bizarre
     \end{enumerate}
-  \item[Q2 - Discret temporel:]~: je dispose d'un enregistrement audio 256 kb/s en 8bit~:
+  \item[Q2 - Discret temporel~:]~: je dispose d'un enregistrement audio
+    256 kb/s en 8bit~:
     \begin{enumerate}
-    \item je suis à temps discret car en 8bit la résolution temporelle est $T_e=1/2^8$~; 
-    \item temps discret et ma période d'échantillonnage est
-      plus rapide ou égale à $T_e=\frac{256}{8}\; kHz$~;
-    \item une base fréquentielle peut être~: $\left( k\mapsto e^{i2\pi\,f\,k T_e}\right)_{f\in\R}$
-    \item un vecteur de la base fréquencielle peut être ~: $w_n= k\mapsto e^{i2\pi\,n F_0\, k T_e}$
-    \end{enumerate} 
-  \item[Q2 - Discret frequenciel:] ~: un vecteur d'une base fréquencielle discrète pourrait s'écrire
+    \item je suis à temps discret car en 8bit la résolution temporelle
+      est $T_e=1/2^8$~;
+    \item temps discret et ma fréquence d'échantillonnage est plus
+      rapide ou égale à $F_e=\frac{256}{8}\; kHz$~;
+    \item une base fréquentielle peut être~:
+      $\left( k\mapsto e^{i2\pi\,f\,k T_e}\right)_{f\in\R}$
+    \item un vecteur de la base fréquencielle peut être ~:
+      $w_n= k\mapsto e^{i2\pi\,n F_0\, k T_e}$
+    \end{enumerate}
+  \item[Q2 - Discret frequenciel:] ~: un vecteur d'une base
+    fréquencielle discrète pourrait s'écrire
     \begin{enumerate}
-    \item $w_n\b{k} = \sin\p{2\pi\,n F_0\,k T_e},\; k\in\Z$ 
-    \item $w_f = f\mapsto\sin\p{2\pi f\,k\,T_e} = \sin\p{2\pi \bullet \,k\,T_e}$ 
-    \item $w_f = k\mapsto\sin\p{2\pi f\,k\,T_e} = \sin\p{2\pi f \,k\,T_e}$ 
+    \item $w_n\b{k} = \sin\p{2\pi\,n F_0\,k T_e},\; k\in\Z$
+    \item
+      $w_f = f\mapsto\sin\p{2\pi f\,k\,T_e} = \sin\p{2\pi \bullet
+        \,k\,T_e}$
+    \item
+      $w_f = k\mapsto\sin\p{2\pi f\,k\,T_e} = \sin\p{2\pi f \,k\,T_e}$
     \item $w_n = t\mapsto \sin\p{2\pi\, \frac{n}{T_0}\,t}$
     \end{enumerate}
   \end{description}
@@ -321,21 +340,24 @@ $\p{t\mapsto e^{i\,2\pi\,f\,t}}_{f\in\R}$ qui est continue en temps et en fréqu
 
 
 Selon la dimension continue (infinie indénombrable) ou discrète
-(infinie dénombrable ou finie) des espaces primal et dual, on utilisera
-différents produis scalaires pour effectuer différentes transformées
-entre primal et dual.
+(infinie dénombrable ou finie) des espaces primal et dual, on
+utilisera différents produis scalaires pour effectuer différentes
+transformées entre primal et dual.
 
 L'appelation primal/dual est utilisée car elle exprime le fait qu'il
 existe une opération permettant de passer de primal au dual et que
 cette \emph{même opération} appliquée cette fois au dual permet de
 revenir au primal~: comme appliquer deux fois un conjugué à un nombre
-complexe, ou deux fois la transposée à une matrice.
+complexe ou deux fois la transposée à une matrice.
 
-La section \secref{sec:dualite} montre que la transformée de \Fourier{} et sa
-version discrète sont toutes deux des opérateurs bi-duaux car~:
+La section \secref{sec:dualite} montre que la transformée de
+\Fourier{} et sa version discrète sont toutes deux des opérateurs
+bi-duaux car~:
 $$\ldots \;\toOp{\F}\; s \;\toOp{\F}\; \hat{S} \;\toOp{\F}\; s\p{-\bullet} \;\toOp{\F}\; \hat{S}\p{-\bullet} \;\toOp{\F}\; s \;\toOp{\F}\; \ldots $$
 
-et donc $\quad\ldots \;\toOp{\F\circ\F}\; s \;\toOp{\F\circ\F}\; s\p{-\bullet} \;\toOp{\F\circ\F}\; s \;\toOp{\F\circ\F}\; \ldots$
+et donc
+$\quad\ldots \;\toOp{\F\circ\F}\; s \;\toOp{\F\circ\F}\; s\p{-\bullet}
+\;\toOp{\F\circ\F}\; s \;\toOp{\F\circ\F}\; \ldots$
 
 L'opérateur $\F^2$ transforme donc un signal $s$ en un signal inversé,
 appelé \emph{antipodal}, $s\p{-\bullet}$ qui est le dual de $s$. De
@@ -351,13 +373,24 @@ On dit que $s$ est le dual de $\hat{S}$ un peu par abus.
 
   $$ \application{\R^\R}{\C^\R}{f}{\hat{F}=T\{f\}} \eempile{\not\subset}{\neq} \application{\R^\R}{\C^\R}{g}{\hat{G}}$$
 
-  Car la transformée d'un signal réel est dans le cas général un signal à valeur complexe ($a(f)$ et $b(f)$). En considérant le cas général $\CR$ on peut composer les tansformées~:
+  Car la transformée d'un signal réel est dans le cas général un
+  signal à valeur complexe ($a(f)$ et $b(f)$). En considérant le cas
+  général $\CR$ on peut composer les tansformées~:
 
   $$ \ldots\application{\C^\R}{\C^\R}{f}{\hat{F}=T\{f\}} \eempile{=}{=} \application{\C^\R}{\C^\R}{g=\hat{F}}{\hat{G}=s\p{-\bullet}} \ldots$$
 
-  De plus il est pratique de considérer des bases imaginaires $B_w=\left(t\mapsto e^{i2\pi\,f\,t}\right)_{f\in\R}$, quitte à admettre des fréquences négatives, et avoir une seule fonction de coordonnées $f\mapsto c(f)\in\CR$.
+  De plus il est pratique de considérer des bases imaginaires
+  $B_w=\left(t\mapsto e^{i2\pi\,f\,t}\right)_{f\in\R}$, quitte à
+  admettre des fréquences négatives et avoir une seule fonction de
+  coordonnées $f\mapsto c(f)\in\CR$.
 
-  Alors qu'en restant en réel avec des fréquences positives il faut traiter une union de deux bases $B_w = \left(t\mapsto \cos\p{2\pi\,f\,t}\right)_{f\in\R^+} \quad \bigcup \quad \left(t\mapsto \sin\p{2\pi\,f\,t}\right)_{f\in\R^{\star +}}$ et deux fonctions de coordonnées $f\mapsto a(f)\in\R^{\R^+}$ et $f\mapsto b(f)\in\R^{\R^{\star +}}$ 
+  Alors qu'en restant en réel avec des fréquences positives il faut
+  traiter une union de deux bases
+  $B_w = \left(t\mapsto \cos\p{2\pi\,f\,t}\right)_{f\in\R^+} \quad
+  \bigcup \quad \left(t\mapsto
+    \sin\p{2\pi\,f\,t}\right)_{f\in\R^{\star +}}$ et deux fonctions de
+  coordonnées $f\mapsto a(f)\in\R^{\R^+}$ et
+  $f\mapsto b(f)\in\R^{\R^{\star +}}$
 
 \end{remarque}
   
@@ -376,7 +409,8 @@ Nous cherchons donc une famille de fonctions $t\mapsto p_\tau\p{t}$
 continu~; et des suites $k\mapsto p_{j}\b{k}$ localisées autour de
 l'échantillon de rang $j$ pour le temps discret.
 
-Ainsi un vecteur $\vec{s}$ d'un espace vectoriel de signaux discrets $E$ sera décomposé dans la base temporelle par~:
+Ainsi un vecteur $\vec{s}$ d'un espace vectoriel de signaux discrets
+$E$ sera décomposé dans la base temporelle par~:
 $$ \vec{s} = \sum\limits_j s\b{j}\;.\;\vec{k \mapsto p\b{k-j}} \;=\; \sum\limits_j  s\b{j}\;.\;\vec{p\b{\bullet-j}} $$
 où le coefficient $s\b{j}$ de la composante à l'instant $j$ est obtenu
 par projection~:
@@ -384,8 +418,8 @@ $$ s\b{j} = \scald{\vec{s}}{\vec{p\b{\bullet-j}}}$$
 
 Dans le cas continu nous avons~:
 $$ \vec{s} = \int s\p{\tau}\;.\;\vec{t \mapsto p\p{t-\tau}}\; d\tau$$
-où le coefficient $s\p{\tau}$ de la composante à l'instant $\tau$ est obtenu
-par projection~:
+où le coefficient $s\p{\tau}$ de la composante à l'instant $\tau$ est
+obtenu par projection~:
 $$ s\b{\tau} = \scal{\vec{s}}{\vec{t \mapsto p\p{t-\tau}}}$$
 
 Le plus simple est de considérer une suite finie de nombres :
@@ -404,20 +438,21 @@ $\RN = \left\{s : \N \to \R \right\}$ (resp.
 $\CN = \left\{s : \N \to \C \right\}$).
 
 \begin{remarque}\remarqueTitre{Rappel sur les notationsaz}
-Un élément de cet espace est donc une fonction d'une variable discrète
-que l'on notera souvent $k$ lorsqu'il s'agit d'un indice du temps avec
-la relation $t \leftrightarrow k\,T_e$, ou bien $n$ lorsque l'indice
-est relié aux fréquences par $f \leftrightarrow n.F_0$. Une fonction
-de la variable continue évaluée à un instant $t$ étant notée $f(t)$,
-on utilisera des crochets et notera $f[k]$ une fonction de la variable
-discrète évaluée en $k$.
+  Un élément de cet espace est donc une fonction d'une variable
+  discrète que l'on notera souvent $k$ lorsqu'il s'agit d'un indice du
+  temps avec la relation $t \leftrightarrow k\,T_e$, ou bien $n$
+  lorsque l'indice est relié aux fréquences par
+  $f \leftrightarrow n.F_0$. Une fonction de la variable continue
+  évaluée à un instant $t$ étant notée $f(t)$, on utilisera des
+  crochets et notera $f[k]$ une fonction de la variable discrète
+  évaluée en $k$.
 
-Pour différencier la notation d'une fonction de celle de son
-évaluation en un point car $f\neq f(t)$, on notera de manière allégée
-$f\p{\bullet}$ la fonction continue $t\mapsto f\p{t}$ où $\bullet$
-remplace la variable muette $t$. De même on différencie le scalaire
-$f\b{k}$ de la fonction $k\mapsto f\b{k}$ en notant simplement une
-fonction $f\b{\bullet}$.
+  Pour différencier la notation d'une fonction de celle de son
+  évaluation en un point, car $f\neq f(t)$, on notera de manière
+  allégée $f\p{\bullet}$ la fonction continue $t\mapsto f\p{t}$ où
+  $\bullet$ remplace la variable muette $t$. De même on différencie le
+  scalaire $f\b{k}$ de la fonction $k\mapsto f\b{k}$ en notant
+  simplement une fonction $f\b{\bullet}$.
 \end{remarque}
 On veut trouver une base permettant de décomposer un signal/vecteur
 $\vec{f}$ quelconque avec des vecteurs/signaux $\vec{\omega_i}$ d'une
@@ -432,31 +467,35 @@ puisse utiliser pour construire cette base est \emph{l'impulsion
 
 
   \begin{minipage}[l]{0.5\linewidth}
-  $ \delta=\delta_0~:\application{\N}{\R \text{ ou } \C}{ k}{\delta_0\b{k}=\pparMorceaux{1}{\text{si } k=0}{0}{\text{sinon}}} $
+    $ \delta=\delta_0~:\application{\N}{\R \text{ ou } \C}{
+      k}{\delta_0\b{k}=\pparMorceaux{1}{\text{si }
+        k=0}{0}{\text{sinon}}} $
+  \end{minipage}
+  \begin{minipage}[l]{0.5\linewidth}
+    \graphe{0.9\linewidth}{impulsion}
+  \end{minipage}
+
+
+  L'\textbf{impulsion unité centrée en $a$} est notée $\delta_a$ et
+  définie par~:
+
+
+\begin{minipage}[l]{0.5\linewidth}
+  $\delta_a = \delta_0\b{\bullet-a}~: \application{\N}{\R \text{ ou }
+    \C}{k}{\pparMorceaux{1}{\text{si } k=a}{0}{\text{sinon}}}$
 \end{minipage}
 \begin{minipage}[l]{0.5\linewidth}
-\graphe{0.9\linewidth}{impulsion}  
-\end{minipage}
-
-
-L'\textbf{impulsion unité centrée en $a$} est notée $\delta_a$ et définie par~:
-
-
-\begin{minipage}[l]{0.5\linewidth}
-$\delta_a = \delta_0\b{\bullet-a}~: \application{\N}{\R \text{ ou } \C}{k}{\pparMorceaux{1}{\text{si } k=a}{0}{\text{sinon}}}$ 
-\end{minipage}
-\begin{minipage}[l]{0.5\linewidth}
-\graphe{0.9\linewidth}{impulsion_a}
+  \graphe{0.9\linewidth}{impulsion_a}
 \end{minipage}
 \end{definition}
 
 \begin{remarque}
   Bien qu'utilisant le même symbole $\delta$, il ne faut pas confondre
-l'impulsion unité discrète avec l'impulsion de \Dirac. L'impulsion
-unité est un signal discret tout à fait classique d'amplitude égale à
-$1$ ; alors que l'impulsion de \Dirac{} est une fonction généralisée ou
-distribution, voir \chapref{sec:dirac}, d'amplitude infinie et de
-poids unité.
+  l'impulsion unité discrète avec l'impulsion de \Dirac. L'impulsion
+  unité est un signal discret tout à fait classique d'amplitude égale
+  à $1$ ; alors que l'impulsion de \Dirac{} est une fonction
+  généralisée ou distribution, voir \chapref{sec:dirac}, d'amplitude
+  infinie et de poids unité.
 \end{remarque}
 
 Ainsi on peut définir l'espace vectoriel des fonctions discrètes en
@@ -464,13 +503,12 @@ donnant une base canonique.
 
 \begin{definition}
   \label{def:signal_discret}
-  --- L'\textbf{espace des signaux discrets $\RN$ ou $\CN$} ( \textbf{à support infini})
+  --- L'\textbf{espace des signaux discrets $\RN$ ou $\CN$} (\textbf{à support infini})
 
-  Est l'espace vectoriel de
-  dimension infinie dénombrable des suites réelles défini par la base
-  vectorielle $B_{\Z}=(\delta_j)_{j\in\Z}$. Un vecteur/signal
-  $\vec{s}$ de $\RN$ a donc des coordonnées avec une infinité de
-  composantes :
+  Est l'espace vectoriel de dimension infinie dénombrable des suites
+  réelles défini par la base vectorielle
+  $B_{\Z}=(\delta_j)_{j\in\Z}$. Un vecteur/signal $\vec{s}$ de $\RN$ a
+  donc des coordonnées avec une infinité de composantes :
   \begin{equation*}
     \vec{s}  = (\ldots,s\b{-1}, s\b{0}, s\b{1}, \ldots)_{B_{\Z}} = \quad \ldots + s\b{-1}.\delta_{-1} + s\b{0}.\delta_0 + s\b{1}.\delta_1 + \ldots =\quad \somme{j\in\Z}{}{s\b{j}.\delta_j}
   \end{equation*}
@@ -487,21 +525,27 @@ fenêtre d'observation pour limiter cette quantité d'information.
 
 \subsection{Espaces discrets à support fini ou périodique}
 Ainsi un échnatillonnage de $N_0$ points réels (resp. complexes) est
-un vecteur de $\R^{N_0}$ (resp. $\C^{N_0}$). On peut établir des bijections
-entre ce vecteur et différents \emph{sous-espaces} de l'ensemble des signaux
-discrets à support infini $\RN$.
+un vecteur de $\R^{N_0}$ (resp. $\C^{N_0}$). On peut établir des
+bijections entre ce vecteur et différents \emph{sous-espaces} de
+l'ensemble des signaux discrets à support infini $\RN$.
 
 
 
 \subsubsection{Signal discret borné :  $\RNborne$ ou $\CNborne$}
-L'ensemble des signaux discrets bornés à valeurs réelles (resp. complexes) $\left\{s : \SN0 \to \R \right\}$ (resp. $\left\{s : \SN0 \to \R \right\}$) est défini uniquement pour $k\in\SN0$. On plonge ces fonctions dans $\RN$ (resp. $\CN$) avec un prolongement nul pour $k$ en dehors de l'intervale de définition (appelé parfois fenêtre d'observation naturelle).
+L'ensemble des signaux discrets bornés à valeurs réelles
+(resp. complexes) $\left\{s : \SN0 \to \R \right\}$ (resp.
+$\left\{s : \SN0 \to \R \right\}$) est défini uniquement pour
+$k\in\SN0$. On plonge ces fonctions dans $\RN$ (resp. $\CN$) avec un
+prolongement nul pour $k$ en dehors de l'intervale de définition
+(appelé parfois fenêtre d'observation naturelle).
 
 \begin{definition}
   \label{def:signal_discret_borne}
-  --- L' \textbf{espace des signaux discret borné $\RNborne$ ou $\CNborne$ (à support fini)} 
+  --- L'\textbf{espace des signaux discret borné $\RNborne$ ou
+    $\CNborne$ (à support fini)}
 
   Est un sous espace vectoriel noté $\RNborne$ (resp. $\CNborne$) des
-  suites réelles $\RN$ (resp. suite complexes $\CN$) défini pas la
+  suites réelles $\RN$ (resp. suites complexes $\CN$) défini pas la
   base vectorielle $B_{N_0}^b=\left(\delta_j\right)_{j\in\SN0}$. Ce
   signal est donc, sans perte de généralité, nul pour tout $k<0$ et
   $ N_0\leq k$ et se décompose ainsi :
@@ -535,10 +579,10 @@ faut bien analyser la somme précédente décomposant un signal $s$ par~:
   des suites réelles (resp. complexes) avec
   $$\vec{s} = \vvvectBase{1}{2}{3}{B_3^b} = 1.\vec{w_0}+2\vec{w_1}+3\vec{w_2} = 1.\delta_0+2.\delta_1+3.\delta_2$$
 
-   On obtient le signal :
+  On obtient le signal :
   $$
   \begin{array}{llcccccccc}
-     &1.\delta_0 & =(\ldots, &0 , &1, &0, &0, &0, &0, &\ldots)\\
+    &1.\delta_0 & =(\ldots, &0 , &1, &0, &0, &0, &0, &\ldots)\\
     +&2.\delta_1 & =(\ldots, &0 , &0, &2, &0, &0, &0, &\ldots)\\
     +&3.\delta_2 & =(\ldots, &0 , &0, &0, &3, &0, &0, &\ldots)\\\hline
     =& s  & =(\ldots, &0 , &1, &2, &3, &0, &0, &\ldots)
@@ -548,8 +592,8 @@ faut bien analyser la somme précédente décomposant un signal $s$ par~:
 
 \begin{remarque}
   Si l'on veut décomposer un signal discret borné dans une base
-  fréquentielle, avec des signaux étalés dans le temps mais localisés
-  en fréquences, nous verons que toutes les fréquences $f$ du segment
+  fréquentielle avec des signaux étalés dans le temps, mais localisés
+  en fréquences~; nous verons que toutes les fréquences $f$ du segment
   continu $\SFe$ sont nécessaires et que les composantes
   fréquentielles sont périodiques de période $F_e$ :
 
@@ -564,7 +608,8 @@ représentation fréquentielle plus légère qui sera aussi une fonction
 discrète périodique (au lieu d'une fonction continue périodique dans
 le cas des TFSD précédent).
 
-Pour cela nous devons introduire la version périodique de l'impulsion unité.
+Pour cela nous devons introduire la version périodique de l'impulsion
+unité.
 
 \begin{definition}
   Un \textbf{peigne d'impulsions de période $N_0$} est le signal noté
@@ -572,18 +617,21 @@ Pour cela nous devons introduire la version périodique de l'impulsion unité.
   
   \begin{equation*}
     \Sha_{N_0} = \sum\limits_{m\in\mathbb{Z}} \delta_{m.N_0}: \application{\Z}{\R \text{ ou } \C}{k}{\delta_0[k\mod{}N_0]=\pparMorceaux{1}{\text{ si } k = m.N_0,\quad m\in\Z}{0}{\text{ sinon}}}
-\end{equation*}
+  \end{equation*}
 
-\graphe{0.9\linewidth}{peigne}
+  \graphe{0.9\linewidth}{peigne}
 \end{definition}
 
-Nous pouvons utiliser les peignes d'impulsions comme base de signaux pour définir le sous-espace vectoriel des signaux discrets périodiques :
+Nous pouvons utiliser les peignes d'impulsions comme base de signaux
+pour définir le sous-espace vectoriel des signaux discrets périodiques
+:
 \begin{definition}
   \label{def:signal_discret_periodique}
-  --- L' \textbf{espace des signaux discrets $N_0$-périodiques $\RNper$ ou $\CNper$}
+  --- L'\textbf{espace des signaux discrets $N_0$-périodiques
+    $\RNper$ ou $\CNper$}
 
   Est un sous espace vectoriel noté $\RNper$ (resp. $\CNper$) des
-  suites réelles (resp. suite complexes) définit par la base
+  suites réelles (resp. suites complexes) définit par la base
   vectorielle \\$B_{N_0}^p=\left(\Sha_{N_0}\b{\bullet-j}\right)_{0\leq
     j<N_0}$. Ce signal est donc de période
   $N_0$ et se décompose ainsi :
@@ -594,9 +642,8 @@ Nous pouvons utiliser les peignes d'impulsions comme base de signaux pour défin
   \graphe{0.9\linewidth}{signal_RNp}
 \end{definition}
 
-Ne pas confondre l'indice
-$j$ de la base temporelle et la variable muette
-$k$ que nous utilisons pour désigner l'argument dune fonction
+Ne pas confondre l'indice $j$ de la base temporelle et la variable
+muette $k$ que nous utilisons pour désigner l'argument dune fonction
 discrète. Ainsi il faut bien analyser la somme précédente décomposant
 un signal $s$ par~:
 \begin{equation}
@@ -610,14 +657,14 @@ un signal $s$ par~:
   $s=1.\Sha_{3}+2.\Sha_{3}\b{\bullet-1}+3.\Sha_{3}\b{\bullet-2}$ qui
   est 3-périodique.
 
-  Nous avons bien un sous-espace vectoriel de
-  dimension 3 de l'espace des suites réelles (resp. complexes) avec
+  Nous avons bien un sous-espace vectoriel de dimension 3 de l'espace
+  des suites réelles (resp. complexes) avec
   $$\vec{s} = \vvvectBase{1}{2}{3}{B_3^p} = 1.\vec{w_0}+2\vec{w_1}+3\vec{w_2} = 1.\Sha_{3}+2.\Sha_{3}\b{\bullet-1}+3.\Sha_{3}\b{\bullet-2}$$
 
   On obtient le signal :
   $$
   \begin{array}{llcccccccc}
-     &1.\Sha_{3}            & =(\ldots, &1 , &0, &0, &1, &0, &0, &\ldots)\\
+    &1.\Sha_{3}            & =(\ldots, &1 , &0, &0, &1, &0, &0, &\ldots)\\
     +&2.\Sha_{3}[\bullet-1] & =(\ldots, &0 , &2, &0, &0, &2, &0, &\ldots)\\
     +&3.\Sha_{3}[\bullet-2] & =(\ldots, &0 , &0, &3, &0, &0, &3, &\ldots)\\\hline
     =& s  & =(\ldots, &1 , &2, &3, &1, &2, &3, &\ldots)
@@ -632,19 +679,23 @@ un signal $s$ par~:
   fréquentielles sont périodiques de période $F_e$ :
 
 
-  Nous obtiendrons \textbf{la transformée de \Fourier{} discrète (TFD)}
-  pour représenter un \textbf{signal discret périodique}. Un algorithme
-  optimisé de calcul de la TFD est la \textbf{Fast Fourier Transform
-    (FFT)}
+  Nous obtiendrons \textbf{la transformée de \Fourier{} discrète
+    (TFD)} pour représenter un \textbf{signal discret périodique}. Un
+  algorithme optimisé de calcul de la TFD est la \textbf{Fast Fourier
+    Transform (FFT)}
 \end{remarque}
 
 \subsection{Signal discret périodique pair~: $\RNdctII$}
-Deux inconvénients du  prolongement périodique précédant sont :
+Deux inconvénients du prolongement périodique précédant sont :
 \begin{itemize}
-  \item une parité quelconque d'un signal  réel fait que sa transformée est complexe,
-  \item le signal n'est pas forcément continu au point de raccordements périodique
+\item une parité quelconque d'un signal réel fait que sa transformée
+  est complexe,
+\item le signal n'est pas forcément continu au point de raccordements
+  périodique
 \end{itemize}
-Il en résulte une transformée de signaux réels qui est imaginaire et l'introduction de composantes haute fréquences due à l'introduction d'une discontinuité périodique.
+Il en résulte une transformée de signaux réels qui est imaginaire et
+l'introduction de composantes haute fréquences due à l'introduction
+d'une discontinuité périodique.
 
 \paragraph{Prolongement pair en continu~: CT -- \emph{Cosine Transform}}
 En continu, le développement en série de cosinus (CT pour Cosine
@@ -657,18 +708,24 @@ $$CT[n] = a(\frac{n}{2}) = \frac{2}{2\,T_0}\int\limits_0^{2\,T_0} f_{\text{paire
 \textbf{Il n'y a pas de $b(n)$} ! Et tout est réel, en revanche la
 résolution fréquentielle est double :$\frac{F_0}{2}$
 
-\paragraph{Prolongements pairs en discret~: DCT -- \emph{Discrete Cosine Transform}}
+\paragraph{Prolongements pairs en discret~: DCT -- \emph{Discrete
+    Cosine Transform}}
 
 En discret pour prolonger la suite bornée (a, b, c, d) par exemple, il
 y a deux choix à faire à chaque borne :
 \begin{itemize}
-  \item $a$ est à l'instant 0 et donc non répété : $\ldots b,a,b,\ldots{}$
-  \item $a$ est répété et donc à l'instant $\frac{T_e}{2}$ : $\ldots, b, a, a, b, \dots$
-  \item $d$ est non répété et donc à $(N-1).T_e$ de l'échantillon a : $\ldots, c, d, c, \dots$ 
-  \item $d$ est répété et donc à l'instant $(N-1).T_e + \frac{T_e}{2}$ de a : $\ldots, c, d, d, c, \dots$    
+\item $a$ est à l'instant 0 et donc non répété :
+  $\ldots b,a,b,\ldots{}$
+\item $a$ est répété et donc à l'instant $\frac{T_e}{2}$ :
+  $\ldots, b, a, a, b, \dots$
+\item $d$ est non répété et donc à $(N-1).T_e$ de l'échantillon a :
+  $\ldots, c, d, c, \dots$
+\item $d$ est répété et donc à l'instant $(N-1).T_e + \frac{T_e}{2}$
+  de a : $\ldots, c, d, d, c, \dots$
 \end{itemize}
 
-La \figref{fig_DCT_II} illustre un prolongement pair dit de type II où toutes les valeurs sont répétées de manière paires.
+La \figref{fig_DCT_II} illustre un prolongement pair dit de type II où
+toutes les valeurs sont répétées de manière paire.
 \begin{figure}[htbp]
   \centering \graphe{0.8\linewidth}{signal_DCT_II}
   \caption{Un prolongement pair possible en discret dit de type II~:
@@ -680,23 +737,23 @@ La \figref{fig_DCT_II} illustre un prolongement pair dit de type II où toutes l
 
 
 \begin{remarque}
-En discret il y a 4 prolongements pairs donnant 4 \textbf{Direct Cosine
-Transform} DCT car il y a 4 prolongements pairs ``aux deux bornes'' conduisant à 4
-espaces pairs périodiques, et 4 prolongements pairs en ``a'' et impair en
-``d''.
+  En discret il y a 4 prolongements pairs donnant 4 \textbf{Direct
+    Cosine Transform} DCT car il y a 4 prolongements pairs ``aux deux
+  bornes'' conduisant à 4 espaces pairs périodiques, et 4
+  prolongements pairs en ``a'' et impair en ``d''.
 
 \begin{tabular}{lllll}
-\hline
+  \hline
   Type de DCT & Prolongement (N=4) & Décalage de ``a'' & parité en ``d'' &
-Période \\
-\hline
-Type-I & $(\ldots, a, b, c, d, c, b, \quad a, b, \ldots)$ & 0 & pair & 2.(N-1) \\
-Type-II & $(\dots, a, b, c, d, d, c, b, a,\dots)$ & +1/2 & pair & 2.N \\
-\hline
+                                                                           Période \\
+  \hline
+  Type-I & $(\ldots, a, b, c, d, c, b, \quad a, b, \ldots)$ & 0 & pair & 2.(N-1) \\
+  Type-II & $(\dots, a, b, c, d, d, c, b, a,\dots)$ & +1/2 & pair & 2.N \\
+  \hline
 \end{tabular}
 
 Le prolongement de type II est très utilisé dans les algorithmes de
-compressions d'image et de son (mpeg, avi etc.) car la transformée
+compressions d'image et de son (mpeg, avi, etc.) car la transformée
 DCT-II se calcule de manière efficace avec le mêm algorithme \FFT{}
 utilisé pour les \TFD{} et de plus le prolongement n'ajoute pas de
 discontinuïté ce qui fait les composantes hautes fréquences
@@ -712,13 +769,22 @@ stockage~: ce type de compression est appelé \emph{compression avec
 \section{Les espaces et produits scalaires associés}
 Nous allons considérer des espaces de fonctions tantôt à variables
 continues puis discrètes, et en même temps sur des supports infinis ou
-bornés. Dans le cas de fonctions bornées (définies sur un intervalle $\semi{a}{a+T_0}$ en continu ou $\semiN{a}{a+N}$ en discret), on peut \textbf{toujours} prolonger cette fonction
-en dehors du support de manière périodique, plutôt que par des zéros, car cela permet d'avoir une représentation en séries de \Fourier{} (\sdf{}) (cas continu) ou en Transformée de Fourier Discrète (\TFD{}) dans le cas discret.
+bornés. Dans le cas de fonctions bornées (définies sur un intervalle
+$\semi{a}{a+T_0}$ en continu ou $\semiN{a}{a+N}$ en discret), on peut
+\textbf{toujours} prolonger cette fonction en dehors du support de
+manière périodique, plutôt que par des zéros, car cela permet d'avoir
+une représentation en séries de \Fourier{} (\sdf{}) (cas continu) ou
+en Transformée de Fourier Discrète (\TFD{}) dans le cas discret.
 
-Les produits scalaires pour différents espaces de fonctions sont définis et illustrés dans la \tabref{tab:scalaires} en prenant~:
+Les produits scalaires pour différents espaces de fonctions sont
+définis et illustrés dans la \tabref{tab:scalaires} en prenant~:
 \begin{itemize}
-\item  en rangées du tableau les signaux de la \emph{variable continue} (intégrale continue) ou bien de la \emph{variable discrète} (somme discrète)~;
-\item en colonnes du tableau les \emph{supports infinis} (de $-\infty$ à $\infty$) ou bien support \emph{périodique/borné} (de $0$ à $T_0$ ou $N$).
+\item en rangées du tableau les signaux de la \emph{variable continue}
+  (intégrale continue) ou bien de la \emph{variable discrète} (somme
+  discrète)~;
+\item en colonnes du tableau les \emph{supports infinis} (de $-\infty$
+  à $\infty$) ou bien support \emph{périodique/borné} (de $0$ à $T_0$
+  ou $N$).
 \end{itemize}
 
 \begin{table}[!ht]
@@ -733,7 +799,9 @@ Les produits scalaires pour différents espaces de fonctions sont définis et il
     variable discrète & $\N\rightarrow\C$    & $\;\semiN{0}{N_0}\;\rightarrow \C$        \\
     & $\scald{f}{g}=\somme{k\in\N}{}{f[k].\conj{g[k]}}$ $\quad\deDim{V^2}$& $\scaldp{f}{g}=\frac{1}{N_0}\somme{k=0}{N_0-1}{f[k].\conj{g[k]}}$  $\quad\deDim{V^2}$  
   \end{tabular}
-  \caption{Les proxduits scalaires adaptés aux différents espaces de fonctions. Par clarté, on ne représente que le module de la fonction qui est dans le cas général complexe.}
+  \caption{Les proxduits scalaires adaptés aux différents espaces de
+    fonctions. Par clarté, on ne représente que le module de la
+    fonction qui est dans le cas général complexe.}
   \label{tab:scalaires}
 \end{table}
   
@@ -743,71 +811,90 @@ Les produits scalaires pour différents espaces de fonctions sont définis et il
   valeurs réelles de manière à ignorer ce conjugué car $\conj{g}=g$).
   \begin{enumerate}
   \item Vérifiez dans le cas réel (sans conjugué) que le produit
-    $\scal{f}{g}$ a les propriétés d'un produit scalaire, en déduire la
-    norme induite $\|f\|^2=\scal{f}{f}$ et déterminer la dimension de
-    $\|f\|^2$ : est-ce de la puissance ou de l'énergie, est-ce une
+    $\scal{f}{g}$ a les propriétés d'un produit scalaire, en déduire
+    la norme induite $\|f\|^2=\scal{f}{f}$ et déterminer la dimension
+    de $\|f\|^2$ : est-ce de la puissance ou de l'énergie, est-ce une
     valeur ou une densité ?
-  \item Appliquez cette norme (toujours sans le conjugué) au signal imaginaire pur
-    $f: t\mapsto i$. Quelle propriétée de la norme n'est pas respectée ?
+  \item Appliquez cette norme (toujours sans le conjugué) au signal
+    imaginaire pur $f: t\mapsto i$. Quelle propriétée de la norme
+    n'est pas respectée ?
   \item Refaites de même en prenant cette fois-ci les formules de
     \tabref{tab:scalaires} avec le conjugué de $g$ et vérifiez que
     cette propriété est vérifiée dans le cas général des fonctions à
     variables complexes.
-  \item Vérifiez que $\scal{f}{g}=\conj{\scal{g}{f}}$ et que donc le produit scalaire est linéaire à gauche $\forall\lambda\in\C,\; \scal{\lambda\,f}{g}=\lambda\scal{f}{g}$ et \emph{à moitié linéaire} à droite $\forall \lambda\in\C,\; \scal{f}{\lambda\,g}=\conj{\lambda}\scal{f}{g}$
+  \item Vérifiez que $\scal{f}{g}=\conj{\scal{g}{f}}$ et que donc le
+    produit scalaire est linéaire à gauche
+    $\forall\lambda\in\C,\; \scal{\lambda\,f}{g}=\lambda\scal{f}{g}$
+    et \emph{à moitié linéaire} à droite
+    $\forall \lambda\in\C,\;
+    \scal{f}{\lambda\,g}=\conj{\lambda}\scal{f}{g}$
   \end{enumerate}
-On comprend maintenant pourquoi, dans le cas général des fonctions à valeurs complexes, on utilise le conjugué dans l'expression des produits scalaires et pourquoi on parle de produit \emph{sesqui--linéaire} pour ces produits scalaires~: \emph{sesqui} en latin voulant dire \og{}un et demi\fg{} en latin.  
+  On comprend maintenant pourquoi, dans le cas général des fonctions à
+  valeurs complexes, on utilise le conjugué dans l'expression des
+  produits scalaires et pourquoi on parle de produit
+  \emph{sesqui--linéaire} pour ces produits scalaires~: \emph{sesqui}
+  en latin voulant dire \og{}un et demi\fg{} en latin.
 \end{exercice}
 
-Le produit scalaire est très utile car il permet d'obtenir~:
+Le produit scalaire est très utile, car il permet d'obtenir~:
 \begin{itemize}
-\item de mesurer des longueurs de signaux avec la norme induite par le produit scalaire $\norme{\vec{s}}=\scal{\vec{s}}{\vec{s}}$, et de mesurer des distances entre signaux avec la norme de la différence $\norme{\vec{u}-\vec{v}}$~;
+\item de mesurer des longueurs de signaux avec la norme induite par le
+  produit scalaire $\norme{\vec{s}}=\scal{\vec{s}}{\vec{s}}$, et de
+  mesurer des distances entre signaux avec la norme de la différence
+  $\norme{\vec{u}-\vec{v}}$~;
 \item de projeter un vecteur sur un autre ou sur un sous-espace
-  vectoriel~: cela revient à minimiser une distance $P_v(u)=\min\limits_{x\in\vect{u}}\p{\norme{u-x}}$ par simple calcul direct~;
+  vectoriel~: cela revient à minimiser une distance
+  $P_v(u)=\min\limits_{x\in\vect{u}}\p{\norme{u-x}}$ par simple calcul
+  direct~;
   
 \item trouver les meilleures, au sens de la distance avec la norme
   engendrée, décompositions d'un signal $u$ sur une base de vecteurs
   données~: calculer des transformées de signaux.
 \end{itemize}
 
-La \tabref{tab:hilbert} montre le parallèle entre l'utilisation du produit scalaire sur des vecteurs et sur des signaux, chacune permet de retrouver des formules bien connues des \sdf{} et des \TF{}.
+La \tabref{tab:hilbert} montre le parallèle entre l'utilisation du
+produit scalaire sur des vecteurs et sur des signaux, chacune permet
+de retrouver des formules bien connues des \sdf{} et des \TF.
 
-%\begin{landscape}
+% \begin{landscape}
 \begin{table}[!ht]
-\renewcommand{\arraystretch}{1.4}
-\begin{tabular}{p{0.1\textwidth}|p{0.32\textwidth}|p{0.6\textwidth}}
-  & Euclidien fini & Espace de fonctions \\\hline
-  Base   Ortho--normée & une base finie de vecteurs $$\B=\p{\vec{e_n}}_{n\in\ZN0}$$ normés $\|\vec{e_n}\|=1$ et orthogonaux $\scal{\vec{e_n}}{\vec{e_m}}=0$ & base dénombrable de fonctions $\p{\vec{w_n}}_{n\in\N}$ ou indénombrable $\p{\vec{w_f}}_{f\in\R}$ repérées par leur fréquences $f$ ou un indice $n$ associé~;  fonctions d'énergie unitaire $\|\vec{w_n}\|=1$ ou $\|\vec{w_f}\|=1$, et orthogonales $\scalp{\vec{w_n}}{\vec{w_m}}=0$ ou $\scal{\vec{w_{f}}}{\vec{w_{f'}}}=0$\\\hline
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabular}{p{0.1\textwidth}|p{0.32\textwidth}|p{0.6\textwidth}}
+    & Euclidien fini & Espace de fonctions \\\hline
+    Base   Ortho--normée & une base finie de vecteurs $$\B=\p{\vec{e_n}}_{n\in\ZN0}$$ normés $\|\vec{e_n}\|=1$ et orthogonaux $\scal{\vec{e_n}}{\vec{e_m}}=0$ & base dénombrable de fonctions $\p{\vec{w_n}}_{n\in\N}$ ou indénombrable $\p{\vec{w_f}}_{f\in\R}$ repérées par leurs fréquences $f$ ou un indice $n$ associé~;  fonctions d'énergie unitaire $\|\vec{w_n}\|=1$ ou $\|\vec{w_f}\|=1$, et orthogonales $\scalp{\vec{w_n}}{\vec{w_m}}=0$ ou $\scal{\vec{w_{f}}}{\vec{w_{f'}}}=0$\\\hline
   
-  Analyse &  décomposer un vecteursdans cette base en coefficients $V_n=\scal{\vec{v}}{\vec{e_n}}$ et en donner les coordonnées $$\caCest{\vecDs{V}{\B}}{\rightleftharpoons\vec{v}}=\vvvectBase{V_0=\scal{\vec{v}}{\vec{e_0}}}
-            {\vdots}
-            {V_{N-1}=\scal{\vec{v}}{\vec{e_{N-1}}}}{\B}$$
-                   &  décomposer une fonction $\vec{u}$ en fréquentiel avec la transformée $U(f)$ ou avec les coéfficients $U(n)$ de la série~: $$U(f)=\scal{\vec{u}}{\vec{w_f}}=\scalint{u(t)}{w_f(t)}{t}$$ $$U(n)=\scalp{\vec{u}}{\vec{w_n}}=\scalpint{u(t)}{w_n(t)}{t}$$ \\\hline
+    Analyse &  décomposer un vecteursdans cette base en coefficients $V_n=\scal{\vec{v}}{\vec{e_n}}$ et en donner les coordonnées $$\caCest{\vecDs{V}{\B}}{\rightleftharpoons\vec{v}}=\vvvectBase{V_0=\scal{\vec{v}}{\vec{e_0}}}
+              {\vdots}
+              {V_{N-1}=\scal{\vec{v}}{\vec{e_{N-1}}}}{\B}$$
+                     &  décomposer une fonction $\vec{u}$ en fréquentiel avec la transformée $U(f)$ ou avec les coéfficients $U(n)$ de la série~: $$U(f)=\scal{\vec{u}}{\vec{w_f}}=\scalint{u(t)}{w_f(t)}{t}$$ $$U(n)=\scalp{\vec{u}}{\vec{w_n}}=\scalpint{u(t)}{w_n(t)}{t}$$ \\\hline
   
-  Synthèse &  recomposer un vecteur dans cette base $\vec{v}=\somme{k\in\ZN0}{}{\caCest{U_0}{\scal{\vec{v}}{\vec{e_0}}}}\,.\,\vec{e_0}$ \graphe{4cm}{projections} &  recomposer une fonction par transformation inverse de $U(f)$  ou recompostion de série $U(n)$~: $$\vec{u}(t) = \int\limits_{-\infty}^{\infty}{\caCest{U(f)}{\scal{\vec{u}}{\vec{w_f}}}\,.\,\vec{w_f}(t)\,\dt} $$ $$\vec{u}(t)=\sum\limits_{n\in\N}\caCest{U(n)}{\scalp{\vec{u}}{\vec{w_n}}}\,.\,\vec{w_n}(t) $$\\\hline
+    Synthèse &  recomposer un vecteur dans cette base $\vec{v}=\somme{k\in\ZN0}{}{\caCest{U_0}{\scal{\vec{v}}{\vec{e_0}}}}\,.\,\vec{e_0}$ \graphe{4cm}{projections} &  recomposer une fonction par transformation inverse de $U(f)$  ou recompostion de série $U(n)$~: $$\vec{u}(t) = \int\limits_{-\infty}^{\infty}{\caCest{U(f)}{\scal{\vec{u}}{\vec{w_f}}}\,.\,\vec{w_f}(t)\,\dt} $$ $$\vec{u}(t)=\sum\limits_{n\in\N}\caCest{U(n)}{\scalp{\vec{u}}{\vec{w_n}}}\,.\,\vec{w_n}(t) $$\\\hline
 
-  Projeter avec Plancherel  &  calculer le produit scalaire de vecteurs par leurs composantes~: $$\scal{\vec{u}}{\vec{v}}=\scal{U_{\B}}{V_{\B}}=\Tr{\vecDs{U}{\B}}\,.\,\vecDs{V}{\B}$$ $$\caCest{\hhhect{U_0}{\ldots}{U_{N-1}}}{\Tr{\vecDs{U}{\B}}}\,.\,\vvvect{V_0}{\vdots}{V_{N-1}}$$
-  % au lieu de calculer $$\scal{\vec{u}}{\vec{v}}=\|\vec{u}\|\,\|\vec{v}\|\,\cos\p{\alpha}$$
-                   &  on peut calculer un produit scalaire (utile aux correlations et convolutions) à partir de sa transformée ou composantes de la série~: $$\scal{\vec{u}}{\vec{v}}=\scalint{u(t)}{v(t)}{t} = \scal{U}{V} =  \scalint{U(f)}{V(f)}{f}$$ $$\scalp{\vec{u}}{\vec{v}}=\scalpint{u(t)}{v(t)}{t} = \scaldp{U}{V} =  \scalpdint{U(k)}{V(k)}{k}$$
-  \\\hline
+    Projeter avec Plancherel  &  calculer le produit scalaire de vecteurs par leurs composantes~: $$\scal{\vec{u}}{\vec{v}}=\scal{U_{\B}}{V_{\B}}=\Tr{\vecDs{U}{\B}}\,.\,\vecDs{V}{\B}$$ $$\caCest{\hhhect{U_0}{\ldots}{U_{N-1}}}{\Tr{\vecDs{U}{\B}}}\,.\,\vvvect{V_0}{\vdots}{V_{N-1}}$$
+    % au lieu de
+    % calculer
+    % $$\scal{\vec{u}}{\vec{v}}=\|\vec{u}\|\,\|\vec{v}\|\,\cos\p{\alpha}$$
+                     &  on peut calculer un produit scalaire (utile aux correlations et convolutions) à partir de sa transformée ou composantes de la série~: $$\scal{\vec{u}}{\vec{v}}=\scalint{u(t)}{v(t)}{t} = \scal{U}{V} =  \scalint{U(f)}{V(f)}{f}$$ $$\scalp{\vec{u}}{\vec{v}}=\scalpint{u(t)}{v(t)}{t} = \scaldp{U}{V} =  \scalpdint{U(k)}{V(k)}{k}$$
+    \\\hline
   
-  Normer avec Parseval  &  Calculer la norme en sommant les carrés des coordonnées~: $$\|\vec{u}\|^2=\|U_{\B}\|^2=\sum {U_n}^2$$ &  calculer la puissance moyenne par la transformée $u(f)$ ou en sommant celle des composantes fréquentielles $U(n)$~: $$\|\vec{u}\|^2=\|U\|^2=\int\limits_{-\infty}^{\infty}{|u(t)|^2\dt}=\int\limits_{-\infty}^{\infty}{|U(f)|^2\df} $$  $$\|\vec{u}\|^2=\|U\|_P^2=\frac{1}{T_0}\int\limits_{0}^{T_0}{|u(t)|^2\dt}=\sum\limits_{k\in\N}{|U(k)|^2} $$
-\end{tabular}
+    Normer avec Parseval  &  Calculer la norme en sommant les carrés des coordonnées~: $$\|\vec{u}\|^2=\|U_{\B}\|^2=\sum {U_n}^2$$ &  calculer la puissance moyenne par la transformée $u(f)$ ou en sommant celle des composantes fréquentielles $U(n)$~: $$\|\vec{u}\|^2=\|U\|^2=\int\limits_{-\infty}^{\infty}{|u(t)|^2\dt}=\int\limits_{-\infty}^{\infty}{|U(f)|^2\df} $$  $$\|\vec{u}\|^2=\|U\|_P^2=\frac{1}{T_0}\int\limits_{0}^{T_0}{|u(t)|^2\dt}=\sum\limits_{k\in\N}{|U(k)|^2} $$
+  \end{tabular}
 
-\caption{Structure Euclidiene à structure de Hilbert}
-\label{tab:hilbert}
+  \caption{Structure Euclidiene à structure de Hilbert}
+  \label{tab:hilbert}
 \end{table}
-%\end{landscape}
+% \end{landscape}
 
 \section{Les bases fréquentielles : transformations}
 
 En prenant la base des ondes complexes adaptée à chaque espace de
 signaux (discrétisée ou non, sur un intervalle infini ou
 borné/périodique), et en utilisant les produits scalaires adaptés, on
-peut définir quatre types de transformations et leurs réciproques entre
-un primal avec une base canonique purement localisée dans le temps (et
-infiniment étendue en fréquence) et un dual composé d'une base d'ondes
-purement localisées fréquentielles (et infiniment étendue en dans le
-temps).
+peut définir quatre types de transformations et leurs réciproques
+entre un primal avec une base canonique purement localisée dans le
+temps (et infiniment étendue en fréquence) et un dual composé d'une
+base d'ondes purement localisées fréquentielles (et infiniment étendue
+en dans le temps).
 
 Le schéma ci-dessous résume ces transformées, leurs bases et les
 produits scalaires associés à chaque transformation~:
@@ -815,165 +902,261 @@ produits scalaires associés à chaque transformation~:
 
 \graphe{0.8\textwidth}{transformees.png}
 
-\subsection{Base de la \TF{}}
+\subsection{Base de la \TF}
 
 La \TF{} (Transformée de \Fourier), ou \FT{} (\emph{Fourier
-  Transform}) en anglais, s'applique aux fonctions continues et utilise
-une base d'ondes complexes
+  Transform}) en anglais, s'applique aux fonctions continues et
+utilise une base d'ondes complexes
 $\Bf=\p{\caCest{t\mapsto e^{i2\pi\,f\,t}}{w_f}}_{f\in\R}$.
 
 \begin{exercice}
-Tentez de retrouver la formule de la transformée et son inverse et d'esquisser le schéma ci-dessous sans le regarder, en se rappelant juste que c'est une application de $$\R\rightarrow\C\;\;\operateur{\TF}\;\;\R\rightarrow\C$$ basée sur le produit scalaire continu noté $\scal{}{}$ avec la base continue $\Bf=\p{w_f}_{f\in\R}$
+  Tentez de retrouver la formule de la transformée et son inverse et
+  d'esquisser le schéma ci-dessous sans le regarder, en se rappelant
+  juste que c'est une application
+  de $$\R\rightarrow\C\;\;\operateur{\TF}\;\;\R\rightarrow\C$$ basée
+  sur le produit scalaire continu noté $\scal{}{}$ avec la base
+  continue $\Bf=\p{w_f}_{f\in\R}$
 \end{exercice}
 
 \graphe{\textwidth}{tf}
 
- On peut faire
-l'analogie avec les espaces Euclidiens mais pas l'amalgame, car~:
+On peut faire l'analogie avec les espaces Euclidiens mais pas
+l'amalgame, car~:
 \begin{itemize}
-\item le produit scalaire $\scal{}{}$ est défini  dans le cas de fonctions de carré
-intégrable, ou \emph{fonction à énergie finie}, que nous notons $\Leb{2}$,
-\item les vecteurs de la base ne sont pas normés car de norme infinie~;
-\item la base n'est pas finie, ni infinie dénombrable mais infinie indénombrable.
+\item le produit scalaire $\scal{}{}$ est défini dans le cas de
+  fonctions de carré intégrable ou \emph{fonction à énergie finie},
+  que nous notons $\Leb{2}$,
+\item les vecteurs de la base ne sont pas normés car de norme
+  infinie~;
+\item la base n'est pas finie, ni infinie dénombrable mais infinie
+  indénombrable.
 \end{itemize}
 
 Mais lorsque l'on se place dans le cas de fonctions de carré
-intégrable, ou fonction à énergie finie, que nous notons $\Leb{2}$,
-l'espace est complet (les suites de Cauchy convergent) dont les sommes
+intégrable (ou fonction à énergie finie) que nous notons $\Leb{2}$,
+l'espace est complet (les suites de Cauchy convergent). Donc les sommes
 infinies se comporte bien dans $\Leb{2}$~: c'est une espace de
 Banach. De plus le produit scalaire associé à la norme 2 existe et on
 a donc un espace de \Hilbert{} où la norme et le produit scalaire sont
-des applications linéaires dans $\Leb{2}$. Comme il s'agit d'une espace
-de dimension infinie, il ne suffit pas d'avoir une base de dimension
-infinie pour couvrir tout l'espace, mais dans le cas de $\Leb{2}$ avec
-la base $\Bf$ on montre que tout l'espace est engendré.
+des applications linéaires dans $\Leb{2}$. Comme il s'agit d'une
+espace de dimension infinie, il ne suffit pas d'avoir une base de
+dimension infinie pour couvrir tout l'espace, mais dans le cas de
+$\Leb{2}$ avec la base $\Bf$ on montre que tout l'espace est engendré.
 
 Bref ! Cela fonctionne tout comme un espace Euclidien sans en être un.
 
 \begin{exercice}
-Prendre la base $\Bf=\p{w_f}_{f\in\R}$ et utiliser la partie espace indénombrable de la \tabref{tab:hilbert} pour retrouver les formules de \Plancherel{} et \Parseval{}. 
+  Prendre la base $\Bf=\p{w_f}_{f\in\R}$ et utiliser la partie espace
+  indénombrable de la \tabref{tab:hilbert} pour retrouver les formules
+  de \Plancherel{} et \Parseval.
 \end{exercice}
 
 
-\subsection{Base des \sdf{}}
-Les \sdf{} (Séries de \Fourier{}), ou \FS{} (\emph{Fourier Series}) s'appliquent aux fonctions continues périodiques et   utilisent une base dénombrable $\Bf=\p{\caCest{t\mapsto W_{T_0}^{n\,t}=e^{i \frac{2 \pi}{T_0}\,n\,t}}{w_{T_0}^n}}_{n\in\N}$ avec $W_{T_0}=e^{i \frac{2 \pi}{T_0}}$.
+\subsection{Base des \sdf}
+Les \sdf{} (Séries de \Fourier), ou \FS{} (\emph{Fourier Series})
+s'appliquent aux fonctions continues périodiques et utilisent une base
+dénombrable
+$\Bf=\p{\caCest{t\mapsto W_{T_0}^{n\,t}=e^{i \frac{2
+        \pi}{T_0}\,n\,t}}{w_{T_0}^n}}_{n\in\N}$ avec
+$W_{T_0}=e^{i \frac{2 \pi}{T_0}}$.
 \begin{exercice}
-Tentez de retrouver la formule de la décomposition et recomposition en \sdf{} et d'esquisser le schéma ci-dessous sans le regarder, en se rappelant juste que c'est une application de $$\RT0\rightarrow\C\;\;\operateur{\sdf}\;\;\N\rightarrow\C$$  basée sur le produit scalaire continu périodique noté $\scalp{}{}$ et avec la base discrète $\Bf=\p{W_{T_0}^n}$.
+  Tentez de retrouver la formule de la décomposition et recomposition
+  en \sdf{} et d'esquisser le schéma ci-dessous sans le regarder, en
+  se rappelant juste que c'est une application
+  de $$\RT0\rightarrow\C\;\;\operateur{\sdf}\;\;\N\rightarrow\C$$
+  basée sur le produit scalaire continu périodique noté $\scalp{}{}$
+  et avec la base discrète $\Bf=\p{W_{T_0}^n}$.
 \end{exercice}
 
 \graphe{\textwidth}{sdf}
 
- On peut faire l'analogie avec les espaces Euclidiens mais pas l'amalgame, car~:
- \begin{itemize}
-   \item le produit scalaire $\scalp{}{}$ est défini dans le cas de fonctions périodiques de carré intégrable, \emph{fonctions de puissance moyenne finie},  que nous notons $\LebP{2}$
- \item ce n'est pas un isomorphisme car, on passe d'un espace continu périodique à
-   un espace discret~! La transformée inverse se fait avec le produit scalaire discret $\scald{}{}$
+On peut faire l'analogie avec les espaces Euclidiens mais pas
+l'amalgame, car~:
+\begin{itemize}
+\item le produit scalaire $\scalp{}{}$ est défini dans le cas de
+  fonctions périodiques de carré intégrable, \emph{fonctions de
+    puissance moyenne finie}, que nous notons $\LebP{2}$
+\item ce n'est pas un isomorphisme car, on passe d'un espace continu
+  périodique à un espace discret~! La transformée inverse se fait avec
+  le produit scalaire discret $\scald{}{}$
 \item la base n'est pas finie, mais infinie dénombrable~;
 \end{itemize}
 
-Bref ! ela fonctionne un peu comme un espace Euclidien fini sans en être un...
+Bref ! ela fonctionne un peu comme un espace Euclidien fini sans en
+être un...
 
 \begin{exercice}
-  Prendre la base  $$\Bf=\p{\caCest{t\mapsto \cos\p{\frac{2 \pi}{T_0}\,n\,t}}{\cos_n}}_{\!\!\!\!n\geq 1}\cup \p{\caCest{t\mapsto \sin\p{\frac{2 \pi}{T_0}\,n\,t}}{\sin_n}}_{\!\!\!\!n\geq 1}\cup \p{t\mapsto 1}$$ et voir que l'on retrouve les formules des coefficients $a\b{n}$, $b\b{n}$ et $a_0$ \textbf{à un facteur 2 près !}
+  Prendre la base
+  $$\Bf=\p{\caCest{t\mapsto \cos\p{\frac{2
+          \pi}{T_0}\,n\,t}}{\cos_n}}_{\!\!\!\!n\geq 1}\cup
+  \p{\caCest{t\mapsto \sin\p{\frac{2
+          \pi}{T_0}\,n\,t}}{\sin_n}}_{\!\!\!\!n\geq 1}\cup \p{t\mapsto
+    1}$$ et voir que l'on retrouve les formules des coefficients
+  $a\b{n}$, $b\b{n}$ et $a_0$ \textbf{à un facteur 2 près !}
   
-  Et oui ! La base n'est pas normée car un rapide calcul montre que la norme des vecteurs vaut~$\frac{1}{2}$ (on peut se rappeler que la valeur efficace d'un cosinus d'amplitude 1 est $\frac{\sqrt{2}}{2}$~; sa puissance moyenne sur une période est donc le carré de $\frac{\sqrt{2}}{2}$) 
+  Et oui ! La base n'est pas normée, car un rapide calcul montre que la
+  norme des vecteurs vaut~$\frac{1}{2}$ (on peut se rappeler que la
+  valeur efficace d'un cosinus d'amplitude 1 est
+  $\frac{\sqrt{2}}{2}$~; sa puissance moyenne sur une période est donc
+  le carré de $\frac{\sqrt{2}}{2}$)
 
-  En prenant la base normée $$\Bf'=\p{\caCest{\sqrt{2}\cos_n}{\cos_n'}}_{\!\!\!\!n\geq 1}\cup \p{\caCest{\sqrt{2}\sin_n}{\sin_n'}}_{\!\!\!\!n\in\Z^*} \cup \p{t\mapsto 1}$$
-  on obtient une définition des \sdf{} chère aux physiciennes~:
+  En prenant la base
+  normée
+  $$\Bf'=\p{\caCest{\sqrt{2}\cos_n}{\cos_n'}}_{\!\!\!\!n\geq 1}\cup
+  \p{\caCest{\sqrt{2}\sin_n}{\sin_n'}}_{\!\!\!\!n\in\Z^*} \cup
+  \p{t\mapsto 1}$$ on obtient une définition des \sdf{} chère aux
+  physiciennes~:
   \begin{equation}
     \label{eq:sdf_normee}
     s\p{t} = \left(
-    \begin{array}{c}
-      {\caCest{\scalp{s}{t\mapsto 1}}{a_0}\;1} \\
-      + \somme{n=1}{+\infty}{\caCest{\scalp{s}{\cos_n'}}{a'\b{n}}\;\cos_n'(t)}  \\
-      + \somme{n=1}{+\infty}{\caCest{\scalp{s}{\sin_n'}}{b'\b{n}}\;\sin_n'(t)}     
-    \end{array}\right)
-  = \left(
-    \begin{array}{c}
-      a_0  \\
-      + \somme{n=1}{+\infty}{\caCest{\scalp{s}{\sqrt{2}\cos_n}}{\sqrt{2}\,a\b{n}}\;\sqrt{2}\,\cos_n(t)}  \\
-      + \somme{n=1}{+\infty}{\caCest{\scalp{s}{\sqrt{2}\sin_n}}{\sqrt{2}\,b\b{n}}\;\sqrt{2}\,\sin_n(t)}
-    \end{array}\right)
-\end{equation}
-Avec $\norme{t\mapsto 1}^2=1$, $\norme{\cos_n'}^2=\norme{\sqrt{2}\cos_n}^2=1$ et $\norme{\sqrt{2}\sin_n}^2=1$
+      \begin{array}{c}
+        {\caCest{\scalp{s}{t\mapsto 1}}{a_0}\;1} \\
+        + \somme{n=1}{+\infty}{\caCest{\scalp{s}{\cos_n'}}{a'\b{n}}\;\cos_n'(t)}  \\
+        + \somme{n=1}{+\infty}{\caCest{\scalp{s}{\sin_n'}}{b'\b{n}}\;\sin_n'(t)}     
+      \end{array}\right)
+    = \left(
+      \begin{array}{c}
+        a_0  \\
+        + \somme{n=1}{+\infty}{\caCest{\scalp{s}{\sqrt{2}\cos_n}}{\sqrt{2}\,a\b{n}}\;\sqrt{2}\,\cos_n(t)}  \\
+        + \somme{n=1}{+\infty}{\caCest{\scalp{s}{\sqrt{2}\sin_n}}{\sqrt{2}\,b\b{n}}\;\sqrt{2}\,\sin_n(t)}
+      \end{array}\right)
+  \end{equation}
+  Avec $\norme{t\mapsto 1}^2=1$,
+  $\norme{\cos_n'}^2=\norme{\sqrt{2}\cos_n}^2=1$ et
+  $\norme{\sqrt{2}\sin_n}^2=1$
 
-On peut ne pas normer les vecteurs, et c'est le plus fréquent, mais introduire un facteur $2$ dans la formule de calcul des coefficients $a\b{n}$ et $b\b{n}$ qui n'apparait pas dans les coefficients $c\b{n}$~:
+  On peut ne pas normer les vecteurs, et c'est le plus fréquent, mais
+  introduire un facteur $2$ dans la formule de calcul des coefficients
+  $a\b{n}$ et $b\b{n}$ qui n'apparait pas dans les coefficients
+  $c\b{n}$~:
   \begin{equation}
     \label{eq:sdf_non_normee}
     s\p{t} = \left(
-    \begin{array}{c}
-      {\caCest{2\,\scalp{s}{t\mapsto 1}}{a_0}\;1} \\
-      + \somme{n=1}{+\infty}{\caCest{2\,\scalp{s}{\cos_n}}{a\b{n}}\;\cos_n(t)}  \\
-      + \somme{n=1}{+\infty}{\caCest{2\,\scalp{s}{\sin_n'}}{b\b{n}}\;\sin_n(t)}     
-    \end{array}\right)
-  = \left(
-    \begin{array}{c}
-      \frac{a_0}{2}  \\
-      + \somme{n=1}{+\infty}{\caCest{2\,\scalp{s}{\cos_n}}{a\b{n}}\;\cos_n(t)}  \\
-      + \somme{n=1}{+\infty}{\caCest{2\,\scalp{s}{\sin_n}}{b\b{n}}\;\sin_n(t)}
-    \end{array}\right)
-\end{equation}
-Avec $\norme{t\mapsto 1}^2=1$, $\norme{\cos_n}^2=\norme{\sin_n}^2= \frac{1}{2}$.
+      \begin{array}{c}
+        {\caCest{2\,\scalp{s}{t\mapsto 1}}{a_0}\;1} \\
+        + \somme{n=1}{+\infty}{\caCest{2\,\scalp{s}{\cos_n}}{a\b{n}}\;\cos_n(t)}  \\
+        + \somme{n=1}{+\infty}{\caCest{2\,\scalp{s}{\sin_n'}}{b\b{n}}\;\sin_n(t)}     
+      \end{array}\right)
+    = \left(
+      \begin{array}{c}
+        \frac{a_0}{2}  \\
+        + \somme{n=1}{+\infty}{\caCest{2\,\scalp{s}{\cos_n}}{a\b{n}}\;\cos_n(t)}  \\
+        + \somme{n=1}{+\infty}{\caCest{2\,\scalp{s}{\sin_n}}{b\b{n}}\;\sin_n(t)}
+      \end{array}\right)
+  \end{equation}
+  Avec $\norme{t\mapsto 1}^2=1$,
+  $\norme{\cos_n}^2=\norme{\sin_n}^2= \frac{1}{2}$.
 
 \end{exercice}
 
 
 \subsection{Base de la \TFSD{}}
 
-La \TFSD{} (Transformée de \Fourier{} des Signaux Discrets), ou \DTFT{} (\emph{Discrete Time Fourrier Transform} en anglais, s'applique aux fonctions à variable discrète et utilise une base d'ondes complexes indénombrable $\Bf=\p{\caCest{k\mapsto W_{T_e}^{f\,k}=e^{i 2 \pi\,T_e\,f\,k}}{w_{T_e}^f}}_{f\in\SFe{}}$ avec $W_{Te}=e^{i 2 \pi\,T_e}$.
+La \TFSD{} (Transformée de \Fourier{} des Signaux Discrets), ou
+\DTFT{} (\emph{Discrete Time Fourrier Transform} en anglais),
+s'applique aux fonctions à variable discrète et utilise une base
+d'ondes complexes indénombrable
+$\Bf=\p{\caCest{k\mapsto W_{T_e}^{f\,k}=e^{i 2
+      \pi\,T_e\,f\,k}}{w_{T_e}^f}}_{f\in\SFe{}}$ avec
+$W_{Te}=e^{i 2 \pi\,T_e}$.
 
 \begin{exercice}
-Tentez de trouver la formule de cette \TFSD{}  et son inverse, d'esquisser le schéma ci-dessous sans le regarder, en pensant que c'est la \og{}duale\fg{} de la \sdf{}. Il s'agit d'une application de $$\N\rightarrow\C\;\;\operateur{\TFSD}\;\;\RFe\rightarrow\C$$ basée sur le produit scalaire discret noté $\scald{}{}$ avec la base continue $\Bf=\p{w_{T_e}^f}_{f\in\SFe}$
+  Tentez de trouver la formule de cette \TFSD{} et son inverse,
+  d'esquisser le schéma ci-dessous sans le regarder, en pensant que
+  c'est la \og{}duale\fg{} de la \sdf. Il s'agit d'une application
+  de $$\N\rightarrow\C\;\;\operateur{\TFSD}\;\;\RFe\rightarrow\C$$
+  basée sur le produit scalaire discret noté $\scald{}{}$ avec la base
+  continue $\Bf=\p{w_{T_e}^f}_{f\in\SFe}$
 \end{exercice}
 
 \graphe{\textwidth}{tfsd}
 
 
-On peut difficilement faire l'analogie avec les espaces Euclidiens  car~:
+On peut difficilement faire l'analogie avec les espaces Euclidiens
+car~:
 \begin{itemize}
-   \item le produit scalaire $\scald{}{}$ fonctionne dans le cas de suites discretes absoluement convergentes~;
- \item ce n'est pas un isomorphisme car on passe d'un espace discret à un espace continu périodique~! La transformée inverse se fait avec le produit scalaire continu périodique $\scalp{}{}$ (Attention la période dans l'espace des fréquences est $F_e$)~;
-\item la base n'est pas finie, ni dénombrable  mais infinie indénombrable.
+\item le produit scalaire $\scald{}{}$ fonctionne dans le cas de
+  suites discretes absoluement convergentes~;
+\item ce n'est pas un isomorphisme, car on passe d'un espace discret à
+  un espace continu périodique~! La transformée inverse se fait avec
+  le produit scalaire continu périodique $\scalp{}{}$ (Attention la
+  période dans l'espace des fréquences est $F_e$)~;
+\item la base n'est pas finie ni dénombrable, mais infinie
+  indénombrable.
 \end{itemize}
 
 
 \begin{exercice}
-  On admet pour le moment que la \TFSD{} d'un signal $s[k]$ quelconque est une fonction $S(f)$ de période $F_e$. On peut donc voir $S(f)$ comme une fonction de période $F_e$ de la variable réelle $f$ et y appliquer une décomposition en séries de \Fourier{}!
+  On admet pour le moment que la \TFSD{} d'un signal $s[k]$ quelconque
+  est une fonction $S(f)$ de période $F_e$. On peut donc voir $S(f)$
+  comme une fonction de période $F_e$ de la variable réelle $f$ et y
+  appliquer une décomposition en séries de \Fourier{}!
 
-  Faites-le et comparez avec la \TFSD{} inverse. Vous venez de basculer dans un dual ! D'ailleurs on peut voir $s[k]$ comme les coefficients de \Fourier{} d'une fonction de fréquence fondamentale $T_E$ et appliquer une recomposition de la série et trouver $S(f)$.
+  Faites-le et comparez avec la \TFSD{} inverse. Vous venez de
+  basculer dans un dual ! D'ailleurs on peut voir $s[k]$ comme les
+  coefficients de \Fourier{} d'une fonction de fréquence fondamentale
+  $T_E$ et appliquer une recomposition de la série et trouver $S(f)$.
 
   Donc \TFSD{}=\sdf{}$^{-1}$ et inversement \sdf{}=\TFSD{}$^{-1}$
 \end{exercice}
 
-\subsection{Base de la \TFD{} et  \FFT{}}
+\subsection{Base de la \TFD{} et \FFT}
 
-La \TFD{} (Transformée de \Fourier{} Discrète), ou \DFT{} (\emph{Direct Fourier Transform}) en anglais, s'applique aux fonctions discrètes à support fini et utilisent une base d'ondes complexes discrète finie $\Bf=\p{\caCest{k\mapsto W_N^{nk}=e^{i \frac{2 \pi}{N}\,n\,k}}{\vec{W_N^{n}}}}_{n\in\SN0}$ avec $W_N=e^{i \frac{2 \pi}{N}}$.
+La \TFD{} (Transformée de \Fourier{} Discrète), ou \DFT{}
+(\emph{Direct Fourier Transform}) en anglais, s'applique aux fonctions
+discrètes à support fini et utilisent une base d'ondes complexes
+discrète finie
+$\Bf=\p{\caCest{k\mapsto W_N^{nk}=e^{i \frac{2
+        \pi}{N}\,n\,k}}{\vec{W_N^{n}}}}_{n\in\SN0}$ avec
+$W_N=e^{i \frac{2 \pi}{N}}$.
 
-La $\FFT{}$ (\emph{Fast Fourier Transform} en anglais uniquement) est un algorithme efficace de calcul de la \TFD{}~: c'est donc la même transformation avec les mêmes valeurs~!
+La $\FFT{}$ (\emph{Fast Fourier Transform} en anglais uniquement) est
+un algorithme efficace de calcul de la \TFD{}~: c'est donc la même
+transformation avec les mêmes valeurs~!
 
 \begin{exercice}
-Tentez de trouver la formule de cette \TFD{}  et son inverse, d'esquisser le schéma ci-dessous sans le regarder. Il s'agit d'une application de $$\SN0\rightarrow\C\;\;\operateur{\TFD}\;\;\SN0\rightarrow\C$$ basée sur le p.s. discret périodique noté $\scaldp{}{}$ avec la base continue $\Bf=\p{\vec{w_N^{n}}}_{n\in\SN0}$
+  Tentez de trouver la formule de cette \TFD{} et son inverse,
+  d'esquisser le schéma ci-dessous sans le regarder. Il s'agit d'une
+  application
+  de $$\SN0\rightarrow\C\;\;\operateur{\TFD}\;\;\SN0\rightarrow\C$$
+  basée sur le p.s. discret périodique noté $\scaldp{}{}$ avec la base
+  continue $\Bf=\p{\vec{w_N^{n}}}_{n\in\SN0}$
 \end{exercice}
 
 \graphe{\textwidth}{tfd}
 
 
-On peut faire l'analogie avec les espaces Euclidiens finis et \textbf{on peut faire l'amalgame~!} car c'en est un mais dans $\C$ donc~:
+On peut faire l'analogie avec les espaces Euclidiens finis et
+\textbf{on peut faire l'amalgame~!} Car c'en est un mais dans $\C$
+donc~:
 \begin{itemize}
-\item le produit scalaire n'est pas symétrique mais \og{}symétrique et demi\fg{} \cad \emph{sesquilinéaire} car $\scal{u}{v}=\conj{\scal{v}{u}}$.
+\item le produit scalaire n'est pas symétrique mais \og{}symétrique et
+  demi\fg{} \cad \emph{sesquilinéaire} car
+  $\scal{u}{v}=\conj{\scal{v}{u}}$.
 \end{itemize}
 
 \begin{remarque}\remarqueTitre{Base orthogonale non normée}
-  Au  produit scalaire $\scalp{f}{g}=$
-  Le terme $W_N= e^{-i \frac{2 \pi}{N}}$ est en fait une racine $N$ième de l'unité. Le calcul de la norme $\norme{w_n}$ du vecteur de la base $w_n=k\mapsto W_N^{-nk}$ devient donc~: $$\scaldp{w_n}{w_n}=\somme{k=0}{N-1}{e^{i \frac{2 \pi}{N}nk}\,.\,e^{-i \frac{2 \pi}{N}nk}} =\somme{k=0}{N-1}{1}=N $$
+  Au produit scalaire $\scalp{f}{g}=$ Le terme
+  $W_N= e^{-i \frac{2 \pi}{N}}$ est en fait une racine $N$ième de
+  l'unité. Le calcul de la norme $\norme{w_n}$ du vecteur de la base
+  $w_n=k\mapsto W_N^{-nk}$ devient
+  donc~:
+  $$\scaldp{w_n}{w_n}=\somme{k=0}{N-1}{e^{i \frac{2
+        \pi}{N}nk}\,.\,e^{-i \frac{2 \pi}{N}nk}}
+  =\somme{k=0}{N-1}{1}=N $$
 
-  La formulation normée et symétrique de la \TFD{} \eqref{eq:tfd_normee} fait donc intervenir un facteur $\frac{1}{\sqrt{N}}$ pour la \TFD{} et son inverse~:
-\begin{eqnarray}
+  La formulation normée et symétrique de la \TFD{}
+  \eqref{eq:tfd_normee} fait donc intervenir un facteur
+  $\frac{1}{\sqrt{N}}$ pour la \TFD{} et son inverse~:
+  \begin{eqnarray}
     \label{eq:tfd_normee}
     s\b{k} = \somme{n\in\N}{}{\caCest{\scaldp{s}{w_n'}}{S\b{n}}\; w_n'} &= \somme{n\in\N}{}{\scaldp{s}{\frac{w_n}{\sqrt{N}}}}\;\, \frac{w_n}{\sqrt{N}} &\text{avec } \norme{w_n'}^2=\norme{\frac{w_n}{\sqrt{N}}}^2=1
   \end{eqnarray}
   
-  Pour des raisons de simplicité et de contrainte de calcul numérique, la formulation non normée \eqref{eq:tfd_non_normee} est largement utilisée. Cela fait donc apparaitre le terme $\frac{1}{N}$ dans la \TFD{} inverse.
+  Pour des raisons de simplicité et de contrainte de calcul numérique,
+  la formulation non normée \eqref{eq:tfd_non_normee} est largement
+  utilisée. Cela fait donc apparaitre le terme $\frac{1}{N}$ dans la
+  \TFD{} inverse.
 
   \begin{eqnarray}
     \label{eq:tfd_non_normee}
@@ -981,21 +1164,31 @@ On peut faire l'analogie avec les espaces Euclidiens finis et \textbf{on peut fa
   \end{eqnarray}
 \end{remarque}
 
-La transformée s'écrit aisément sous forme matricielle soit en considérant la transformée comme une application linéaire effectuant le changement de coordonnées entre les vecteur de la base canonique et la base fréquentielle, soit en faisant le changement de repère sous forme vectorielle~:
+La transformée s'écrit aisément sous forme matricielle soit en
+considérant la transformée comme une application linéaire effectuant
+le changement de coordonnées entre les vecteurs de la base canonique et
+la base fréquentielle, soit en faisant le changement de repère sous
+forme vectorielle~:
 
 \begin{equation}
   \label{eq:tfd_matrice}
   \begin{array}{ll}
     \mTFD\b{\vec{s}} = \hat{S}=s_{B_F}&=\vvvectBase{\scaldp{s}{w_0}}{\vdots}{\scaldp{s}{w_{N-1}}}{B_F}\\
-    &= \vvvectBase{\Tr{s} \, .\, \conj{w_0}}{\vdots}{\Tr{s} \, .\, \conj{w_{N-1}}}{B_F} = \vvvectBase{\Tr{\conj{w_0}} \, .\, s}{\vdots}{\Tr{\conj{w_{N-1}}} \, .\, s}{B_F}  \\
+                                      &= \vvvectBase{\Tr{s} \, .\, \conj{w_0}}{\vdots}{\Tr{s} \, .\, \conj{w_{N-1}}}{B_F} = \vvvectBase{\Tr{\conj{w_0}} \, .\, s}{\vdots}{\Tr{\conj{w_{N-1}}} \, .\, s}{B_F}  \\
                                       &=\caCest{\b{\mmmaaatrice{\conj{w_0[0]}}{\ldots}{\conj{w_0[N-1]}}{\vdots}{}{\vdots}{\conj{w_{N-1}[0]}}{\ldots}{\conj{w_{N-1}[N-1]}}}}{M_{\F}}\;\;.\;\; \caCest{\vvvectBase{s[0]}{\vdots}{s[N-1]}{B_C}}{s_{B_c}} \\
-    &S_{B_F} = M_{\F}\,.\,s_{B_c} 
+                                      &S_{B_F} = M_{\F}\,.\,s_{B_c} 
   \end{array}
 \end{equation}
 
-On peut donc calculer la \TFD{} d'un signal en multipliant le vecteur du signal temporel par une matrice $M_{\F}$ pour obtenir le vecteur des composantes fréquentielle~: la \TFD{} du signal.
+On peut donc calculer la \TFD{} d'un signal en multipliant le vecteur
+du signal temporel par une matrice $M_{\F}$ pour obtenir le vecteur
+des composantes fréquentielle~: la \TFD{} du signal.
 
-Donc la matrice $M_{\F}$ représente un changement de base d'une base orthonormée canonique $B_c$ vers la  base orthogonale fréquentielle $B_F$, c'est donc la matrice de l'application identité $\Id$ du signal d'une base vers l'autre, ou plus simplement la matrice de passage $M_{\F} = P_{B_F\leftarrow B_c} = \mat\p{\Id,B_F,B_c}$
+Donc la matrice $M_{\F}$ représente un changement de base d'une base
+orthonormée canonique $B_c$ vers la base orthogonale fréquencielle
+$B_F$, c'est donc la matrice de l'application identité $\Id$ du signal
+d'une base vers l'autre, ou plus simplement la matrice de passage
+$M_{\F} = P_{B_F\leftarrow B_c} = \mat\p{\Id,B_F,B_c}$
 \section{Dualité des transformées}
 \label{sec:dualite}
 
@@ -1023,9 +1216,7 @@ dans F et elles sont réciproques entre-elles) ~:
 Sans rentrer dans la véritable définition d'un dual et de la dualité,
 nous pouvons garder cette notion de transformation d'un espace primal
 en son espace dual, et que si l'on retransforme le dual de la même
-manière alors on obtient à nouveau le primal. Le dual est comme une
-application qui est sa propre réciproque mais cela à l'échelle de la
-transformation d'ensemble qui est sa propre réciproque.
+manière alors on obtient à nouveau le primal. 
 
 L'idée d'appliquer la \TFSD{} à la \sdf{} $n\mapsto \hat{S}[n]$ de la
 fonction primale $t\mapsto s(t)$, soit de faire le dual du dual, nous
@@ -1036,19 +1227,19 @@ car ces espaces sont duaux.
   Prenons le signal constant périodique $s : t\mapsto 1$, toutes ses
   projections $\scalp{s}{t\mapsto e^{i2\pi\,t\,n\,F_0}}$ sont nulles
   pour $n\neq0$ sauf pour le vecteur $w_0 : t\mapsto 1$. Donc sa
-  \sdf{} est la suite complexes nulle partout sauf pour n=0 soit
+  \sdf{} est la suite complexe nulle partout sauf pour n=0 soit
   l'impulsion unité en 0 : $n\mapsto\delta_0[n]$.
 
   Si l'on applique la \TFSD{} à la \sdf{} $\hat{S}$ on obtient la
   fonction périodique constante et égale $1$ soit la fonction de
   départ du primal $s$ !
 
-  Essayez de faire cela pour un fonction périodique $s(t)$
+  Essayez de faire cela pour une fonction périodique $s(t)$
   quelconque~: soit montrer que $\TFSD{}\b{\sdf{}\b{s}}=s$ et donc
   $\TFSD{} \circ \sdf{} = \Id$ où $\Id$ est l'application identité des
   fonctions périodiques.  Ou son dual : soit pour une suite complexe
   $s[k]$ montrer que $\sdf \circ \TFSD = \Id$ où $\Id$ est
-  l'application identité des suite complexes.
+  l'application identité des suites complexes.
   
 \end{exercice}
 
@@ -1057,7 +1248,7 @@ La \sdf{} permet de créer l'espace dual des fonctions périodiques, en
 utilisant le produit scalaire avec les signaux de la base de \Fourier,
 qui est alors un espace des suites complexes. La \TFSD{} permet de
 créer le dual des suites complexes, en utilisant le produit scalaire
-avec la base de \Fourier{}, qui est un espace des fonctions
+avec la base de \Fourier, qui est un espace des fonctions
 périodiques.
 
 L'idée d'appliquer la \TF{} à la transformée $\hat{S}$ d'une fonction
@@ -1069,8 +1260,8 @@ près~!
 \begin{exercice}
   Prenons un signal pair de transformée connue (comme la fonction
   porte et son sinus cardinal) et calculez la transformée de la
-  transformée (aussi connue à tout les coup). Vous vérifierez que
-  \textbf{pour les fonction paires réelles} $\F{}\circ\F{}=\Id$ des
+  transformée (aussi connue à tous les coups). Vous vérifierez que
+  \textbf{pour les fonctions paires réelles} $\F{}\circ\F{}=\Id$ des
   fonctions réelles paires.
 
   On pourrait faire de même avec des fonctions imaginaires impaires et
@@ -1083,7 +1274,7 @@ près~!
 
 Si on calcule la transformée de $\Sy\b{s} : t\mapsto s(-t)$,
 \textbf{où $\Sy{}$ est l'opérateur qui retourne une fonction dans le
-  temps} (défini ci-après dans def.~\ref{def:Sy}) , on obtient par
+  temps} (défini ci-après dans def.~\ref{def:Sy}), on obtient par
 changement de variable $x=-t$ la transformée inverse~:
 
 \begin{eqnarray}
@@ -1113,10 +1304,10 @@ symétrique $\Sy\circ\hat{S}$, on trouve le graphique
 \figref{fig:dualite_4_f}.
 \begin{figure}[ht!]
   \centering \graphe{0.6\textwidth}{dualite_4}
-  \caption{Dualité de la transformation symétrie temporelle $\Sy$ car
-    le symétrique du symétrique est lui même et bi--dualité de la
-    transformée de \Fourier{} car transformer deux fois un signal
-    c'est le retourner donc $\F{}^2=\Sy{}$ est duale et $\F{}$ est
+  \caption{Dualité de la transformation symétrie temporelle $\Sy$, car
+    le symétrique du symétrique est lui-même et bi--dualité de la
+    transformée de \Fourier{} car transformer deux fois un signal, c'est 
+    le retourner donc $\F{}^2=\Sy{}$ est duale et $\F{}$ est
     dite biduale.}
   \label{fig:dualite_4_f}
 \end{figure}
@@ -1136,14 +1327,14 @@ symétrique $\Sy\circ\hat{S}$, on trouve le graphique
   \end{itemize}
 
   Associez ces 4 relations aux quatre couleurs de flèches (vert,
-  orange, cyan, rose) du diagramme et remplacez les \og{}?\fg{}
+  orange, cyan, rose) du diagramme et remplacez-les \og{}?\fg{}
 
   Prenez en primal le signal porte
   $s(t)=\Pi_T(t)=u(t+\frac{T}{2})-u(t-\frac{T}{2})$ (signal nul
   partout sauf sur un intervalle de largeur $T$ autour de 0) dont on
   connaît la transformée sous forme de sinus cardinal
   $\hat{S}(f)=T\,\sinc\p{\pi\,f\,T}$ (utiliser la transformée de
-  \Laplace, le théorème du retard et la passage à la transformée avec
+  \Laplace, le théorème du retard et le passage à la transformée avec
   $p=i2\pi\,f$ pour retrouver cette formule ou par calcul
   direct). Appliquez ces formules pour trouver la transformée d'un
   sinus cardinal (fonction paire !)
@@ -1155,15 +1346,19 @@ opérateurs $\F$ et $\Sy$, notamment sur le fait qu'ils commutent
 bien~:
 \begin{description}
 \item $\F^2\circ\F^2 = \Sy\circ\Sy =\; \Id \; = \Sy^2 = \F^4$
-\item $\Finv = \caCest{\F\circ\Sy}{\text{vert}} = \caCest{\Sy\circ\F}{\hat{S}\p{-\bullet}\text{ ou orange}}$
-\item $\F = \caCest{\Finv\circ\Sy}{\text{rose}} = \caCest{\Sy\circ\Finv}{\hat{S}\p{\bullet}\text{ ou orange}}$
+\item
+  $\Finv = \caCest{\F\circ\Sy}{\text{vert}} =
+  \caCest{\Sy\circ\F}{\hat{S}\p{-\bullet}\text{ ou orange}}$
+\item
+  $\F = \caCest{\Finv\circ\Sy}{\text{rose}} =
+  \caCest{\Sy\circ\Finv}{\hat{S}\p{\bullet}\text{ ou orange}}$
 \end{description}
 \begin{remarque} \remarqueTitre{De même pour la \TFD{}}
   
   On obtient le même type de diagramme avec la \TFD{} mais avec un
   retournement temporel discret périodique
   $\Sy : k \mapsto s[-k]= s[N-k]$ ce qui permet de conserver la
-  relation $\mTFD\circ\Sy=\mTFD^{-1}$ mais avec une base normalisée~!
+  relation $\mTFD\circ\Sy=\mTFD^{-1}$, mais avec une base normalisée~!
   Il faut donc faire attention et préférer la \TFD{} normalisée en la
   divisant par $\sqrt{N}$.
   
@@ -1199,7 +1394,7 @@ bien~:
       \right]}{M_{\F}}\;.\;s_4
   \end{equation}
   avec $M_{\F}^{-1}=\Tr{M_{\F}}$ la matrice transposée. Car lors d'un
-  changement entre base orthonormées, la matrice de passage est
+  changement entre bases orthonormées, la matrice de passage est
   symétrique et orthogonale~: la transposée est aussi l'inverse.
   
   
@@ -1212,7 +1407,8 @@ bien~:
 
 \subsection{Interpolation et gavage de zéro~: opérations duales}
 
-\subsection{Sur-échantillonnage et multiplication de période~: opérations duales}
+\subsection{Sur-échantillonnage et multiplication de période~:
+  opérations duales}
 
 \subsection{Décimation et division de période~: opérations duales}
 

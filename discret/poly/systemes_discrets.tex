@@ -10,10 +10,11 @@ une vision par opérateurs.
 
 \begin{definition}{Système SISO (Single Input Single Output)}
   
-  Un système discret SISO (resp. continu SISO) relie à un signal d'entrée $x$
-  un signal de sortie unique $y$. Les signaux $x$ et $y$ sont des
-  fonctions de la variables réelle discrète $k$ (resp. $t$) appartenant
-  à un espace de fonction le plus général possible noté ici $L_E$.
+  Un système discret SISO (resp. continu SISO) relie à un signal
+  d'entré $x$ un signal de sortie unique $y$. Les signaux $x$ et $y$
+  sont des fonctions de la variable réelle discrète $k$ (resp. $t$)
+  appartenant à un espace de fonction le plus général possible noté
+  ici $L_E$.
 
   La relation entrée-sortie est donc modélisée par une application
   mathématique de $L_E$ dans $L_E$ notée $L$ (resp. $L_c$ en continu)
@@ -32,7 +33,7 @@ mathématiques.
 \begin{definition}{Système linéaire}
   \label{def:linearite}
   
-  Une système est dit linéaire si, et seulement si, l'application $L$
+  Un système est dit linéaire si, et seulement si, l'application $L$
   associée est linéaire, soit pour tout
   $\p{x_1,x_2,\lambda} \in L_E^2 \times \R$~:
   \begin{eqnarray}
@@ -50,23 +51,25 @@ réponses de chaque entrée.\fg{}
 \begin{definition}{Systèmes continus élémentaires}
   \label{def:systeme_elementaires_continus}
   
-Les trois systèmes linéaires élémentaires que nous considérons dans
-l'étude des systèmes linéaires continus sont :
-\begin{description}
-\item[le gain $a.x$]~: $t \mapsto a\,x\p{t}$ où a est une constante
-  scalaire réelle ou complexe
-\item[le dérivateur $\oder\b{x}=\oder\circ x$]~: $ t \mapsto \dDtDe{x}\p{t} $
-\item[l'intégrateur $\oint\b{x}=\oint\circ x$]~: $ t \mapsto \integ{0}{t}{x\p{\nu}\derivDe{\nu}}$ 
-\end{description}
+  Les trois systèmes linéaires élémentaires que nous considérons dans
+  l'étude des systèmes linéaires continus sont :
+  \begin{description}
+  \item[le gain $a.x$]~: $t \mapsto a\,x\p{t}$ où a est une constante
+    scalaire réelle ou complexe
+  \item[le dérivateur $\oder\b{x}=\oder\circ x$]~:
+    $ t \mapsto \dDtDe{x}\p{t} $
+  \item[l'intégrateur $\oint\b{x}=\oint\circ x$]~:
+    $ t \mapsto \integ{0}{t}{x\p{\nu}\derivDe{\nu}}$
+  \end{description}
 \end{definition}
 
 On peut aisément vérifier que ces systèmes respectent la condition de
 linéarité~\ref{eq:def_linearite}.
 
 \begin{remarque}
-  De manière implicite, on choisi un espace de fonction $L_c$ qui est
+  De manière implicite, on choisit un espace de fonction $L_c$ qui est
   stable par toute combinaison de compositions de ces opérateurs (même
-  une infinité de composition de $\oder$ par exemple) soit un espace
+  une infinité de compositions de $\oder$ par exemple) soit un espace
   complet de fonctions.
 
   On aimerait que les opérateurs dérivateur $\oder$ et intégrale
@@ -82,13 +85,15 @@ linéarité~\ref{eq:def_linearite}.
 
 \begin{definition}{Systèmes élémentaires discrets}
   
-Dans le cas des systèmes discret, les systèmes élémentaires sont :
-\begin{description}
-\item[le gain $a.x$]~: $ k \mapsto a\,x\b{k}$ où a est une constante
-  scalaire réelle ou complexe
-\item[le retard unité $\oret\b{x}=\oret\circ x$]~: $ k \mapsto x\b{k-1}$.
-\item[l'avance unité $\oavance\b{x}=\oavance\circ x$]~: $ k \mapsto x\b{k+1} $ 
-\end{description}
+  Dans le cas des systèmes discret, les systèmes élémentaires sont :
+  \begin{description}
+  \item[le gain $a.x$]~: $ k \mapsto a\,x\b{k}$ où a est une constante
+    scalaire réelle ou complexe
+  \item[le retard unité $\oret\b{x}=\oret\circ x$]~:
+    $ k \mapsto x\b{k-1}$.
+  \item[l'avance unité $\oavance\b{x}=\oavance\circ x$]~:
+    $ k \mapsto x\b{k+1} $
+  \end{description}
 \end{definition}
 
 On peut aisément vérifier que ces systèmes respectent la condition de
@@ -109,16 +114,17 @@ linéarité~\ref{eq:def_linearite}.
   complet par l'application des opérateurs élémentaires.
 \end{remarque}
 
-L'opérateur dérivée n'as pas de sens en discret car la limite
+L'opérateur dérivée n'a pas de sens en discret, car la limite
 $s'(x)=\lim\limits_{h\to 0} \frac{s(x+h)-s(x)}{h}$ n'aurait pas de
 sens pour $h$ entier. On peut s'approcher de cet opérateur avec des
-combinasons plus ou moins complexes et précises des opérateusr avance et
-retard élémentaires.
+combinasons plus ou moins complexes et précises des opérateusr avance
+et retard élémentaires.
 
 \begin{exemple}
   \label{exemple:differentiateur_lineaire}
-  L'effet du système \emph{différentiateur} sur le signal d'entrée est d'écrit par
-  l'opérateur ~: $$L : x \mapsto y=\frac{x-\oret\b{x}}{T_e}$$
+  L'effet du système \emph{différentiateur} sur le signal d'entrée est
+  d'écrit par l'opérateur ~:
+  $$L : x \mapsto y=\frac{x-\oret\b{x}}{T_e}$$
   
   Vérifions d'abord que cet opérateur est linéaire~:
   \begin{eqnarray*}
@@ -134,19 +140,19 @@ retard élémentaires.
 % \begin{remarque}
 %   Pour résoudre les complexes équations différentielles des
 %   télégraphistes, \Heaviside{} utilise ces opérateurs de base et
-%   introduit le \emph{calcul opérationnel}. Cela consiste à représenter
-%   l'application de l'opérateur dérivée sur une fonction $f$ comme une
-%   simple multiplication par un nombre $p$. Ainsi une équation
-%   différentielle $a\,y'' + 2y' -y = 3\int x$ est associée à l'équation
-%   symbolique $a\,p^2\,y + 2\,p\,y - y = \frac{3}{p}x$. Il est alors
-%   possible de résoudre algébriquement l'équation sous forme de
-%   fractions rationnelles ce qui donnerait avec notre exemple~:
-%   $y = \frac{3/p}{a\,p^2+2p+1} x$. Rappelons que $x$ et $y$ sont des
-%   fonctions et non des réels et que dans ce cas les opérations ne sont
-%   pas de simple multiplication et addition de réels mais bien des
-%   multiplications et additions de fonctions. La variable symbolique
-%   $p$ est utilisée comme un nombre réel mais n'est en aucun cas un
-%   réel...
+%   introduit le \emph{calcul opérationnel}. Cela consiste à
+%   représenter l'application de l'opérateur dérivée sur une fonction
+%   $f$ comme une simple multiplication par un nombre $p$. Ainsi une
+%   équation différentielle $a\,y'' + 2y' -y = 3\int x$ est associée à
+%   l'équation symbolique $a\,p^2\,y + 2\,p\,y - y = \frac{3}{p}x$. Il
+%   est alors possible de résoudre algébriquement l'équation sous
+%   forme de fractions rationnelles ce qui donnerait avec notre
+%   exemple~: $y = \frac{3/p}{a\,p^2+2p+1} x$. Rappelons que $x$ et
+%   $y$ sont des fonctions et non des réels et que dans ce cas les
+%   opérations ne sont pas de simple multiplication et addition de
+%   réels mais bien des multiplications et additions de fonctions. La
+%   variable symbolique $p$ est utilisée comme un nombre réel mais
+%   n'est en aucun cas un réel...
 % \end{remarque}
 
 \section{Systèmes invariants}
@@ -154,16 +160,18 @@ Il est fréquent, et surtout théoriquement utile, qu'un système
 réagisse de la même manière indépendemment de l'instant où est
 appliqué le signal d'entrée. Ce qui conduit à la définition suivante~:
 \begin{definition}{Système invariant dans le temps}
-  Un système discrète (resp. continu) est dit invariant dans le temps si et seulement
-  si son application associée $L$ (resp. $L_c$) vérifie~:
+  Un système discret (resp. continu) est dit invariant dans le temps
+  si et seulement si son application associée $L$ (resp. $L_c$)
+  vérifie~:
   \begin{eqnarray}
     \forall x\in L_E, \forall (k,k_0)\in \N^2, \quads L[k\mapsto x(k-k_{0})] = L[x](k-k_{0}) \\
     \forall x\in L_E, \forall (t,t_0)\in \R^2, \quads L_c[t\mapsto x(t-t_{0})] = L[x](t-t_{0}) 
   \end{eqnarray}
   
-  En terme d'opérateur~;  un système $L$ est invariant dans
-  le temps si, et seulement si, son opérateur commute avec  tout opérateur
-  retard de $k_0$ noté $\oretDe{k_0}=\oret^{k_0}\b{x}= k\mapsto x\b{k-k_0}$~:
+  En terme d'opérateur~; un système $L$ est invariant dans le temps
+  si, et seulement si, son opérateur commute avec tout opérateur
+  retard de $k_0$ noté
+  $\oretDe{k_0}=\oret^{k_0}\b{x}= k\mapsto x\b{k-k_0}$~:
   \begin{eqnarray}
     \label{eq:sys_invariant}
     L\circ\oretDe{k_0} \; = \; \oretDe{k_0}\circ L  \qquad \iff \qquad  L\b{\oretDe{k_0}\b{x}} = \oretDe{k_0}\b{L\b{x}}
@@ -183,8 +191,8 @@ système ne dépend pas de l'origine des temps choisie.\fg{}
   Il est facile de vérifier que les systèmes discrets élémentaires que
   sont le gain~; le retard unitaire et l'avance unitaire (gain,
   dérivateur et intégrateur pour le continu) sont invariants.  Il en
-  est de même pour tout système constitué de combinaisons linéaires
-  et de composition de systèmes élémentaires.
+  est de même pour tout système constitué de combinaisons linéaires et
+  de composition de systèmes élémentaires.
   
   Il suffit alors de montrer que le système se décompose avec des
   \emph{coefficients constants} avec des systèmes élémentaires en le
@@ -199,11 +207,11 @@ système ne dépend pas de l'origine des temps choisie.\fg{}
 Rappelons qu'un système peut aussi bien représenter un correcteur dans
 une boucle d'asservissement, qu'un filtre utilisé en boucle ouverte,
 ou bien un modèle de système à commander ou observer~: calculer la
-réponse d'un système à un signal c'est aussi  \og{}faire du
+réponse d'un système à un signal, c'est aussi \og{}faire du
 filtrage.\fg{}
 
 Nous allons d'abord montrer que l'opération de filtrage consiste en
-temporel à effectuer une convolution du signal d'entrée $x$ avec la
+temporel à effectuer une convolution du signal d'entré $x$ avec la
 réponse impulsionnelle $h$ du système $H$ ainsi défini.
 
 En un second temps nous utiliserons la réponse impulsionnelle pour
@@ -216,22 +224,22 @@ transformée de la réponse impulsionnelle $\TZ\p{h}=\TZlui{H}$.
 \subsection{Réponse impulsionnelle}
 Dans le cas discret, l'obtention de la réponse d'un système est facile
 à obtenir en utilisant les propriétés LTI du système $H$ et en
-décomposant le signal d'entrée $x$ dans la base temporelle canonique.
+décomposant le signal d'entré $x$ dans la base temporelle canonique.
 
 
 Contrairement au cas continu, un signal d'entrée quelconque $x$ se
 décompose facilement en impulsions unité (voir la base temporelle de
 $\RN$ dans \secref{sec:RN}). La \figref{fig:reponse_convolution}
-reprend la décomposition en impulsions d'un signal d'entrée
-$s=k\mapsto \somme{j\in\Z}{}{s[j].d_j\ded{k}}$ et applique un
-système $H$ de réponse impulsionnelle $h$ à chaque impulsion pour
-obtenir la réponse $y$ du système.
+reprend la décomposition en impulsions d'un signal d'entré
+$s=k\mapsto \somme{j\in\Z}{}{s[j].d_j\ded{k}}$ et applique un système
+$H$ de réponse impulsionnelle $h$ à chaque impulsion pour obtenir la
+réponse $y$ du système.
 
 \begin{figure}[ht!]
   \centering \graphe{0.9\textwidth}{reponse_convolution}
   \caption{La réponse d'un système linéaire invariant $y$ est la somme
     des réponses impulsionnelles des impulsions qui composent le
-    signal d'entrée $s$.}
+    signal d'entré $s$.}
   \label{fig:reponse_convolution}
 \end{figure}
 
@@ -254,7 +262,7 @@ où l'opérateur $\conv$ est la convolution discrète définie ci-après.
 \begin{definition}{Convolution discrète}
   \label{def:convolution_discrete}
   
-  La convolution de signaux discret $u$ et $v$ notée $u\conv v$ est le
+  La convolution de signaux discrets $u$ et $v$ notée $u\conv v$ est le
   signal discret défini par~:
   \begin{align}
     \label{eq:convolution_discrete}
@@ -285,20 +293,21 @@ où l'opérateur $\conv$ est la convolution discrète définie ci-après.
   \ded{-\caCest{\p{j+k}}{\text{avance}}}=s\ded{-j-k}$$
 
   On remarque donc que $\oret^{-k}\circ\Sy\neq\Sy\circ\oret^{-k}$. En
-  revanche prendre un signal, le retourner avec $\Sy$ puis le \emph{retarder}
-  avec $\oret^{k}$ donne
+  revanche prendre un signal, le retourner avec $\Sy$ puis le
+  \emph{retarder} avec $\oret^{k}$ donne
   $$\caCest{\oret^{k}\;\circ}{\text{Retard de }}\;\caCest{\Sy}{\text{symétrie}}\b{s}= \oret^{k}\b{\caCest{\Sy\b{s}}{j\mapsto s\ded{-j}}}\,: j\mapsto s\ded{-\p{j-k}}=s\ded{k-j}$$
 
   Donc la commutation donne $\Sy\circ\oret^{-k}=\oret^{k}\circ\Sy$,
   autrement dit soit~:
 
-\emph{  \og{} La symétrie de l'avance d'un signal est le retard de son
-  symétrique\fg.}
+  \emph{ \og{} La symétrie de l'avance d'un signal est le retard de
+    son symétrique\fg.}
 \end{remarque}
 
-L'analogie avec la convolution de signaux continu $u$ et $v$ notée
+L'analogie avec la convolution de signaux continus $u$ et $v$ notée
 $u\conv v$ fonctionne aussi en utilisant le produit scalaire continu
-$\scald{u}{\conj{\oret^k.\Sy\b{v}}}$ au lieu du produit scalaire discret.
+$\scald{u}{\conj{\oret^k.\Sy\b{v}}}$ au lieu du produit scalaire
+discret.
 
 \begin{definition}{Convolution continue}
   \begin{align}
@@ -311,9 +320,9 @@ $\scald{u}{\conj{\oret^k.\Sy\b{v}}}$ au lieu du produit scalaire discret.
 
 \section{Stabilité d'un système LTI}
 
-La réponse impulsionnelle (notée \RIP{}) caractérise entièrement un
+La réponse impulsionnelle (notée \RIP) caractérise entièrement un
 système LTI, puisque l'opération de convolution permet d'obtenir la
-sortie d'un système pour n'importe qu'elle entrée.
+sortie d'un système pour n'importe quelle entrée.
 
 Nous alons caractériser deux types de stabilité des systèmes LTI à
 partir de leur \RIP{}~:
@@ -321,7 +330,7 @@ partir de leur \RIP{}~:
 \item[Stabilité BIBO] (\emph{Borned Imput Borned Output}, il n'y pas
   de sigle Français d'usage courant) associée à la propriété de donner
   des réponses bornées pour toutes entrée bornée~;
-\item[Stabilité simple] chère aux automaticienne qui exprime le fait
+\item[Stabilité simple] chère aux automaticiennes qui exprime le fait
   qu'un système relâché (dont l'entrée reste nulle à partir d'un
   instant) retourne vers son état d'équilibre qui, dans le cas de
   systèmes linéaires, correspond à l'état null et à une sortie nulle.
@@ -337,13 +346,13 @@ signal réel forcément borné.
 
   On note de manière concise $\abs{x}\leq A$, cette proposition.
 
-  Un signal non bornée est, par négation de la proposition, tel que~:
+  Un signal non borné est, par négation de la proposition, tel que~:
   $$\forall A\in\R, \exists k\in \Z \tq  \abs{s\ded{k}} > A $$
 
   Cela revient à dire que la suite $\p{s\ded{k}}_{k\in\Z}$ diverge
   vers l'infini (ne pas confondre avec simplement divergente qui est
   la négation de convergente~; par exemple $k\mapsto \sin\ded{k}$ est
-  divergente mais pas divergente vers l'infini).
+  divergente mais non divergente vers l'infini).
 
   On notera de manière concise $s\to\infty$ le fait que $s$ soit
   non-borné.
@@ -351,8 +360,8 @@ signal réel forcément borné.
 \end{remarque}
 
 \begin{definition} Un système $H$ est \textbf{stable en entrée bornée
-    / sortie bornée} ou \textbf{stable BIBO} ssi pour
-  toute entrée $x$ bornée la réponse $y=H\b{x}$ du système est bornée~:
+    / sortie bornée} ou \textbf{stable BIBO} ssi pour toute entrée $x$
+  bornée la réponse $y=H\b{x}$ du système est bornée~:
 
   $$\forall x, \quad \abs{x}\leq A \quad\implies\quad \abs{y}\leq B $$
 \end{definition}
@@ -360,7 +369,8 @@ signal réel forcément borné.
 
 \begin{theoreme}
   Un système $H$ est stable BIBO si, et seulement si, sa réponse
-  impulsionnelle $k\mapsto h\b{k}$ est de module sommable, i. e., la série $\left\{h\b{k}\right\}_{k\in\Z}$ est absolument convergente~:
+  impulsionnelle $k\mapsto h\b{k}$ est de module sommable, c.-à-d., la
+  série $\left\{h\b{k}\right\}_{k\in\Z}$ est absolument convergente~:
   $$ H \text{ stable BIBO} \iff\sum\limits_{k\in\Z} |h\ded{k}| \in \R$$
 \end{theoreme}
 
@@ -369,7 +379,8 @@ La démonstration est intéressante et simple~:
 \begin{demo} --- Stabilité BIBO
 
   
-  Nous démontrons l'équivalence pour tout système $H$ de réponse impulsionnelle $h$~:
+  Nous démontrons l'équivalence pour tout système $H$ de réponse
+  impulsionnelle $h$~:
   $$ \sum \abs{h}\in\R \iff \text{stable BIBO} \overset{\Delta}{\iff} \p{\forall x, \;\;\abs{x}<A \implies \abs{y}<B}$$  par
   double implication.
   
@@ -398,20 +409,20 @@ La démonstration est intéressante et simple~:
     $\p{P\implies Q}\iff \overline{P} \text{ ou } Q$~: et dans ce cas
     $Q$ est vraie par supposition.
   \item[Non Q :] Dans ce cas $\sum|h|\; DV$ et il faut montrer
-    $\overline{P}$. Pour cela montrons que pour $\sum|h|\; DV$ on
-    a~:
+    $\overline{P}$. Pour cela montrons que pour $\sum|h|\; DV$ on a~:
     $$\exists x \tq \abs{x}\leq A \text{ et } \abs{x\conv
       h}\to\infty $$ Pour cela nous construisons un signal $x$ tel
     que, de manière arbitraire,
     $y\ded{0}=x\star h\ded{0} = \sum\abs{h}$ et donc diverge (par
     hypothèse sur $h$).
 
-  En prenant la formule de convolution pour $k=0$, nous cherchons $x$ tel que~:
+    En prenant la formule de convolution pour $k=0$, nous cherchons
+    $x$ tel que~:
   $$ x\conv h\ded{0}= \somme{j=-\infty}{\infty}{x\ded{j}.h\ded{0-j}} =  \somme{j=-\infty}{\infty}{|h\ded{j}|} = +\infty$$
 
   On montre donc que ce signal existe en prenant
   $x[j]=\sign\p{h\ded{-j}}=\frac{h\ded{-j}}{\abs{h\ded{-j}}}$. La
-  fonction signe peut être prise ici telle $\sign\p{0}=0$.  Ce qui
+  fonction signe peut être prise ici telle que $\sign\p{0}=0$.  Ce qui
   permet de conclure la réciproque avec~:
 
   $$\exists x=\sign\p{h\ded{-\bullet}} \tq x\conv h = \somme{j=-\infty}{\infty}{\underbrace{\sign\p{h\ded{-j}}}_{x\ded{j}}.h\ded{0-j}}= \somme{j=-\infty}{\infty}{\abs{h\ded{-j}}}=+\infty$$
@@ -422,8 +433,9 @@ La démonstration est intéressante et simple~:
 \end{demo}
 \section{Calcul opérationnel}
 \subsection{Dualité entre signal et système}
-\subsection{Systèmes élémentaires : fonction de transfert en Z }
-\subsection{Système non-bouclé -- moyenne glissante -- régressif --  FIR  }
+\subsection{Systèmes élémentaires : fonction de transfert en Z}
+\subsection{Système non-bouclé -- moyenne glissante (MA) -- régressif --
+  FIR}
 \subsection{Système bouclé -- récurrence -- autorégressif -- IIR}
 
 \section{Transformée en Z}
