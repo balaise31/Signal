@@ -8,8 +8,9 @@ Vous y trouverez :
   - Tps et guides de TP
   - installation de Notebooks Jupyter avec octave
 
-
-Allez sur [la page du projet](https://balaise31.github.io/Signal/index.html) pour accéder aux polys, instructions etc.
+Liens :
+  - [la page du projet](https://balaise31.github.io/Signal/index.html) pour accéder aux polys, instructions etc.
+  - [la chaîne Youtube du discret](https://youtube.com/playlist?list=PL_wkaC4iMBTlJQpi7W18pkzR_kY9d-jsU) 
 
 
 ## Utilisation en ligne
