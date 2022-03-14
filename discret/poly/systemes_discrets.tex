@@ -319,7 +319,7 @@ discret.
 
 
 \section{Stabilité d'un système LTI}
-
+\label{sec:stabilite}
 La réponse impulsionnelle (notée \RIP) caractérise entièrement un
 système LTI, puisque l'opération de convolution permet d'obtenir la
 sortie d'un système pour n'importe quelle entrée.
@@ -335,6 +335,8 @@ partir de leur \RIP{}~:
   instant) retourne vers son état d'équilibre qui, dans le cas de
   systèmes linéaires, correspond à l'état null et à une sortie nulle.
 \end{description}
+
+\subsection{Stabilité BIBO}
 
 En pratique, la stabilité BIBO garantit qu'un système numérique puisse
 toujours calculer une valeur finie et donc codable à partir d'un
@@ -403,34 +405,60 @@ La démonstration est intéressante et simple~:
   \paragraph{\underline{$\impliedby$ :}}
   La réciproque est plus astucieuse et s'exprime par~:
   $$\forall h,\quad \underbrace{\p{\forall x,\; \abs{x}\leq A \implies \abs{x\conv h}\leq B}}_{P} \implies \underbrace{\sum|h|\in\R}_{Q}$$
-  Par disjontion de cas, soit~:
-  \begin{description}
-  \item[Q :] la réciproque est alors triviale car rappelons que
-    $\p{P\implies Q}\iff \overline{P} \text{ ou } Q$~: et dans ce cas
-    $Q$ est vraie par supposition.
-  \item[Non Q :] Dans ce cas $\sum|h|\; DV$ et il faut montrer
-    $\overline{P}$. Pour cela montrons que pour $\sum|h|\; DV$ on a~:
-    $$\exists x \tq \abs{x}\leq A \text{ et } \abs{x\conv
-      h}\to\infty $$ Pour cela nous construisons un signal $x$ tel
-    que, de manière arbitraire,
-    $y\ded{0}=x\star h\ded{0} = \sum\abs{h}$ et donc diverge (par
-    hypothèse sur $h$).
+  Il est plus aisé de montrer la contra-posée
+  $\overline{Q}\implies\overline{P}$ et donc de supposer que
+  $\sum|h|\; DV$ et montrer que $\overline{P}$~:
 
-    En prenant la formule de convolution pour $k=0$, nous cherchons
-    $x$ tel que~:
+  $$\exists x \tq \abs{x}\leq A \text{ et } \abs{x\conv h}\to\infty $$
+  
+  Pour cela nous construisons un signal $x$ tel que, de manière
+  arbitraire, la sortie $y$ soit non-bornée pour $k=0$ et valle
+  $\sum\abs{h}$ et donc diverge (par hypothèse sur $h$).
+  
+  En prenant la formule de convolution pour $k=0$, nous cherchons
+  $x$ tel que~:
   $$ x\conv h\ded{0}= \somme{j=-\infty}{\infty}{x\ded{j}.h\ded{0-j}} =  \somme{j=-\infty}{\infty}{|h\ded{j}|} = +\infty$$
-
+  
   On montre donc que ce signal existe en prenant
-  $x[j]=\sign\p{h\ded{-j}}=\frac{h\ded{-j}}{\abs{h\ded{-j}}}$. La
-  fonction signe peut être prise ici telle que $\sign\p{0}=0$.  Ce qui
-  permet de conclure la réciproque avec~:
-
-  $$\exists x=\sign\p{h\ded{-\bullet}} \tq x\conv h = \somme{j=-\infty}{\infty}{\underbrace{\sign\p{h\ded{-j}}}_{x\ded{j}}.h\ded{0-j}}= \somme{j=-\infty}{\infty}{\abs{h\ded{-j}}}=+\infty$$
+  $x[j]=\frac{\overline{h\ded{-j}}}{\abs{h\ded{-j}}}$ et si
+  $h\ded{-j}=0$ alors nous prenons $x\ded{j}=0$.  Ce qui permet de
+  conclure la réciproque avec~:
+  
+  $$\exists x=\frac{\overline{h\ded{-j}}}{\abs{h\ded{-j}}} \tq x\conv h = \somme{j=-\infty}{\infty}{\frac{\overline{h\ded{-j}}}{\abs{h\ded{-j}}}.h\ded{0-j}}= \somme{j=-\infty}{\infty}{\abs{h\ded{-j}}}=+\infty$$
 
   L'implication et sa réciproque sont donc vraies~: CDFQ.
   
-\end{description}
 \end{demo}
+
+
+\section{Stabilité simple}
+Lorsque le système discret représente le comportement d'un processus,
+l'automaticienne préfère la notion de stabilité simple qui évoque le
+fait qu'un système libre (entrée nulle) retourne vers sons état
+d'équilibre (valeur nulle pour les systèmes linéaires).
+
+\begin{definition} Un système LTI est dit \textbf{simplement stable}
+  si pour toute entrée $x$ relâchée (nulle à partir d'un certain rang
+  $k_0$) sa réponse tends vers 0 en $+\infty$.
+
+  $$H \text{ stable}\quad\quad \overset{\Delta}{\iff}\quad \quad\forall x,\; \exists k_0 \tq{} \forall k>k_0, \; x\ded{k}=0 \quad\implies\quad y\ded{k} \underset{k\to+\infty}{\longrightarrow} 0  $$
+\end{definition}
+
+La encore, on peut déduire cette propriété de stabilité à partir de la
+réponse impulsionnelle.
+
+\begin{theoreme}
+  Un système LTI est stable simplement si, et seulement si, sa réponse
+  impulsionnelle $k\mapsto h\b{k}$ tend vers 0 lorsque $k\to +\infty$.
+  
+  $$ H \text{ simplement stable} \iff \lim_{k\to+\infty} h\ded{k} = 0 $$
+\end{theoreme}
+
+
+La démonstration est intéressante et simple~:
+
+
+
 \section{Calcul opérationnel}
 \subsection{Dualité entre signal et système}
 \subsection{Systèmes élémentaires : fonction de transfert en Z}
@@ -454,6 +482,6 @@ La démonstration est intéressante et simple~:
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "main"
+%%% TeX-master: "poly_discret"
 %%% End:
 
