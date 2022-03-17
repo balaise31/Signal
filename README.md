@@ -1,5 +1,11 @@
 # Signal continu et discret
 ---
+
+> La page web sur [Github.io](https://balaise31.github.io/Signal/index.html)
+>
+> Cliquez sur [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?urlpath=lab) pour lancer Jupyterlab sur nos notebooks
+
+
 Cours, TD et TP de filtrage numérique en continu et discret (enseignements de l'INSA de Toulouse en IMACS2 et 3)
 
 Vous y trouverez :
@@ -11,6 +17,25 @@ Vous y trouverez :
 Liens :
   - [la page du projet](https://balaise31.github.io/Signal/index.html) pour accéder aux polys, instructions etc.
   - [la chaîne Youtube du discret](https://youtube.com/playlist?list=PL_wkaC4iMBTlJQpi7W18pkzR_kY9d-jsU) 
+
+## Installation locale rapide
+---
+
+Voir dans [instruction d'installation](./installation/README.md) les prérequis et instructions détaillées (même sous windows)
+
+Pour les Geekettes pressées qui ont déjà `conda` et `git` installé, la suite suffit :
+```bash
+cd
+git clone https://github.com/balaise31/Signal.git
+cd Signal/installation
+conda env create -f ./octavelab.yaml
+cd
+echo "alias goSignal='cd ~/Signal/ && conda activate octavelab && jupyter-lab'">>.bashrc
+source .bashrc
+```
+
+Jupyter-lab est lancé d'un terminal avec la commande `goSignal`
+
 
 
 ## Utilisation en ligne
@@ -28,22 +53,4 @@ Vous pouvez aussi juste naviguer sans modifier, mais toujours connectée :
   - **Naviguer avec [gitHub](https://github.com/balaise31/Signal)**  cliquer sur un notebook (fichier de type **.ipynb**) et laisser git le visualiser
   - **Naviguer et Visualiser avec nbviewer** en cliquant sur ce badge [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.org/github/balaise31/Signal/tree/master/)
 
-
-## Installation locale rapide
----
-
-Voir dans [instruction d'installation](./installation/README.md) les prérequis et instructions détaillées
-
-Pour les Geekettes pressées qui ont déjà `conda` et `git` installé, la suite suffit :
-```bash
-cd
-git clone https://github.com/balaise31/Signal.git
-cd Signal/installation
-conda env create -f ./octavelab.yaml
-cd
-echo "alias goSignal='cd ~/Signal/ && conda activate octavelab && jupyter-lab'">>.bashrc
-source .bashrc
-```
-
-Jupyter-lab est lancé d'un terminal avec la commande `goSignal`
 

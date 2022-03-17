@@ -1,7 +1,20 @@
 # Installation
+---
 
-Pour installer sur sa machine de quoi lire les notebooks, modifier et exécuter des notebooks, et développer du code octave/python. Voici les instructions à tenter.
+Pour installer sur sa machine de quoi lire les notebooks, modifier et exécuter des notebooks, et développer du code octave/python.
 
+On peut toujours exécuter les notebooks en ligne avec [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?urlpath=lab) 
+
+
+
+## Windows
+---
+
+Pour une installation sous windows merci à Vi)ncent Yechenne pour ces [instructions sous Windows](windows.md)
+
+
+## Linux
+---
 Que ce soit sur Windows/Mac/Linux on suppose que :
    - vous avez un client `git` avec ligne de commande qui marche
       * Sous windows installez un `git bash`
