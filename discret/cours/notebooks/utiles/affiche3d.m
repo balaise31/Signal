@@ -6,9 +6,11 @@
 % et seront affichés comme une famille de signaux en couleurs
 %
 function affiche3d(t,s,j,W)
-    couleurs = ['r' ; 'g'; 'b'];
+    couleurs = ['k' ; 'r' ; 'g'; 'b' ];
+    N = size(s)(2);
+    couleurs = couleurs((5-N):end);
     subplot(2,2,2)
-    for id_n = 1:3
+    for id_n = 1:N
         plot3(t,real(s(:,id_n)),imag(s(:,id_n)),couleurs(id_n)); 
         hold on; box off;
         plot3(j,real(W(:,id_n)),imag(W(:,id_n)),[couleurs(id_n),'o']);
@@ -17,19 +19,19 @@ function affiche3d(t,s,j,W)
     ylabel('reel');
     zlabel('imaginaires')
     subplot(2,2,1);
-    for id_n = 1:3
-        zoo = 1 + 0.05* j(id_n);
+    for id_n = 1:N
+        zoo = 1 + 0.1* j(id_n);
         plot(zoo*real(s(:,id_n)),zoo*imag(s(:,id_n)),couleurs(id_n));
         hold on; box off;
         plot3(zoo*real(W(:,id_n)),zoo*imag(W(:,id_n)),[couleurs(id_n),'o']);
     end
     subplot(2,2,4);
-    for id_n = 1:3
+    for id_n = 1:N
         plot(t,real(s(:,id_n)),[couleurs(id_n),'--']); hold on; box off;
         stem(j,real(W(:,id_n)),couleurs(id_n));
     end
     subplot(2,2,3);
-    for id_n = 1:3
+    for id_n = 1:N
         plot(t,imag(s(:,id_n)),[couleurs(id_n),'--']); hold on; box off;
         stem(j,imag(W(:,id_n)),couleurs(id_n));
     end
