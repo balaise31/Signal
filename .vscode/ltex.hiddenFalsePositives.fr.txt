@@ -188,3 +188,46 @@
 {"rule":"POINTS_SUSPENSIONS_SPACE","sentence":"^\\QLe \"a\" est doublé et le \"c\" aussi car ainsi :\nla base temporelle ...(2,0,0,0)... de a\nla base temporelle ...(0,0,2,0)... de c\ncelles aux milieux ...(0,1,0,1)... de b\\E$"}
 {"rule":"POINTS_SUSPENSIONS_SPACE","sentence":"^\\QLe \"a\" est doublé et le \"c\" aussi car ainsi :\nla base temporelle ...(2,0,0,0)... de a\nla base temporelle ...(0,0,2,0)... de c\ncelles aux milieux ...(0,1,0,1)... de b\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qet amplifie le signal de \\E(?:Dummy|Ina|Jimmy-)[0-9]+$"}
+{"rule":"WHITESPACE_RULE","sentence":"^\\QSujet Corrigé\\E$"}
+{"rule":"J_N","sentence":"^\\QPython sujet python corrigé python\nOctave sujet octave corrigé octave\\E$"}
+{"rule":"PLACE_DE_LA_VIRGULE","sentence":"^\\QLà tout est simple car tout est discret et N périodique :\\E$"}
+{"rule":"AGREEMENT_POSTPONED_ADJ","sentence":"^\\QPour cela on calcule le produit scalaire discret avec les vecteurs coordonnées  \\E(?:Dummy|Ina|Jimmy-)[0-9]+$"}
+{"rule":"WHITESPACE_RULE","sentence":"^\\QPour cela on calcule le produit scalaire discret avec les vecteurs coordonnées  \\E(?:Dummy|Ina|Jimmy-)[0-9]+$"}
+{"rule":"ESPACE_UNITES","sentence":"^\\QLa matrice \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, est bien orthogonale (dans \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q) avec \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q$ mais pas normée.\\E$"}
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Q$s \\overset{TFD}{\\longrightarrow} \\hat{S} = W^H.s \\overset{TFD^{-1}}{\\longrightarrow} s = \\frac{W}{N} \\,.\\, \\hat{S} = \\frac{W}{N} \\,.\\, W^H.s = Id.s = s $\\E$"}
+{"rule":"ESPACE_UNITES","sentence":"^\\QOn peut aussi calculer la matrice directement avec \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, et vérifier que la matrice est bien orthogonale (dans \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q) donc \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q$ mais pas normée.\\E$"}
+{"rule":"WHITESPACE_RULE","sentence":"^\\QOn s'en rapproche avec une résolution très fine  \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q 𝐻𝑧 (par exemple) comparée à la fréquence d'échantillonnage  𝐹𝑒=1  arbitraire.\\E$"}
+{"rule":"J_N","sentence":"^\\QOn s'en rapproche avec une résolution très fine  \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q 𝐻𝑧 (par exemple) comparée à la fréquence d'échantillonnage  𝐹𝑒=1  arbitraire.\\E$"}
+{"rule":"J_N","sentence":"^\\QFaites \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q dans la console et jetez un oeil au script tfsd qui ressemble beaucoup aux scripts de deuxieme année.\\E$"}
+{"rule":"J_N","sentence":"^\\QFaites \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q dans la console et jetez un oeil au script tfsd qui ressemble beaucoup aux scripts de deuxieme année.\\E$"}
+{"rule":"AGREEMENT_POSTPONED_ADJ","sentence":"^\\QPour les affichages à gauche temporel, à droite fréquentiel, en haut partie réelle et en bas partie imaginaire, je vous ai fait la fonction plot_dual.\\E$"}
+{"rule":"J_N","sentence":"^\\QFaites \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q dans la console et jetez un oeil au script tfsd qui ressemble beaucoup aux scripts de deuxieme année.\\E$"}
+{"rule":"J_N","sentence":"^\\QFaites \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q dans la console et jetez un oeil au script tfsd qui ressemble beaucoup aux scripts de deuxieme année.\\E$"}
+{"rule":"J_N","sentence":"^\\QFaites \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q dans la console et jetez un oeil au script tfsd qui ressemble beaucoup aux scripts de deuxieme année.\\E$"}
+{"rule":"J_N","sentence":"^\\QFaites \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q dans la console et jetez un oeil au script tfsd qui ressemble beaucoup aux scripts de deuxieme année.\\E$"}
+{"rule":"J_N","sentence":"^\\QFaites \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q dans la console et jetez un oeil au script tfsd qui ressemble beaucoup aux scripts de deuxieme année.\\E$"}
+{"rule":"J_N","sentence":"^\\QOn peut regarder le corrigé pour voir les différences de style et différents langages\nexo1 tfsd corrigé octave\nexo1 tfsd corrigé python\\E$"}
+{"rule":"J_N","sentence":"^\\QFaites \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q dans la console et jetez un oeil au script tfsd qui ressemble beaucoup aux scripts de deuxieme année.\\E$"}
+{"rule":"J_N","sentence":"^\\QFaites \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q dans la console et jetez un oeil au script tfsd qui ressemble beaucoup aux scripts de deuxieme année.\\E$"}
+{"rule":"J_N","sentence":"^\\QFaites \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q dans la console et jetez un œil au script tfsd qui ressemble beaucoup aux scripts de deuxieme année.\\E$"}
+{"rule":"ELISION","sentence":"^\\QIci nous avons les 4000 éléments de erreur multipliés à eux-même.\\E$"}
+{"rule":"D_N","sentence":"^\\QRemarquez que la taille est :\n(4000,) pour un \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q  (tableau 1D) et\n(4000,1) pour une \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (tableau 2D, mais colonne)\\E$"}
+{"rule":"ELISION","sentence":"^\\QIci nous avons les 4000 éléments de erreur multipliés à eux-même.\\E$"}
+{"rule":"D_N","sentence":"^\\QRemarquez que la taille est :\n(4000,) pour un \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q  (tableau 1D) et\n(4000,1) pour une \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (tableau 2D, mais colonne)\\E$"}
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\QCorrigez encore en utilant soit \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q et \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, ou directement .\\E$"}
+{"rule":"SENTENCE_WHITESPACE","sentence":"^\\QH !\\E$"}
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\QOn peut aussi déclarer une fonction lambda \"scal(u,v)\" de deux arguments vecteur ligne avec \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q ...\\E$"}
+{"rule":"ELISION","sentence":"^\\QIci nous avons les 4000 éléments de erreur multipliés à eux-mêmes.\\E$"}
+{"rule":"D_N","sentence":"^\\QRemarquez que la taille est :\n(4000,) pour un \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (tableau 1D) et\n(4000,1) pour une \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (tableau 2D, mais colonne)\\E$"}
+{"rule":"J_N","sentence":"^\\QOn peut regarder le corrigé pour voir les différences de style et différents langages\nexo1 tfsd corrigé python\nexo1 tfsd corrigé octave\\E$"}
+{"rule":"ELISION","sentence":"^\\QIci nous avons les 4000 éléments de erreur multipliés à eux-même.\\E$"}
+{"rule":"D_N","sentence":"^\\QRemarquez que la taille est :\n(4000,) pour un \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q  (tableau 1D) et\n(4000,1) pour une \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (tableau 2D, mais colonne)\\E$"}
+{"rule":"J_N","sentence":"^\\QFaites \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q dans la console et jetez un oeil au script tfsd qui ressemble beaucoup aux scripts de deuxieme année.\\E$"}
+{"rule":"J_N","sentence":"^\\QRetrouvez la formule de la TFSD (qui va du discret vers le continu périodique) et appliquez-la pour le signal \"impulsion unité\", noté \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, et qui joue le même rôle que l'impulsion de Dirac, notée \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q et par abus parfois \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, en continu.\\E$"}
+{"rule":"WHITESPACE_RULE","sentence":"^\\QVérifications manuelles\nVérifiez bien que les arguments des exponentielles sont sans dimention, que l'on obtient bien une fonction \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, utilisez les  pour ce qui est discret et () pour le continu ;\nque la formule prise avec \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q correspond au premier signal\nprenez les equivalents en temps continus (\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q et \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q de Dirac) et utilisez la transformée de Laplace associée au théorème du retard.\\E$"}
+{"rule":"PLACE_DE_LA_VIRGULE","sentence":"^\\QReprésentez sur plusieur périodes les signaux précédents \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q et \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q mais rendus 4-périodiques.\\E$"}
+{"rule":"AGREEMENT_NUMERAL_PLURAL","sentence":"^\\QMais que devient la parité de \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (de parité quelconque en support infini) lorsqu'elle est rendue 4 périodique ?\\E$"}
+{"rule":"D_N","sentence":"^\\Q#### vérifications manuelles\nla base est orthogonale et les vecteurs de la base sont de norme \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q on doit donc avoir \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (l'inverse d'une matrice orthogonale est sa transposée de Hilbert)\non remarque que le signal \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q est en fait la TFD de \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q (prenez la \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q pour vous en convaincre).\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qde FFT.\\E$"}
+{"rule":"D_N","sentence":"^\\QDual de la TF de cos + CC !\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qcorrigé 0xACC0|\\E$"}
