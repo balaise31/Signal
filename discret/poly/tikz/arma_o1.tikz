@@ -1,0 +1,33 @@
+﻿\begin{tikzpicture}[outer sep=auto]
+
+	\matrix (graphe)[ row sep=1cm, column sep=1cm, inner sep=0.5cm]{ 	
+	\node[dspnodeopen]  (x) {$x[k+1]$};																&
+	\node[dspnodefull]  (tx) {};													 							&
+	\node[dspsquare]  (Tx) {T};																				&
+																																	&
+	\node[dspsquare ]  (Ty) {T};																			&
+	\node[dspmultiplier, dsp/label=  above]  (a) {$1/2$};								&
+	\node (coin)	 {}		;																							&
+																																	&
+																																	\\
+																																	&
+																																 	&
+																																	&
+	 \node[dspadder ]  (S) {};																				    &
+																																    &
+																																    &
+	\node[dspnodefull]  (ty) {};																				&
+	\node[dspnodeopen,  dsp/label=above]  (y) {$y[k+1
+]$};  							&\\
+	};
+	\draw[dspflow] (x) -- (tx) ;
+	\draw[dspflow]  (tx)  -- (Tx);
+	 \draw[dspflow, rounded corners=1cm] (Tx) -|  (S);
+	\draw[dspflow, rounded corners=1cm] (tx)  |- (S);
+	\draw[dspflow, rounded corners=1cm]  (ty) |- (a);
+	 \draw[dspflow] (a) -- (Ty);
+	\draw[dspflow, rounded corners=1cm] (Ty)  -| (S);
+	\draw[dspflow] (S)  -- (ty);
+	\draw[dspflow] (ty) -- (y);
+
+\end{tikzpicture}

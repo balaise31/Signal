@@ -19,4 +19,4 @@ clean:
 	rm -f *.ps
 	rm -f \#*\#	
 	rm -f *~
-
+	cp ./tikz-dsp/* .

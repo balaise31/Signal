@@ -1,0 +1,27 @@
+﻿\begin{tikzpicture}[outer sep=auto]
+
+	\matrix (graphe)[ row sep=1cm, column sep=1cm, inner sep=0.2cm]{ 	
+	\node[dspnodeopen]  (x) {$x[k]$};								&
+	\node[dspnodefull]  (te) {};													 							&
+	\node[dspsquare]  (Ta) {T};																				&
+	\node[dspmultiplier, dsp/label=  above]  (a) {a};										&
+		            		\node (coin)	 {}		;																		    &
+																																	\\
+																																	&
+																																 	&
+	\node[dspmultiplier,  dsp/label=  above]  (b) {b};										&
+	\node[dspsquare ]  (Tb) {T};																			&
+	 \node[dspadder ]  (S) {};																				    &
+	\node[dspnodeopen,  dsp/label=above]  (y) {$y[k
+]$};  							\\
+	};
+	\draw[dspflow] (x) -- (te) ;
+	\draw[dspflow]  (te)  -- (Ta);
+	 \draw[dspflow] (Ta) -- (a);
+	\draw[dspflow, smooth] (a)  .. controls +(1,0) and + (0,1) .. (S);
+	\draw[dspflow]  (te)  .. controls +(0,-1) and +(-1,0) .. (b);
+	 \draw[dspflow] (b) -- (Tb);
+	\draw[dspflow] (Tb)  -- (S);
+	\draw[dspflow] (S)  -- (y);
+
+\end{tikzpicture}

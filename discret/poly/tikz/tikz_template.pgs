@@ -10,7 +10,7 @@
 \usepackage{pgf}
 \pgfplotsset{compat=1.11}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric,mindmap,backgrounds}
+\usetikzlibrary{shapes.geometric,mindmap,backgrounds,dsp}
 % -----------------------------------------------------------------------------
 % Layers
 % -----------------------------------------------------------------------------
