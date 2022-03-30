@@ -1,6 +1,13 @@
 clear all; close all; clc;
 
-[Y,Fs]=audioread("anna_a_mono.wav");
+%% On cherche le chemin vers le fichier
+dir = pwd
+if (strcmp(dir((end-7):end),"_discret"))
+    chemin = "./";
+else % on tente un peu au hasard...
+    chemin = "./discret/tp/tp1_continu_discret/";
+endif
+[Y,Fs]=audioread([chemin, "anna_a_mono.wav"]);
 Y=Y(:,1); % récupère que le son gauche
 
 N=length(Y);
@@ -25,5 +32,3 @@ ax=plot(f,20*log10(mag));
 hold on;
 afficher_grille_notes(octaves);
 title("De 0 a Fe en echelle lineaire")
-
-
