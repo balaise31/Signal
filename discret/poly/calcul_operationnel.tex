@@ -1,11 +1,14 @@
-\section{Calcul opérationnel~: Transformée en Z}
+\section{Calcul opérationnel}
 
 La \teZ{} joue le même rôle pour les systèmes discrets que la
 transformée de \Laplace{} pour les systèmes continus. Elles permettent
 de définir une \emph{fonction de transfert} du système et de manipuler
-les systèmes algébriquement sous formes de fonctions de la variable
-complexe (comme des fractions rationnelles polynomiales pour les
-systèmes linéaires invariants).
+les systèmes algébriquement (comme des nombres) sous formes de
+fonctions de variables associées à un système. Tout comme une fonction
+$G(p)$ de la variable $p$ associée au système \og dérivée de \fg{} en
+continu, nous aurons des fonctions $G(z)$ de la variable $z$ associé
+au système \og avance d'un échnatillon \fg{} les systèmes linéaires
+invariants).
 
 Plutôt que de présenter sans justifier ces formules de transformées,
 nous allons introduire la vision par calcul opérationnel qui consiste
@@ -16,11 +19,68 @@ télégraphistes. Les justifications théoriques de cette approche et la
 relation entre l'opérateur $p$ de \Heaviside{} et la variable $s$ de
 la transofrmée de \Laplace{} n'est apparue que plus tard.
 
-\begin{citations} Mathematics is an experimental science, and definitions do not come
-  first, but later on.
+\begin{citations} Mathematics is an experimental science, and
+  definitions do not come first, but later on.
 
   \hfill Olivier \Heaviside{} (1850--1925)
 \end{citations}
+
+\subsection{Similitude entre signal et système}
+
+Difficile de dire si $\frac{1}{1+\tau\,p}$ est la transformée d'un
+système du premier ordre ou bien celle du signal exponentielle causale
+$e^{-t/\tau}.u(t)$. C'est parce que l'on peut établir une bijection
+entre un système LTI et un signal en associant ce système H avec le
+signal qui est sa réponse impulsionnelle $h$.
+
+\imagetexte{0.3}{op_sys}{0.6}{
+Ainsi, si l'on prend le schéma classique d'un opérateur H transformant
+un signal $\vec{x}$ d'un espace de signaux $E$ en un signal $\vec{y}$
+du même espace~; on le représente par un opérateur $H$ et
+l'automaticienne y associera un schéma-bloc (en rose les signaux et
+espaces de signaux, en noir les systèmes).
+}
+
+Dans le cas où ce système est LTI, la \secref{sec:rip} montre que
+l'opérateur $H$ peut être entièrement définit par sa réponse
+impulsionnelle notée $h$.
+
+\imagetexte{0.3}{op_h_to_sys}{0.6}{
+  La réponse $y$ à une entreée $x$
+  arbitraire est la convolution de l'entrée par $h$.  On associe ainsi
+  un signal $h$ à un système LTI. Le signal est représenté en gris
+  pour indiquer son rôle spécial pour le système $H$.
+}
+
+Pour associer un système $H$ à un signal $h$, il suffit d'introduire
+une impulsion $\delta_0$ (de Dirac pour l'espace des signaux continus,
+et impulsion unité pour l'espace de signaux discret) en entrée du système
+$H$ pour identifier la réponse impulsionnelle $h$~:
+
+
+\graphe{6cm}{op_sys_to_h}
+
+
+\subsection{Systèmes élémentaires : fonction de transfert en Z}
+\subsection{Système non-bouclé -- moyenne glissante (MA) -- régressif --
+  FIR}
+\subsection{Système bouclé -- récurrence -- autorégressif -- IIR}
+
+\section{Transformée en Z}
+
+\subsection{Fonction de transfert et récurrence}
+\subsection{Signaux/systèmes usuels}
+\subsection{Décomposition élementaire et stabilité}
+\subsection{Domaine de convergence et causalité}
+
+\section{Réponse fréquentielle}
+\subsection{Lien avec les transformées de Fourier}
+\subsection{Dualité entre système et filtre}
+
+
+
+\section{Calcul opérationnel~: Transformée en Z}
+
 
 \subsection{Principe du calcul opérationnel}
 \label{sec:calcul_operationnel}
@@ -282,3 +342,8 @@ transformées de \Laplace{} dans le cas des systèmes continus.
     \oder=\dDtDe{} \leftrightarrow p \leftrightarrow \caCest{\frac{1}{T_e}\p{1-\zmu}}{\text{Forward Euler}}\leftrightarrow \caCest{\frac{1}{T_e}\p{z-1}}{\text{Backward Euler}} \leftrightarrow \caCest{\frac{2}{T_e}\frac{1-\zmu}{1+\zmu}}{\text{Bilinéaire ou Tustin}} 
   \end{equation}  
 \end{exercice}
+
+%%%Local Variables:
+%%% mode: latex
+%%% TeX-master: "poly_discret"
+%%% End:
