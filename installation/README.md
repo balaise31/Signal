@@ -1,16 +1,87 @@
 # Installation
 ---
 
-Pour installer sur sa machine de quoi lire les notebooks, modifier et exécuter des notebooks, et développer du code octave/python.
+Du plus facile au plus balèse :
+   - Exécuter les notebooks en ligne avec [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?urlpath=lab).  
+   :kiss: On peut exécuter des Notebooks Octave/Matlab et python  
+   :poop: Mais il faut une bonne connection
+   :poop: On ne peut pas facilement sauver son travail
 
-On peut toujours exécuter les notebooks en ligne avec [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?urlpath=lab) 
+  - On peut [utiliser les ordinateurs ou le VPN (monTP guacamole) de l'INSA](#Etudiante-INSA).  
+   :kiss: On peut exécuter des Notebooks Octave/Matlab et python  
+   :poop: Mais il faut une bonne connection
+   :poop: Il faut être étudiante INSA.
+   :kiss: On sauve son travail sur son compte INSA
+
+  - Installer sur sa machine Conda et le kernel octave.
+   Plus besoin de connection ! On peut tout faire.
+   :kiss: On peut exécuter des Notebooks Octave/Matlab et python  
+   :kiss: Plus besoin de connection
+   :kiss: Plus besoin d'être étudiante à l'INSA.
+   :kiss: On sauve son travail localement
 
 
+# Etudiante INSA
+---
+
+## La première fois
+
+Sur ma machine, il faut d'abord :
+   - [Installer le VPN sur son ordi](https://wiki.etud.insa-toulouse.fr/books/r%C3%A9seau-et-internet/chapter/vpn) 
+   - Se connecter au VPN et aller sur [montp.insa-toulouse.fr](https://montp.insa-toulouse.fr/)(appli Guacamole). Puis se connecter à une **Salle de TP virtuelle LINUX**
+
+Dans une salle de TP (virtuelle ou non) lancez **dans un terminal** le script d'installation avec  
+
+```bash     
+source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_tp.sh 
+```
+
+Le script d'installation doit se dérouler et créer une copie dans votre $HOME/signal_local **qu'il ne faut pas déplacer !**
+
+## À chaque séance
+
+Il suffit d'exécuter dans un terminal 
+   
+```bash
+go_signal
+```
+## Lors des mises à jour
+
+Il se peut que l'on vous demande de mettre à jour cette copie (en cas de modifications).  
+Dans ce cas faites :
+   
+```bash
+cd $HOME/signal_local
+. ./maj_signal
+```  
+N'oubliez pas le premier `.` qui est synonyme de `source` en bash.
+
+Les fichiers que vous avez modifiés seront **sauvegardés dans des _sauvegarde.ipynb !**  
+
+Recopiez à la main vos modifications de _sauvegarde.ipynb vers le .ipynb mis à jour **avant toute nouvelle mise à jour**
+
+## Vous avez perdu un fichier ?
+
+Pas de problème, à l'insa **vous avez accès à des sauvegardes chaque heure avec des Snapshots** :
+
+```bash
+cd .snapshots
+cd hourly.2022-04-21_2205
+```
+Bien sûr, mettez la bonne date qui vous intéresse.
+
+Vous avez accès à vos anciens fichiers que vous pouvez rétablir par simple copie "en remontant"
+```bash
+cp mon.ipynb ../../
+```
+
+# Installation locale
+---
 
 ## Windows
 ---
 
-Pour une installation sous windows merci à Vi)ncent Yechenne pour ces [instructions sous Windows](windows.md)
+Pour une installation sous windows merci à Vincent Eychenne pour ces [instructions sous Windows](windows.md)
 
 
 ## Linux
@@ -29,7 +100,7 @@ Que ce soit sur Windows/Mac/Linux on suppose que :
 ## Récup de ce dépôt git
 ---
 
-Ouvrez un terminal (git bash) et lancez la commande
+Ouvrez un terminal (git bash par exemple) et lancez la commande
 ```bash
 cd ~
 git clone  https://github.com/balaise31/Signal.git Signal
