@@ -1,7 +1,6 @@
 dependencies:
 - octave_kernel
 - octave
-- octave-control
 - numpy=1.19
 - python>=3.8
 - matplotlib
