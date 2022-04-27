@@ -1,30 +1,37 @@
-# Installation
+
 ---
+# Installations 
+---
+
 
 Du plus facile au plus balèse :
    - Exécuter les notebooks en ligne avec [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?urlpath=lab).  
    :kiss: On peut exécuter des Notebooks Octave/Matlab et python  
-   :poop: Mais il faut une bonne connection
-   :poop: On ne peut pas facilement sauver son travail
+   :poop: Mais il faut une bonne connection  
+   :poop: On ne peut pas facilement sauver son travail  
 
-  - On peut [utiliser les ordinateurs ou le VPN (monTP guacamole) de l'INSA](#Etudiante-INSA).  
-   :kiss: On peut exécuter des Notebooks Octave/Matlab et python  
-   :poop: Mais il faut une bonne connection
-   :poop: Il faut être étudiante INSA.
-   :kiss: On sauve son travail sur son compte INSA
+  - On peut [utiliser les ordinateurs ou le VPN (monTP guacamole) de l'INSA](#etudiante-insa).  
+   :kiss: On peut exécuter des Notebooks Octave/Matlab et python    
+   :poop: Mais il faut une bonne connection  
+   :poop: Il faut être étudiante INSA.  
+   :kiss: On sauve son travail sur son compte INSA  
 
-  - Installer sur sa machine Conda et le kernel octave.
-   Plus besoin de connection ! On peut tout faire.
-   :kiss: On peut exécuter des Notebooks Octave/Matlab et python  
-   :kiss: Plus besoin de connection
-   :kiss: Plus besoin d'être étudiante à l'INSA.
-   :kiss: On sauve son travail localement
+  - On peut [installer en local](#installation-locale) le dépot Git, Conda et le kernel octave.  
+   :kiss: On peut exécuter des Notebooks Octave/Matlab et python   
+   :kiss: Plus besoin de connection  
+   :kiss: Plus besoin d'être étudiante à l'INSA.  
+   :kiss: On sauve son travail localement  
 
+En cas de problème ou si l'on veut voir dans le détails ce que fait cette installation [c'est ici](#détails-de-linstallation) !
 
+---
 # Etudiante INSA
 ---
+Si vous avez un compte informatique INSA et/ou un ordinateur personnel voilà la procédure
+
 
 ## La première fois
+---
 
 Sur ma machine, il faut d'abord :
    - [Installer le VPN sur son ordi](https://wiki.etud.insa-toulouse.fr/books/r%C3%A9seau-et-internet/chapter/vpn) 
@@ -39,6 +46,7 @@ source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_tp.sh
 Le script d'installation doit se dérouler et créer une copie dans votre $HOME/signal_local **qu'il ne faut pas déplacer !**
 
 ## À chaque séance
+---
 
 Il suffit d'exécuter dans un terminal 
    
@@ -46,6 +54,7 @@ Il suffit d'exécuter dans un terminal
 go_signal
 ```
 ## Lors des mises à jour
+---
 
 Il se peut que l'on vous demande de mettre à jour cette copie (en cas de modifications).  
 Dans ce cas faites :
@@ -61,6 +70,7 @@ Les fichiers que vous avez modifiés seront **sauvegardés dans des _sauvegarde.
 Recopiez à la main vos modifications de _sauvegarde.ipynb vers le .ipynb mis à jour **avant toute nouvelle mise à jour**
 
 ## Vous avez perdu un fichier ?
+---
 
 Pas de problème, à l'insa **vous avez accès à des sauvegardes chaque heure avec des Snapshots** :
 
@@ -75,8 +85,27 @@ Vous avez accès à vos anciens fichiers que vous pouvez rétablir par simple co
 cp mon.ipynb ../../
 ```
 
+
+
+---
 # Installation locale
 ---
+
+## Linux
+---
+
+Pour les Geekettes pressées qui ont déjà `conda` et `git` installé, la suite suffit :
+```bash
+cd
+git clone https://github.com/balaise31/Signal.git
+cd Signal/installation
+conda env create -f ./octavelab.yaml
+cd
+echo "alias goSignal='cd ~/Signal/ && conda activate octavelab && jupyter-lab'">>.bashrc
+source .bashrc
+```
+
+Jupyter-lab est lancé d'un terminal avec la commande `goSignal`
 
 ## Windows
 ---
@@ -84,8 +113,15 @@ cp mon.ipynb ../../
 Pour une installation sous windows merci à Vincent Eychenne pour ces [instructions sous Windows](windows.md)
 
 
-## Linux
 ---
+# Détails de l'installation
+---
+
+En cas de problème ou pour voir ce qu'il y a sous le capot, voici le détail des étapes d'installation Linux à dapater pour mac et windows.
+
+## Prérequis
+---
+
 Que ce soit sur Windows/Mac/Linux on suppose que :
    - vous avez un client `git` avec ligne de commande qui marche
       * Sous windows installez un `git bash`
@@ -96,6 +132,7 @@ Que ce soit sur Windows/Mac/Linux on suppose que :
       * Sous mac on peut installer conda avec un .dmg ou utiliser macport ou brew pour installer pip avec
        `sudo port install pip`
       * Sous linux ça y est déjà ou sinon `sudo apt install python3`
+
 
 ## Récup de ce dépôt git
 ---
@@ -110,8 +147,10 @@ Si vous n'arrivez pas à avoir un compte git avec une authentification qui march
 
 De temps en temps, vous pourrez importer les mises à jour en faisant un `git pull`.
 
+
 ## Installation de l'environnement avec conda
 ---
+
 En utilisant conda, on va créer un environnement `octavelab` contenant tous les paquets nécessaires
 
 ```bash   
