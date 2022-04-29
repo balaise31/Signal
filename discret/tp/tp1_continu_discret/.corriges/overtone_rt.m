@@ -49,7 +49,7 @@ harmo=6;
 H = @(p,zeta,wn) (wn^2./(p.^2+2*zeta*wn*p+wn^2));
 wn=2*pi*harmo*fond;
 p=j*2*pi*f;
-zeta=0.05;
+zeta=0.1;
 H_de_p = H(p,zeta,wn);
 
 z=exp(Te*p);

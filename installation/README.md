@@ -26,7 +26,7 @@ En cas de problème ou si l'on veut voir dans le détails ce que fait cette inst
 
 ---
 # Etudiante INSA
----
+---   
 Si vous avez un compte informatique INSA et/ou un ordinateur personnel voilà la procédure
 
 
