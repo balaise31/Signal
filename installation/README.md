@@ -22,12 +22,12 @@ Du plus facile au plus balèse :
    :kiss: Plus besoin d'être étudiante à l'INSA.  
    :kiss: On sauve son travail localement  
 
-En cas de problème ou si l'on veut voir dans le détails ce que fait cette installation [c'est ici](#détails-de-linstallation) !
+En cas de problème ou si l'on veut voir dans le détail ce que fait cette installation [c'est ici](#détails-de-linstallation) !
 
 ---
 # Etudiante INSA
 ---   
-Si vous avez un compte informatique INSA et/ou un ordinateur personnel voilà la procédure
+Si vous avez un compte informatique INSA ou un ordinateur personnel voilà la procédure
 
 
 ## La première fois
@@ -67,7 +67,7 @@ N'oubliez pas le premier `.` qui est synonyme de `source` en bash.
 
 Les fichiers que vous avez modifiés seront **sauvegardés dans des _sauvegarde.ipynb !**  
 
-Recopiez à la main vos modifications de _sauvegarde.ipynb vers le .ipynb mis à jour **avant toute nouvelle mise à jour**
+Recopiez à la main vos modifications de _sauvegarde.ipynb vers le `.ipynb` mis à jour **avant toute nouvelle mise à jour**
 
 ## Vous avez perdu un fichier ?
 ---
@@ -157,7 +157,7 @@ En utilisant conda, on va créer un environnement `octavelab` contenant tous les
 cd ~/Signal/installation
 conda env create -f ./octavelab.yaml
 ```
-C'est long, mais à la fin c'est prêt !
+C'est long, mais à la fin, c'est prêt !
 Normalement si vous faites `conda env list`, l'environnement octavelab doit apparaître parmi d'autres.
 
 
@@ -171,7 +171,7 @@ conda activate octavelab
 jupyter-lab
 ```
 
-Cela lance un serveur `jupyter-lab` et un navigateur qui s'y connecte capable d'exécuter des notebooks (fichier .ipynb)
+Cela lance un serveur `jupyter-lab` et un navigateur qui s'y connecte capable d'exécuter des notebooks (fichier `.ipynb`)
  mélangeant cellules de texte et cellules de code (python, octave, etc.) 
 
 Naviguez par exemple jusqu'à `Signal\Installation\test.ipynb`, ouvrez la page et exécutez les cellules de code avec MAJ+ENTREE.
