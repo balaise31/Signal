@@ -3,20 +3,30 @@
 # Installations 
 ---
 
+## En TP à l'INSA
+En TP à l'INSA, lancez cette commande dans un terminal (CTRL+ALT+T) :
+```bash     
+source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_tp.sh 
+```
+La commande `go_signal`doit ensuite fonctionner et lancer le **jupyter-lab avec kernel octave**.
 
-Du plus facile au plus balèse :
+Voir [Etudiante INSA](#etudiante-insa) pour le détail, les mises à jour, la récupération de fichiers perdus...
+
+
+## "Chez soi"
+Pour les utilisations "chez-soi", du plus facile au plus balèse :
    - Exécuter les notebooks en ligne avec [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?urlpath=lab).  
    :kiss: On peut exécuter des Notebooks Octave/Matlab et python  
    :poop: Mais il faut une bonne connection  
    :poop: On ne peut pas facilement sauver son travail  
 
-  - On peut [utiliser les ordinateurs ou le VPN (monTP guacamole) de l'INSA](#etudiante-insa).  
+  - On peut utiliser les ordinateurs ou le VPN (monTP guacamole) de l'INSA : voir [Etudiante INSA](#etudiante-insa).  
    :kiss: On peut exécuter des Notebooks Octave/Matlab et python    
    :poop: Mais il faut une bonne connection  
    :poop: Il faut être étudiante INSA.  
    :kiss: On sauve son travail sur son compte INSA  
 
-  - On peut [installer en local](#installation-locale) le dépot Git, Conda et le kernel octave.  
+  - On peut installer ce dépot Git, Conda et le kernel octave : voir [installer en local](#installation-locale)  
    :kiss: On peut exécuter des Notebooks Octave/Matlab et python   
    :kiss: Plus besoin de connection  
    :kiss: Plus besoin d'être étudiante à l'INSA.  
