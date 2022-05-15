@@ -31,6 +31,7 @@ else
     mkdir $CIBLE
     cp -rf "$DEPOT/discret/tp" $CIBLE/
     cp -rf "$DEPOT/discret/td" $CIBLE/
+    cp -rf "$DEPOT/discret/utiles" $CIBLE/
     cp -rf "$DEPOT"/installation/*.sh $CIBLE/
     ln -s  "$DEPOT" $CIBLE/Signal_github
     echo -e " ... $CHECK"
