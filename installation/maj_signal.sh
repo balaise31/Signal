@@ -1,4 +1,4 @@
-DEPOT="/mnt/commetud/3eme Annee IMACS/Signal"
+source chemin_depot
 CIBLE="$HOME/signal_local"
 
 cd $CIBLE

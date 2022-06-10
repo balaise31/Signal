@@ -4,11 +4,11 @@ La \teZ{} joue le même rôle pour les systèmes discrets que la
 transformée de \Laplace{} pour les systèmes continus. Elles permettent
 de définir une \emph{fonction de transfert} du système et de manipuler
 les systèmes algébriquement (comme des nombres) sous formes de
-fonctions de variables associées à un système. Tout comme une fonction
-$G(p)$ de la variable $p$ associée au système \og dérivée de \fg{} en
-continu, nous aurons des fonctions $G(z)$ de la variable $z$ associé
-au système \og avance d'un échnatillon \fg{} les systèmes linéaires
-invariants).
+fonctions de variables associées à un système. Tout comme dans une
+fonction de trasnfert $G(p)$ la variable $p$ est associée au système
+\og dérivée de \fg{} en continu~; nous aurons en discret des fonctions
+de transfert $G(z)$ de la variable $z$ qui est associée au système \og
+avance d'un échantillon \fg{}.
 
 Plutôt que de présenter sans justifier ces formules de transformées,
 nous allons introduire la vision par calcul opérationnel qui consiste
@@ -28,39 +28,76 @@ la transofrmée de \Laplace{} n'est apparue que plus tard.
 \subsection{Similitude entre signal et système}
 
 Difficile de dire si $\frac{1}{1+\tau\,p}$ est la transformée d'un
-système du premier ordre ou bien celle du signal exponentielle causale
-$e^{-t/\tau}.u(t)$. C'est parce que l'on peut établir une bijection
-entre un système LTI et un signal en associant ce système H avec le
-signal qui est sa réponse impulsionnelle $h$.
+système du premier ordre $G(p)$ ou bien celle $X(p)$ du signal
+exponentielle causale $x(t)=e^{-t/\tau}.u(t)$. On peut dire que cette
+représentation est à la fois un signal et un système, car tout système
+$G$ peut être associé à sa réponse impulsionnelle $\vec{h}$ et
+réciproquement tout signal $\vec{h}$ est associé au système dont il
+est la réponse impulsionnelle.
 
+\subsubsection{Système G $\leftrightarrow$ \RIP{} $h$}
 \imagetexte{0.3}{op_sys}{0.6}{
-Ainsi, si l'on prend le schéma classique d'un opérateur H transformant
+Ainsi, si l'on prend le schéma classique d'un opérateur G transformant
 un signal $\vec{x}$ d'un espace de signaux $E$ en un signal $\vec{y}$
-du même espace~; on le représente par un opérateur $H$ et
+du même espace~; on le représente par un opérateur $G$ et
 l'automaticienne y associera un schéma-bloc (en rose les signaux et
 espaces de signaux, en noir les systèmes).
 }
 
 Dans le cas où ce système est LTI, la \secref{sec:rip} montre que
-l'opérateur $H$ peut être entièrement définit par sa réponse
-impulsionnelle notée $h$.
+l'opérateur $G$ peut être entièrement définit par sa réponse
+impulsionnelle notée $\vec{h}$.
 
-\imagetexte{0.3}{op_h_to_sys}{0.6}{
+\texteimage{0.3}{op_h_to_sys}{0.6}{
   La réponse $y$ à une entreée $x$
   arbitraire est la convolution de l'entrée par $h$.  On associe ainsi
   un signal $h$ à un système LTI. Le signal est représenté en gris
-  pour indiquer son rôle spécial pour le système $H$.
+  pour indiquer son rôle spécial pour le système $G$.
 }
+\imagetexte{0.4}{op_sys_to_h}{0.5}{
+  Pour associer un système $G$ à un
+  signal $h$, il suffit d'introduire une impulsion $\delta_0$ (de
+  Dirac pour l'espace des signaux continus, et impulsion unité pour
+  l'espace de signaux discret) en entrée du système $G$ pour
+  identifier la réponse impulsionnelle $h$.}
 
-Pour associer un système $H$ à un signal $h$, il suffit d'introduire
-une impulsion $\delta_0$ (de Dirac pour l'espace des signaux continus,
-et impulsion unité pour l'espace de signaux discret) en entrée du système
-$H$ pour identifier la réponse impulsionnelle $h$~:
+\begin{remarque}
+  La réponse impulsionnelle est une manière d'identifier un système et
+  d'en trouver les équations. Par exemple si l'on considère le système
+  d'un salle de concert où l'entrée est le son émis d'un point de la
+  scène et sa sortie le son perçu à un endroit des gradins, on peut
+  identifier entièrement ce système en enregistrant le son perçu lors
+  d'un claquement sec le plus proche possible de l'impulsion de
+  Dirac. Nous vous invitons à consulter le \refjupyter{RIp1}.
+\end{remarque}
+
+\subsubsection{Système G $\leftrightarrow$ Réponse harmonique $G(f)$}
+
+Au lieu de prendre le vecteur temporel $\delta_{0}$ pour identifier le
+système à son signal de sortie, nous allons prendre plusieurs vecteurs
+de la base fréquentielle $\vec{w_f}$ et associer un système à sa
+réponse harmonique $G\p{f=\frac{\omega}{2\pi}}$ qui est aussi une
+fonction de la variable réelle $\omega$ ou $f$. Dans le cas continu
+l'onde pure est $\vec{\omega_f}:t\mapsto e^{i2\pi\,f\,t}$ qui devient
+$\vec{\omega_f}:k\mapsto e^{i2\pi\,f\,k\,T_e}$ pour les systèmes
+discrets.
+
+\imagetexte{0.45}{op_harmo}{0.45}{Lorsque l'on présente une onde pure
+  $\vec{w_f}$ à l'entrée d'un système LTI, cette onde ressort pure à
+  la même fréquence mais avec un gain $\rho(f)$ et un déphasage 
+  $\varphi(f)$ qui dépend du système $G$ et de la fréquence $f$ de
+  l'onde pure. La sortie est donc l'onde pure multipliée par un nombre
+  complexe $G(f)$ de module $\rho(f)$ et d'argument $\varphi(f)$ ce
+  qui donne $G(f)=\rho(f).e^{i\,\varphi(f)}$.}
+
+La fonction $f\mapsto G(f)$ est donc une fonction de $\R\to\C$ ($F_e$
+périodique dans le cas discret) qui est associée au système $G$. Nous
+allons voir dans la suite que cette fonction dite réponse harmonique
+est associée de manière bijective à un système.
 
 
-\graphe{6cm}{op_sys_to_h}
-
-
+\subsection{Algèbre des système et signaux}
+Nous avons vu 
 \subsection{Systèmes élémentaires : fonction de transfert en Z}
 \subsection{Système non-bouclé -- moyenne glissante (MA) -- régressif --
   FIR}

@@ -1,4 +1,4 @@
-function [] = grid_notes ()
+function [] = grid_notes (fmin=110,fmax=10000)
 	
 	%Récupère l'axe des fréquences
 	LA4 = 440 ;
@@ -14,12 +14,16 @@ function [] = grid_notes ()
 	ylims=ylims + dy*[-1 1];
 	
     xlims=xlim();
+    if xlims(1)<fmin
+        xlims(1) = fmin;
+    end
 	octave=max(-2,floor(log2(xlims(1)/DO4)));
     nb_demis = octave*12;
     degre=1;
     freq = DO4 * 2^(nb_demis/12);
-	while (freq < xlims(2))
-        if (freq > xlims(1))
+	while (freq < min(fmax,xlims(2)))
+
+        if (freq > max(fmin,xlims(1)))
             if (degre==1)
                 text(freq,ylims(2)+2*dy,["DO-",num2str(octave+4)]);
                 line([freq freq], ylims+dy*[0 2], "linewidth", 2);

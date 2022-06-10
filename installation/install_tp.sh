@@ -1,4 +1,3 @@
-DEPOT="/mnt/commetud/3eme Annee IMACS/Signal"
 CIBLE="$HOME/signal_local"
 GOCONDA=".goConda.sh"
 
@@ -10,9 +9,14 @@ TEMPS="\U231A"
 BISOUS="\U1F48B"
 LIGNE="_______________________________________________________________"
 
-cd ;
+
+DEPOT=$(cd $(dirname "${BASH_SOURCE[0]}") && cd .. && pwd)
+
+cd $HOME;
 
 echo ""
+echo "Installation de $DEPOT vers $CIBLE"
+echo""
 
 if [ -d "$CIBLE" ]; then
     echo $LIGNE
@@ -20,7 +24,7 @@ if [ -d "$CIBLE" ]; then
     echo "   On fait une mise à jour..."
     echo "____"
     
-    "$DEPOT"/installation/maj_signal.sh
+    "$CIBLE"/maj_signal.sh
     echo -e "____\n  ... mise à jour :  $CHECK"
     echo $LIGNE
     
@@ -29,11 +33,12 @@ else
     echo -en "Copie des fichiers dans $CIBLE$ ..."
 
     mkdir $CIBLE
-    cp -rf "$DEPOT/discret/tp" $CIBLE/
-    cp -rf "$DEPOT/discret/td" $CIBLE/
-    cp -rf "$DEPOT/discret/utiles" $CIBLE/
-    cp -rf "$DEPOT"/installation/*.sh $CIBLE/
-    ln -s  "$DEPOT" $CIBLE/Signal_github
+    cp -rf "$DEPOT/discret/tp" "$CIBLE"/
+    cp -rf "$DEPOT/discret/td" "$CIBLE"/
+    cp -rf "$DEPOT/discret/utiles" "$CIBLE"/
+    cp -rf "$DEPOT"/installation/*.sh "$CIBLE"/
+    ln -s  "$DEPOT" $CIBLE/Signal_Depot
+    echo "export DEPOT=\"$DEPOT\"" > "$CIBLE"/chemin_depot
     echo -e " ... $CHECK"
     echo $LIGNE
 fi
@@ -68,9 +73,13 @@ fi;
 
 echo -en "Ajout de l'alias go_signal au .bashrc ... "
 
-grep -v go_signal $HOME/.bashrc > /tmp/.bashrc
-echo "alias go_signal='cd $CIBLE; . ./go_signal.sh &'">>/tmp/.bashrc
-grep -v goConda /tmp/.bashrc >$HOME/.bashrc
+
+grep -v DEPOT_SIGNAL $HOME/.bashrc > /tmp/.bashrc
+grep -v go_signal /tmp/.bashrc > /tmp/.bashrc1
+grep -v goConda /tmp/.bashrc1 >$HOME/.bashrc
+
+echo "export DEPOT_SIGNAL=\"$DEPOT\"">>$HOME/.bashrc
+echo "alias go_signal='cd $CIBLE; . ./go_signal.sh &'">>$HOME/.bashrc
 echo "alias goConda='. $HOME/$GOCONDA'">>$HOME/.bashrc
 echo -e "$CHECK"
 echo $LIGNE

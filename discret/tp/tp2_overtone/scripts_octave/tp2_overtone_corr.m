@@ -77,6 +77,10 @@ xlabel("temps [s]")
 audiowrite(["./",fich,"_mono.wav"],s,Fe);
 
 
+!ls
+!aplay ana_ah.wav 
+!aplay ana_ah_mono.wav
+
 printf(" N=%d points temporels et M=%d points fréquentiels\n",N,M);
 printf("Construction de la matrice de calcul de TFD (%d x %d) pour les f en échelle log...\n",M,N);
 tic;
@@ -177,12 +181,15 @@ wn = w0*rang;
 zeta=zetas(rang);
 pow=puis(rang);
 
+! ./genere_les_scripts.sh
+
+
+! cd scripts_octave && octave --force-gui
+
 fft_filt_c = fft_s .* Gc(p,wn,zeta).^pow;
 y_filt_c = real(ifft(fft_filt_c));
 y_filt_c = y_filt_c/max(abs(y_filt_c));
 audiowrite("filt_c.wav",y_filt_c,Fe)
-
-
 
 Gbi = @(z) 2/Te*(z-1)./(z+1);
 wnpre = 2/Te*tan(wn*Te/2);
