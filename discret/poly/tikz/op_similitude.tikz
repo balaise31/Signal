@@ -1,0 +1,45 @@
+﻿\begin{tikzpicture}[]
+	\node (abox) at (-4,-3.5) {};	
+	\node (bbox) at (7, 2) { };
+	\draw (abox) rectangle  (bbox) ;
+
+
+
+\begin{scope}[yshift=1cm]
+	\node[dspnodeopen, dsp/label=left]  (x) {$\vec{\delta_0}$};
+	\node[dspsquare, right = 1cm of  x ]  (H) {H};																			
+	\node[dspnodeopen, right = 1cm of H, dsp/label=right]  (y) {$\vec{h} =  H\{\vec{\delta_0}\}=\vec{\delta_0}\star\vec{h}$};
+	\draw[dspflow] (x) -- (H) ;
+	\draw[dspflow] (H) -- (y);	
+\end{scope}
+
+\begin{scope}[]
+	\node[dspnodeopen, dsp/label=left]  (x) {$\vec{x}$};
+	\node[dspsquare, right = 1cm of  x ]  (H) {H};																			
+	\node[dspnodeopen, right = 1cm of H, dsp/label=right]  (y) {$\vec{y} = H\{\vec{x}\}=\vec{x}\star\vec{h}$};
+	\draw[dspflow] (x) -- (H) ;
+	\draw[dspflow] (H) -- (y);	
+\end{scope}
+
+\begin{scope}[xshift = -3cm, yshift=-1.5cm]
+	\node[dspnodeopen]  (d0) {$\vec{\delta_0}$};
+	\node[dspsquare, right= 1cm of d0]  (X) {$X$};
+	\node[dspnodeopen, right= 1cm of X]  (x) {$\vec{x}=\vec{\delta_0}\star\vec{x}$};
+	\node[dspsquare, right = 1cm of  x ]  (H) {H};																			
+	\node[dspnodeopen, right = 1cm of H, dsp/label=right]  (y) {$\vec{y}=\vec{\delta_0}\star\vec{x}\star\vec{h}$};
+	\draw[dspflow] (d0) -- (X) ;
+	\draw[dspflow] (X) -- (x);	
+	\draw[dspflow] (x) -- (H) ;
+	\draw[dspflow] (H) -- (y);	
+\end{scope}
+
+\begin{scope}[xshift = -0cm, yshift=-2.5cm]
+	\node[dspnodeopen]  (d0) {$\vec{\delta_0}$};
+	\node[dspsquare, right = 1cm of  d0 ]  (H) {$H\circ X$};																			
+	\node[dspnodeopen, right = 1cm of H, dsp/label=right]  (y) {$\vec{y}=\vec{\delta_0}\star\vec{x}\star\vec{h}$};
+	
+	\draw[dspflow] (d0) -- (H) ;
+	\draw[dspflow] (H) -- (y);	
+\end{scope}
+
+\end{tikzpicture}

@@ -1,0 +1,14 @@
+name: octave
+channels:
+  - hcc
+  - conda-forge
+  - defaults
+dependencies:
+  - numpy=1.19
+  - python>=3.8
+  - matplotlib
+  - jupyterlab
+  - scipy
+  - octave
+  - octave-control
+  - xeus_octave
