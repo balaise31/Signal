@@ -7,7 +7,7 @@ permalink: index.html
 ---
 
 
-[Moodle 2IMACS](https://moodle.insa-toulouse.fr/course/view.php?id=708) | [Poly](https://moodle.insa-toulouse.fr/mod/resource/view.php?id=24741) | [Guide de TD](continu/td/README.ipynb) | [Guide de TP](continu/tp/README.ipynb)
+[Moodle 2IMACS](https://moodle.insa-toulouse.fr/course/view.php?id=708) | [Poly](https://moodle.insa-toulouse.fr/mod/resource/view.php?id=24741) | [Guide de TD](https://nbviewer.org/github/balaise31/Signal/tree/master/continu/td/README.ipynb) | [Guide de TP](https://nbviewer.org/github/balaise31/Signal/tree/master/continu/tp/README.ipynb)
 
 
 <img src="sdf.png"  width="300"/> Série de Fourier (SdF) et réciproque (TFSD)
@@ -18,7 +18,7 @@ permalink: index.html
 # Signal discret (3IMACS)
 ---
 
-[Cours](https://github.com/balaise31/Signal/tree/master/discret/cours/README.ipynb) | [Poly](poly_discret.pdf) | [TD](https://github.com/balaise31/Signal/tree/master/discret/td/README.ipynb) | [TP](https://github.com/balaise31/Signal/tree/master/discret/tp/README.ipynb) | [Défis](https://github.com/balaise31/Signal/tree/master/discret/defis) | [Moodle 3IMACS](https://moodle.insa-toulouse.fr/course/view.php?id=997) 
+[Cours](https://nbviewer.org/github/balaise31/Signal/tree/master/discret/cours/README.ipynb) | [Poly](poly_discret.pdf) | [TD](https://nbviewer.org/github/balaise31/Signal/tree/master/discret/td/README.ipynb) | [TP](https://nbviewer.org/github/balaise31/Signal/tree/master/discret/tp/README.ipynb) | [Défis](https://github.com/balaise31/Signal/tree/master/discret/defis) | [Moodle 3IMACS](https://moodle.insa-toulouse.fr/course/view.php?id=997) 
 
 
 <img src="tfsd.png"  width="300"/> Transformée de Fourier d'un Signal Discret (TFSD) et réciproque (SdF)
