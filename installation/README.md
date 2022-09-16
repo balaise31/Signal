@@ -4,48 +4,48 @@
 # Installations 
 ---
 
-## A - En salle de TP à l'INSA pour les 2IMACS (signaux à temps continu)
+Si vous êtes en salle de TP INSA suivez [ces instructions](#en-salle-de-TP-INSA) sinon pour les utilisations "chez-soi", du plus facile au plus balèse vous pouvez:
 
-Loguez-vous sous LINUX et lancez cette commande dans un terminal (CTRL+ALT+T) :
-```bash     
-cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_continu.sh 
-```
-
-La commande `go_continu` doit ensuite fonctionner et lancer le **jupyter-lab avec kernel octave**.
-
-Voir [Etudiante INSA](#etudiante-insa) pour le détail, les mises à jour, la récupération de fichiers perdus...
-
-## B- En salle de TP à l'INSA pour les 3IMACS (signaux à temps discret)
-
-Loguez-vous sous LINUX et lancez cette commande dans un terminal (CTRL+ALT+T) :
-```bash     
-cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_discret.sh 
-```
-
-La commande `go_discret` doit ensuite fonctionner et lancer le **jupyter-lab avec kernel octave**.
-
-Voir [Etudiante INSA](#etudiante-insa) pour le détail, les mises à jour, la récupération de fichiers perdus...
-
-## C - "Chez soi"
-Pour les utilisations "chez-soi", du plus facile au plus balèse :
-   - Exécuter les notebooks en ligne avec [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?labpath=README.ipynb).  
+   - Exécuter les notebooks en ligne : cliquez sur [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?labpath=README.ipynb).  
    :kiss: On peut exécuter des Notebooks Octave/Matlab et python  
-   :poop: Mais il faut une bonne connection  
+   :poop: Mais il faut une bonne connection (et la première est longue !)  
    :poop: On ne peut pas facilement sauver son travail  
 
-  - On peut utiliser les ordinateurs ou le VPN (monTP guacamole) de l'INSA : voir [Etudiante INSA](#etudiante-insa).  
+  - Sur un serveur virtuel de l'INSA (VPN insa +  monTP guacamole) : voir [Etudiante INSA](#etudiante-insa).  
    :kiss: On peut exécuter des Notebooks Octave/Matlab et python    
    :poop: Mais il faut une bonne connection  
    :poop: Il faut être étudiante INSA.  
    :kiss: On sauve son travail sur son compte INSA  
 
-  - On peut installer ce dépot Git, Conda et le kernel octave : voir [installer en local](#installation-locale)  
+  - Installer tout sur sa machine : voir [Installer en local](#installation-locale)  
    :kiss: On peut exécuter des Notebooks Octave/Matlab et python   
    :kiss: Plus besoin de connection  
    :kiss: Plus besoin d'être étudiante à l'INSA.  
    :kiss: On sauve son travail localement  
 
-En cas de problème ou si l'on veut voir dans le détail ce que fait cette installation [c'est ici](#détails-de-linstallation) !
+Pour les curieuses voir les [détails de l'installation](#détails-de-linstallation) !
+
+---
+---
+# En salle de TP INSA
+---
+
+## Pour les 2IMACS
+
+La première fois, logez-vous sous LINUX et lancez cette commande dans un terminal (CTRL+ALT+T) :
+```bash     
+cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_continu.sh 
+```
+A chaque début de séance, la commande `go_continu` lance le **jupyter-lab avec kernel octave**.
+
+
+## Pour les 3IMACS
+
+La première fois, logez-vous LINUX et lancez cette commande dans un terminal (CTRL+ALT+T) :
+```bash     
+cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_discret.sh 
+```
+A chaque début de séance, la commande `go_discret` lance le **jupyter-lab avec kernel octave**.
 
 ---
 ---
@@ -60,72 +60,9 @@ Si vous avez un compte informatique INSA ou un ordinateur personnel voilà la pr
 Sur ma machine, il faut d'abord :
    - [Installer le VPN sur son ordi](https://wiki.etud.insa-toulouse.fr/books/r%C3%A9seau-et-internet/chapter/vpn) 
    - Se connecter au VPN et aller sur [montp.insa-toulouse.fr](https://montp.insa-toulouse.fr/)(appli Guacamole). Puis se connecter à une **Salle de TP virtuelle LINUX**
-
-Dans une salle de TP (virtuelle ou non) lancez **dans un terminal** le script d'installation avec  
-
-### A1 - 2IMACS signaux à temps continu
----
-
-Dans un terminal LINUX (CTRL+ALT+T) :
-```bash     
-source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_continu.sh 
-```
-
-La commande `go_continu` dans le terminal lance *jupyter-lab* dans le répertoire `signal_continu`
-
-### A2 - 3IMACS signaux à temps discret
----
-```bash     
-source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_discret.sh 
-```
-
-La commande `go_discret` dans le terminal lance *jupyter-lab* dans le répertoire `signal_discret`
-
-## B - À chaque séance
----
-
-Il suffit d'exécuter dans un terminal LINUX (CTRL+ALT+T)
+   - L'installation se fait ensuite comme [en salle de TP INSA](#en-salle-de-TP-INSA)
    
-```bash
-go_continu
-```
-ou
-
-```bash
-go_discret
-```
-
-## C - Lors des mises à jour
----
-
-Il se peut que l'on vous demande de mettre à jour cette copie (en cas de modifications).  
-Dans ce cas faites :
-   
-```bash
-cd $HOME/signal_continu
-. ./maj_continu
-```  
-N'oubliez pas le premier `.` qui est synonyme de `source` en bash.
-
-Les fichiers que vous avez modifiés seront **sauvegardés dans des _sauvegarde.ipynb !**  
-
-Recopiez à la main vos modifications de _sauvegarde.ipynb vers le `.ipynb` mis à jour **avant toute nouvelle mise à jour**
-
-## D - Vous avez perdu un fichier ?
----
-
-Pas de problème, à l'insa **vous avez accès à des sauvegardes chaque heure avec des Snapshots** :
-
-```bash
-cd .snapshots
-cd hourly.2022-04-21_2205
-```
-Bien sûr, mettez la bonne date qui vous intéresse.
-
-Vous avez accès à vos anciens fichiers que vous pouvez rétablir par simple copie "en remontant"
-```bash
-cp mon.ipynb ../../
-```
+Ensuite CTRL+ALT+T pour ouvrir un terminal et `go_continu` (2IMACS) ou `go_discret` (3IMACS)
 
 ---
 ---
@@ -140,19 +77,21 @@ Pour les Geekettes pressées qui ont déjà `conda` et `git` installé, la suite
 cd
 git clone https://github.com/balaise31/Signal.git
 cd Signal/installation
-conda env create -f ./octavelab.yaml
-cd
-echo "alias goSignal='cd ~/Signal/ && conda activate octavelab && jupyter-lab'">>.bashrc
-source .bashrc
+conda env create -f ./Octave.yaml
+cd ~/Signal/installation
+source install_continu.sh
+cd ~/Signal/installation
+source install_discret.sh
 ```
-
-Jupyter-lab est lancé d'un terminal avec la commande `goSignal`
+Jupyter-lab est lancé :
+ * dans le dépot Git `~/Signal` avec la commande `goSignal`,
+ * dans la copie locale `~/signal_continu` pour modifier avec `go_continu`
+ * dans la copie locale `~/signal_discret` pour modifier avec `go_discret`
 
 ## B - Windows
 ---
 
 Pour une installation sous windows merci à Vincent Eychenne pour ces [instructions sous Windows](windows.md)  
-
 
 
 ---
@@ -198,7 +137,7 @@ En utilisant conda, on va créer un environnement `octavelab` contenant tous les
 
 ```bash   
 cd ~/Signal/installation
-conda env create -f ./octavelab.yaml
+conda env create -f ./Octave.yaml
 ```
 C'est long, mais à la fin, c'est prêt !
 Normalement si vous faites `conda env list`, l'environnement octavelab doit apparaître parmi d'autres.
@@ -210,7 +149,7 @@ Normalement si vous faites `conda env list`, l'environnement octavelab doit appa
 Dans un terminal exécutez la commande :
 ```bash
 cd ~/Signal
-conda activate octavelab
+conda activate Octave
 jupyter-lab
 ```
 
@@ -221,12 +160,12 @@ Naviguez par exemple jusqu'à `Signal\Installation\test.ipynb`, ouvrez la page e
 
 Vous pouvez créer un alias goSignal qui fait cela à chaque fois en ajoutant la ligne suivante à la fin de votre `~/.bashrc` :
 
-`alias goSignal='cd ~/Signal/ && conda activate octavelab && jupyter-lab'`
+`alias goSignal='cd ~/Signal/ && conda activate Octave && jupyter-lab'`
 
 Cela peut se faire en exécutant la ligne suivante :
 ```bash
 cd ~
-echo "alias goSignal='cd ~/Signal/ && conda activate octavelab && jupyter-lab'">>.bashrc
+echo "alias goSignal='cd ~/Signal/ && conda activate Octave && jupyter-lab'">>.bashrc
 source .bashrc
 ```
 Ainsi dans un terminal la commande `goSignal` lancera jupyterlab dans le répertoire Signal.
