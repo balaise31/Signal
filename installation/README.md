@@ -8,7 +8,7 @@
 
 Loguez-vous sous LINUX et lancez cette commande dans un terminal (CTRL+ALT+T) :
 ```bash     
-source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_continu.sh 
+cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_continu.sh 
 ```
 
 La commande `go_continu` doit ensuite fonctionner et lancer le **jupyter-lab avec kernel octave**.
@@ -19,7 +19,7 @@ Voir [Etudiante INSA](#etudiante-insa) pour le détail, les mises à jour, la r�
 
 Loguez-vous sous LINUX et lancez cette commande dans un terminal (CTRL+ALT+T) :
 ```bash     
-source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_discret.sh 
+cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_discret.sh 
 ```
 
 La commande `go_discret` doit ensuite fonctionner et lancer le **jupyter-lab avec kernel octave**.
