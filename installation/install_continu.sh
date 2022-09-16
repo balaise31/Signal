@@ -1,5 +1,7 @@
-CIBLE="$HOME/signal_local"
+DISCONT="continu"
+CIBLE="$HOME/signal_$DISCONT"
 GOCONDA=".goConda.sh"
+MAJ_LOCAL="maj_$DISCONT.sh"
 
 CHECK="\U2705" 
 UNCHECK="\U274C"
@@ -24,7 +26,7 @@ if [ -d "$CIBLE" ]; then
     echo "   On fait une mise à jour..."
     echo "____"
     
-    "$CIBLE"/maj_signal.sh
+    "$CIBLE"/"$MAJ_LOCAL"
     echo -e "____\n  ... mise à jour :  $CHECK"
     echo $LIGNE
     
@@ -33,10 +35,11 @@ else
     echo -en "Copie des fichiers dans $CIBLE$ ..."
 
     mkdir $CIBLE
-    cp -rf "$DEPOT/discret/tp" "$CIBLE"/
-    cp -rf "$DEPOT/discret/td" "$CIBLE"/
-    cp -rf "$DEPOT/discret/utiles" "$CIBLE"/
-    cp -rf "$DEPOT"/installation/*.sh "$CIBLE"/
+    cp -rf "$DEPOT/$DISCONT/tp" "$CIBLE"/
+    cp -rf "$DEPOT/$DISCONT/td" "$CIBLE"/
+    cp -rf "$DEPOT/$DISCONT/utiles" "$CIBLE"/
+    cp -rf "$DEPOT"/installation/README.ipynb "$CIBLE"/
+    cp -rf "$DEPOT"/installation/*$DISCONT.sh "$CIBLE"/
     ln -s  "$DEPOT" $CIBLE/Signal_Depot
     echo "export DEPOT=\"$DEPOT\"" > "$CIBLE"/chemin_depot
     echo -e " ... $CHECK"
@@ -75,12 +78,14 @@ echo -en "Ajout de l'alias go_signal au .bashrc ... "
 
 
 grep -v DEPOT_SIGNAL $HOME/.bashrc > /tmp/.bashrc
-grep -v go_signal /tmp/.bashrc > /tmp/.bashrc1
-grep -v goConda /tmp/.bashrc1 >$HOME/.bashrc
+grep -v "go_$DISCONT" /tmp/.bashrc > /tmp/.bashrc1
+grep -v goSignal /tmp/.bashrc1 > /tmp/.bashrc2
+grep -v goConda /tmp/.bashrc2 >$HOME/.bashrc
 
 echo "export DEPOT_SIGNAL=\"$DEPOT\"">>$HOME/.bashrc
-echo "alias go_signal='cd $CIBLE; . ./go_signal.sh &'">>$HOME/.bashrc
+echo "alias go_$DISCONT='cd $CIBLE; . ./go_$DISCONT.sh &'">>$HOME/.bashrc
 echo "alias goConda='. $HOME/$GOCONDA'">>$HOME/.bashrc
+echo "alias goSignal='cd $DEPOT && goConda && conda activate Octave && jupyter-lab'">>$HOME/.bashrc
 echo -e "$CHECK"
 echo $LIGNE
 
@@ -89,5 +94,5 @@ echo -en "On re-source le .bashrc ..."
 echo -e "$CHECK"
 echo $LIGNE
 
-echo -e "$CHAMP Installation réussie ! $CHAMP \nTapez go_signal dans ce terminal et ça démarre !"
+echo -e "$CHAMP Installation réussie ! $CHAMP \nTapez go_$DISCONT dans ce terminal et ça démarre !"
 echo $LIGNE

@@ -1,6 +1,7 @@
-DEPOT="/mnt/commetud/3eme Annee IMACS/Signal"
-CIBLE="$HOME/signal_local"
+DISCONT="discret"
+CIBLE="$HOME/signal_$DISCONT"
 GOCONDA=".goConda.sh"
+source "$CIBLE"/chemin_depot
 
 CHECK="\U2705" 
 UNCHECK="\U274C"
@@ -26,7 +27,7 @@ then
 	    
 	    echo "Pas de script $GOCONDA: $UNCHECK"
 	    echo " Exécutez dans ce terminal la commande "
-	    echo "   source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_tp.sh"
+	    echo "   source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_$DISCONT.sh"
 	    echo $LIGNE
 	    exit
 	else
@@ -46,5 +47,5 @@ else
     echo "Install des tp signal pas faite: $UNCHECK"
     echo "Avez-vous déplacé $CIBLE ?"
     echo "-> Exécutez dans ce terminal la commande pour recopier"
-    echo "    source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_tp.sh"
+    echo "    source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_$DISCONT.sh"
 fi

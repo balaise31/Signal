@@ -1,21 +1,34 @@
 
 ---
+---
 # Installations 
 ---
 
-## En TP à l'INSA
-En TP à l'INSA, lancez cette commande dans un terminal (CTRL+ALT+T) :
+## A - En salle de TP à l'INSA pour les 2IMACS (signaux à temps continu)
+
+Loguez-vous sous LINUX et lancez cette commande dans un terminal (CTRL+ALT+T) :
 ```bash     
-source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_tp.sh 
+source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_continu.sh 
 ```
-La commande `go_signal`doit ensuite fonctionner et lancer le **jupyter-lab avec kernel octave**.
+
+La commande `go_continu` doit ensuite fonctionner et lancer le **jupyter-lab avec kernel octave**.
 
 Voir [Etudiante INSA](#etudiante-insa) pour le détail, les mises à jour, la récupération de fichiers perdus...
 
+## B- En salle de TP à l'INSA pour les 3IMACS (signaux à temps discret)
 
-## "Chez soi"
+Loguez-vous sous LINUX et lancez cette commande dans un terminal (CTRL+ALT+T) :
+```bash     
+source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_discret.sh 
+```
+
+La commande `go_discret` doit ensuite fonctionner et lancer le **jupyter-lab avec kernel octave**.
+
+Voir [Etudiante INSA](#etudiante-insa) pour le détail, les mises à jour, la récupération de fichiers perdus...
+
+## C - "Chez soi"
 Pour les utilisations "chez-soi", du plus facile au plus balèse :
-   - Exécuter les notebooks en ligne avec [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?urlpath=lab).  
+   - Exécuter les notebooks en ligne avec [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?labpath=README.ipynb).  
    :kiss: On peut exécuter des Notebooks Octave/Matlab et python  
    :poop: Mais il faut une bonne connection  
    :poop: On ne peut pas facilement sauver son travail  
@@ -35,12 +48,13 @@ Pour les utilisations "chez-soi", du plus facile au plus balèse :
 En cas de problème ou si l'on veut voir dans le détail ce que fait cette installation [c'est ici](#détails-de-linstallation) !
 
 ---
+---
 # Etudiante INSA
 ---   
 Si vous avez un compte informatique INSA ou un ordinateur personnel voilà la procédure
 
 
-## La première fois
+## A - La première fois
 ---
 
 Sur ma machine, il faut d'abord :
@@ -49,29 +63,47 @@ Sur ma machine, il faut d'abord :
 
 Dans une salle de TP (virtuelle ou non) lancez **dans un terminal** le script d'installation avec  
 
-```bash     
-source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_tp.sh 
-```
-
-Le script d'installation doit se dérouler et créer une copie dans votre $HOME/signal_local **qu'il ne faut pas déplacer !**
-
-## À chaque séance
+### A1 - 2IMACS signaux à temps continu
 ---
 
-Il suffit d'exécuter dans un terminal 
+Dans un terminal LINUX (CTRL+ALT+T) :
+```bash     
+source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_continu.sh 
+```
+
+La commande `go_continu` dans le terminal lance *jupyter-lab* dans le répertoire `signal_continu`
+
+### A2 - 3IMACS signaux à temps discret
+---
+```bash     
+source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_discret.sh 
+```
+
+La commande `go_discret` dans le terminal lance *jupyter-lab* dans le répertoire `signal_discret`
+
+## B - À chaque séance
+---
+
+Il suffit d'exécuter dans un terminal LINUX (CTRL+ALT+T)
    
 ```bash
-go_signal
+go_continu
 ```
-## Lors des mises à jour
+ou
+
+```bash
+go_discret
+```
+
+## C - Lors des mises à jour
 ---
 
 Il se peut que l'on vous demande de mettre à jour cette copie (en cas de modifications).  
 Dans ce cas faites :
    
 ```bash
-cd $HOME/signal_local
-. ./maj_signal
+cd $HOME/signal_continu
+. ./maj_continu
 ```  
 N'oubliez pas le premier `.` qui est synonyme de `source` en bash.
 
@@ -79,7 +111,7 @@ Les fichiers que vous avez modifiés seront **sauvegardés dans des _sauvegarde.
 
 Recopiez à la main vos modifications de _sauvegarde.ipynb vers le `.ipynb` mis à jour **avant toute nouvelle mise à jour**
 
-## Vous avez perdu un fichier ?
+## D - Vous avez perdu un fichier ?
 ---
 
 Pas de problème, à l'insa **vous avez accès à des sauvegardes chaque heure avec des Snapshots** :
@@ -95,13 +127,12 @@ Vous avez accès à vos anciens fichiers que vous pouvez rétablir par simple co
 cp mon.ipynb ../../
 ```
 
-
-
+---
 ---
 # Installation locale
 ---
 
-## Linux
+## A - Linux
 ---
 
 Pour les Geekettes pressées qui ont déjà `conda` et `git` installé, la suite suffit :
@@ -117,19 +148,21 @@ source .bashrc
 
 Jupyter-lab est lancé d'un terminal avec la commande `goSignal`
 
-## Windows
+## B - Windows
 ---
 
-Pour une installation sous windows merci à Vincent Eychenne pour ces [instructions sous Windows](windows.md)
+Pour une installation sous windows merci à Vincent Eychenne pour ces [instructions sous Windows](windows.md)  
 
 
+
+---
 ---
 # Détails de l'installation
 ---
 
-En cas de problème ou pour voir ce qu'il y a sous le capot, voici le détail des étapes d'installation Linux à dapater pour mac et windows.
+En cas de problème ou pour voir ce qu'il y a sous le capot, voici le détail des étapes d'installation Linux à adapter pour mac et windows.
 
-## Prérequis
+## A - Prérequis
 ---
 
 Que ce soit sur Windows/Mac/Linux on suppose que :
@@ -144,7 +177,7 @@ Que ce soit sur Windows/Mac/Linux on suppose que :
       * Sous linux ça y est déjà ou sinon `sudo apt install python3`
 
 
-## Récup de ce dépôt git
+## B - Récup de ce dépôt git
 ---
 
 Ouvrez un terminal (git bash par exemple) et lancez la commande
@@ -158,7 +191,7 @@ Si vous n'arrivez pas à avoir un compte git avec une authentification qui march
 De temps en temps, vous pourrez importer les mises à jour en faisant un `git pull`.
 
 
-## Installation de l'environnement avec conda
+## C - Installation de l'environnement avec conda
 ---
 
 En utilisant conda, on va créer un environnement `octavelab` contenant tous les paquets nécessaires
@@ -171,7 +204,7 @@ C'est long, mais à la fin, c'est prêt !
 Normalement si vous faites `conda env list`, l'environnement octavelab doit apparaître parmi d'autres.
 
 
-## Lancement de jupyter-lab
+## D - Lancement de jupyter-lab
 ---
 
 Dans un terminal exécutez la commande :

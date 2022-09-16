@@ -1,0 +1,11 @@
+name: Octave
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - numpy=1.19
+  - python>=3.8
+  - matplotlib
+  - jupyterlab
+  - octave_kernel
+  - scipy

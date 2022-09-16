@@ -6,7 +6,7 @@
 
 1.	Installer GNU octave (https://www.gnu.org/software/octave/download) 
 2.	Installer Anaconda (https://www.anaconda.com/products/individual)
-3.	Lancer Anaconda, installer JupyterLab et/ou Jupyter Notebook
+3.	Lancer Anaconda, installer JupyterLab ou Jupyter Notebook
 4.	Lancer depuis Anaconda « CMD.exe Prompt »
 5.	Rentrer les commandes suivantes : 
 `conda config --add channels conda-forge`

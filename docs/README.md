@@ -33,4 +33,4 @@ permalink: index.html
 
 Pour voir comment naviguer en ligne, exécuter en ligne ou installer en local :
     
-    > Allez sur la [page d'installation](../installation/README.md)
+> Allez sur la [page d'installation](../installation/README.md)
