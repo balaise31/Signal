@@ -32,16 +32,21 @@ Pour les curieuses voir les [détails de l'installation](#détails-de-linstallat
 
 ## Pour les 2IMACS
 
-La première fois, logez-vous sous LINUX et lancez cette commande dans un terminal (CTRL+ALT+T) :
+La première fois, logez-vous sous LINUX et lancez cette commande dans un terminal (`CTRL+ALT+T` ou bien *Menu-> Outils Système -> Terminal Mate*) :
 ```bash     
 cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_continu.sh 
 ```
+
+ * Copiez en cliquant sur l'icône qui apparait en fin de ligne ci-dessus vers ici   ̂|
+ * Collez dans le terminal (click bouton milieu ou `CTRL+V`)
+ 
+ 
 A chaque début de séance, la commande `go_continu` lance le **jupyter-lab avec kernel octave**.
 
 
 ## Pour les 3IMACS
 
-La première fois, logez-vous LINUX et lancez cette commande dans un terminal (CTRL+ALT+T) :
+La première fois, logez-vous LINUX et lancez cette commande dans un terminal (`CTRL+ALT+T`) :
 ```bash     
 cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_discret.sh 
 ```
@@ -60,6 +65,8 @@ Si vous avez un compte informatique INSA ou un ordinateur personnel voilà la pr
 Sur ma machine, il faut d'abord :
    - [Installer le VPN sur son ordi](https://wiki.etud.insa-toulouse.fr/books/r%C3%A9seau-et-internet/chapter/vpn) 
    - Se connecter au VPN et aller sur [montp.insa-toulouse.fr](https://montp.insa-toulouse.fr/)(appli Guacamole). Puis se connecter à une **Salle de TP virtuelle LINUX**
+   - *Menu-> Internet -> Navigateur Web Firefox* et naviguez à nouveau vers cette page car Guacamole ne permettra pas de copier/coller en dehors de son onglet.
+   - *Menu-> Outils Système -> Terminal MATE* pour avoir un terminal car Guacamole ne prends pas le raccourcis clavier (CTRL+ALT+T)
    - L'installation se fait ensuite comme [en salle de TP INSA](#en-salle-de-TP-INSA)
    
 Ensuite CTRL+ALT+T pour ouvrir un terminal et `go_continu` (2IMACS) ou `go_discret` (3IMACS)
