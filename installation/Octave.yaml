@@ -3,9 +3,10 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - numpy=1.19
+  - numpy
   - python>=3.8
   - matplotlib
   - jupyterlab
   - octave_kernel
   - scipy
+  - ipywidgets
