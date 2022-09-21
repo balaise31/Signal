@@ -40,6 +40,7 @@ then
     echo -e "   $BISOUS"
     
     echo -e "Lancement de jupyter lab : un navigateur va apparaitre $TEMPS ..."
+    . $(DEPOT)/installation/setenv_octave_kernel.sh
     jupyter-lab &
     echo -e "     ... voilà c'est fait $BISOUS"
     
