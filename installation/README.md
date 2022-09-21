@@ -167,12 +167,12 @@ Naviguez par exemple jusqu'à `Signal\Installation\test.ipynb`, ouvrez la page e
 
 Vous pouvez créer un alias goSignal qui fait cela à chaque fois en ajoutant la ligne suivante à la fin de votre `~/.bashrc` :
 
-`alias goSignal='cd ~/Signal/ && conda activate Octave && jupyter-lab'`
+`alias goSignal='cd ~/Signal/ && conda activate Octave && . ./installation/setenv_octave_kernel.sh && jupyter-lab'`
 
 Cela peut se faire en exécutant la ligne suivante :
 ```bash
 cd ~
-echo "alias goSignal='cd ~/Signal/ && conda activate Octave && jupyter-lab'">>.bashrc
+echo "alias goSignal='cd ~/Signal/ && conda activate Octave && . ./installation/setenv_octave_kernel.sh && jupyter-lab'">>.bashrc
 source .bashrc
 ```
 Ainsi dans un terminal la commande `goSignal` lancera jupyterlab dans le répertoire Signal.

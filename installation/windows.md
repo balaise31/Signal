@@ -21,6 +21,7 @@
 <a href="https://ibb.co/tCgym4d"><img src="https://i.ibb.co/JkVXBKh/Image2.png" alt="Image2" border="0"></a>
 3.	Créer la nouvelle variable comme suit : 
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/y4CPg9M/Image3.png" alt="Image3" border="0"></a>
+4. De même créez une variable `OCTAVE_CLI_OPTIONS` que vous configurez à `--eval "graphics_toolkit('gnuplot')" --persist`
 7.	Redémarrer
-8.	Ajouter cette ligne au début de chaque notebook
+8.	Si un plot ne marche pas : ajouter cette ligne au début de chaque notebook
 `graphics_toolkit("gnuplot");`

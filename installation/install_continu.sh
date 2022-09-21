@@ -85,7 +85,7 @@ grep -v goConda /tmp/.bashrc2 >$HOME/.bashrc
 echo "export DEPOT_SIGNAL=\"$DEPOT\"">>$HOME/.bashrc
 echo "alias go_$DISCONT='cd $CIBLE; . ./go_$DISCONT.sh &'">>$HOME/.bashrc
 echo "alias goConda='. $HOME/$GOCONDA'">>$HOME/.bashrc
-echo "alias goSignal='cd $DEPOT && goConda && conda activate Octave && jupyter-lab'">>$HOME/.bashrc
+echo "alias goSignal='cd $DEPOT && goConda && conda activate Octave && . ./installation/setenv_octave_kernel.sh && jupyter-lab'">>$HOME/.bashrc
 echo -e "$CHECK"
 echo $LIGNE
 

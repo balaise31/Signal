@@ -8,5 +8,6 @@ dependencies:
   - matplotlib
   - jupyterlab
   - octave_kernel
+  - texinfo
   - scipy
   - ipywidgets
