@@ -1,7 +1,29 @@
-
 ---
 ---
 # Installations 
+---
+---
+Si vous êtes en salle de TP INSA suivez [ces instructions](#en-salle-de-TP-INSA)
+
+---
+---
+# Installer Octave
+---
+
+Octave est la version gratuite et libre (du GNU) de Matlab un des premier MathCAD (Logiciel de math)
+
+Sous linux (CTRL+ALT+T) pour ouvrir un terminal et tapez :
+
+```
+sudo apt install octave
+
+```
+
+Pour Window et Mac préferrez [Installer Anaconda](https://www.anaconda.com/products/distribution) (Distribution de python) et installer octave avec anaconda en suivant les liens Wiki de [Installer GNU octave](https://www.gnu.org/software/octave/download) 
+
+---
+---
+# 3 Solutions pour exécuter les notebooks 
 ---
 
 Si vous êtes en salle de TP INSA suivez [ces instructions](#en-salle-de-TP-INSA) sinon pour les utilisations "chez-soi", du plus facile au plus balèse vous pouvez:
