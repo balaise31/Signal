@@ -1,13 +1,13 @@
 eps=1e-4;
 
-global dt = 1e-2; %pas utilisé pour les calculs
+global dt = 1e-2; % incrément de Rieman  utilisé pour les calculs
 Te = 10*dt; % période d'échantillonnage pour affichage
 t = -2:Te:6;
 
 % Fonction constante
-c = @(t) t==t;
+c = @(t) cos(0*t);
 
-% définition de l'échelon u (continue au pas dt)
+% Définition de l'échelon u (continue au pas dt)
 u = @(t) min(1,max(0,(t+dt)/(dt*2)));
 
 % définition de la rampe r
