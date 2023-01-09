@@ -26,40 +26,42 @@ la transofrmée de \Laplace{} n'est apparue que plus tard.
 \end{citations}
 
 \subsection{Similitude entre signal et système}
+\def\y{\vec{y}}
+\def\x{\vec{x}}
+\def\h{\vec{h}}
+\def\d0{\vec{\delta_0}}
 
 Difficile de dire si $\frac{1}{1+\tau\,p}$ est la transformée d'un
 système du premier ordre $G(p)$ ou bien celle $X(p)$ du signal
 exponentielle causale $x(t)=e^{-t/\tau}.u(t)$. On peut dire que cette
 représentation est à la fois un signal et un système, car tout système
-$G$ peut être associé à sa réponse impulsionnelle $\vec{h}$ et
-réciproquement tout signal $\vec{h}$ est associé au système dont il
+$G$ peut être associé à sa réponse impulsionnelle $\h$ et
+réciproquement tout signal $\h$ est associé au système dont il
 est la réponse impulsionnelle.
 
 \subsubsection{Système G $\leftrightarrow$ \RIP{} $h$}
 \imagetexte{0.3}{op_sys}{0.6}{
 Ainsi, si l'on prend le schéma classique d'un opérateur G transformant
-un signal $\vec{x}$ d'un espace de signaux $E$ en un signal $\vec{y}$
+un signal $\x$ d'un espace de signaux $E$ en un signal $\y$
 du même espace~; on le représente par un opérateur $G$ et
 l'automaticienne y associera un schéma-bloc (en rose les signaux et
 espaces de signaux, en noir les systèmes).
 }
 
-Dans le cas où ce système est LTI, la \secref{sec:rip} montre que
+Dans le cas où ce système est LTI, le~\secref{sec:rip} montre que
 l'opérateur $G$ peut être entièrement définit par sa réponse
-impulsionnelle notée $\vec{h}$.
+impulsionnelle notée $\h$.
 
-\texteimage{0.3}{op_h_to_sys}{0.6}{
-  La réponse $y$ à une entreée $x$
-  arbitraire est la convolution de l'entrée par $h$.  On associe ainsi
-  un signal $h$ à un système LTI. Le signal est représenté en gris
-  pour indiquer son rôle spécial pour le système $G$.
-}
-\imagetexte{0.4}{op_sys_to_h}{0.5}{
-  Pour associer un système $G$ à un
-  signal $h$, il suffit d'introduire une impulsion $\delta_0$ (de
+
+\texteimage{0.3}{op_h_to_sys}{0.6}{ La réponse $\y$ à une entrée
+  arbitraire $\x$ est la convolution de l'entrée par $\h$.  On associe
+  ainsi un signal $\h$ à un système LTI. Le signal est représenté en
+  gris pour indiquer son rôle spécial pour le système $G$.  }
+\imagetexte{0.4}{op_sys_to_h}{0.5}{ Pour associer un système $G$ à un
+  signal $\h$, il suffit d'introduire une impulsion $\d0$ (de
   Dirac pour l'espace des signaux continus, et impulsion unité pour
-  l'espace de signaux discret) en entrée du système $G$ pour
-  identifier la réponse impulsionnelle $h$.}
+  l'espace de signaux discrets) en entrée du système $G$ pour
+  identifier la réponse impulsionnelle $\h$.}
 
 \begin{remarque}
   La réponse impulsionnelle est une manière d'identifier un système et
@@ -73,7 +75,7 @@ impulsionnelle notée $\vec{h}$.
 
 \subsubsection{Système G $\leftrightarrow$ Réponse harmonique $G(f)$}
 
-Au lieu de prendre le vecteur temporel $\delta_{0}$ pour identifier le
+Au lieu de prendre le vecteur temporel $\d0$ pour identifier le
 système à son signal de sortie, nous allons prendre plusieurs vecteurs
 de la base fréquentielle $\vec{w_f}$ et associer un système à sa
 réponse harmonique $G\p{f=\frac{\omega}{2\pi}}$ qui est aussi une
@@ -213,11 +215,11 @@ un entier en argument pour donner un complexe, alors qu'un opérateur
 Pour contourner ce problème, on remplace le signal $y$ par un système
 noté $Y$ dont la réponse à une excitation unitaire est le signal $y$
 lui-même. Dans le cas de systèmes discrets, on choisi comme signal
-unitaire l'impulsion unité $\delta_{0}$.
+unitaire l'impulsion unité $\d0$.
 
 \begin{definition}
   \label{def:impulsion_unite}
-  L'impulsion unité, notée $\delta_0$ ou simplement $\delta$, est le signal discret tel que :
+  L'impulsion unité, notée $\d0$ ou simplement $\delta$, est le signal discret tel que :
   $$
   \delta_0\b{k}=\pparMorceaux{1}{\text{si } k=0}{0}{\text{sinon}} \quad k\in\Z
   $$
