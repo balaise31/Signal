@@ -29,6 +29,7 @@ la transofrmée de \Laplace{} n'est apparue que plus tard.
 \def\y{\vec{y}}
 \def\x{\vec{x}}
 \def\h{\vec{h}}
+\def\g{\vec{g}}
 \def\d0{\vec{\delta_0}}
 
 Difficile de dire si $\frac{1}{1+\tau\,p}$ est la transformée d'un
@@ -63,6 +64,12 @@ impulsionnelle notée $\h$.
   l'espace de signaux discrets) en entrée du système $G$ pour
   identifier la réponse impulsionnelle $\h$.}
 
+Une méthode d'identification\footnote{méthode qui permet d'obtenir les
+  valeurs numériques des paramètres d'un modèle mathématique à partir
+  du processus réel} consiste à mesurer $\h$ en mesurant la sortie du
+système à identifier pour une entrée impulsionnelle (en discret) ou la
+plus proche de l'impulsion de DIrac (en continu).
+
 \begin{remarque}
   La réponse impulsionnelle est une manière d'identifier un système et
   d'en trouver les équations. Par exemple si l'on considère le système
@@ -75,13 +82,14 @@ impulsionnelle notée $\h$.
 
 \subsubsection{Système G $\leftrightarrow$ Réponse harmonique $G(f)$}
 
+\def\wf{\vec{\omega_f}}
 Au lieu de prendre le vecteur temporel $\d0$ pour identifier le
 système à son signal de sortie, nous allons prendre plusieurs vecteurs
-de la base fréquentielle $\vec{w_f}$ et associer un système à sa
+de la base fréquentielle $\wf$ et associer un système à sa
 réponse harmonique $G\p{f=\frac{\omega}{2\pi}}$ qui est aussi une
 fonction de la variable réelle $\omega$ ou $f$. Dans le cas continu
-l'onde pure est $\vec{\omega_f}:t\mapsto e^{i2\pi\,f\,t}$ qui devient
-$\vec{\omega_f}:k\mapsto e^{i2\pi\,f\,k\,T_e}$ pour les systèmes
+l'onde pure est $\wf :t\mapsto e^{i2\pi\,f\,t}$ qui devient
+$\wf :k\mapsto e^{i2\pi\,f\,k\,T_e}$ pour les systèmes
 discrets.
 
 \imagetexte{0.45}{op_harmo}{0.45}{Lorsque l'on présente une onde pure
@@ -97,9 +105,66 @@ périodique dans le cas discret) qui est associée au système $G$. Nous
 allons voir dans la suite que cette fonction dite réponse harmonique
 est associée de manière bijective à un système.
 
+\subsubsection{Trois visions équivalentes~: opérateur, RIp, Bode}
 
-\subsection{Algèbre des système et signaux}
-Nous avons vu 
+\graphe{\textwidth}{op_trois_visions}
+
+\subsection{Algèbre des systèmes et signaux}
+Nous montrons qu'un système/signal produit par adition et
+mutliplication de systèmes fondamentaux ont une algèbre d'anneau
+commutatif intègre et même de corps ce qui veut dire :
+
+\begin{citation}
+  Les systèmes se composent et s'assemblent comme les nombres, même si leur univer est beaucoup plus vaste.
+\end{citation}
+
+
+que quelle que soit la vision~: convolution de signaux,
+systèmes opérateurs, ou produit de réponses harmoniques 
+
+Nous montrons avec des schémas blocs et traitons en même temps~:
+\begin{itemize}
+\item les transformées notées en lettres capitales $X, Y, G$ et $H$
+  seront dans le cas continus des transformées de Laplace de signaux
+  $X(p)$, $Y(p)$, et de fonctions de transfert $G(p)$, $H(p)$. Dans le
+  cas discrets les transformée en Z sont utilisées pour les signaux
+  discrets $X(z)$, $Y(z)$ et les fonctions de transfert discrètes :
+  $G(z)$ et $H(z)$.
+\item les réponses impulsionnelles $\g$ et $\h$ des systèmes et les
+  signaux temporels $x$, $y$.
+\item les réponses harmoniques ou fréquentielles des systèmes
+  $G(f), H(f)$ et les \TF{} des signaux continus $X(f), Y(f)$ et dans
+  le cas discret les \TFSD{} notées également $X(f)$ et
+  $Y(f)$. Rappelons que dans ce dernier cas la réponse est $F_e$
+  périodique.
+\end{itemize}
+
+Ainsi nous représenterons sur ces trois points de vue, le fait de
+faire passer un signal $\x$ dans un système $G$ de réponse
+impulsionnelle $\g$ comme le fait de faire passer une impulsion $\d0$
+dans le système $X$ produisant $\x$ puis dans le système $G$ :
+
+\graphe{\textwidth}{op_sig_ds_sys_cont}
+
+Ce qui donne pour des sistèmes discrets~:
+
+\graphe{\textwidth}{op_sig_ds_sys_disc}
+
+\subsubsection{Produit avec un scalaire~: Gain}
+\graphe{\textwidth}{op_prod_scal}
+
+\subsubsection{Somme de signaux~: Sommateur}
+\graphe{\textwidth}{op_somme}
+
+\subsubsection{Commutativité des systèmes}
+
+\graphe{\textwidth}{op_commutation}
+
+\subsubsection{Distributivité du produit sur la somme}
+
+\graphe{\textwidth}{op_distributif}
+
+\subsubsection{}
 \subsection{Systèmes élémentaires : fonction de transfert en Z}
 \subsection{Système non-bouclé -- moyenne glissante (MA) -- régressif --
   FIR}
