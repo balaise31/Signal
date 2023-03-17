@@ -164,7 +164,75 @@ Ce qui donne pour des sistèmes discrets~:
 
 \graphe{\textwidth}{op_distributif}
 
-\subsubsection{}
+\subsubsection{Inversion de système}
+
+On peut inverser un système gain car on possède des scalaires $\alpha$
+(même complexes) inversibles sauf pour l'élémenent neutre de
+l'addition : $0$
+
+Un système qui comporte un gain non nul allant de l'entrée vers la
+sortie est appelé un système à transmission directe. Il est causal au
+sens large mais non strictement causal.
+
+\graphe{0.5\textwidth}{op_inverse_scalaire}
+% \graphe{\textwidth}{op_inversion_scalaire}
+
+Si l'on décompose un système quelconque $G=\alpha+R$ en une
+transmission directe $\alpha$ et un reste $R$ sans transmission
+directe et strictement causal. On peut construire le système inverse
+de $G$ en réalisant un système bouclé à contre-réaction.
+
+
+\paragraph{Inversion par bouclage~: manipulatuions algébriques}
+
+Il suffit de manipuler algébriquement l'inverse scalaire pour faire
+apparaître le système $G=\alpha.R$ et son inverse $G^-1$.
+
+\graphe{0.6\textwidth}{op_inverse_boucle}
+
+%\begin{remarque}
+%  Il faut que le signal null $\vec{O}$ introduit en rose dans le
+%  schéma soit réalisable quelque soit la sortie $R\OperDe{\x}$.
+%\end{remarque}
+
+\paragraph{Inversion par bouclage~: équation implicite}
+
+La boucle algébrique est souvent mise en \oe{}uvre par
+l'automaticienne et l'électronicienne pour inverser une fonction. Le
+schéma général ci-dessous fait apparaître un bouclage de contre
+réaction permettant d'inverser en quelque sorte le système à contrôler
+$G$.
+
+\graphe{\textwidth}{op_boucle_algebrique}
+
+Dans le cas général la sortie $\y$ de la boucle doit résoudre l'équation implicite suivante~:
+\begin{equation*}
+  \exists \y \tq \; G\OperDe{\x - K\OperDe{\y}} = \y 
+\end{equation*}
+
+Si les opérateurs sont des systèmes linéaires on peut séparer les sommes en~:
+
+\begin{flalign}
+  \exists \y \tq \; & G\OperDe{\x} - \overbrace{G\OperDe{K\OperDe{\y}}}^{G\circ{}K\OperDe{\y}} = \y \nonumber\\
+  & G\OperDe{\x} = \y + G\circ{}K\OperDe{\y} = (\Unite+G\compo{}K)\OperDe{\y}
+\end{flalign}
+où $\Unite$ est le système qui ne change pas le signal (gain de 1).
+
+Si l'on considère qu'il y a une solution à cette équation implicite, alors le système $(\Unite+G\compo{}K)$ possède un inverse. La solution de l'équation implicite est donc~:
+
+\begin{flalign}
+  \exists \y \tq \;  & (\Unite+G\compo{}K)^{-1}\OperDe{G\OperDe{\x}} = (\Unite+G\compo{}K)^{-1}\OperDe{(\Unite+G\compo{}K)\OperDe{\y}} \\
+  & \p{(\Unite-G\compo{}K)^{-1}\compo{}G}\OperDe{\x} = \y
+\end{flalign}
+
+On constate que l'opérateur de composition $\circ$ et la somme de
+signaux $+$ se comportent avec les systèmes comme une algèbre classique et l'existance
+d'inverse lui confère une structure d'anneau (comme les réels ou les
+complexes). On peut donc écrire la même équation en utilisant les
+transformées (de Laplace en continu avec $G(p)$ ou bien en $\TZ$ pour le
+temps discrets avec $G(z)$) et les manipuler comme des nombres.
+
+
 \subsection{Systèmes élémentaires : fonction de transfert en Z}
 \subsection{Système non-bouclé -- moyenne glissante (MA) -- régressif --
   FIR}
