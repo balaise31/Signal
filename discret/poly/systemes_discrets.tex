@@ -1,52 +1,100 @@
 \chapter{Systèmes discrets}
+\def\y{\vec{y}}
+\def\x{\vec{x}}
+\def\h{\vec{h}}
+\def\g{\vec{g}}
+\def\d0{\vec{\delta_0}}
 
 
-L'analogie avec les systèmes continus est forte, nous étudions de-même
-le cas des systèmes discrets linéaires invariants dans le temps avec
-une vision par opérateurs.
+L'analogie entre systèmes continus et discrets est forte, nous
+proposons ici de revenir sur les systèmes continus et d'aborder les
+systèmes discrets avec une approche commune par calcul opérationnel.
 
 
-\section{Systèmes linéaires}
+\imagetexte{0.3}{op_sys}{0.6}{ Un système (conintu ou discret) est vu
+  comme un opérateur G transformant un signal $\x$ d'un espace de
+  signaux $E$ en un signal $\y$ du même espace. L'automaticienne
+  associera un schéma-bloc (en rose les signaux et espaces de signaux,
+  en noir les systèmes) à cet opérateur transformant un signal en
+  signal.}
+
+Nous nous limitons dans ce chapitre aux systèmes à simple entrée et simple sortie~:
 
 \begin{definition}{Système SISO (Single Input Single Output)}
   
-  Un système discret SISO (resp. continu SISO) relie à un signal
-  d'entré $x$ un signal de sortie unique $y$. Les signaux $x$ et $y$
-  sont des fonctions de la variable réelle discrète $k$ (resp. $t$)
-  appartenant à un espace de fonction le plus général possible noté
-  ici $L_E$.
-
-  La relation entrée-sortie est donc modélisée par une application
-  mathématique de $L_E$ dans $L_E$ notée $L$ (resp. $L_c$ en continu)
-  et définie ainsi~:
-  \begin{eqnarray}
-    L : \qquad \application{L_E}{L_E}{x : \; k\mapsto x\b{k}\quad{}}{\quad y :\; k\mapsto y\b{k}} \\
-    L_c: \qquad \application{L_E}{L_E}{x : \; t\mapsto x\p{t}\quad{}}{\quad y :\; t\mapsto y\p{t}} 
+  Un système discret SISO est une application qui associe à un signal
+  d'entré $\x$ un signal de sortie unique $\y$. Les signaux $\x$ et $\y$
+  sont des fonctions prises dans un espace le plus général possible noté
+  ici $E$. Ce qui donne pour un système SISO discret nommé $G$~:
+  \begin{equation}
+    G : \qquad \application{E}{E}{\x}{\quad \y} 
     % DONE : correction TYPAGE et remarque notation
-  \end{eqnarray}
+  \end{equation}
+
 \end{definition}
 
-Une classe de système fondamentale est la classe des systèmes
-linéaires car elle offre de nombreux outils et propriétés
-mathématiques.
+Les signaux peuvent être des fonctions de la variable réelle continue
+ou discrète, prenant des valeurs réelles, complexes voire
+composite. La \tabref{tab:espaces_signaux} liste les principaux
+espaces de signaux.
+
+\begin{table}[!ht]
+  \begin{tabular}{p{0.1\textwidth}|c|c}
+   Espaces  & à variable continue    & à variable discrète  \\\hline
+    fonction réelle & $E=\R^\R,\quad f\in E $  &  $E=\R^\Z,\quad f\in E $   \\
+            & $ f:\application{\R}{\R}{t}{f(t)} $   &  $\application{\Z}{\R}{k}{f\b{k}} $   \\
+    \hline
+        fonction complexe & $E=\C^\R$   &    $E=\C^\Z$  \\
+    & $f:\application{\R}{\C}{t}{f(t)} $   &    $f:\application{\Z}{\C}{k}{f\b{k}} $     \\
+    \hline
+        image réelle & $E=\R^{\R^2}$   &   $E=\R^{\Z^2}$\\     
+    & $f:\application{\R^2}{\R}{\p{x,y}}{f(x,y)} $   &   $f:\application{\Z^2}{\R}{\p{l,k}}{f\b{l,k}}$      \\
+    \hline
+       image  couleur & $E={\R^3}^{\R^2}$   &   $E={\R^3}^{\Z^2}$      \\
+    & $f:\application{\R^2}{\R^3}{\p{x,y}}{f\p{x,y}=\vvvect{r\p{x,y}}{v\p{x,y}}{b\p{x,y}}} $   &   $f:\application{\Z^2}{\R^3}{\p{l,k}}{f\b{l,k}=\vvvect{r\b{l,k}}{v\b{l,k}}{b\b{l,k}}}$      \\
+\hline
+  \end{tabular}
+  \caption{Les différents espaces de signaux continus et discets de différents types de scalaires ($\R$ et $\C$) et différentes dimentions.}
+  \label{tab:espaces_signaux}
+\end{table}
+
+\begin{remarque}
+  On choisit des notations permettant de distinguer clairement~:
+  \begin{itemize}
+  \item un signal $\vec{f}$  et une variable $f$~;
+  \item une valeur $f\p{\nu}$ d'un signal $f$ continu évalué à un instant $\nu\in\R$ et une valeur $f\b{\nu}$ pour un signal discret pris à l'instant $\nu\in\N$. Dans le cas d'une période d'échantillonnage notée $T_e$ on notera donc $f\b{k}=f\p{k.T_e}$~;
+   \item une image de $x$ par l'application $f$ est notée $f\p{x}$ alors que l'image d'un signal $\x$ par l'opérateur $F$ est notée $F\OperDe{\x}$. Une application de la variable réelle ou entière est généralement appelée \emph{fonction} alors qu'une application de fonction en fonction est appelée \emph{opérateur}. 
+  \end{itemize}
+\end{remarque}
+\section{Systèmes linéaires}
+
+
+La classe des systèmes linéaires est fondamentale car elle offre de
+nombreux outils et propriétés mathématiques.
 
 \begin{definition}{Système linéaire}
   \label{def:linearite}
-  
-  Un système est dit linéaire si, et seulement si, l'application $L$
+
+  \def\xu{\vec{x_1}}
+  \def\xd{\vec{x_2}}
+
+  Un système est dit linéaire si, et seulement si, l'application $G$
   associée est linéaire, soit pour tout
-  $\p{x_1,x_2,\lambda} \in L_E^2 \times \R$~:
+  $\p{\xu, \xd, \lambda} \in E^2 \times \R$~:
   \begin{eqnarray}
     \label{eq:def_linearite}
-    \forall t \in \R \qquad L\b{x_1 + \lambda\, x_2}(t) = L\b{x_1}(t) + \lambda\,L\b{y_2}(t) \nonumber\\
-    \iff \qquad L\b{x_1 + \lambda\,x_2} = L\b{x_1} +\lambda L\b{x_2 }
+    G\b{\xu + \lambda\, \xd} = G\b{\xu}(t) + \lambda\,G\b{\xd}
   \end{eqnarray}
 \end{definition}
 
+Ce qui donne pour l'automaticienne en schéma-bloc~:
+
+\graphe{0.75\textwidth}{op_lineaire}
+
 Une des conséquences de la linéarité est la possibilité d'appliquer le
 principe de superposition cher à l'électronicienne~: \og{} la réponse
-du système à une combinaison linéaire d'entrées est la combinaison des
-réponses de chaque entrée.\fg{}
+d'un système électronqiue à une combinaison de générateurs est la combinaison des
+réponses à chaque générateur.\fg{}
 
 \begin{definition}{Systèmes continus élémentaires}
   \label{def:systeme_elementaires_continus}
@@ -117,7 +165,7 @@ linéarité~\ref{eq:def_linearite}.
 L'opérateur dérivée n'a pas de sens en discret, car la limite
 $s'(x)=\lim\limits_{h\to 0} \frac{s(x+h)-s(x)}{h}$ n'aurait pas de
 sens pour $h$ entier. On peut s'approcher de cet opérateur avec des
-combinasons plus ou moins complexes et précises des opérateusr avance
+combinasons plus ou moins complexes et précises des opérateurs avance
 et retard élémentaires.
 
 \begin{exemple}
@@ -159,7 +207,9 @@ et retard élémentaires.
 Il est fréquent, et surtout théoriquement utile, qu'un système
 réagisse de la même manière indépendemment de l'instant où est
 appliqué le signal d'entrée. Ce qui conduit à la définition suivante~:
+
 \begin{definition}{Système invariant dans le temps}
+
   Un système discret (resp. continu) est dit invariant dans le temps
   si et seulement si son application associée $L$ (resp. $L_c$)
   vérifie~:

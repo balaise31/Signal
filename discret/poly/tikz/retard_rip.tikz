@@ -1,0 +1,26 @@
+﻿\begin{tikzpicture}
+
+	\begin{axis}[
+			anchor = origin,  x=1cm, y=2cm,
+			ymin=-0.4, ymax=1.3,
+			xmin=-2.3, xmax = 2.3,
+			ytick = {0},	
+			xtick={-4,...,4},
+			axis lines=center, 
+			xlabel={$k$},
+			ylabel={},
+			ylabel style = {anchor=south, thick, black},
+			xlabel style = {anchor=west, thick, black},
+			grid=minor,
+			help lines]
+
+		\addplot[very thick, blue, mark=*, mark options={fill=white},ycomb,samples at={-2, ..., 2}] plot(\x,{(\x==1)*0.5});
+	\end{axis}
+
+	\node (a) at (1.245,1) {1};
+
+\end{tikzpicture}
+    
+  
+ 
+

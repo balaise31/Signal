@@ -26,11 +26,6 @@ la transofrmée de \Laplace{} n'est apparue que plus tard.
 \end{citations}
 
 \subsection{Similitude entre signal et système}
-\def\y{\vec{y}}
-\def\x{\vec{x}}
-\def\h{\vec{h}}
-\def\g{\vec{g}}
-\def\d0{\vec{\delta_0}}
 
 Difficile de dire si $\frac{1}{1+\tau\,p}$ est la transformée d'un
 système du premier ordre $G(p)$ ou bien celle $X(p)$ du signal
@@ -41,13 +36,6 @@ réciproquement tout signal $\h$ est associé au système dont il
 est la réponse impulsionnelle.
 
 \subsubsection{Système G $\leftrightarrow$ \RIP{} $h$}
-\imagetexte{0.3}{op_sys}{0.6}{
-Ainsi, si l'on prend le schéma classique d'un opérateur G transformant
-un signal $\x$ d'un espace de signaux $E$ en un signal $\y$
-du même espace~; on le représente par un opérateur $G$ et
-l'automaticienne y associera un schéma-bloc (en rose les signaux et
-espaces de signaux, en noir les systèmes).
-}
 
 Dans le cas où ce système est LTI, le~\secref{sec:rip} montre que
 l'opérateur $G$ peut être entièrement définit par sa réponse
@@ -58,7 +46,7 @@ impulsionnelle notée $\h$.
   arbitraire $\x$ est la convolution de l'entrée par $\h$.  On associe
   ainsi un signal $\h$ à un système LTI. Le signal est représenté en
   gris pour indiquer son rôle spécial pour le système $G$.  }
-\imagetexte{0.4}{op_sys_to_h}{0.5}{ Pour associer un système $G$ à un
+\imagetexte{0.35}{op_sys_to_h}{0.5}{ Pour associer un système $G$ à un
   signal $\h$, il suffit d'introduire une impulsion $\d0$ (de
   Dirac pour l'espace des signaux continus, et impulsion unité pour
   l'espace de signaux discrets) en entrée du système $G$ pour
@@ -146,7 +134,7 @@ dans le système $X$ produisant $\x$ puis dans le système $G$ :
 
 \graphe{\textwidth}{op_sig_ds_sys_cont}
 
-Ce qui donne pour des sistèmes discrets~:
+Ce qui donne pour des systèmes discrets~:
 
 \graphe{\textwidth}{op_sig_ds_sys_disc}
 
@@ -212,28 +200,110 @@ Dans le cas général la sortie $\y$ de la boucle doit résoudre l'équation imp
 
 Si les opérateurs sont des systèmes linéaires on peut séparer les sommes en~:
 
-\begin{flalign}
+\begin{flalign*}
   \exists \y \tq \; & G\OperDe{\x} - \overbrace{G\OperDe{K\OperDe{\y}}}^{G\circ{}K\OperDe{\y}} = \y \nonumber\\
   & G\OperDe{\x} = \y + G\circ{}K\OperDe{\y} = (\Unite+G\compo{}K)\OperDe{\y}
-\end{flalign}
+\end{flalign*}
 où $\Unite$ est le système qui ne change pas le signal (gain de 1).
 
 Si l'on considère qu'il y a une solution à cette équation implicite, alors le système $(\Unite+G\compo{}K)$ possède un inverse. La solution de l'équation implicite est donc~:
 
-\begin{flalign}
+\begin{flalign*}
   \exists \y \tq \;  & (\Unite+G\compo{}K)^{-1}\OperDe{G\OperDe{\x}} = (\Unite+G\compo{}K)^{-1}\OperDe{(\Unite+G\compo{}K)\OperDe{\y}} \\
-  & \p{(\Unite-G\compo{}K)^{-1}\compo{}G}\OperDe{\x} = \y
-\end{flalign}
+  & \p{(\Unite+G\compo{}K)^{-1}\compo{}G}\OperDe{\x} = \y \\
+  & \y = \frac{G}{\Unite+G\compo{}K}\OperDe{\x}
+\end{flalign*}
 
 On constate que l'opérateur de composition $\circ$ et la somme de
 signaux $+$ se comportent avec les systèmes comme une algèbre classique et l'existance
 d'inverse lui confère une structure d'anneau (comme les réels ou les
 complexes). On peut donc écrire la même équation en utilisant les
-transformées (de Laplace en continu avec $G(p)$ ou bien en $\TZ$ pour le
-temps discrets avec $G(z)$) et les manipuler comme des nombres.
+transformées (de Laplace en continu avec $G(p)$,$Y(p)$,etc. ; ou bien en $\TZ$ pour le
+temps discrets avec $G(z)$, $Y(z)$,etc.) et les manipuler comme des nombres~:
 
+\begin{flalign*}
+  \exists Y \tq \;  & \overbrace{\p{X - K.Y}}^{\epsilon}.G = Y \\
+  & X.G = K.Y.G + Y = \p{\Unite+K.G}.Y \\
+  & \p{\Unite+K.G}^{-1}.X.G= \p{\Unite+K.G}^{-1}.\p{\Unite+K.G}.Y \\
+  & Y = \frac{G}{\Unite+K.G}. X
+\end{flalign*}
 
 \subsection{Systèmes élémentaires : fonction de transfert en Z}
+\def\d0{\vec{\delta_0}}
+
+Un système discret est majoritairement réalisé de manière logicielle
+où le signal d'entrée $\x$ est un tampon de mémoire contenant les
+échantillons de valeurs $x\b{k}$ à traiter. Un calcul est effectué
+périodiquement et la sortie $y[k]$ est envoyée en sortie (dans un
+tampon ou vers un périphérique).
+
+Tout système discret linéaire invariant possédant une seule entrée $x$ et
+une seule sortie $y$ se représente ainsi par une équation aux différences du
+type~:
+\begin{eqnarray}
+  \label{eq:systeme_recurrence}
+  a_n\,y\b{k-n} \,+\, \ldots  \,+\,  a_1\,y\b{k-1} \,+\, a_0.y\b{k} \;=\; b_m\,x\b{k-m} \,+\, \ldots \,+\, b_0 x\b{k} \quad,\quad \forall k\in\Z
+\end{eqnarray}
+
+
+On définit alors les trois opérateurs élémentaires et fondamentaux de
+la \tabref{tab:op_discrets} que peut associer la programmeuse
+pour réaliser un système discret.
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}[c]{|c|c|c|c|c|}
+    \hline
+    Système & Opérateur / & Transformée  & Réponse  & Réponse  \\
+            & Récurrence  &   en $\TZ$   & impulsionnelle & harmonique \\\hline
+    Gain & $\y = \alpha. \x$ & $Y[z]=\alpha.X[z]$  & $\h=\alpha.\d0$ & $H(f)= \alpha$ \\
+   \hspace{-1cm}\graphe{0.3\textwidth}{gain_symb}\hspace{-1cm}         &$y[k]=\alpha.x[k]$ & & \graphe{0.25\textwidth}{gain_rip}& \hspace{-1cm}\graphe{0.25\textwidth}{gain_phaseur}\hspace{-1cm} \\\hline
+    Retard & $\y = \oret\OperDe{\x}$ & $Y[z]=z^{-1}.X[z]$  & $\h=\vec{\delta_1}$ & $H(f)=e^{-i.2\pi.\tilde{f}}=e^{-i\Delta}$ \\
+      \hspace{-1cm}\graphe{0.3\textwidth}{retard_symb}\hspace{-1cm}   &$y[k]=x[k-1]$ & & \graphe{0.25\textwidth}{retard_rip} & \graphe{0.25\textwidth}{retard_phaseur}\hspace{-1cm}\\\hline
+    Avance & $\y = \oret^{-1}\OperDe{\x}$ & $Y[z]=z.X[z]$  & $\h=\vec{\delta_{-1}}$ & $H(f)= e^{+i.2\pi.\tilde{f}}=e^{+i\Delta}$   \\
+      \hspace{-1cm}\graphe{0.3\textwidth}{avance_symb}\hspace{-1cm}   &$y[k]=x[k+1]$ & & \graphe{0.25\textwidth}{avance_rip} &  \hspace{-1cm}\graphe{0.25\textwidth}{avance_phaseur}\hspace{-1cm} \\\hline    
+  \end{tabular}
+  \caption{Opérateurs discrets fondamentaux}
+  \label{tab:op_discrets}
+\end{table}
+
+
+Les opérateurs discrets de base, retard unitaire, avance unitaire,
+gain commutent entre-eux (pour les systèmes invariants) et se combinent
+linéairement (pour les systèmes linéaires). On peut donc représenter la
+relation entrée/sortie par une combinaison linéaire de ces opérateurs
+de base~:
+\begin{eqnarray}
+  \label{eq:systeme_operationnel}
+  a_n.\p{\caCest{\oret\circ...\circ \oret}{\text{n fois}}}\b{\y}\; +\; \ldots \;+\; a_1.\caCest{\p{\oret}\b{\y}}{k\mapsto a_1.y\b{k-1}} \;+\; a_0.\caCest{\p{ \Id}\b{\y}}{a_0.y} \nonumber\\
+  =\quad \p{b_m\,\circ\,\caCest{\oret\circ...\circ \oret}{\text{m fois}}}\b{\x} \;+\; \ldots \;+\; \p{b_0 \,\circ\,\Id}\b{\x}
+\end{eqnarray}
+
+\begin{remarque}
+  Remarquons bien que dans \eqref{eq:systeme_recurrence} les termes
+  sont des scalaires réels ou complexe~; alors que dans l'écriture
+  opérationnelle \eqref{eq:systeme_operationnel} les termes sont des
+  fonctions (ou signaux ou plutôt des suites réelles ou complexes). Au
+  lieu de prendre une égalité valable pour tout entier $k$~; nous
+  passons à une équation de systèmes (ou opérateurs) prenant en
+  argument des signaux.
+\end{remarque}
+
+
+Comme l'opérateur gain est invariant et qu'il commute avec l'opérateur
+retard on peut noter la composition $\circ$ comme un simple produit
+car elle possède les mêmes propriétés de commutativité, associativité
+etc. La récurrence devient ainsi~:
+\begin{eqnarray}
+ \caCest{\p{a_n.\oret^n}}{\text{opérateur}}\caCest{\b{y}}{\text{de fonction}}\; +\; \ldots \;+\; \p{a_1.\oret}\b{y} \;+\; \caCest{a_0\b{y}}{k\mapsto a_0\,y\b{k}}  = \quad \p{b_m.\oret^m}\b{x} \;+\; \ldots \;+\; b_0\b{x}
+\end{eqnarray}
+
+
+
+
+
+
+
 \subsection{Système non-bouclé -- moyenne glissante (MA) -- régressif --
   FIR}
 \subsection{Système bouclé -- récurrence -- autorégressif -- IIR}
