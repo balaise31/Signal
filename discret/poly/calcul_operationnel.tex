@@ -1,4 +1,8 @@
 \section{Calcul opérationnel}
+  \def\y{\vec{y}}
+  \def\x{\vec{x}}
+  \def\xu{\vec{x_1}}
+  \def\xd{\vec{x_2}}
 
 La \teZ{} joue le même rôle pour les systèmes discrets que la
 transformée de \Laplace{} pour les systèmes continus. Elles permettent
@@ -227,79 +231,6 @@ temps discrets avec $G(z)$, $Y(z)$,etc.) et les manipuler comme des nombres~:
   & \p{\Unite+K.G}^{-1}.X.G= \p{\Unite+K.G}^{-1}.\p{\Unite+K.G}.Y \\
   & Y = \frac{G}{\Unite+K.G}. X
 \end{flalign*}
-
-\subsection{Systèmes élémentaires : fonction de transfert en Z}
-\def\d0{\vec{\delta_0}}
-
-Un système discret est majoritairement réalisé de manière logicielle
-où le signal d'entrée $\x$ est un tampon de mémoire contenant les
-échantillons de valeurs $x\b{k}$ à traiter. Un calcul est effectué
-périodiquement et la sortie $y[k]$ est envoyée en sortie (dans un
-tampon ou vers un périphérique).
-
-Tout système discret linéaire invariant possédant une seule entrée $x$ et
-une seule sortie $y$ se représente ainsi par une équation aux différences du
-type~:
-\begin{eqnarray}
-  \label{eq:systeme_recurrence}
-  a_n\,y\b{k-n} \,+\, \ldots  \,+\,  a_1\,y\b{k-1} \,+\, a_0.y\b{k} \;=\; b_m\,x\b{k-m} \,+\, \ldots \,+\, b_0 x\b{k} \quad,\quad \forall k\in\Z
-\end{eqnarray}
-
-
-On définit alors les trois opérateurs élémentaires et fondamentaux de
-la \tabref{tab:op_discrets} que peut associer la programmeuse
-pour réaliser un système discret.
-
-\begin{table}[!ht]
-  \centering
-  \begin{tabular}[c]{|c|c|c|c|c|}
-    \hline
-    Système & Opérateur / & Transformée  & Réponse  & Réponse  \\
-            & Récurrence  &   en $\TZ$   & impulsionnelle & harmonique \\\hline
-    Gain & $\y = \alpha. \x$ & $Y[z]=\alpha.X[z]$  & $\h=\alpha.\d0$ & $H(f)= \alpha$ \\
-   \hspace{-1cm}\graphe{0.3\textwidth}{gain_symb}\hspace{-1cm}         &$y[k]=\alpha.x[k]$ & & \graphe{0.25\textwidth}{gain_rip}& \hspace{-1cm}\graphe{0.25\textwidth}{gain_phaseur}\hspace{-1cm} \\\hline
-    Retard & $\y = \oret\OperDe{\x}$ & $Y[z]=z^{-1}.X[z]$  & $\h=\vec{\delta_1}$ & $H(f)=e^{-i.2\pi.\tilde{f}}=e^{-i\Delta}$ \\
-      \hspace{-1cm}\graphe{0.3\textwidth}{retard_symb}\hspace{-1cm}   &$y[k]=x[k-1]$ & & \graphe{0.25\textwidth}{retard_rip} & \graphe{0.25\textwidth}{retard_phaseur}\hspace{-1cm}\\\hline
-    Avance & $\y = \oret^{-1}\OperDe{\x}$ & $Y[z]=z.X[z]$  & $\h=\vec{\delta_{-1}}$ & $H(f)= e^{+i.2\pi.\tilde{f}}=e^{+i\Delta}$   \\
-      \hspace{-1cm}\graphe{0.3\textwidth}{avance_symb}\hspace{-1cm}   &$y[k]=x[k+1]$ & & \graphe{0.25\textwidth}{avance_rip} &  \hspace{-1cm}\graphe{0.25\textwidth}{avance_phaseur}\hspace{-1cm} \\\hline    
-  \end{tabular}
-  \caption{Opérateurs discrets fondamentaux}
-  \label{tab:op_discrets}
-\end{table}
-
-
-Les opérateurs discrets de base, retard unitaire, avance unitaire,
-gain commutent entre-eux (pour les systèmes invariants) et se combinent
-linéairement (pour les systèmes linéaires). On peut donc représenter la
-relation entrée/sortie par une combinaison linéaire de ces opérateurs
-de base~:
-\begin{eqnarray}
-  \label{eq:systeme_operationnel}
-  a_n.\p{\caCest{\oret\circ...\circ \oret}{\text{n fois}}}\b{\y}\; +\; \ldots \;+\; a_1.\caCest{\p{\oret}\b{\y}}{k\mapsto a_1.y\b{k-1}} \;+\; a_0.\caCest{\p{ \Id}\b{\y}}{a_0.y} \nonumber\\
-  =\quad \p{b_m\,\circ\,\caCest{\oret\circ...\circ \oret}{\text{m fois}}}\b{\x} \;+\; \ldots \;+\; \p{b_0 \,\circ\,\Id}\b{\x}
-\end{eqnarray}
-
-\begin{remarque}
-  Remarquons bien que dans \eqref{eq:systeme_recurrence} les termes
-  sont des scalaires réels ou complexe~; alors que dans l'écriture
-  opérationnelle \eqref{eq:systeme_operationnel} les termes sont des
-  fonctions (ou signaux ou plutôt des suites réelles ou complexes). Au
-  lieu de prendre une égalité valable pour tout entier $k$~; nous
-  passons à une équation de systèmes (ou opérateurs) prenant en
-  argument des signaux.
-\end{remarque}
-
-
-Comme l'opérateur gain est invariant et qu'il commute avec l'opérateur
-retard on peut noter la composition $\circ$ comme un simple produit
-car elle possède les mêmes propriétés de commutativité, associativité
-etc. La récurrence devient ainsi~:
-\begin{eqnarray}
- \caCest{\p{a_n.\oret^n}}{\text{opérateur}}\caCest{\b{y}}{\text{de fonction}}\; +\; \ldots \;+\; \p{a_1.\oret}\b{y} \;+\; \caCest{a_0\b{y}}{k\mapsto a_0\,y\b{k}}  = \quad \p{b_m.\oret^m}\b{x} \;+\; \ldots \;+\; b_0\b{x}
-\end{eqnarray}
-
-
-
 
 
 

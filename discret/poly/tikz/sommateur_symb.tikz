@@ -1,0 +1,26 @@
+﻿\begin{tikzpicture}[outer sep=auto]
+
+	\matrix (graphe)[ row sep=-0.5cm, column sep=1cm, inner sep=0.5cm]{
+	\node  (xu) {};	
+	&  	
+		
+	&
+
+  	\\	  
+
+	& 
+	 \node[dspadder]  (S) {};	
+	&
+	 \node (somme) {}; 	
+	\\
+	\node  (xd) {};  	
+	& 
+
+  	& 
+
+	\\
+	};
+	\draw[dspflow, rounded corners=0.2cm] (xu) -| (S) ;
+	\draw[dspflow, rounded corners=0.2cm]  (xd)  -| (S);
+	\draw[dspflow] (S)  -- (somme);
+\end{tikzpicture}
