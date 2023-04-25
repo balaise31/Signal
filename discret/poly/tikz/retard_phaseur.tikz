@@ -1,0 +1,33 @@
+﻿\begin{tikzpicture}
+
+	\begin{axis}[
+			anchor = origin,  x=1.5cm, y=1.5cm,
+			ymin=-1.5, ymax=1.5,
+			xmin=-1.5, xmax = 1.5,
+			ytick = {0},	
+			xtick={-1 },
+			axis lines=center, 
+			xlabel={$\mathbf{R}$},
+			ylabel={$\mathbf{I}$},
+			ylabel style = {anchor=east, thick, black},
+			xlabel style = {anchor=north, thick, black},
+			grid=minor,
+			help lines]
+ 		\draw (0,0) circle (1);
+		\draw [very thick, black, fill=black] ({cos(-20)},{sin(-20)}) circle (0.05) ;
+		\draw [thick,->] ({1.2*cos(-20)},{1.2*sin(-20)}) arc (-18:-2:1.2) node[right] {} ;
+		\draw [very thick] ({cos(0)},{sin(0)}) circle (0.05) node[right] {} ;
+		\draw [very thick] ({cos(20)},{sin(20)}) circle (0.05) node[right] {} ;
+		\draw [thick,->] ({1.2*cos(0)},{1.2*sin(0)}) arc (2:18:1.2) node[right] {} ;
+		\draw [very thick] ({cos(40)},{sin(40)}) circle (0.05) node[right] {} ;
+		\draw [thick,->] ({1.2*cos(20)},{1.2*sin(20)}) arc (22:38:1.2) node[right] {} ;
+		\draw [thick,->,dashed] ({1.2*cos(40)},{1.2*sin(40)}) arc (42:58:1.2) node[right] {} ;
+		\node [black ,  thick] (e) at (.6,-0.4) {$e^{-i.\Delta}$};
+\end{axis}
+
+\end{tikzpicture}
+    
+  
+ 
+ 
+ 

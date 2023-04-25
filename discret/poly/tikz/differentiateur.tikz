@@ -1,0 +1,25 @@
+﻿\begin{tikzpicture}[outer sep=auto, amp/.style = {regular polygon, regular polygon sides=3,
+              draw, fill=white, text width=1em,
+              inner sep=1mm, outer sep=0mm,
+              shape border rotate=-90}]
+
+	\matrix (graphe)[ row sep=0cm, column sep=1cm, inner sep=0.5cm]{ 	
+	\node[dspnodeopen]  (x) {$x$}; &
+	\node[dspnodefull] (split) {}	;															
+	&      
+	& 	 \node[dspadder,label={[shift={(2ex,-3ex)}]above left:$+$},label={[shift={(-3ex,+2ex)}]below right:$-$} ]  (S) {};			 
+	& \node[amp] (Gain) {$\!\!\!1/T_e$};
+	& \node[dspnodeopen,  dsp/label=above]  (y) {$y$};  		\\
+   &
+	& \node[dspsquare] (T) {T} ;
+    &
+	&
+	&\\
+	};
+	\draw[dspflow] (x) -- (split) -- (S) -- (Gain) -- (y) ;
+	 \draw[dspflow, rounded corners=1cm] (split) |-  (T);
+	\draw[dspflow, rounded corners=1cm] (T)  -| (S);
+	 \draw[dspflow] (S) -- (Gain);
+	\draw[dspflow] (Gain) -- (y);
+
+\end{tikzpicture}

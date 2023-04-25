@@ -1,0 +1,15 @@
+﻿\begin{tikzpicture}[outer sep=auto, amp/.style = {regular polygon, regular polygon sides=3,
+              draw, fill=white, text width=1em,
+              inner sep=1mm, outer sep=0mm,
+              shape border rotate=-90}
+                        ]
+
+	\matrix (graphe)[ row sep=1cm, column sep=1cm, inner sep=0.5cm]{ 	
+	\node[]  (x) {};																&
+	\node[dspsquare]  (tx) {$T^{-1}$};																				&
+
+	\node[]  (y) {};  							\\	};
+	\draw[dspflow] (x) -- (tx) ;
+	\draw[dspflow]  (tx)  -- (y);
+
+\end{tikzpicture}

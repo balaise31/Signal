@@ -1,0 +1,18 @@
+﻿\begin{tikzpicture}[outer sep=auto]
+
+	\matrix (graphe)[ row sep=1cm, column sep=1cm, inner sep=0.5cm]{ 	
+	\node[]  (x) {$x[k]$};																&
+	\node[dspsquare]  (tx) {$\alpha$};																				&
+
+	\node[]  (y) {$\alpha.x[k]$};  							&\\
+
+	\node[dspnodeopen]  (xs) {$x[k]$};																&
+																				&
+
+	\node[dspnodeopen,  dsp/label=above]  (ys) {$\alpha.x[k]$};  							&\\
+	};
+	\draw[dspflow] (x) -- (tx) ;
+	\draw[dspflow]  (tx)  -- (y);
+	\draw[dspflow]  (xs)  --  node[midway,above] {$\alpha$} (ys);
+
+\end{tikzpicture}

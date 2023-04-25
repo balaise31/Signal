@@ -1,4 +1,8 @@
 \section{Calcul opérationnel}
+  \def\y{\vec{y}}
+  \def\x{\vec{x}}
+  \def\xu{\vec{x_1}}
+  \def\xd{\vec{x_2}}
 
 La \teZ{} joue le même rôle pour les systèmes discrets que la
 transformée de \Laplace{} pour les systèmes continus. Elles permettent
@@ -26,10 +30,6 @@ la transofrmée de \Laplace{} n'est apparue que plus tard.
 \end{citations}
 
 \subsection{Similitude entre signal et système}
-\def\y{\vec{y}}
-\def\x{\vec{x}}
-\def\h{\vec{h}}
-\def\d0{\vec{\delta_0}}
 
 Difficile de dire si $\frac{1}{1+\tau\,p}$ est la transformée d'un
 système du premier ordre $G(p)$ ou bien celle $X(p)$ du signal
@@ -40,13 +40,6 @@ réciproquement tout signal $\h$ est associé au système dont il
 est la réponse impulsionnelle.
 
 \subsubsection{Système G $\leftrightarrow$ \RIP{} $h$}
-\imagetexte{0.3}{op_sys}{0.6}{
-Ainsi, si l'on prend le schéma classique d'un opérateur G transformant
-un signal $\x$ d'un espace de signaux $E$ en un signal $\y$
-du même espace~; on le représente par un opérateur $G$ et
-l'automaticienne y associera un schéma-bloc (en rose les signaux et
-espaces de signaux, en noir les systèmes).
-}
 
 Dans le cas où ce système est LTI, le~\secref{sec:rip} montre que
 l'opérateur $G$ peut être entièrement définit par sa réponse
@@ -57,11 +50,17 @@ impulsionnelle notée $\h$.
   arbitraire $\x$ est la convolution de l'entrée par $\h$.  On associe
   ainsi un signal $\h$ à un système LTI. Le signal est représenté en
   gris pour indiquer son rôle spécial pour le système $G$.  }
-\imagetexte{0.4}{op_sys_to_h}{0.5}{ Pour associer un système $G$ à un
+\imagetexte{0.35}{op_sys_to_h}{0.5}{ Pour associer un système $G$ à un
   signal $\h$, il suffit d'introduire une impulsion $\d0$ (de
   Dirac pour l'espace des signaux continus, et impulsion unité pour
   l'espace de signaux discrets) en entrée du système $G$ pour
   identifier la réponse impulsionnelle $\h$.}
+
+Une méthode d'identification\footnote{méthode qui permet d'obtenir les
+  valeurs numériques des paramètres d'un modèle mathématique à partir
+  du processus réel} consiste à mesurer $\h$ en mesurant la sortie du
+système à identifier pour une entrée impulsionnelle (en discret) ou la
+plus proche de l'impulsion de DIrac (en continu).
 
 \begin{remarque}
   La réponse impulsionnelle est une manière d'identifier un système et
@@ -75,13 +74,14 @@ impulsionnelle notée $\h$.
 
 \subsubsection{Système G $\leftrightarrow$ Réponse harmonique $G(f)$}
 
+\def\wf{\vec{\omega_f}}
 Au lieu de prendre le vecteur temporel $\d0$ pour identifier le
 système à son signal de sortie, nous allons prendre plusieurs vecteurs
-de la base fréquentielle $\vec{w_f}$ et associer un système à sa
+de la base fréquentielle $\wf$ et associer un système à sa
 réponse harmonique $G\p{f=\frac{\omega}{2\pi}}$ qui est aussi une
 fonction de la variable réelle $\omega$ ou $f$. Dans le cas continu
-l'onde pure est $\vec{\omega_f}:t\mapsto e^{i2\pi\,f\,t}$ qui devient
-$\vec{\omega_f}:k\mapsto e^{i2\pi\,f\,k\,T_e}$ pour les systèmes
+l'onde pure est $\wf :t\mapsto e^{i2\pi\,f\,t}$ qui devient
+$\wf :k\mapsto e^{i2\pi\,f\,k\,T_e}$ pour les systèmes
 discrets.
 
 \imagetexte{0.45}{op_harmo}{0.45}{Lorsque l'on présente une onde pure
@@ -97,10 +97,144 @@ périodique dans le cas discret) qui est associée au système $G$. Nous
 allons voir dans la suite que cette fonction dite réponse harmonique
 est associée de manière bijective à un système.
 
+\subsubsection{Trois visions équivalentes~: opérateur, RIp, Bode}
 
-\subsection{Algèbre des système et signaux}
-Nous avons vu 
-\subsection{Systèmes élémentaires : fonction de transfert en Z}
+\graphe{\textwidth}{op_trois_visions}
+
+\subsection{Algèbre des systèmes et signaux}
+Nous montrons qu'un système/signal produit par adition et
+mutliplication de systèmes fondamentaux ont une algèbre d'anneau
+commutatif intègre et même de corps ce qui veut dire :
+
+\begin{citation}
+  Les systèmes se composent et s'assemblent comme les nombres, même si leur univer est beaucoup plus vaste.
+\end{citation}
+
+
+que quelle que soit la vision~: convolution de signaux,
+systèmes opérateurs, ou produit de réponses harmoniques 
+
+Nous montrons avec des schémas blocs et traitons en même temps~:
+\begin{itemize}
+\item les transformées notées en lettres capitales $X, Y, G$ et $H$
+  seront dans le cas continus des transformées de Laplace de signaux
+  $X(p)$, $Y(p)$, et de fonctions de transfert $G(p)$, $H(p)$. Dans le
+  cas discrets les transformée en Z sont utilisées pour les signaux
+  discrets $X(z)$, $Y(z)$ et les fonctions de transfert discrètes :
+  $G(z)$ et $H(z)$.
+\item les réponses impulsionnelles $\g$ et $\h$ des systèmes et les
+  signaux temporels $x$, $y$.
+\item les réponses harmoniques ou fréquentielles des systèmes
+  $G(f), H(f)$ et les \TF{} des signaux continus $X(f), Y(f)$ et dans
+  le cas discret les \TFSD{} notées également $X(f)$ et
+  $Y(f)$. Rappelons que dans ce dernier cas la réponse est $F_e$
+  périodique.
+\end{itemize}
+
+Ainsi nous représenterons sur ces trois points de vue, le fait de
+faire passer un signal $\x$ dans un système $G$ de réponse
+impulsionnelle $\g$ comme le fait de faire passer une impulsion $\d0$
+dans le système $X$ produisant $\x$ puis dans le système $G$ :
+
+\graphe{\textwidth}{op_sig_ds_sys_cont}
+
+Ce qui donne pour des systèmes discrets~:
+
+\graphe{\textwidth}{op_sig_ds_sys_disc}
+
+\subsubsection{Produit avec un scalaire~: Gain}
+\graphe{\textwidth}{op_prod_scal}
+
+\subsubsection{Somme de signaux~: Sommateur}
+\graphe{\textwidth}{op_somme}
+
+\subsubsection{Commutativité des systèmes}
+
+\graphe{\textwidth}{op_commutation}
+
+\subsubsection{Distributivité du produit sur la somme}
+
+\graphe{\textwidth}{op_distributif}
+
+\subsubsection{Inversion de système}
+
+On peut inverser un système gain car on possède des scalaires $\alpha$
+(même complexes) inversibles sauf pour l'élémenent neutre de
+l'addition : $0$
+
+Un système qui comporte un gain non nul allant de l'entrée vers la
+sortie est appelé un système à transmission directe. Il est causal au
+sens large mais non strictement causal.
+
+\graphe{0.5\textwidth}{op_inverse_scalaire}
+% \graphe{\textwidth}{op_inversion_scalaire}
+
+Si l'on décompose un système quelconque $G=\alpha+R$ en une
+transmission directe $\alpha$ et un reste $R$ sans transmission
+directe et strictement causal. On peut construire le système inverse
+de $G$ en réalisant un système bouclé à contre-réaction.
+
+
+\paragraph{Inversion par bouclage~: manipulatuions algébriques}
+
+Il suffit de manipuler algébriquement l'inverse scalaire pour faire
+apparaître le système $G=\alpha.R$ et son inverse $G^-1$.
+
+\graphe{0.6\textwidth}{op_inverse_boucle}
+
+%\begin{remarque}
+%  Il faut que le signal null $\vec{O}$ introduit en rose dans le
+%  schéma soit réalisable quelque soit la sortie $R\OperDe{\x}$.
+%\end{remarque}
+
+\paragraph{Inversion par bouclage~: équation implicite}
+
+La boucle algébrique est souvent mise en \oe{}uvre par
+l'automaticienne et l'électronicienne pour inverser une fonction. Le
+schéma général ci-dessous fait apparaître un bouclage de contre
+réaction permettant d'inverser en quelque sorte le système à contrôler
+$G$.
+
+\graphe{\textwidth}{op_boucle_algebrique}
+
+Dans le cas général la sortie $\y$ de la boucle doit résoudre l'équation implicite suivante~:
+\begin{equation*}
+  \exists \y \tq \; G\OperDe{\x - K\OperDe{\y}} = \y 
+\end{equation*}
+
+Si les opérateurs sont des systèmes linéaires on peut séparer les sommes en~:
+
+\begin{flalign*}
+  \exists \y \tq \; & G\OperDe{\x} - \overbrace{G\OperDe{K\OperDe{\y}}}^{G\circ{}K\OperDe{\y}} = \y \nonumber\\
+  & G\OperDe{\x} = \y + G\circ{}K\OperDe{\y} = (\Unite+G\compo{}K)\OperDe{\y}
+\end{flalign*}
+où $\Unite$ est le système qui ne change pas le signal (gain de 1).
+
+Si l'on considère qu'il y a une solution à cette équation implicite, alors le système $(\Unite+G\compo{}K)$ possède un inverse. La solution de l'équation implicite est donc~:
+
+\begin{flalign*}
+  \exists \y \tq \;  & (\Unite+G\compo{}K)^{-1}\OperDe{G\OperDe{\x}} = (\Unite+G\compo{}K)^{-1}\OperDe{(\Unite+G\compo{}K)\OperDe{\y}} \\
+  & \p{(\Unite+G\compo{}K)^{-1}\compo{}G}\OperDe{\x} = \y \\
+  & \y = \frac{G}{\Unite+G\compo{}K}\OperDe{\x}
+\end{flalign*}
+
+On constate que l'opérateur de composition $\circ$ et la somme de
+signaux $+$ se comportent avec les systèmes comme une algèbre classique et l'existance
+d'inverse lui confère une structure d'anneau (comme les réels ou les
+complexes). On peut donc écrire la même équation en utilisant les
+transformées (de Laplace en continu avec $G(p)$,$Y(p)$,etc. ; ou bien en $\TZ$ pour le
+temps discrets avec $G(z)$, $Y(z)$,etc.) et les manipuler comme des nombres~:
+
+\begin{flalign*}
+  \exists Y \tq \;  & \overbrace{\p{X - K.Y}}^{\epsilon}.G = Y \\
+  & X.G = K.Y.G + Y = \p{\Unite+K.G}.Y \\
+  & \p{\Unite+K.G}^{-1}.X.G= \p{\Unite+K.G}^{-1}.\p{\Unite+K.G}.Y \\
+  & Y = \frac{G}{\Unite+K.G}. X
+\end{flalign*}
+
+
+
+
 \subsection{Système non-bouclé -- moyenne glissante (MA) -- régressif --
   FIR}
 \subsection{Système bouclé -- récurrence -- autorégressif -- IIR}

@@ -1,0 +1,29 @@
+\documentclass[convert={density=600,outext=.png}]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{relsize}
+\usepackage[binary-units = true,load-configurations=binary]{siunitx}
+\usepackage[utf8x]{inputenc}
+\usepackage{mathptmx}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{statistics}
+\usepackage{pgf}
+\pgfplotsset{compat=1.11}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,mindmap,backgrounds,dsp}
+% -----------------------------------------------------------------------------
+% Layers
+% -----------------------------------------------------------------------------
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{bg_input}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{bg_input,background,main,foreground}
+
+% Template for kTikz/qTikz
+\usepackage[active,pdftex,tightpage]{preview}
+\PreviewEnvironment[]{tikzpicture}
+\PreviewEnvironment[]{pgfpicture}
+\begin{document}
+\input{gain.tikz}
+\end{document}
+
