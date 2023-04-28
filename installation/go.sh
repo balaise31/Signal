@@ -1,7 +1,6 @@
-DISCONT="continu"
+source ./chemin_depot
 CIBLE="$HOME/signal_$DISCONT"
 GOCONDA=".goConda.sh"
-source "$CIBLE"/chemin_depot
 
 CHECK="\U2705" 
 UNCHECK="\U274C"
@@ -27,7 +26,7 @@ then
 	    
 	    echo "Pas de script $GOCONDA: $UNCHECK"
 	    echo " Exécutez dans ce terminal la commande "
-	    echo "   source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_$DISCONT.sh"
+	    echo "   source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_locale.sh $DISCONT"
 	    echo $LIGNE
 	    exit
 	else
@@ -35,18 +34,18 @@ then
 	    echo $LIGNE
 	fi;
     fi;
-    echo -en "Activation de l'environnement Octave : $TEMPS ...  "
+    echo -en "Activation de l'environnement octave : $TEMPS ...  "
     conda activate Octave
     echo -e "   $BISOUS"
     
     echo -e "Lancement de jupyter lab : un navigateur va apparaitre $TEMPS ..."
     . "$DEPOT"/installation/setenv_octave_kernel.sh
-    jupyter-lab README.ipynb &
+    jupyter-lab README.ipynb&
     echo -e "     ... voilà c'est fait $BISOUS"
     
 else
     echo "Install des tp signal pas faite: $UNCHECK"
     echo "Avez-vous déplacé $CIBLE ?"
     echo "-> Exécutez dans ce terminal la commande pour recopier"
-    echo "    source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_$DISCONT.sh"
+    echo "    source /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/install_locale.sh $DISCONT"
 fi

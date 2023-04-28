@@ -1,7 +1,7 @@
-DISCONT="continu"
+DISCONT=$1
 CIBLE="$HOME/signal_$DISCONT"
 GOCONDA=".goConda.sh"
-MAJ_LOCAL="maj_$DISCONT.sh"
+MAJ_LOCAL="mise_a_jour.sh"
 
 CHECK="\U2705" 
 UNCHECK="\U274C"
@@ -26,7 +26,7 @@ if [ -d "$CIBLE" ]; then
     echo "   On fait une mise à jour..."
     echo "____"
     
-    "$CIBLE"/"$MAJ_LOCAL"
+    cd "$CIBLE"; "./$MAJ_LOCAL"
     echo -e "____\n  ... mise à jour :  $CHECK"
     echo $LIGNE
     
@@ -35,13 +35,20 @@ else
     echo -en "Copie des fichiers dans $CIBLE$ ..."
 
     mkdir $CIBLE
-    cp -rf "$DEPOT/$DISCONT/tp" "$CIBLE"/
-    cp -rf "$DEPOT/$DISCONT/td" "$CIBLE"/
-    cp -rf "$DEPOT/$DISCONT/utiles" "$CIBLE"/
+    #cp -rf "$DEPOT/$DISCONT/tp" "$CIBLE"/
+    #cp -rf "$DEPOT/$DISCONT/td" "$CIBLE"/
+    #cp -rf "$DEPOT/$DISCONT/utiles" "$CIBLE"/
     cp -rf "$DEPOT"/installation/README.ipynb "$CIBLE"/
-    cp -rf "$DEPOT"/installation/*$DISCONT.sh "$CIBLE"/
+    cp -rf "$DEPOT"/installation/go.sh "$CIBLE"/
+    cp -rf "$DEPOT"/installation/mise_a_jour.sh "$CIBLE"/
+    cp -rf "$DEPOT"/installation/*vieux*.sh "$CIBLE"/
+    #cp -rf "$DEPOT"/installation/*$DISCONT.sh "$CIBLE"/
     ln -s  "$DEPOT" $CIBLE/Signal_Depot
     echo "export DEPOT=\"$DEPOT\"" > "$CIBLE"/chemin_depot
+    echo "export DISCONT=\"$DISCONT\"" >> "$CIBLE"/chemin_depot
+
+    cd $CIBLE && ./mise_a_jour.sh
+
     echo -e " ... $CHECK"
     echo $LIGNE
 fi
@@ -74,7 +81,7 @@ else
     echo $LIGNE
 fi;
 
-echo -en "Ajout de l'alias go_signal au .bashrc ... "
+echo -en "Ajout de l'alias go_$DISCONT au .bashrc ... "
 
 
 grep -v DEPOT_SIGNAL $HOME/.bashrc > /tmp/.bashrc
@@ -83,7 +90,7 @@ grep -v goSignal /tmp/.bashrc1 > /tmp/.bashrc2
 grep -v goConda /tmp/.bashrc2 >$HOME/.bashrc
 
 echo "export DEPOT_SIGNAL=\"$DEPOT\"">>$HOME/.bashrc
-echo "alias go_$DISCONT='cd $CIBLE; . ./go_$DISCONT.sh &'">>$HOME/.bashrc
+echo "alias go_$DISCONT='cd $CIBLE; . ./go.sh &'">>$HOME/.bashrc
 echo "alias goConda='. $HOME/$GOCONDA'">>$HOME/.bashrc
 echo "alias goSignal='cd \"$DEPOT\" && goConda && conda activate Octave && . ./installation/setenv_octave_kernel.sh && jupyter-lab'">>$HOME/.bashrc
 echo -e "$CHECK"
