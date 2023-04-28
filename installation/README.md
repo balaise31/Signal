@@ -56,7 +56,7 @@ Pour les curieuses voir les [détails de l'installation](#détails-de-linstallat
 
 La première fois, logez-vous sous LINUX et lancez cette commande dans un terminal (`CTRL+ALT+T` ou bien *Menu-> Outils Système -> Terminal Mate*) :
 ```bash     
-cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_continu.sh 
+cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_locale.sh continu 
 ```
 
  * Copiez en cliquant sur l'icône qui apparait en fin de ligne ci-dessus vers ici   ̂|
@@ -66,18 +66,18 @@ cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_conti
 A chaque début de séance, la commande `go_continu` lance le **jupyter-lab avec kernel octave**.
 
 
-## Pour les 3IMACS
+## Pour les 3IMACS
 
 La première fois, logez-vous LINUX et lancez cette commande dans un terminal (`CTRL+ALT+T`) :
 ```bash     
-cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_discret.sh 
+cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_locale.sh discret 
 ```
 A chaque début de séance, la commande `go_discret` lance le **jupyter-lab avec kernel octave**.
 
 ---
 ---
 # Etudiante INSA
----   
+--- 
 Si vous avez un compte informatique INSA ou un ordinateur personnel voilà la procédure
 
 
@@ -108,9 +108,9 @@ git clone https://github.com/balaise31/Signal.git
 cd Signal/installation
 conda env create -f ./Octave.yaml
 cd ~/Signal/installation
-source install_continu.sh
+source install_locale.sh continu
 cd ~/Signal/installation
-source install_discret.sh
+source install_locale.sh discret
 ```
 Jupyter-lab est lancé :
  * dans le dépot Git `~/Signal` avec la commande `goSignal`,
@@ -120,7 +120,7 @@ Jupyter-lab est lancé :
 ## B - Windows
 ---
 
-Pour une installation sous windows merci à Vincent Eychenne pour ces [instructions sous Windows](windows.md)  
+Pour une installation sous windows merci à Vincent Eychenne pour ces [instructions sous Windows](windows.md)
 
 
 ---

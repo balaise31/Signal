@@ -3,7 +3,10 @@ title: Traitement du signal
 permalink: index.html
 ---
 
-# Signal continu (2IMACS)
+[**Instructions d'installation**](./installation/README.md) pour exécuter les notebooks en TD et TP
+
+
+## Signal continu (2IMACS)
 ---
 
 
@@ -15,7 +18,7 @@ permalink: index.html
 <img src="tf.png"  width="300"/> Transformée de Fourier
 
 
-# Signal discret (3IMACS)
+## Signal discret (3IMACS)
 ---
 
 [Cours](https://nbviewer.org/github/balaise31/Signal/tree/main/discret/cours/README.ipynb) | [Poly](poly_discret.pdf) | [TD](https://nbviewer.org/github/balaise31/Signal/tree/main/discret/td/README.ipynb) | [TP](https://nbviewer.org/github/balaise31/Signal/tree/main/discret/tp/README.ipynb) | [Défis](https://github.com/balaise31/Signal/tree/main/discret/defis) | [Moodle 3IMACS](https://moodle.insa-toulouse.fr/course/view.php?id=997) | [Installation](https://github.com/balaise31/Signal/blob/main/installation/README.md)
@@ -25,12 +28,3 @@ permalink: index.html
 
 <img src="tfd.png"  width="300"/> Transformée de Fourier Discrète (algo rapide FFT)
 
-
-
-
-
-# Installation
-
-Pour voir comment naviguer en ligne, exécuter en ligne ou installer en local :
-    
-> Allez sur la [page d'installation](https://github.com/balaise31/Signal/blob/main/installation/README.md)
