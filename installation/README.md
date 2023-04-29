@@ -1,45 +1,31 @@
----
----
-# Installations 
----
----
-Si vous êtes en salle de TP INSA suivez [ces instructions](#en-salle-de-TP-INSA)
-
----
----
-# Installer Octave
+# Instructions d'installation 
 ---
 
-Octave est la version gratuite et libre (du GNU) de Matlab un des premier MathCAD (Logiciel de math)
+Si vous êtes étudiante INSA :
+ 1) Connectez-vous sous linux 
+  - Allez sur une salle de TP virtuelle avec [monTP (Guacamole)](#monTP-INSA-virtuel)
+  - Allez en salle de TP réelle et logez vous sous LINUX
+ 2) Exécutez la ligne de commande d'installation 
+  - 2IMACS, [install du "continu"](#Pour-les-2IMACS)
+  - 3IMACS, [install du "discret"](#Pour-les-3IMACS)
+ 3) Lancez Jupyter-Lab avec la commande `go_continu` ou `go_discret`.
 
-Sous linux (CTRL+ALT+T) pour ouvrir un terminal et tapez :
-
-```
-sudo apt install octave
-
-```
-
-Pour Window et Mac préferrez [Installer Anaconda](https://www.anaconda.com/products/distribution) (Distribution de python) et installer octave avec anaconda en suivant les liens Wiki de [Installer GNU octave](https://www.gnu.org/software/octave/download) 
-
----
----
-# 3 Solutions pour exécuter les notebooks 
----
-
-Si vous êtes en salle de TP INSA suivez [ces instructions](#en-salle-de-TP-INSA) sinon pour les utilisations "chez-soi", du plus facile au plus balèse vous pouvez:
-
-   - Exécuter les notebooks en ligne : cliquez sur [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?labpath=README.ipynb).  
+Sinon pour les utilisations "chez-soi", du plus facile au plus balèse vous pouvez:
+ - Naviguer sur le [Github Signal](https://github.com/balaise31/Signal#signal-continu-et-discret)  
+   :poop: On ne peut qu'observer des Notebooks Octave/Matlab et python  
+   :poop: Il faut une connection     
+ - Exécuter les notebooks en ligne : cliquez sur [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?labpath=README.ipynb).  
    :kiss: On peut exécuter des Notebooks Octave/Matlab et python  
    :poop: Mais il faut une bonne connection (et la première est longue !)  
    :poop: On ne peut pas facilement sauver son travail  
 
-  - Sur un serveur virtuel de l'INSA (VPN insa +  monTP guacamole) : voir [Etudiante INSA](#etudiante-insa).  
+ - Sur un serveur virtuel de l'INSA (VPN insa +  monTP guacamole) : voir [Etudiante INSA](#etudiante-insa).  
    :kiss: On peut exécuter des Notebooks Octave/Matlab et python    
    :poop: Mais il faut une bonne connection  
    :poop: Il faut être étudiante INSA.  
    :kiss: On sauve son travail sur son compte INSA  
 
-  - Installer tout sur sa machine : voir [Installer en local](#installation-locale)  
+ - Installer tout sur sa machine : voir [Installer en local](#installation-locale)  
    :kiss: On peut exécuter des Notebooks Octave/Matlab et python   
    :kiss: Plus besoin de connection  
    :kiss: Plus besoin d'être étudiante à l'INSA.  
@@ -47,13 +33,28 @@ Si vous êtes en salle de TP INSA suivez [ces instructions](#en-salle-de-TP-INSA
 
 Pour les curieuses voir les [détails de l'installation](#détails-de-linstallation) !
 
+
+
 ---
+# Avec compte INSA 
 ---
-# En salle de TP INSA
+Si vous avez un compte informatique INSA ou un ordinateur personnel
+
+
+## monTP INSA virtuel
 ---
+
+Sur ma machine, il faut d'abord :
+   - [Installer le VPN sur son ordi](https://wiki.etud.insa-toulouse.fr/books/r%C3%A9seau-et-internet/chapter/vpn) 
+   - Se connecter au VPN et aller sur [montp.insa-toulouse.fr](https://montp.insa-toulouse.fr/)(appli Guacamole). Puis se connecter à une **Salle de TP virtuelle LINUX**
+   - *Menu-> Internet -> Navigateur Web Firefox* et naviguez à nouveau vers cette page car Guacamole ne permettra pas de copier/coller en dehors de son onglet.
+   - *Menu-> Outils Système -> Terminal MATE* pour avoir un terminal car Guacamole ne prends pas le raccourcis clavier (CTRL+ALT+T)
+   - L'installation se fait ensuite comme [en salle de TP INSA](#en-salle-de-TP-INSA)
+   
+Ensuite CTRL+ALT+T pour ouvrir un terminal et `go_continu` (2IMACS) ou `go_discret` (3IMACS)
 
 ## Pour les 2IMACS
-
+--
 La première fois, logez-vous sous LINUX et lancez cette commande dans un terminal (`CTRL+ALT+T` ou bien *Menu-> Outils Système -> Terminal Mate*) :
 ```bash     
 cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_locale.sh continu 
@@ -67,6 +68,7 @@ A chaque début de séance, la commande `go_continu` lance le **jupyter-lab avec
 
 
 ## Pour les 3IMACS
+--
 
 La première fois, logez-vous LINUX et lancez cette commande dans un terminal (`CTRL+ALT+T`) :
 ```bash     
@@ -74,29 +76,26 @@ cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_local
 ```
 A chaque début de séance, la commande `go_discret` lance le **jupyter-lab avec kernel octave**.
 
----
----
-# Etudiante INSA
---- 
-Si vous avez un compte informatique INSA ou un ordinateur personnel voilà la procédure
 
 
-## A - La première fois
----
-
-Sur ma machine, il faut d'abord :
-   - [Installer le VPN sur son ordi](https://wiki.etud.insa-toulouse.fr/books/r%C3%A9seau-et-internet/chapter/vpn) 
-   - Se connecter au VPN et aller sur [montp.insa-toulouse.fr](https://montp.insa-toulouse.fr/)(appli Guacamole). Puis se connecter à une **Salle de TP virtuelle LINUX**
-   - *Menu-> Internet -> Navigateur Web Firefox* et naviguez à nouveau vers cette page car Guacamole ne permettra pas de copier/coller en dehors de son onglet.
-   - *Menu-> Outils Système -> Terminal MATE* pour avoir un terminal car Guacamole ne prends pas le raccourcis clavier (CTRL+ALT+T)
-   - L'installation se fait ensuite comme [en salle de TP INSA](#en-salle-de-TP-INSA)
-   
-Ensuite CTRL+ALT+T pour ouvrir un terminal et `go_continu` (2IMACS) ou `go_discret` (3IMACS)
-
----
 ---
 # Installation locale
 ---
+
+## Installer Octave
+---
+
+Octave est la version gratuite et libre (du GNU) de Matlab un des premier MathCAD (Logiciel de math)
+
+Sous linux (CTRL+ALT+T) pour ouvrir un terminal et tapez :
+
+```
+sudo apt install octave
+
+```
+
+Pour Window et Mac préferrez [Installer Anaconda](https://www.anaconda.com/products/distribution) (Distribution de python) et installer octave avec anaconda en suivant les liens Wiki de [Installer GNU octave](https://www.gnu.org/software/octave/download) 
+
 
 ## A - Linux
 ---
@@ -123,7 +122,6 @@ Jupyter-lab est lancé :
 Pour une installation sous windows merci à Vincent Eychenne pour ces [instructions sous Windows](windows.md)
 
 
----
 ---
 # Détails de l'installation
 ---
