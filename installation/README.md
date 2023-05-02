@@ -4,13 +4,13 @@
 Si vous êtes étudiante INSA :
  1) Connectez-vous sous linux 
   - Allez sur une salle de TP virtuelle avec [monTP (Guacamole)](#monTP-INSA-virtuel)
-  - Allez en salle de TP réelle et logez vous sous LINUX
+  - Allez en salle de TP réelle et logez-vous sous LINUX
  2) Exécutez la ligne de commande d'installation 
   - 2IMACS, [install du "continu"](#Pour-les-2IMACS)
   - 3IMACS, [install du "discret"](#Pour-les-3IMACS)
  3) Lancez Jupyter-Lab avec la commande `go_continu` ou `go_discret`.
 
-Sinon pour les utilisations "chez-soi", du plus facile au plus balèse vous pouvez:
+Sinon pour les utilisations "chez-soi", du plus facile au plus balèse vous pouvez :
  - Naviguer sur le [Github Signal](https://github.com/balaise31/Signal#signal-continu-et-discret)  
    :poop: On ne peut qu'observer des Notebooks Octave/Matlab et python  
    :poop: Il faut une connection     
@@ -19,7 +19,7 @@ Sinon pour les utilisations "chez-soi", du plus facile au plus balèse vous pouv
    :poop: Mais il faut une bonne connection (et la première est longue !)  
    :poop: On ne peut pas facilement sauver son travail  
 
- - Sur un serveur virtuel de l'INSA (VPN insa +  monTP guacamole) : voir [Etudiante INSA](#etudiante-insa).  
+ - Sur un serveur virtuel de l'INSA (VPN insa + monTP guacamole) : voir [Avec compte INSA](#Avec-compte-INSA ).  
    :kiss: On peut exécuter des Notebooks Octave/Matlab et python    
    :poop: Mais il faut une bonne connection  
    :poop: Il faut être étudiante INSA.  
@@ -47,20 +47,20 @@ Si vous avez un compte informatique INSA ou un ordinateur personnel
 Sur ma machine, il faut d'abord :
    - [Installer le VPN sur son ordi](https://wiki.etud.insa-toulouse.fr/books/r%C3%A9seau-et-internet/chapter/vpn) 
    - Se connecter au VPN et aller sur [montp.insa-toulouse.fr](https://montp.insa-toulouse.fr/)(appli Guacamole). Puis se connecter à une **Salle de TP virtuelle LINUX**
-   - *Menu-> Internet -> Navigateur Web Firefox* et naviguez à nouveau vers cette page car Guacamole ne permettra pas de copier/coller en dehors de son onglet.
-   - *Menu-> Outils Système -> Terminal MATE* pour avoir un terminal car Guacamole ne prends pas le raccourcis clavier (CTRL+ALT+T)
+   - *Menu -> Internet -> Navigateur Web Firefox* et naviguez à nouveau vers cette page, car Guacamole ne permettra pas de copier/coller en dehors de son onglet.
+   - *Menu -> Outils Système -> Terminal MATE* pour avoir un terminal, car Guacamole ne prends pas le raccourci clavier (CTRL+ALT+T)
    - L'installation se fait ensuite comme [en salle de TP INSA](#en-salle-de-TP-INSA)
    
 Ensuite CTRL+ALT+T pour ouvrir un terminal et `go_continu` (2IMACS) ou `go_discret` (3IMACS)
 
 ## Pour les 2IMACS
 --
-La première fois, logez-vous sous LINUX et lancez cette commande dans un terminal (`CTRL+ALT+T` ou bien *Menu-> Outils Système -> Terminal Mate*) :
+La première fois, logez-vous sous LINUX et lancez cette commande dans un terminal (`CTRL+ALT+T` ou bien *Menu -> Outils Système -> Terminal Mate*) :
 ```bash     
 cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_locale.sh continu 
 ```
 
- * Copiez en cliquant sur l'icône qui apparait en fin de ligne ci-dessus vers ici   ̂|
+ * Copiez en cliquant sur l'icône qui apparait en fin de ligne ci-dessus vers ici |
  * Collez dans le terminal (click bouton milieu ou `CTRL+V`)
  
  
@@ -74,7 +74,7 @@ La première fois, logez-vous LINUX et lancez cette commande dans un terminal (`
 ```bash     
 cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_locale.sh discret 
 ```
-A chaque début de séance, la commande `go_discret` lance le **jupyter-lab avec kernel octave**.
+À chaque début de séance, la commande `go_discret` lance le **jupyter-lab avec kernel octave**.
 
 
 
@@ -85,7 +85,7 @@ A chaque début de séance, la commande `go_discret` lance le **jupyter-lab avec
 ## Installer Octave
 ---
 
-Octave est la version gratuite et libre (du GNU) de Matlab un des premier MathCAD (Logiciel de math)
+Octave est la version gratuite et libre (du GNU) de Matlab un des premiers MathCAD (Logiciel de math)
 
 Sous linux (CTRL+ALT+T) pour ouvrir un terminal et tapez :
 
