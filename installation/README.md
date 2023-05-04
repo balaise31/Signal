@@ -53,6 +53,10 @@ Sur ma machine, il faut d'abord :
    
 Ensuite CTRL+ALT+T pour ouvrir un terminal et `go_continu` (2IMACS) ou `go_discret` (3IMACS)
 
+---
+# en salle de TP INSA
+---
+
 ## Pour les 2IMACS
 --
 La première fois, logez-vous sous LINUX et lancez cette commande dans un terminal (`CTRL+ALT+T` ou bien *Menu -> Outils Système -> Terminal Mate*) :
