@@ -1,8 +1,8 @@
 %% increments(f, k)
 %___________________________________________________
 % Dessine l'onde complexe de fréquence normalisée f
-% dans le plan complexe avec le cercle unité
-% affiche les instants k de chaque échantillon
+% dans le plan complexe avec le cercle unité,
+% affiche les instants k de chaques échantillons
 %____________________________________________________
 % f : fréquence normalisée  
 % k : vecteur des instants à afficher 
@@ -12,7 +12,7 @@
 % f=1/4
 % k=0:5
 % increments(f,k)
-% title("Onde de periode 4 pour les 6 premier echantillons")
+% title("Onde de periode 4 pour les 6 premiers echantillons")
 
 function increments(f, k, phaseur=1)
     p = phaseur;
