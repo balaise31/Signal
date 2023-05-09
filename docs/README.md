@@ -3,7 +3,7 @@ title: Traitement du signal
 permalink: index.html
 ---
 
-[**Instructions d'installation**](./installation/README.md) pour exécuter les notebooks en TD et TP
+[**Instructions d'installation**](https://github.com/balaise31/Signal/blob/main/installation/README.md) pour exécuter les notebooks en TD et TP
 
 
 ## Signal continu (2IMACS)
