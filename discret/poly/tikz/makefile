@@ -1,7 +1,7 @@
 tikz  = $(wildcard *.tikz)
 pngs = $(tikz:%.tikz=%.png)
 
-all: $(pngs) 
+all: $(pngs) $(tex)
 
 %.png: %.tex
 	pdflatex -shell-escape $<

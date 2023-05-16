@@ -1,0 +1,20 @@
+﻿\begin{tikzpicture}[outer sep=auto]
+
+	\matrix (graphe)[ row sep=1cm, column sep=1cm, inner sep=0.5cm]{ 	
+	\node[dspnodeopen]  (x) {$x[k+1]$};															&
+	 \node[dspadder ]  (S) {};																				    &
+	\node[dspsquare]  (Tx) {T};																				&
+	\node[dspnodefull]  (tx) {};													 							&
+	\node[dspnodeopen,  dsp/label=above]  (y) {$y[k+1]$}	;						&\\
+																																	&
+																																	&
+	\node[dspmultiplier, dsp/label=  above]  (a) {$a$};								    &
+										 																							&
+																																	&\\
+	};
+	\draw[dspconn]  (x) -- (S);
+	\draw[dspconn]  (S) -- (Tx) -- (tx) -- (y);
+	\draw[dspflow, rounded corners=1cm] (tx) |- (a);
+	\draw[dspconn, rounded corners=1cm] (a)  -| (S);
+
+\end{tikzpicture}

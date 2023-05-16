@@ -12,8 +12,7 @@
 	\node[dspmultiplier,  dsp/label=  above]  (b) {b};										&
 	\node[dspsquare ]  (Tb) {T};																			&
 	 \node[dspadder ]  (S) {};																				    &
-	\node[dspnodeopen,  dsp/label=above]  (y) {$y[k
-]$};  							\\
+	\node[dspnodeopen,  dsp/label=above]  (y) {$y[k]$};  							\\
 	};
 	\draw[dspflow] (x) -- (te) ;
 	\draw[dspflow]  (te)  -- (Ta);

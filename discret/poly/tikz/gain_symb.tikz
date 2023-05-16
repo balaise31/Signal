@@ -6,18 +6,9 @@
 
 	\matrix (graphe)[ row sep=1cm, column sep=1cm, inner sep=0.5cm]{ 	
 	\node[]  (x) {};																&
-	\node[amp]  (tx) {$\alpha$};																				&
-
-	\node[]  (y) {};  							\\	};
+	\node[amp]  (tx) {$\alpha$};								   &
+	\node[]  (y) {};  														  \\	};
 	\draw[dspflow] (x) -- (tx) ;
 	\draw[dspflow]  (tx)  -- (y);
-
-\end{tikzpicture}												&
-
-	\node[dspnodeopen,  dsp/label=above]  (ys) {$\alpha.x[k]$};  							&\\
-	};
-	\draw[dspflow] (x) -- (tx) ;
-	\draw[dspflow]  (tx)  -- (y);
-	\draw[dspflow]  (xs)  --  node[midway,above] {$\alpha$} (ys);
 
 \end{tikzpicture}
