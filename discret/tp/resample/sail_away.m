@@ -34,7 +34,7 @@ Te_decim = Te*0.666;
 Fe_decim = 1/Te_decim;
 N_decim = length(s_decim)
 F0_decim= 0.666/0.666*M;
-f_decim = f=(0:(N_decim-1))*F0_decim;
+f_decim = (0:(N_decim-1))*F0_decim;
 plot(f_decim,20*log10(abs(fft(s_decim))));
 
 audiowrite("sail_decim.wav",s_decim,Fe/M);
