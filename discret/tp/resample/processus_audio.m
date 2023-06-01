@@ -1,5 +1,5 @@
 
-function self = processus_audio(fichier_in="in.wav", C=1)
+function self = processus_audio(fichier_in, C)
 	global  x  y  k  l;
 	k=1;
 	l=1;
@@ -15,7 +15,7 @@ function self = processus_audio(fichier_in="in.wav", C=1)
 	
 	self.ADC_get_conv = @() ADC_get_conv(self);
 	self.DAC_set_output = @(val) DAC_set_output(self, val);
-	self.timed_ADC_start = @(handler_it = @it_par_defaut) timed_ADC_start(self, handler_it);
+	self.timed_ADC_start = @(handler_it) timed_ADC_start(self, handler_it);
 	self.save_to_wav = @(fich, decim) save_to_wav(self, fich, decim);
 	
 end
@@ -28,7 +28,7 @@ function timed_ADC_start(self, handler_it)
 			handler_it();
 			k=k+1;
 		end
-		disp(sprintf("%d % calculés",dix*10))
+		fprintf("%d % calculés",dix*10)
 	end
 	for j=k:self.N
 		handler_it();
@@ -50,7 +50,7 @@ end
 function save_to_wav(self, fich, decim)
 	global y;
 	audiowrite(fich,y(1:decim:end), (self.Fe/decim));
-	sprintf("Audio à %.1f kHz => %s",self.Fe/decim/1000,fich)
+	fprintf("Audio à %.1f kHz => %s",self.Fe/decim/1000,fich)
 end
 
 function it_par_defaut()

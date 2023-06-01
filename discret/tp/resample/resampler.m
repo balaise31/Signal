@@ -6,7 +6,7 @@ close all;
 %% Permet de filtrer un fichier .wav
 %% comme si on était en temps réel.
 global audio;
-audio = processus_audio(fichier_in="sail_away.wav");
+audio = processus_audio("sail_away.wav", 1);
 Fe = audio.Fe
 Te= 1/Fe;
 fprintf("Audio à %.1f kHz ",Fe/1000)
@@ -26,6 +26,11 @@ global K;  % valeur du gain
 xm=0;
 K=1;
 
+%% VOTRE CODE de calcul des coef du filtre
+global a0 a1 b0 b1
+a0=666;
+
+
 %% Modifiez le code du handler dans ADC_conv_interrupt.m
 
 
@@ -42,6 +47,6 @@ disp ("...Calcul fini.")
 % La fréquence d'échantillonnage est alors divisée par deux...
 % On aimerait décendre à 8kHz...
 % À vous de jouer.
-audio.save_to_wav(fich="out.wav", decim=1)
+audio.save_to_wav("out.wav", 12)
 
 
