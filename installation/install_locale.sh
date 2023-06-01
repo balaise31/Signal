@@ -61,7 +61,7 @@ else
     if [ ! -e $HOME/$GOCONDA ];
     then
 	
-	echo "Pas de script $GOCONDA: je le fait ..."
+	echo "Pas de script $GOCONDA: je le fais ..."
 	echo "____"
 	
 	mv $HOME/.bashrc $HOME/.bashrc_backup
