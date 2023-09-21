@@ -53,33 +53,6 @@ else
     echo $LIGNE
 fi
 
-if [ -v CONDA_EXE ] ;
-then
-    echo -e "Conda déjà initialisé $CHECK"
-    echo $LIGNE
-else
-    if [ ! -e $HOME/$GOCONDA ];
-    then
-	
-	echo "Pas de script $GOCONDA: je le fais ..."
-	echo "____"
-	
-	mv $HOME/.bashrc $HOME/.bashrc_backup
-	echo "echo -en \"Init de conda $TEMPS ...\"" >$HOME/$GOCONDA
-	conda init bash
-	cat $HOME/.bashrc >>$HOME/$GOCONDA
-	echo "echo -e \" $CHECK\"" >>$HOME/$GOCONDA
-	mv -f $HOME/.bashrc_backup $HOME/.bashrc
-	
-	echo "____"
-	echo -e " ... script de Conda : $CHECK"
-	echo $LIGNE
-
-    fi;
-
-    source $HOME/$GOCONDA
-    echo $LIGNE
-fi;
 
 echo -en "Ajout de l'alias go_$DISCONT au .bashrc ... "
 
@@ -91,8 +64,7 @@ grep -v goConda /tmp/.bashrc2 >$HOME/.bashrc
 
 echo "export DEPOT_SIGNAL=\"$DEPOT\"">>$HOME/.bashrc
 echo "alias go_$DISCONT='cd $CIBLE; . ./go.sh &'">>$HOME/.bashrc
-echo "alias goConda='. $HOME/$GOCONDA'">>$HOME/.bashrc
-echo "alias goSignal='cd \"$DEPOT\" && goConda && conda activate Octave && . ./installation/setenv_octave_kernel.sh && jupyter-lab'">>$HOME/.bashrc
+echo "alias goSignal='cd \"$DEPOT\" && . ./installation/env/bin/activate && jupyter-lab'">>$HOME/.bashrc
 echo -e "$CHECK"
 echo $LIGNE
 
