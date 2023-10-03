@@ -14,10 +14,6 @@ Sinon pour les utilisations "chez-soi", du plus facile au plus balèse vous pouv
  - Naviguer sur le [Github Signal](https://github.com/balaise31/Signal#signal-continu-et-discret)  
    :poop: On ne peut qu'observer des Notebooks Octave/Matlab et python  
    :poop: Il faut une connection     
- - Exécuter les notebooks en ligne : cliquez sur [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/balaise31/Signal/HEAD?labpath=README.ipynb).  
-   :kiss: On peut exécuter des Notebooks Octave/Matlab et python  
-   :poop: Mais il faut une bonne connection (et la première est longue !)  
-   :poop: On ne peut pas facilement sauver son travail  
 
  - Sur un serveur virtuel de l'INSA (VPN insa + monTP guacamole) : voir [Avec compte INSA](#Avec-compte-INSA ).  
    :kiss: On peut exécuter des Notebooks Octave/Matlab et python    
@@ -59,7 +55,7 @@ Ensuite CTRL+ALT+T pour ouvrir un terminal et `go_continu` (2IMACS) ou `go_discr
 
 ## Pour les 2IMACS
 --
-La première fois, logez-vous sous LINUX et lancez cette commande dans un terminal (`CTRL+ALT+T` ou bien *Menu -> Outils Système -> Terminal Mate*) :
+La première fois, logez-vous sous LINUX et lancez cette commande dans un terminal (*Menu -> Outils Système -> Terminal*) :
 ```bash     
 cd /mnt/commetud/3eme\ Annee\ IMACS/Signal/installation/ && source install_locale.sh continu 
 ```
