@@ -57,10 +57,11 @@ fi
 echo -en "Ajout de l'alias go_$DISCONT au .bashrc ... "
 
 
-grep -v DEPOT_SIGNAL $HOME/.bashrc > /tmp/.bashrc
-grep -v "go_$DISCONT" /tmp/.bashrc > /tmp/.bashrc1
-grep -v goSignal /tmp/.bashrc1 > /tmp/.bashrc2
-grep -v goConda /tmp/.bashrc2 >$HOME/.bashrc
+grep -v DEPOT_SIGNAL $HOME/.bashrc > $HOME/.bashrc.1
+grep -v "go_$DISCONT" $HOME/.bashrc.1 > $HOME/.bashrc.2
+grep -v goSignal $HOME/.bashrc.2 > $HOME/.bashrc.3
+grep -v goConda $HOME/.bashrc.3 >$HOME/.bashrc
+rm -f $HOME/.bashrc.?
 
 echo "export DEPOT_SIGNAL=\"$DEPOT\"">>$HOME/.bashrc
 echo "alias go_$DISCONT='cd $CIBLE; . ./go.sh &'">>$HOME/.bashrc

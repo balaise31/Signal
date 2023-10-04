@@ -10,7 +10,7 @@ rsync -ab --suffix="$SUFFIXE" "$DEPOT"/$DISCONT/utiles/ ./utiles/
 cp -f "$DEPOT"/installation/go.sh ./
 cp -f "$DEPOT"/installation/mise_a_jour.sh ./
 cp -f "$DEPOT"/installation/*vieux*.sh ./
-cp -f "$DEPOT"/installation/README.ipynb .
+cp -f "$DEPOT"/installation/README.ipynb ./
 
 if [ -d "$DEPOT"/$DISCONT/cours/notebooks/ ] ;
 then
