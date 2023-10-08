@@ -29,12 +29,15 @@ fi;
 
 if [ -d $CIBLE ];
 then
-    
+
+    echo -e " Mise à jour des fichiers..."
+    . "$CIBLE"/mise_a_jour.sh
+    echo "... $BISOUS$"
     echo -e "Lancement de jupyter lab : un navigateur va apparaitre $TEMPS ..."
     #. "${DEPOT}"/installation/setenv_octave_kernel.sh
     jupyter-lab README.ipynb &
     sleep 10
-    echo -e "     ... voilà c'est fait $BISOUS"
+    echo - "     ... voilà c'est fait $BISOUS"
     
 else
     echo "Install des tp signal pas faite: $UNCHECK"
