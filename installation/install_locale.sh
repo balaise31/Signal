@@ -17,7 +17,7 @@ DEPOT=$(cd $(dirname "${BASH_SOURCE[0]}") && cd .. && pwd)
 cd $HOME;
 
 echo ""
-echo "Installation de $DEPOT vers $CIBLE"
+echo "Installation de ""${DEPOT}"" vers ""${CIBLE}"
 echo""
 
 if [ -d "$CIBLE" ]; then
@@ -38,16 +38,16 @@ else
     #cp -rf "$DEPOT/$DISCONT/tp" "$CIBLE"/
     #cp -rf "$DEPOT/$DISCONT/td" "$CIBLE"/
     #cp -rf "$DEPOT/$DISCONT/utiles" "$CIBLE"/
-    cp -rf "$DEPOT"/installation/README.ipynb "$CIBLE"/
-    cp -rf "$DEPOT"/installation/go.sh "$CIBLE"/
-    cp -rf "$DEPOT"/installation/mise_a_jour.sh "$CIBLE"/
-    cp -rf "$DEPOT"/installation/*vieux*.sh "$CIBLE"/
+    cp -rf "${DEPOT}"/installation/README.ipynb "$CIBLE"/
+    cp -rf "${DEPOT}"/installation/go.sh "$CIBLE"/
+    cp -rf "${DEPOT}"/installation/mise_a_jour.sh "$CIBLE"/
+    cp -rf "${DEPOT}"/installation/*vieux*.sh "$CIBLE"/
     #cp -rf "$DEPOT"/installation/*$DISCONT.sh "$CIBLE"/
-    ln -s  "$DEPOT" $CIBLE/Signal_Depot
-    echo "export DEPOT=\"$DEPOT\"" > "$CIBLE"/chemin_depot
+    ln -s  "${DEPOT}" $CIBLE/Signal_Depot
+    echo "export DEPOT=\"${DEPOT}\"" > "$CIBLE"/chemin_depot
     echo "export DISCONT=\"$DISCONT\"" >> "$CIBLE"/chemin_depot
 
-    cd $CIBLE && ./mise_a_jour.sh
+    cd "${CIBLE}" && ./mise_a_jour.sh
 
     echo -e " ... $CHECK"
     echo $LIGNE
@@ -60,12 +60,14 @@ echo -en "Ajout de l'alias go_$DISCONT au .bashrc ... "
 grep -v DEPOT_SIGNAL $HOME/.bashrc > $HOME/.bashrc.1
 grep -v "go_$DISCONT" $HOME/.bashrc.1 > $HOME/.bashrc.2
 grep -v goSignal $HOME/.bashrc.2 > $HOME/.bashrc.3
-grep -v goConda $HOME/.bashrc.3 >$HOME/.bashrc
+grep -v goConda $HOME/.bashrc.3 >$HOME/.bashrc.4
+grep -v goOctave $HOME/.bashrc.4 >$HOME/.bashrc
 rm -f $HOME/.bashrc.?
 
 echo "export DEPOT_SIGNAL=\"$DEPOT\"">>$HOME/.bashrc
 echo "alias go_$DISCONT='cd $CIBLE; . ./go.sh &'">>$HOME/.bashrc
 echo "alias goSignal='cd \"$DEPOT\" && . ./installation/env/bin/activate && jupyter-lab'">>$HOME/.bashrc
+echo "alias goOctave='. \"$DEPOT\"/installation/env/bin/activate'">>$HOME/.bashrc
 echo -e "$CHECK"
 echo $LIGNE
 

@@ -15,7 +15,7 @@ cp -f "$DEPOT"/installation/README.ipynb ./
 if [ -d "$DEPOT"/$DISCONT/cours/notebooks/ ] ;
 then
     test ! -d cours && mkdir cours
-    test ! -d cours/notebooks  && mkdir ./cours/notebooks && cp "$DEPOT"/$DISCONT/cours/notebooks/  
+    test ! -d cours/notebooks  && mkdir ./cours/notebooks 
     rsync -ab --suffix="$SUFFIXE" "$DEPOT"/$DISCONT/cours/notebooks/ ./cours/notebooks/
 fi
 if [ -d "$DEPOT"/$DISCONT/defis ] ;
