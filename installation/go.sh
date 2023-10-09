@@ -13,7 +13,7 @@ LIGNE="_______________________________________________________________"
 
 echo
 
-if [ -d "${OCTAVE_ENV}" ];
+if [ -d "${OCTAVE_ENV}" ]
 then
     echo -e "Environnement python + jupyter + octave présent : $CHECK"
     echo $LIGNE
@@ -33,9 +33,21 @@ then
     echo -e " Mise à jour des fichiers :"
     . "$CIBLE"/mise_a_jour.sh
     echo -e "... c'est à jour $BISOUS\n\n"
+
+    if octave --version | grep -q "6\." ; then
+	echo "Octave version 6 détecté"
+    elif  octave --version | grep -q "4\." ; then
+	echo "Octave version 4 détecté"
+	source "${DEPOT}"/installation/setenv_octave_kernel.sh
+    else
+	echo -e "$MERDE Pas d'installation d'octave détectée..."
+	echo "On tente quand même mais songez à faire une install :"
+	echo "sudo apt install octave"
+    fi
+    
     
     echo -en "Lancement de jupyter lab : un navigateur va apparaitre $TEMPS ... "
-    #. "${DEPOT}"/installation/setenv_octave_kernel.sh
+
     2>/dev/null 1>/dev/null jupyter-lab README.ipynb &
     sleep 15
     echo -e "voilà c'est fait $BISOUS\n\n"
