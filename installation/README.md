@@ -97,21 +97,21 @@ sudo apt install octave
 Pour Window et Mac préferrez [Installer Anaconda](https://www.anaconda.com/products/distribution) (Distribution de python) et installer octave avec anaconda en suivant les liens Wiki de [Installer GNU octave](https://www.gnu.org/software/octave/download) 
 
 
-## A - Linux
+## A - Jupyter/Octave Linux
 ---
 
-Pour les Geekettes pressées qui ont déjà `conda` et `git` installé, la suite suffit :
+Pour les Geekettes pressées qui ont déjà `python` et `git` installé, la suite suffit :
 ```bash
 cd
 git clone https://github.com/balaise31/Signal.git
 cd Signal/installation
-conda env create -f ./Octave.yaml
+./install_venv.sh 
 cd ~/Signal/installation
 source install_locale.sh continu
 cd ~/Signal/installation
 source install_locale.sh discret
 ```
-Jupyter-lab est lancé :
+Pour lancer Jupyter-lab :
  * dans le dépot Git `~/Signal` avec la commande `goSignal`,
  * dans la copie locale `~/signal_continu` pour modifier avec `go_continu`
  * dans la copie locale `~/signal_discret` pour modifier avec `go_discret`
