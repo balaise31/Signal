@@ -65,7 +65,7 @@ grep -v goOctave $HOME/.bashrc.4 >$HOME/.bashrc
 rm -f $HOME/.bashrc.?
 
 echo "export DEPOT_SIGNAL=\"$DEPOT\"">>$HOME/.bashrc
-echo "alias go_$DISCONT='cd $CIBLE; . ./go.sh &'">>$HOME/.bashrc
+echo "alias go_$DISCONT='cd $CIBLE; . ./go.sh '">>$HOME/.bashrc
 echo "alias goSignal='cd \"$DEPOT\" && . ./installation/env/bin/activate && jupyter-lab'">>$HOME/.bashrc
 echo "alias goOctave='. \"$DEPOT\"/installation/env/bin/activate'">>$HOME/.bashrc
 echo -e "$CHECK"

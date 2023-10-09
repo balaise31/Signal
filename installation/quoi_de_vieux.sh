@@ -17,7 +17,7 @@ do
 	    echo "NOUVEAU : $ORIG "
 	    echo "VIEUX  => $FICH" 
 	    sed s@"\"cells\": \["@"\"cells\": \[{\"cell_type\": \"markdown\",\"metadata\": {},\"source\": \[\"**CECI EST UNE SAUVEGARDE DE** \[cet original mis à jour\]($ORIG)\",\"  \",\"  => Faites les copier coller des modifications et puis effacez cette sauvegarde avec\"\]},"@g $FICH --in-place
-	    echo -e "POUR COMPARER => \n  jupyter-lab $FICH &" 
+	    echo -e "POUR COMPARER => \n  2>/dev/null 1>/dev/null  jupyter-lab $FICH &" 
 	    echo "________________"
 	fi
     fi
