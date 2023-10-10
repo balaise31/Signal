@@ -23,7 +23,7 @@ then
 else
     echo "Pas d'environnement $OCTAVE_ENV: $UNCHECK"
     echo " Avez-vous exécuté la commande suivante "
-    echo "   source $DEPOT/installation/install_venv.sh"
+    echo " cd $DEPOT/installation && ./install_venv.sh"
     exit
 fi;
 
@@ -34,17 +34,7 @@ then
     . "$CIBLE"/mise_a_jour.sh
     echo -e "... c'est à jour $BISOUS\n\n"
 
-    if octave --version | grep -q "6\." ; then
-	echo "Octave version 6 détecté"
-    elif  octave --version | grep -q "4\." ; then
-	echo "Octave version 4 détecté"
-	source "${DEPOT}"/installation/setenv_octave_kernel.sh
-    else
-	echo -e "$MERDE Pas d'installation d'octave détectée..."
-	echo "On tente quand même mais songez à faire une install :"
-	echo "sudo apt install octave"
-    fi
-    
+    . "$DEPOT"/installation/setenv_octave_kernel.sh
     
     echo -en "Lancement de jupyter lab : un navigateur va apparaitre $TEMPS ... "
 
