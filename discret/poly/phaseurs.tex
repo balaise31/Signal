@@ -1,0 +1,134 @@
+\chapter{Phaseurs et ondes sinusoïdales}
+
+Le phaseur (ou gain complexe, amplitude complexe, vecteur de Fresnel,
+\dots) est une représentation d'une onde à une fréquence pure. Il est
+incontournable dans les décompositions de \Fourier{} et dans les
+représentations des fonctions de transfert des systèmes linéaires.
+
+Dans la suite nous considéront l'onde à temps continu de pulsation
+$\omega$ sans perte de généralité. Le discours est transposable pour
+les quatre types de décomposition de \Fourier{}.
+
+\begin{table}[h!]
+\begin{tabular}{l|c|c}
+              & Non-Périodique              & Périodique~: $\omega\equiv n.\omega_0$\\ \hline
+temps  & $e^{i.\omega.t}$      &  $e^{i.n.\omega_0.t}$              \\
+ continu & Transformée de \Fourier{} -- \TF{}     &  Série de \Fourier{} -- \sdf{}             \\\hline
+  temps discret~: & $e^{i \omega. k. T_e}$   &  $e^{i.n.\omega_0. k. T_e}$       \\
+  $t\equiv k.T_e$ & TF d'un Signal Discret -- \TFSD{}  &  TF discrète -- \TFD{} ou \FFT{}               
+\end{tabular}
+\end{table}
+
+
+
+La décomposition en séries de \Fourier{} (\sdf{}) d'un signal
+périodique (par exemple), comporte des composantes harmoniques de rang
+$n$ de pulsation $\omega_n=n\,\omega_0$. Chaque harmonique peut être
+représentée de 4 manières suivantes~:
+
+\begin{equation}
+  \underbrace{ A_n.\cos(\omega_n.t+\varphi_n)}_{\text{représentation polaire}} = \underbrace{a_n.\cos(\omega_n.t) + b_n.\sin(\omega_n.t)}_{\text{repr. IQ ou \sdf{} réelles}} = \underbrace{\mathcal{R}\!\left[\vec{z_n}. e^ {i.\omega_n.t}\right]}_{\text{repr. phaseur ou \Fresnel{}}}= \underbrace{c_n.e^ {i.\omega_n.t} + \overline{c_n}.e^ {-i.\omega_n.t}}_{\text{repr. \sdf{} complexes}}
+  \label{phaseur_egalites}
+\end{equation}
+
+
+En télécom une onde pure d'une fréquence porteuse $f_0$ est modulée en
+amplitude et en phase par des singaux dit \emph{modulants} véhiculant
+l'information à transmettre.  Cela veut dire que l'amplitude de l'onde
+évolue dans le temps $A_n\leftrightarrow A(t)$, et sa phase aussi
+$\varphi_n \leftrightarrow \varphi(t)$. La représentation polaire
+devient alors celle de la modulation d'amplitude et de phase~:
+
+
+$s(t) = A(t).\cos(\omega_p.t+\varphi(t))$
+
+La représentation $a(n)$ et $b(n)$ d'une harmonique de $\Fourier{}$
+devient alors la représentation dite IQ~:
+
+$s(t) = \underbrace{i(t)}_{a_n\leftrightarrow a(t)}.\cos(\omega_p.t) +
+\underbrace{q(t)}_{b_n\leftrightarrow b(t)}.\sin(\omega_p.t)$.
+
+Le I signifiant \og{} in phase \fg{} pour indiquer que le signal est
+en phase avec un cosinus de référence, tandis que le Q signifie \og{}
+quadrature \fg{} car ce signal est en retard de quadrature (quart de
+tour) avec le cosinus~: un sinus.
+
+
+Il est relativement facile de faire un circuit avec un Oscilateur
+Local (LO) que l'on vient moduler en amplitude (grâce à un multiplieur
+de tension) mais plus compliqué de faire réaliser des sauts de phases
+à cet oscilateur (utilisation d'un Oscilateur Contrôlé en Tension
+VCO). La représentation polaire de $s(t)$ est donc plus dure à
+implanter en électronique aux fréquences de modulation $f_0$ de
+l'ordre du giga Hertz.
+
+En revanche la représentation IQ donne une architecture, représentée
+dans la \figref{fig:mod_demod_iq}, devenue prépondérante dans le
+domaine des télécoms, qui permet de générer le même signal $s(t)$ avec
+des fonctions simples~:
+
+
+\begin{itemize}
+\item un oscillateur local (LO) générant le signal de référence I (In phase) haute fréquence --$\cos(\omega_p\,t)$
+\item un déphaseur donnant un signal en avance de quadrature Q -- $\sin(\omega_p\,t)$
+\item deux  multiplieurs  permettant de moduler l'amplitude de I par un signal $i(t)$ et celle de Q par $q(t)$
+\item un sommateur donnant $s(t) = i(t) . I + q(t) Q$
+\end{itemize}
+
+
+\begin{figure}[htbp]
+  \centering
+  \graphe{\textwidth}{mod_demod_iq}
+  \caption{Modulateur IQ et son démodulateur permettant de transmettre
+    deux signaux modulants $i(t)$ et $q(t)$ (notés I et Q dans la
+    figure) autour de la fréquence porteuse générée par l'Oscillateur
+    Local (LO) $\cos(\omega_p.t)$. Le bloc $-90$ est un déphaseur de
+    $-\pi/2$ qui transforme le cosinus du LO dit I en sinus dit Q. Les
+    blocs en X sont des multiplieurs et celui en + un sommateur.}
+  \label{fig:mod_demod_iq}
+\end{figure}
+
+
+Il est mathématiquement peu commode de représenter les signaux
+modulants réels $i(t)$ et $q(t)$ et d'en représenter le spectre~: tout
+comme la représentation $a(n)$ et $b(n)$ de $\Fourier$ est peu commode
+pour les $\sdf{}$ et la représentation $a(f)$ et $b(f)$ inexistante
+pour les $\TF{}$.
+
+Tout comme on préfère utiliser la notation complexe $c(n)$ pour les
+\sdf{} et $c(f)$ (notée $\hat{S}(f)$) pour les \TF{}~; on préfère en
+télécom représenter les signaux réels modulants $i(t)$ et $q(t)$ par
+un signal complexe $z(t)$. Ce signal est appelé \emph{enveloppe
+  complexe} ou \emph{signal analytique} est directement issu de la
+représentation en phaseur (ou de \Fresnel{})~:
+\begin{equation}
+  \underbrace{ A(t).\cos\left(\omega_p.t+\varphi(t)\right)}_{\text{modulation d'amplitude et phase}} = \underbrace{i(t).\cos(\omega_p.t) + q(t).\sin(\omega_p.t)}_{\text{repr. IQ}} = \underbrace{\mathcal{R}\!\left[z(t). e^ {i.\omega_p.t}\right]}_{\text{signal analytique}} = \underbrace{\frac{z(t)}{2}.e^ {i.\omega_p.t} + \frac{\overline{z(t)}}{2}.e^ {-i.\omega_p.t}}_{\text{inutilisée}}
+  \label{phaseur_egalites}
+\end{equation}
+
+
+
+Ainsi les deux signaux réels $i(t)$ et $q(t)$ (donc de spectres ayant
+une symétrie Hermitienne $\widehat{S}(-f)=\overline{\widehat{S}(f)}$)
+sont représentés par un signal complexe $z(t)$ (dont le spectre
+$\widehat{Z}(f)$ n'est plus symétrique !).
+
+Nous expliquons dans la suite comment passer d'une représentation à
+une autre et notamment le passage de la représentation IQ à celle du
+signal analytique qui en résulte~:
+
+$z(t)=i(t) - j. q(t)$
+
+
+\section{Phaseur et représentation polaire}
+
+
+
+
+
+
+
+%%%Local Variables:
+%%% mode: latex
+%%% TeX-master: "poly_discret"
+%%% End:
