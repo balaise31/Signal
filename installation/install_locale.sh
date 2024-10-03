@@ -16,6 +16,27 @@ DEPOT=$(cd $(dirname "${BASH_SOURCE[0]}") && cd .. && pwd)
 
 cd $HOME;
 
+
+echo ""
+echo "Assure un vivrtualenv python dans "${DEPOT}"/installation/env"
+echo ""
+
+if [ -d "$DEPOT/installation/env" ]; then
+    echo $LIGNE
+    echo "env  déjà présent !"
+    #echo "   On fait une mise à jour..."
+    echo "____"
+
+else
+    echo $LIGNE
+    echo -en "Installation du virtual env ..."
+
+    cd "$DEPOT/installation"
+    source "install_venv.sh" && echo -e " ... $CHECK" || echo -e " ... $UNCHECK"
+    cd $HOME
+    echo $LIGNE
+fi
+
 echo ""
 echo "Installation de ""${DEPOT}"" vers ""${CIBLE}"
 echo""

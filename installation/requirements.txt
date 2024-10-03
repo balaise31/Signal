@@ -2,7 +2,7 @@ octave_kernel
 ipywidgets
 oct2py
 scipy
-jupyterlab
 matplotlib
 numpy
+jupyterlab
   
