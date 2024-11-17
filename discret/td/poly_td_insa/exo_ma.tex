@@ -1,6 +1,10 @@
 
+
+
  \section{MA : systèmes Mooving Average à moyenne glissante.}
 
+
+ 
 
 \graphe{0.6\textwidth}{../../poly/tikz/ma_ab.png} 
 
@@ -8,11 +12,11 @@ Les cercles sont des multiplieurs, l'opérateur T est le retard unitaire, le cer
 
 
 
-\question{Q1~: Block $\rightarrow$ Récurrence ou Équation différentielle} 
-\refWeb{Vidéo MA1 : Block -> récurrence}{https://youtu.be/QRiAfbWLMw8?t=107}
+\question{Q1~: Bloc $\rightarrow$ Récurrence ou Équation différentielle} 
+\refWeb{Vidéo MA1 : Bloc → récurrence}{https://youtu.be/QRiAfbWLMw8?t=107}
 
 
-Passez du schéma block à l'équation aux différences (récurrence) que vous mettrez sous forme :  
+Passez du schéma bloc à l'équation aux différences (récurrence) que vous mettrez sous forme :  
 \begin{itemize}
 \item $y[k+1]=\ldots$  
 \item $y[k]=\ldots$  
@@ -21,8 +25,8 @@ Simplifiez les expressions et dites de quel ordre est ce système.
 
 
 
-\question{Q2~: Récurrence $\rightarrow$ Fonction de transfer $G(z)$} 
-\refWeb{Vidéo MA1 : Récurrence -> G(z)}{https://youtu.be/QRiAfbWLMw8?t=479}
+\question{Q2~: Récurrence $\rightarrow$ Fonction de transfert $G(z)$} 
+\refWeb{Vidéo MA1 : Récurrence → G(z)}{https://youtu.be/QRiAfbWLMw8?t=479}
 
 En se rappelant que $z^{-1}$ est le système/signal associé à
 l'opérateur retard $T$, donnez la fonction de transfert en Z en
@@ -42,7 +46,7 @@ causaux.  Conclure si le système entier est lui-même LTI, causal.
 
 Le système est-il~:
 \begin{itemize}
-\item auto-regressif ?
+\item auto-régressif ?
 \item récurrent ?
 \item à moyenne glissante (mooving
   average) ?
@@ -75,14 +79,14 @@ impulsionnelle temporelle $\vec{h} = \tZiDe{H(z)}$
   produit une impulsion unité\fg{} pour en déduire $\tZde{\vec{\delta_0}}$~: la transformée en
   $z$ de l'impulsion unité $\delta_0$.
 
-  Traduisez la défintion de la fonction de transfert
-  $Y(z) = G(z) . X(z)$ en un schéma block qui explique comment
+  Traduisez la définition de la fonction de transfert
+  $Y(z) = G(z) . X(z)$ en un schéma bloc qui explique comment
   produire un signal de sortie temporel $\vec{y}: k \mapsto y[k]$ à
   partir d'une impulsion unité. Indice~:
   $\vec{y}=G(z)\left\{\overbrace{ X(z)\!\left\{ \vec{\delta_0} \right\}}^{\vec{x}} \right\}$
 
   L'association $X (z)\!\left\{\vec{\delta_0}\right\}=\vec{x}$ définit
-  la transofrmée $X(z) = \tZde{\vec{x}}$. La transformée inverse $\tZiDe{H(z)}=\vec{h}$
+  la transformée $X(z) = \tZde{\vec{x}}$. La transformée inverse $\tZiDe{H(z)}=\vec{h}$
   se trouve, sans calcul analytique à faire !, par l'association inverse.
 
   Indice~: Système  $\to$ RIp. Gros indice $\vec{h} = H(z)\!\left\{\vec{\delta_0}\right\}$
@@ -90,21 +94,21 @@ impulsionnelle temporelle $\vec{h} = \tZiDe{H(z)}$
 \end{remarque}
 
 À partir de la réponse impulsionnelle concluez si le système est
-FIR (Finite Impluse Response) ou IIR (Infinite Impulse response) ?
+FIR (Finite Impulse Response) ou IIR (Infinite Impulse response) ?
 
 
-\question{Q5~: Schéma Block MA $\rightarrow$ RIp} \refWeb{Vidéo MA2 : RIp et Causalité}{https://youtu.be/sKBlBBVbRWw?t=523}
+\question{Q5~: Schéma Bloc MA $\rightarrow$ RIp} \refWeb{Vidéo MA2 : RIp et Causalité}{https://youtu.be/sKBlBBVbRWw?t=523}
 
 Donnez la réponse impulsionnelle des systèmes~: \og{} gain de a\fg{} ; \og{} gain de b\fg{} ; d'un retard unitaire $T$.
 
 Rappelez la relation temporelle entre la sortie $\vec{y}$ d'un système de RIp $\vec{h}$ pour une entrée $\vec{x}$.
 
-Dans le schéma block, remplacez l'entrée $x[k]$ par l'impulsion
-$\vec{\delta_0}$ et propagez le signal dans le schéma block jusqu'à la
+Dans le schéma bloc, remplacez l'entrée $x[k]$ par l'impulsion
+$\vec{\delta_0}$ et propagez le signal dans le schéma bloc jusqu'à la
 sortie (par exemple la sortie du gain $b$ donnerait
-$\vec{\delta_0} \star (b.\vec{\delta_0}) = b.\vec{\delta_0}$.
+$\vec{\delta_0} \star (b.\vec{\delta_0}) = b.\vec{\delta_0}$).
 
-Que devient la relation $Y(z) = G(z) . X(z)$ en schéma block puis en
+Que devient la relation $Y(z) = G(z) . X(z)$ en schéma bloc puis en
 temporel $\vec{y} = \dots$
 
 
@@ -115,7 +119,7 @@ Retrouvez la propriété de causalité de la Q1 mais à partir de la RIp $h$.
 
 \question{  Q7 }
 
-Quelle propriétée doit vérifier la RIp pour que le système soit stable
+Quelle propriété doit vérifier la RIp pour que le système soit stable
 ? Est-ce une condition nécessaire et suffisante ?
 
 Concluez si ce système est BIBO stable à partir de sa RIp.
@@ -124,7 +128,7 @@ BONUS : démontrez que $\Sigma h$ ACV $\implies$ H stable
 
 \question{  Q8 }
 
-Donnez un schéma block en transformée en Z sous forme simplifiée Directe I (chaîne de retards puis combinaison linéaire). Retrouvez de quel ordre est ce système.
+Donnez un schéma bloc en transformée en Z sous forme simplifiée Directe I (chaîne de retards puis combinaison linéaire). Retrouvez de quel ordre est ce système.
 
 \question{  Q9 }
 On appelle BIBO la propriété de stabilité : "Bounded Input Bounded Output"

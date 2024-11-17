@@ -60,7 +60,7 @@
 %\setcounter{tocdepth}{4}
 %\cleardoublepage
 \def\question#1{\paragraph{#1}}
-\def\refWeb#1#2{\qrcode[version=1,height=1cm]{#2} \href{#2}{#1} 
+\def\refWeb#1#2{\qrcode[version=1,height=1.5cm]{#2} \href{#2}{#1} 
 %    \begin{pspicture}(25mm,25mm)
 %      \psbarcode{#2}{}{qrcode}
 %    \end{pspicture}}
@@ -70,6 +70,17 @@
 
 
 \chapter{Systèmes}
+
+\begin{minipage}{0.4\linewidth}
+    \refWeb{Corrigé MA 1.1}{https://moodle.insa-toulouse.fr/mod/resource/view.php?id=89521}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+    \refWeb{Corrigé AR 1.2}{https://moodle.insa-toulouse.fr/mod/resource/view.php?id=89522}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+  \refWeb{Corrigé ARMA 1.3}{https://moodle.insa-toulouse.fr/mod/resource/view.php?id=89523}
+\end{minipage}
+
 \input{exo_ma.tex}
 \input{exo_ar.tex}
 \input{exo_arma.tex}

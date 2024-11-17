@@ -27,7 +27,7 @@ en fonction de $\tau$ et $T_e$.
 
 \question{Q2~: condition de stabilité en temporel avec $h$}
 Représentez $h$ graphiquement pour $a=\frac{1}{2}$, puis $a=1$, puis
-$2$, puis $a=-\frac{1}{2}$, puis $-1$, puis $-2$ .
+$2$, puis $a=-\frac{1}{2}$, puis $-1$, puis $-2$.
 
 Déduisez une condition nécessaire et suffisante de stabilité BIBO du système H avec $a$ puis avec $\tau$ (Il y a une CNS de CVA des séries géométriques à utiliser) : 
 \begin{itemize}
@@ -73,29 +73,29 @@ Sinon, donnez la fonction de transfert $G_1(z)$ de cette récurrence et
 faites le lien avec celle de la question suivante.
 
 
-\question{Q4~[optionelle]~: Schéma Block $\quad\rightarrow\quad$ récurrence $\quad\rightarrow\quad h[\bullet-1]$ } 
+\question{Q4~[optionnelle]~: Schéma Bloc $\quad\rightarrow\quad$ récurrence $\quad\rightarrow\quad h[\bullet-1]$ } 
 
 \graphe{0.8\textwidth}{../../poly/tikz/ar_o1.png}
 
 
-Traduisez ce schéma block en récurrence, puis en fonction de transfert (notée $G_T(z)$).
+Traduisez ce schéma bloc en récurrence, puis en fonction de transfert (notée $G_T(z)$).
 
 Calculez-en la réponse impulsionnelle $h$ à partir de l'équation de récurrence.
 
 
 \begin{remarque}
   
-  \refWeb{Vidéo G(z) -> RIp}{https://youtu.be/_Mrx9QQ-z5o?t=1366}
+  \refWeb{Vidéo G(z) → RIp}{https://youtu.be/_Mrx9QQ-z5o?t=1366}
   Apprenez à faire une division par les puissances décroissante. Puis
-  vérifiez les premier termes de $h$ en faisant la division par les
+  vérifiez les premiers termes de $h$ en faisant la division par les
   puissances décroissantes de~:
 \begin{itemize}
 \item $\frac{z}{z^2-az}$ (récurrence en $y[k+2]=\dots$)~; ou de
-\item $\frac{1}{z-a}$ (récurrence en $y[k+1]=\dots)$~; ou encore de
-\item $\frac{\zmu}{1-a\zmu}$ (récurrence en $y[k]=\dots)$.
+\item $\frac{1}{z-a}$ (récurrence en $y[k+1]=\dots$)~; ou encore de
+\item $\frac{\zmu}{1-a\zmu}$ (récurrence en $y[k]=\dots$).
 \end{itemize}
 \end{remarque}
-On doit obtenir notre suite géométrique avec un peu de retard ;-) ..
+On doit obtenir notre suite géométrique avec un peu de retard ;-) ...
 
 
 La fonction de transfert $G_1(z)$ de la Q3 donne la suite géométrique $h$ en RIp.
@@ -141,28 +141,28 @@ Retrouvez la formule de la somme d'une série géométrique pour
 retrouver $H(z)$ sous forme d'une fraction rationnelle en $z^{-1}$.
 
 \begin{remarque}
-  La somme partielle d'une suite géométrique se trouve facilement
+  La somme partielle d'une suite géométrique se trouve facilement par effet télescopique~:
 
 \begin{equation*}
   \begin{array}{cccccccc}
-    q.S_n     &=&  q^{n+1}  &+ q^n  &+ q^{n-1} & +\dots & +q^1 &  \\
-    S_n       &=&          & q^n   &+ q^{n-1} & +\dots & +q^1 & +q^0  \\
-    (q-1).S_n &=&  q^{n+1}  &       &         & \dots  &     &- q^0
+    S_n       &=&   q^0     &+q^1   & +\dots &  + q^{n} &  \\
+    -q.S_n     &=&         &-q^1 & +\dots & - q^{n} &- q^{n+1}  \\\hline
+    (1-q).S_n &=&   q^0  &       &         &       & -q^{n+1}
   \end{array}
 \end{equation*}
 Lorsque la raison $q$ de la suite est inférieure en module à 1, la
-limite de $S_n$ lorsque $n\to \infty$ se simplifie car $q^{n+1}\to 0$.
+limite de $S_n$, lorsque $n\to \infty$, se simplifie car $q^{n+1}\to 0$.
 \end{remarque}
 
 
-Vous obtenez ainsi la fonction de transfert $H(z)=G_1(z)$ sous forme de fraction rationelle. 
+Vous obtenez ainsi la fonction de transfert $H(z)=G_1(z)$ sous forme de fraction rationnelle. 
 \begin{remarque}
   Apprenez à faire une division par les puissances croissantes et
   faites une division par les puissances croissante de $z^{-1}$ de
   $H(z)$ pour retrouver $H(z)$ sous forme d'une suite géométrique...
 
 
-  \refWeb{Vidéo G(z) -> RIp}{https://youtu.be/_Mrx9QQ-z5o?t=1366}  
+  \refWeb{Vidéo G(z) → RIp}{https://youtu.be/_Mrx9QQ-z5o?t=1366}  
 \end{remarque}
 
 
@@ -175,12 +175,12 @@ $G(p)=\frac{1}{1+\tau.p}$ en fonction de $\tau$.
 
 Déterminez de même l'ordre, le pôle $\widehat{p_d}$ et les zéros de $G_1(z)$
 en fonction de $a$ puis de $\tau$ (et de $T_e$ bien
-sur). \textbf{Attention ! il faut exprimer en fonction de $z$ et non
+sur). \textbf{Attention ! Il faut exprimer en fonction de $z$ et non
   $z^{-1}$}
 
-On montre en continu qu'un pôle est stable $\iff h(t) \to 0 \iff \tau\succ 0 \iff \text{pôle continu} \prec 0$ et donc le fameux ``demi-plan gauche stable ''.
+On montre, en continu, qu'un pôle est stable $\iff h(t) \to 0 \iff \tau\succ 0 \iff \text{pôle continu} \prec 0$ et donc le fameux ``demi-plan gauche stable ''.
 
-On a montré en discret que stable $\iff h[k] \to 0 \iff |a|<1$. Quelle est alors la region du plan complexe où les poles discrets sont stable. 
+On a montré, en discret, que stable $\iff h[k] \to 0 \iff |a|<1$. Quelle est alors la région du plan complexe où les pôles discrets sont stables. 
 
 Pour mémoriser ce résultat fondamental, dessinez à gauche le plan
 complexe et la région des pôles stable en continu, en donnant la
@@ -197,11 +197,11 @@ pôle oscillant amortis en continus et son équivalent (même RIp mais
 pôles lors du calcul d'une commande par placement de pôles.
 \end{remarque}
 \question{ Q5 }
-Ce système est-il MA (moyenne pondérée glissante) ? AR (autorégressif) ? Récursif ? Bouclé ?
+Ce système est-il MA (moyenne pondérée glissante) ? AR (auto-régressif) ? Récursif ? Bouclé ?
 
 
 \question{ Q7 }
-Donnez un schéma block en transformée en Z sous forme Directe I (chaîne de retards et combinaison linéaire). 
+Donnez un schéma bloc en transformée en Z sous forme Directe I (chaîne de retards et combinaison linéaire). 
 
 Retrouvez de quel ordre est ce système.
 
