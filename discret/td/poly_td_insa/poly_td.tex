@@ -1,0 +1,77 @@
+\documentclass[11pt,fleqn]{book}
+\usepackage[french]{babel}
+\selectlanguage{french}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\input{commandes.tex} % les defs du style du poly
+\input{structure.tex} % les defs du style du poly
+\input{latexdefs.tex} % les defs de math
+\usepackage{qrcode}
+
+\usetikzlibrary{shapes.geometric,mindmap,backgrounds}
+%\usepackage{pst-barcode}
+%\usepackage{auto-pst-pdf}
+
+
+\usepackage{relsize}
+\usepackage[binary-units = true,load-configurations=binary]{siunitx}
+%\usepackage[utf8x]{inputenc}
+%\usepackage{mathptmx}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{statistics}
+\usepackage{pgf}
+\pgfplotsset{compat=1.11}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,mindmap,backgrounds,dsp}
+% -----------------------------------------------------------------------------
+% Layers
+% -----------------------------------------------------------------------------
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{bg_input}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{bg_input,background,main,foreground}
+
+% Template for kTikz/qTikz
+%\usepackage[active,pdftex,tightpage]{preview}
+%\PreviewEnvironment[]{tikzpicture}
+%
+%\PreviewEnvironment[]{pgfpicture}
+
+\begin{document}
+
+%\input{poly/titre.tex}
+
+
+% -------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%-------------------------------------------------------------------------
+\usechapterimagefalse 
+%\pagestyle{empty} % Disable headers and footers for the following pages
+%\tableofcontents % Print the table of contents itself
+%\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right side of the book
+\pagestyle{fancy} % Enable headers and footers again
+
+%-------------------------------------------------------------------------
+%	CHAPITRES
+% -------------------------------------------------------------------------
+
+%\tableofcontents
+%\setcounter{tocdepth}{4}
+%\cleardoublepage
+\def\question#1{\paragraph{#1}}
+\def\refWeb#1#2{\qrcode[version=1,height=1cm]{#2} \href{#2}{#1} 
+%    \begin{pspicture}(25mm,25mm)
+%      \psbarcode{#2}{}{qrcode}
+%    \end{pspicture}}
+}
+
+
+
+
+\chapter{Systèmes}
+\input{exo_ma.tex}
+\input{exo_ar.tex}
+\input{exo_arma.tex}
+
+\end{document}

@@ -1,0 +1,170 @@
+\section{ARMA~: Auto Regressive Mooving Average}
+
+
+\begin{tikzpicture}[outer sep=auto]
+
+	\matrix (graphe)[ row sep=1cm, column sep=1cm, inner sep=0.5cm]{ 	
+	\node[dspnodeopen]  (x) {$x[k+1]$};																&
+	\node[dspnodefull]  (tx) {};													 							&
+	\node[dspsquare]  (Tx) {T};																				&
+																																	&
+	\node[dspsquare ]  (Ty) {T};																			&
+	\node[dspmultiplier, dsp/label=  above]  (a) {$a$};								&
+	\node (coin)	 {}		;																							&
+																																	&
+																																	\\
+																																	&
+																																 	&
+																																	&
+	 \node[dspadder ]  (S) {};																				    &
+																																    &
+																																    &
+	\node[dspnodefull]  (ty) {};																				&
+	\node[dspnodeopen,  dsp/label=above]  (y) {$y[k+1
+]$};  							&\\
+	};
+	\draw[dspflow] (x) -- (tx) ;
+	\draw[dspflow]  (tx)  -- (Tx);
+	 \draw[dspflow, rounded corners=1cm] (Tx) -|  (S);
+	\draw[dspflow, rounded corners=1cm] (tx)  |- (S);
+	\draw[dspflow, rounded corners=1cm]  (ty) |- (a);
+	 \draw[dspflow] (a) -- (Ty);
+	\draw[dspflow, rounded corners=1cm] (Ty)  -| (S);
+	\draw[dspflow] (S)  -- (ty);
+	\draw[dspflow] (ty) -- (y);
+
+      \end{tikzpicture}
+      
+\question{ Q1 - Manipulation de schéma bloc}
+Repérez le(s) bouclages(s) (AR) et les moyennes glissantes (MA) et décomposez le schéma bloc en séparant clairement MA puis AR.
+
+$\vec{x} \overset{MA}{\longrightarrow} \vec{w} \overset{AR}{\longrightarrow} \vec{y}$
+
+
+\refWeb{Vidéo Schéma bloc MA-AR (s'arrêter avant AR-MA)}{https://youtu.be/TjNE5sKsKRM?si=83cs8c0a03OJ7mqv&t=805}
+
+\question{ Q2 - Bloc -> Fonction de transfert}
+
+On note l'opérateur retard $q=z^{-1}$. Donnez, en les exprimant d'abord avec des retards $q$ puis avec des avances $z$, les fonctions de transfert~:
+\begin{itemize}
+\item $MA(z)=\frac{W(z)}{X(z)}$, 
+\item $AR(z)=\frac{Y(z)}{W(z)}$,
+\item la fonction de transfert totale $G(z)=\frac{Y(z)}{X(z)} =  \underbrace{\frac{Y(z)}{W(z)}}_{AR(z)} . \underbrace{\frac{W(z)}{X(z)}}_{MA(z)} = \underbrace{\frac{W(z)}{X(z)}}_{MA(z)} . \underbrace{\frac{Y(z)}{W(z)}}_{AR(z)}$.   
+\end{itemize}
+
+
+\question{ Q3 - Stabilité - Pôles et zéros}
+Identifiez les pôles et les zéros du système et concluez sur la stabilité en fonction de $a$.
+
+\question{ Q4 - F. Transfert -> Equation aux Différences}
+Donnez, à partir de $G(1/q)$, la récurrence  du système sous forme
+
+$y[k+1]= \ldots y[k] + \ldots x[\ldots] \ldots x[\ldots]$
+
+et vérifiez qu'elle correspond au schéma bloc.
+
+\question{ Q5 - F.T. -> Réponse Impulsionnelle}
+Trouvez la réponse impulsionnelle (on prendra $a=\frac{1}{2}$) en décomposant $G(z)$ en $MA(z)$ (numérateur FIR) puis $AR(z)$ (dénominateur IIR) :
+\begin{itemize}
+\item exprimez la réponse impulsionnelle du MA sous forme de deux
+  impulsions
+\item exprimez la réponse impulsionnelle du AR en réutilisant
+  les résultat de l'exercice MA (1er ordre)
+\item par linéarité du
+  système, trouvez $h$ comme la somme des réponses AR à une somme
+  finie d'impulsions issue du MA(FIR)
+\end{itemize}
+
+\begin{remarque}
+N'oubliez pas que les systèmes sont causaux et que \emph{si l'on
+  retarde un signal causal, il faut aussi retarder l'échelon de
+  heaviside} : utiliser par exemple $a^{k-1}u[k-1]$ pour annuler la
+réponse pour $k<1$
+\end{remarque}
+
+\question{ Q6 - Idem par division en puissances croissantes}
+Vérifiez le résultat en faisant une division par les puissances croissantes de $q = z^{-1}$ de la fonction de transfert totale $G(z)$ prise avec une entrée impulsionnelle. 
+
+Vous vérifierez ainsi sur les quelques premiers termes que la réponse de la Q5 fonctionne.
+
+\question{ Q7 - RIp -> causalité et stabilité}
+À partir de $h$ dites pourquoi le système est stable et causal. Vérifiez la cohérence avec la Q3.
+
+\question{ Q8 - Manipulation de blocs -> forme canonique Directe II }
+
+\refWeb{Vidéo ARMA: Forme Directe II}{https://youtu.be/TjNE5sKsKRM?t=844}
+
+Nous avons $G(z) = MA(z).AR(z) = AR(z).MA(z)$.  
+Redessinez le schéma block en séparant d'\textbf{abord le AR} puis le MA.  
+
+
+$\vec{x} \overset{AR}{\longrightarrow} \vec{w} \overset{MA}{\longrightarrow} \vec{y}$
+
+
+En permuttant le multiplieur avec le retard, regroupez les deux blocs mémoires pour n'en faire qu'un, dont l'entrée sera $w[k+1]$ et la sortie $w[k]$. 
+
+
+Vous obtenez ainsi la \emph{forme Directe II} canonique (et optimale en termes de mémoire).
+
+\question{ Q8 (Option) - Equa. Diff. -> Espace d'état}
+
+Donnez l'ordre de ce système et la récurrence sous forme de
+représentation d'état discrète avec pour vecteur d'état
+
+${}^T\!W_k = {}^T\![w[k-N], \;w[k-(N-1)], \;\ldots, w[k]]$ de taille adéquate :  
+
+\begin{equation*}
+  \left\{
+    \begin{array}{cccc}
+      W_{k+1} &=& A . W_k &+ B. x[k] \\
+      y[k] &=& C . W_k &+  D. x[k]
+    \end{array}\right.
+\end{equation*}
+
+
+\question{ Q9 - F.T. -> Réponse harmonique (Bode)}
+
+Nous prenons maintenant $a=1$. Donnez la réponse harmonique de ce
+système. Pour cela passez de $AR(z)=AR(\frac{1}{q})$ à une
+représentation en fréquence $AR(i\omega)$, puis pour $MA(z)$ et enfin
+pour $G(z)$.
+ 
+
+Dans chaque  expressions faites apparaître uniquement des termes en $e^{i\,2\pi\,\tilde{f}}$ où on note $\tilde{\omega}=\frac{\omega}{\omega_e}=\tilde{f}=\frac{f}{Fe}$ la fréquence nomalisée.
+
+
+Dans chaque expression vérifiez:  
+\begin{itemize}
+ \item que la réponse hamonique en $f$ est $f_e$ périodique (et donc 1 périodique en $\tilde{f}$)
+ \item que la réponse est celle d'un système réel, i.e., spectre de Hilbert : $G(-\tilde{f})=\overline{G(\tilde{f})}$
+ \end{itemize}
+
+ 
+ \begin{remarque}
+ AStuce de \emph{l'arc moitiée} :
+ Simplifiez bien les paires d'exponentielles ! C'est \emph{très fréquent en discret}:  
+
+ $1 + e^{i.b} = e^{-i.b/2} (e^{i.b/2} + e^{-i.b/2}) = e^{-i.b/2}.2.\cos(b)$ et  
+
+ $1 - e^{i.b} = e^{-i.b/2} (e^{i.b/2} - e^{-i.b/2}) = e^{-i.b/2}.2i.\cos(b)$ et  
+
+ $e^{i.a} + e^{i.b} = e^{i.\frac{a+b}{2}} (e^{i.\frac{a-b}{2}} + e^{-i.\frac{a-b}{2}}) = e^{i.\frac{a+b}{2}}.2.\cos\left(\frac{a-b}{2}\right)$  
+
+ $e^{i.a} - e^{i.b} = e^{i.\frac{a+b}{2}} (e^{i.\frac{a-b}{2}} - e^{-i.\frac{a-b}{2}}) = e^{i.\frac{a+b}{2}}.2i.\sin\left(\frac{a-b}{2}\right)$
+ 
+ Come le dit M. Lebotlan : "Seul un Lycéen mémoriserait ces formules. 
+  Alors qu'en maternelle ils savaient déjà factoriser par la moitié et puis faire comme Euler et puis c'est tout !"
+\end{remarque}
+Pour faire le tracé de la réponse harmonique faites des équivalents pour avoir les asymptotes :
+\begin{itemize}
+\item  un équivalent pour $\tilde{f} \to 0$ doit donner une constante
+\item un équivalent pour $\tilde{f} \to \infty$ est impossible car la réponse est périodique ! 
+\item la fréquence discrète la plus haute que l'on puisse imaginer est $\frac{F_e}{2}$ : faites donc un équivalent $\tilde{f} \to \frac{1}{2}$
+
+\end{itemize}
+  
+   
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "poly_td"
+%%% End:
