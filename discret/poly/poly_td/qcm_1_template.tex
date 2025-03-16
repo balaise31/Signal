@@ -1,0 +1,89 @@
+\documentclass[a4paper,tikz]{article}
+
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usetikzlibrary{shapes.misc}
+
+\pgfplotsset{compat=newest}
+\def\xm{-9.5}
+\def\xM{9.5}
+\def\ym{-20.5}
+\def\yM{7.5}
+
+\def\rA{\VAR{rA}}
+\def\tA{\VAR{tA}}
+
+\def\rB{\VAR{rB}}
+\def\tB{\VAR{tB}}
+
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \node[yshift=0cm] at (current page.center)
+  { \begin{tikzpicture}[x=1cm,y=1cm]
+      \draw[step=1mm, line width=0.1mm, brown!25] (\xm,\ym) grid (\xM,\yM);
+      \draw[step=5mm, line width=0.2mm, brown!50] (\xm,\ym) grid (\xM,\yM);
+      \draw[step=1cm, line width=0.4mm, brown!75] (\xm,\ym) grid (\xM,\yM);
+      \draw[step=5cm, line width=0.6mm, brown!100] (\xm,\ym) grid (\xM,\yM);
+      \draw[fill=none, line width=0.6mm, brown!100](0,0) circle (5) ;
+      \foreach \i [count=\k from 0] in {0,11.4591559026,...,359} {
+        \draw (\i:5.6) node[brown] {\textbf{\k}};
+      }
+      \foreach \i in {0,11.4591559026,...,359} {
+        \draw[line width=0.4mm, brown!100] (\i:4.7) -- (\i:5.3);
+      }
+      \foreach \i  in {0,5.72957795131,...,359} {
+        \draw[line width=0.4mm, brown!100] (\i:4.8) -- (\i:5.2);
+      }
+      \foreach \i  in {0,1.14591559026,...,359} {
+        \draw[line width=0.2mm, brown!100] (\i:4.9) -- (\i:5.1);
+      }
+
+      \coordinate (A) at (\tA:\rA); 
+      \draw plot[mark=+] (A) node [ above right] {A};
+      \coordinate (B) at (\tB:\rB); 
+      \draw plot[mark=+] (B) node [ above right] {B};
+      \draw[->] plot (\xm+1,0) -- (\xM-1,0) node[right] {$\mathcal{R}$};
+      \draw[->] plot (0,\xm+1) -- (0,\yM-1) node[right] {$\mathcal{I}$};
+
+      \draw[->] plot (\xm+1,0) -- (\xM-1,0) node[right] {$\mathcal{R}$};
+      \draw[->] plot (0,\xm+1) -- (0,\yM-1) node[right] {$\mathcal{I}$};
+
+      \node[draw, right] at (\xm+1,\ym+5){\large{$\check{A}= \ldots + i. \ldots = \ldots.e^{i\,\ldots\;}$}};
+      \node[draw, right] at (\xm+1,\ym+4){\large{$s_A(t) = \dots . \cos\left(\omega.t+\ldots\right)$}};
+      \node[draw, right] at (\xm+1,\ym+3){\large{$s_A(t) = \dots . \cos\left(\omega.t\right)+\dots . \sin\left(\omega.t\right)$}};
+      \node[draw, right] at (3,\ym+5){\large{$\check{B}= \ldots + i. \ldots = \ldots.e^{i\,\ldots\;}$}};
+      \node[draw, right] at (3,\ym+4){\large{$s_B(t) = \dots . \cos\left(\omega.t+\ldots\right)$}};
+      \node[draw, right] at (\xm+1,\ym+4){\large{$s_A(t) = \dots . \cos\left(\omega.t+\ldots\right)$}};
+      \node[draw, right] at (3,\ym+3){\large{$s_B(t) = \dots . \cos\left(\omega.t\right)+\dots . \sin\left(\omega.t\right)$}};
+
+      \node[draw, right] at (\xm+3,\ym+1){\large{$\frac{\check{A}}{\check{B}}$ ou $\frac{\check{B}}{\check{A}} =  \underbrace{\ldots}_{\text{gain}}.e^{i\,\overbrace{\ldots\;}^{\text{déphasage}}}$}};
+
+      \node[draw, right] at (\xm+3,\ym+1){\large{$\frac{\check{A}}{\check{B}}$ ou $\frac{\check{B}}{\check{A}} =  \underbrace{\ldots}_{\text{gain}}.e^{i\,\overbrace{\ldots\;}^{\text{déphasage}}}$}};
+    \node[right] at (0,\ym+1.25){Précision au centième pour le gain $\frac{|\check{A}|}{|\check{B}|}$};
+    \node[right] at (0,\ym+0.75){Utilisez Thalès pas la calculette !};
+    \node[right] at (0,\yM){\VAR{VERSION}};
+    
+    \end{tikzpicture}
+  };
+  
+\end{tikzpicture}
+\newpage
+\pagestyle{empty}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \node[yshift=0cm] at (current page.center)
+  { \begin{tikzpicture}[x=1cm,y=1cm]
+      \draw[step=1mm, line width=0.1mm, brown!25] (\xm,\ym) grid (\xM,\yM);
+      \draw[step=5mm, line width=0.2mm, brown!50] (\xm,\ym) grid (\xM,\yM);
+      \draw[step=1cm, line width=0.4mm, brown!75] (\xm,\ym) grid (\xM,\yM);
+      \draw[step=5cm, line width=0.6mm, brown!100] (\xm,\ym) grid (\xM,\yM);
+    \end{tikzpicture}
+  };
+  
+\end{tikzpicture}
+
+\end{document}
+

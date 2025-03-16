@@ -279,5 +279,8 @@ _site
 .jekyll-metadata
 vendor
 
+
 .vscode
 *.old
+
+_*
