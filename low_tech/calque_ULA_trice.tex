@@ -1,0 +1,127 @@
+\documentclass[a4paper, landscape]{article}
+
+\usepackage{amsmath}
+\usepackage{pgfplots}
+
+\usetikzlibrary{shapes.misc, calc}
+
+\pgfplotsset{compat=newest}
+
+\def\L{29.7}
+\def\H{21.0}
+\def\ym{-9.5}
+\def\yM{9.5}
+\def\xm{-20.5}
+\def\xM{7.5}
+
+
+
+
+\newcommand{\millimetrique}[2]{
+  \draw[step=1mm, line width=0.1mm, brown!25] (#1) grid (#2);
+  \draw[step=5mm, line width=0.2mm, brown!50] (#1) grid (#2);
+  \draw[step=1cm, line width=0.4mm, brown!75] (#1) grid (#2);
+  \draw[step=5cm, line width=0.6mm, brown!100] (#1) grid (#2);
+}
+
+\newcommand{\logametrique}[6]{
+  \coordinate (S) at ($(#3,#4)$) {};
+  
+  \foreach \i in {1,2} {
+    \foreach \j in {1,...,9} {
+      \coordinate (Q) at ($(0,0)!{log10(\i+(\j/10))}!(S)$) {};
+      \draw[shift=(Q), xstep=#3cm,  ystep=#4cm, line width=0.2mm, #6!25]  ($(#1)+(0,2*#5)$) grid (#2);
+    }
+  }
+  
+  \foreach \i in {3,...,6} {
+    \foreach \j in {2,4,...,8} {
+      \coordinate (Q) at ($(0,0)!{log10(\i+(\j/10))}!(S)$) {};
+      \draw[shift=(Q), xstep=#3cm, ystep=#4cm, line width=0.2mm, #6!25] ($(#1)+(0,1.5*#5)$) grid (#2);
+    }
+  }
+  
+  \foreach \i in {1,2,7,8,9} {
+    \coordinate (P) at ($(0,0)!{log10(\i+0.5)}!(S)$) {};
+    \draw[shift=(P), xstep=#3cm,  ystep=#4cm, line width=0.4mm, #6!50] ($(#1)+(0,#5)$) grid (#2);
+  }
+  
+  \foreach \i in {2,...,9} {
+    \coordinate (P) at ($(0,0)!{log10(\i)}!(S)$) {};
+    \draw[shift=(P), xstep=#3cm, ystep=#4cm, line width=0.6mm, #6!75] ($(#1)+(0,0.5*#5)$) grid (#2);
+  }
+  \draw[xstep=#3cm, line width=0.8mm, #6!100] (#1) grid (#2);
+  % \draw[step=1mm, line width=0.1mm, #6!25] (#1) grid (#2);
+  % \draw[step=5mm, line width=0.2mm, #6!50] (#1) grid (#2);
+}
+
+\newcommand{\cercle}[1]{
+  \draw[fill=none, line width=0.6mm, brown!100](#1) circle (5) ;
+  
+  % \foreach \i [count=\k from 0] in {0,11.4591559026,...,359} {
+  \foreach \i [count=\k from 0] in {90, 101.4591559026,...,449} {
+    \draw ($(#1)+(\i:5.6)$) node[brown] {\textbf{\k}};
+  }
+  
+  \foreach \i in {90,101.4591559026,...,449} {
+    \draw[line width=0.4mm, brown!100] ($(#1)+(\i:4.7)$) -- ($(#1)+(\i:5.)$);
+  }
+  
+  \foreach \i  in {90,95.72957795131,...,449} {
+    \draw[line width=0.4mm, brown!100] ($(#1)+(\i:4.8)$) -- ($(#1)+(\i:5.2)$);
+  }
+  \foreach \i  in {90,91.14591559026,...,449} {
+    \draw[line width=0.2mm, brown!100] ($(#1)+(\i:4.9)$) -- ($(#1)+(\i:5.1)$);
+  }
+}
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{tikzpicture}[remember picture, overlay,  x=1cm, y=1cm]
+  \coordinate (SW) at (current page.south west) ;
+  \coordinate (NE) at (current page.north east) ;
+  \coordinate (HD) at ($(NE) - (1.,1.)$);
+  \coordinate (BG) at ($(SW) + (1.,1.)$);
+  \coordinate (milieu) at ($(BG)!0.5!(HD)$);
+  \coordinate (centre) at ($(milieu) - (7.,0.)$);
+  \coordinate (NG) at ($(BG)+(0,1)$);
+  \coordinate (ND) at (HD |- NG);
+  \coordinate (MG) at ($(NG)+(0,1)$);
+  \coordinate (MD) at (HD |- MG);
+  
+  
+  
+  
+%  \begin{scope}[shift={($(BG)+(3,3)$)}]
+  \begin{scope}[shift=(centre)]
+    
+    \millimetrique{MG}{HD}
+    \logametrique{BG}{ND}{10}{0}{0.3}{black}
+    
+    \cercle{centre}
+    \draw[->] ($(centre)-(0,7)$) -- ($(centre)+(0,7)$) node[above] {$\mathcal{R}$};
+    \draw[->] ($(centre)+(6,0)$) -- ($(centre)-(6,0)$) node[left] {$\mathcal{I}$};
+    
+    \node[right] at ($(HD)+(-2,0.5)$){Calque ULAtrice};
+    \node[right] at ($(BG)+(-0.5,-0.5)$){ULA: Uniform Log Arithmetic};
+    \node[right] at ($(BG)+(23,-0.5)$){Utilise les  Logs Andouille ! (ULA)};
+    
+  \end{scope}
+\end{tikzpicture}
+
+\newpage
+\pagestyle{empty}
+
+\begin{tikzpicture}[remember picture, overlay,  x=1cm, y=1cm]
+  \begin{scope}[shift={($(BG)+(1,3)$)}]
+    
+    \millimetrique{NG}{MD}{5}{5}
+    \logametrique{MG}{HD}{5}{10}{0}{brown}  
+    \logametrique{BG}{ND}{10}{0}{0}{black}
+\end{scope}
+
+
+\end{tikzpicture}
+
+\end{document}
