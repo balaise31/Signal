@@ -1,7 +1,7 @@
 \documentclass[11pt,fleqn]{book}
 \usepackage[french]{babel}
 \selectlanguage{french}
-\usepackage[T1]{fontenc}
+%\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \input{commandes.tex} % les defs du style du poly
 \input{structure.tex} % les defs du style du poly
@@ -11,7 +11,6 @@
 \usetikzlibrary{shapes.geometric,mindmap,backgrounds}
 %\usepackage{pst-barcode}
 %\usepackage{auto-pst-pdf}
-
 
 \usepackage{relsize}
 \usepackage[binary-units = true,load-configurations=binary]{siunitx}
@@ -37,6 +36,9 @@
 %\PreviewEnvironment[]{tikzpicture}
 %
 %\PreviewEnvironment[]{pgfpicture}
+
+\def\ldp{(\!\!(} 
+\def\rdp{)\!\!)}
 
 \begin{document}
 
@@ -67,12 +69,14 @@
 }
 
 
+\chapter{Signaux}
+\input{exo_echantillonnage.tex}
 
 
 \chapter{Systèmes}
 
 \begin{minipage}{0.4\linewidth}
-    \refWeb{Corrigé MA 1.1}{https://moodle.insa-toulouse.fr/mod/resource/view.php?id=89521}
+  \refWeb{Corrigé MA 1.1}{https://moodle.insa-toulouse.fr/mod/resource/view.php?id=89521}
 \end{minipage}
 \begin{minipage}{0.4\linewidth}
     \refWeb{Corrigé AR 1.2}{https://moodle.insa-toulouse.fr/mod/resource/view.php?id=89522}

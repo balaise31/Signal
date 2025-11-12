@@ -69,7 +69,7 @@ def gen_sujet_latex(template_file, graine, version, correction):
     return renderer_template.encode('utf8')
 
 
-qcm = "qcm_1"
+qcm = "dm_1"
 template_file = qcm+"_template.tex"
 out_file = qcm+"_sujet_"
 
@@ -83,31 +83,33 @@ else :
 
 
 
-annee = 2024
-groupes = ('Special','A', 'B')
-
-#groupes = ('A', 'B', 'Special',)
-#groupes = ('A','B')
-correction=False
-#seed_special = [0xDECE, 0xCACA, 0xABBA, 0xACDC]
+annee = 2025
 seed_special = [0xFACE, 0xABBA, 0xACDC]
+#seed_special = [0xDECE, 0xCACA, 0xABBA, 0xACDC]
+
+groupes={
+    'Special':len(seed_special),
+    'A': 25,
+    'B': 25,
+    'E': 14}
+
+correction=False
 
 seed_groupes={}
 seed(0xDECA + annee)
+
 for groupe in groupes:
     seed_groupes[groupe] = randint(0, 2**16-1)
 
-for groupe in groupes:
+for groupe, nb_sujets in groupes.items():
     os.system('rm ./'+build_d+'/*')
 
     print("Génère le groupe "+groupe)
 
     if groupe == "Special":
         versions = seed_special
-        nb_sujets = len(versions)
     else:
         seed(seed_groupes[groupe])
-        nb_sujets = 28
         versions = [0]*nb_sujets
         for i in range(nb_sujets):
             versions[i] = randint(0, 2 ** 16 - 1)
@@ -119,7 +121,7 @@ for groupe in groupes:
         out_version_file = out_file + version_string
 
         sujet = gen_sujet_latex(template_file, versions[i], version_string, False)
-        sortie = "_tex/"+out_version_file+ ".tex"
+        sortie = build_d+'/'+out_version_file+ ".tex"
         
         with open(sortie, "wb") as f:  # saves tex_code to outpout file
             f.write(sujet)
@@ -129,7 +131,7 @@ for groupe in groupes:
         if correction : 
             seed(versions[i])
             corrige = gen_sujet_latex(template_file, versions[i], version_string, True)
-            sortie = "_tex/"+out_version_file+ "_corr.tex"
+            sortie = build_d+'/'+out_version_file+ "_corr.tex"
             with open(sortie, "wb") as f:  # saves tex_code to outpout file
                 f.write(corrige)
             os.system('pdflatex -output-directory {} {}'.format(os.path.realpath(build_d), os.path.realpath(sortie)))

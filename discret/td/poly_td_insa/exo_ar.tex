@@ -1,5 +1,5 @@
 \section{AR : Système Auto-Régressif (AR)} 
-
+\label{sec:AR}
 La réponse impulsionnelle d'un système continu du premier ordre est~:
 
 $$ Y(p) = \frac{1}{1+\tau. p} X(p) \quad \underset{\vec{x}=X(p)\left\{\vec{\delta_0}\right\}}{\longleftrightarrow} \quad \tau \vec{y} + \vec{\dot{y}} = \vec{x}\quad \underset{\vec{x}=\vec{\delta_0}}{\longleftrightarrow} \quad h(t) = e^{-t/\tau}.\Gamma(t)$$
@@ -37,6 +37,7 @@ Déduisez une condition nécessaire et suffisante de stabilité BIBO du système
 
 Pour trouver l'équivalent du demi-plan gauche stable en discret, les 3 questions suivantes sont des
 manières différentes de trouver la fonction de transfert du système
+
 discret de réponse impulsionnelle du premier ordre $h[k]=a^k.\Gamma[k]$.
 
 \question{Q3~: $h \quad \rightarrow  $ récurrence $\quad \rightarrow G(z) $}

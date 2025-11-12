@@ -50,7 +50,7 @@
     \coordinate (P) at ($(0,0)!{log10(\i)}!(S)$) {};
     \draw[shift=(P), xstep=#3cm, ystep=#4cm, line width=0.6mm, #6!75] ($(#1)+(0,0.5*#5)$) grid (#2);
   }
-  \draw[xstep=#3cm, line width=0.8mm, #6!100] (#1) grid (#2);
+  \draw[xstep=#3cm, ystep=#4cm, line width=0.8mm, #6!100] (#1) grid (#2);
   % \draw[step=1mm, line width=0.1mm, #6!25] (#1) grid (#2);
   % \draw[step=5mm, line width=0.2mm, #6!50] (#1) grid (#2);
 }
@@ -83,6 +83,7 @@
   \coordinate (NE) at (current page.north east) ;
   \coordinate (HD) at ($(NE) - (1.,1.)$);
   \coordinate (BG) at ($(SW) + (1.,1.)$);
+  \coordinate (HG) at (BG |- HD);
   \coordinate (milieu) at ($(BG)!0.5!(HD)$);
   \coordinate (centre) at ($(milieu) - (7.,0.)$);
   \coordinate (NG) at ($(BG)+(0,1)$);
@@ -97,7 +98,7 @@
   \begin{scope}[shift=(centre)]
     
     \millimetrique{MG}{HD}
-    \logametrique{BG}{ND}{10}{0}{0.3}{black}
+    \logametrique{BG}{MD}{10}{0}{0.8}{black} 
     
     \cercle{centre}
     \draw[->] ($(centre)-(0,7)$) -- ($(centre)+(0,7)$) node[above] {$\mathcal{R}$};
@@ -114,11 +115,14 @@
 \pagestyle{empty}
 
 \begin{tikzpicture}[remember picture, overlay,  x=1cm, y=1cm]
-  \begin{scope}[shift={($(BG)+(1,3)$)}]
+  \begin{scope}[shift={($(BG)+(1,2)$)}]
     
     \millimetrique{NG}{MD}{5}{5}
-    \logametrique{MG}{HD}{5}{10}{0}{brown}  
-    \logametrique{BG}{ND}{10}{0}{0}{black}
+    \logametrique{MG}{HD}{5}{5}{0}{brown}  
+    \logametrique{BG}{ND}{10}{0}{0.3}{black}
+
+    \node[right] at ($(HG)+(-0.5,0.5)$){Calque ULAtrice};
+    
 \end{scope}
 
 
