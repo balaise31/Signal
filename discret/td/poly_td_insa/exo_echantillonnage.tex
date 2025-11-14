@@ -4,14 +4,80 @@
   \refWeb{Corrigé \'Echantillonnage 1.1}{https://moodle.insa-toulouse.fr/mod/resource/view.php?id=104716}
 \end{minipage}
 
+
+
 \subsection{Premier ordre réel~: $e^{-t/\tau}$}
 
 La réponse impulsionnelle d'un système continu du premier ordre est~:
 
-$$ Y(p) = \frac{1}{1+\tau. p} X(p) \quad \underset{p.Y(p)\rightarrow \vec{\dot{y}} }{\longleftrightarrow} \quad \vec{y} + \tau \vec{\dot{y}}  = \vec{x}\quad \underset{\vec{x}=\vec{\delta_0}}{\longleftrightarrow} \quad \underbrace{h(t)}_{\vec{y}} = e^{-t/\tau}.\Gamma(t)$$
+$$ Y(p) = \frac{1}{1+\tau. p} X(p) \quad \underset{p.Y(p)\rightarrow \vec{\dot{y}} }{\longleftrightarrow} \quad \vec{y} + \tau \vec{\dot{y}}  = \vec{x}\quad \underset{\vec{x}=\vec{\delta_0}}{\longleftrightarrow} \quad \underbrace{h(t)}_{\vec{y}} =\frac{1}{\tau}. e^{-t/\tau}.\Gamma(t)$$
 
-Ce système de pôle $\widehat{p_c}=\frac{-1}{\tau}$ est stable s.s.i. $\tau>
-0$ car~:
+
+\def\h#1{(#1>0)}
+\def\fonc#1{1 * \h{#1} *  exp(-#1)}
+\def\dirac#1{(#1<0.001)*(#1>-0.001)*1}
+%\begin{tikzpicture}
+\begin{tikzpicture}[outer sep=auto, amp/.style = {regular polygon, regular polygon sides=3,
+    draw, fill=white, text width=1em,
+    inner sep=1mm, outer sep=0mm,
+    shape border rotate=-90}]
+  
+  \matrix (graphe)[ row sep=0cm, column sep=1cm, inner sep=0.5cm]{ 	
+  \begin{scope}[] 
+    \begin{axis}[	anchor = origin,  x=1cm, y=1cm,
+      axis lines=center, 
+      xlabel={$t[s]$},
+      ylabel={$\delta_0(t)$},
+      ylabel style = {anchor=south, thick, black},
+      xlabel style = {anchor=west, thick, black},
+      grid=minor,
+      domain=-0.5:2.5,
+      ytick={0,1},
+      yticklabels={0,1},
+      xtick={0,1,2},
+      xticklabels={0,1,2},
+      enlarge y limits=0.5,
+      enlarge x limits=0.1,
+      help lines
+      ]
+      \addplot[very thick, blue,samples=512] plot (\x,{\dirac{\x}});
+    \end{axis}
+  \end{scope};
+    & \node[dspnodeopen]  (x) {$\vec{x}$};
+    & \node[dspsquare] (G) {$G(p)$} ;
+    & \node[dspnodeopen]  (y) {$\vec{h}$};
+    &
+  \begin{scope}[] 
+    \begin{axis}[anchor = origin,  x=1cm, y=1cm,
+      axis lines=center, 
+      xlabel={$t[s]$},
+      ylabel={$h(t)$},
+      ylabel style = {anchor=south, thick, black},
+      xlabel style = {anchor=west, thick, black},
+      grid=minor,
+      domain=-0.5:3.5,
+      ytick={0,1},
+      yticklabels={0,$\frac{1}{\tau}$},
+      xtick={0,1,2,3,4},
+      xticklabels={0,$\tau$,$2\tau$,$3\tau$, },
+      enlarge y limits=0.5,
+      enlarge x limits=0.1,
+      help lines
+      ]
+      \addplot[very thick, blue, samples=512] plot (\x,{\fonc{\x}});
+      \draw[dashed, thick, blue](0,1)--(1,0);
+    \end{axis}
+  \end{scope}
+
+    \\
+  };
+  \draw[dspflow] (x) -- (G) -- (y) ;
+  
+\end{tikzpicture}
+
+
+Ce système de pôle $\widehat{p_c}=\frac{-1}{\tau}$ est stable
+s.s.i. $\tau> 0$ car~:
 
 Stable simple $\quad \iff h(t) \underset{t\to +\infty}{\rightarrow} 0 \iff$ \og{} retour à l'équilibre après stimuli. \fg{} 
 
@@ -20,8 +86,8 @@ $\widehat{p_c}$ est dans le demi-plan gauche de \Laplace{}~:
 $\widehat{p_c}\prec 0$.
 
 Le terme $\Gamma(t)$ est nul pour $t<0$ (fonction de \Heaviside), on
-trouve que le système est causal puisque la Réponse ImPulsionnelle (RIp) est
-nulle avant la stimulation par l'impulsion~:
+trouve que le système est causal puisque la Réponse ImPulsionnelle
+(RIp) est nulle avant la stimulation par l'impulsion~:
 
 Système causal $\quad \iff \quad \forall t<0,\; h(t)=0 \quad \iff$ \og{} pas de réponse avant stimuli. \fg 
 
@@ -50,6 +116,7 @@ Le système du premier ordre précédant peut être choisi avec un pôle
 imaginaire pur $p_c= i\omega$.
 
 $$ Y(p) = \frac{1}{p-i\omega} X(p) \quad \underset{p.Y(p)\rightarrow \vec{\dot{y}} }{\longleftrightarrow} \quad  \vec{\dot{y}} - i\omega \vec{y}  = \vec{x}\quad \underset{\vec{x}=\vec{\delta_0}}{\longleftrightarrow} \quad \underbrace{h(t)}_{\vec{y}} = e^{i\omega\,t}.\Gamma(t)$$
+
 
 Le système devient un système complexe (abstrait) de réponse
 impulsionnelle $h(t)=e^{i\omega\,t}.\Gamma(t)$ comportant en partie
