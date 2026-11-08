@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
- 
+#include <string.h> // pour memset 
 //////////////////////////////////////////////////////////////
 //  Filter Code Definitions
 //////////////////////////////////////////////////////////////
@@ -121,19 +121,19 @@ int main( void )
     in_fid = popen("ffmpeg -i sail_away.wav -f s16le -ac 1 -", "r");
     if ( in_fid == 0 ) {
         printf("couldn't open sail_away.wav");
-        return;
+        return 1;
     }
     
     // Pipe the audio data to ffmpeg, which writes it to a wav file
     out_fid = popen("ffmpeg -y -f s16le -ar 96000 -ac 1 -i - beep.wav", "w");
     if ( out_fid == 0 ) {
         printf("couldn't output to pipe beep.wav");
-        return;
+        return 1;
     }
     out_fid2 = fopen( "outputFixedMa.raw", "wb" );
     if ( out_fid == 0 ) {
         printf("couldn't open outputFixedMa.raw");
-        return;
+        return 1;
     }
  
     // initialize the filter

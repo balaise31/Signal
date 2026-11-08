@@ -1,0 +1,761 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% DEFINITIONS GENERALES DU DOCUMENT
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,twoside,12pt]{report}           % En deux faces
+
+%\pdfoutput=1 (dvi backward search) 1 (pdf c'est tout}
+\pdfoutput=1
+
+\usepackage{graphicx}
+
+\ifnum\pdfoutput<1
+\DeclareGraphicsExtensions{.eps}
+
+\newcommand{\inputxfig}[1]{\includegraphics{#1.eps}}
+\else
+\DeclareGraphicsExtensions{.pdf}
+\newcommand{\inputxfig}[1]{\input{#1.pdftex_t}}
+\fi
+
+
+%#{latexmk}include.sources.graphiques{{figures/}}
+\graphicspath{{figure/}{./}}
+
+
+\usepackage[T1]{fontenc}
+\usepackage{amsthm,amssymb,amsmath,amsfonts}
+\usepackage{latexsym}
+\usepackage{ae}
+\usepackage{aecompl}
+\usepackage[cyr]{aeguill}
+
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+
+\def\stackunder#1#2{\mathrel{\mathop{#2}\limits_{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theo}{Théorème}
+\newcommand{\fmatlab}[1]{\underline{\textnormal{Fonctions Matlab utilisées~:}}
+  \textnormal{\texttt{#1}}\vspace{0.3cm}}
+
+\newcommand{\exintro}[0]{\upshape\rmfamily}
+\newcommand{\exquestion}[0]{\itshape\sffamily}
+\newcommand{\script}[0]{\normalfont\ttfamily\bigskip}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% MISE EN PAGE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\setlength{\hoffset}{1cm}
+%\setlength{\textwidth}{16cm}
+\addtolength{\textwidth}{3cm}
+
+%\setlength{\oddsidemargin}{0cm}
+%\setlength{\evensidemargin}{0cm}
+\addtolength\oddsidemargin{0cm}
+\addtolength\evensidemargin{-3cm}
+%\addtolength\marginparwidth{0.5cm}
+
+\addtolength\topmargin{-1.5cm}
+\addtolength\textheight{3cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Extensions
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{graphicx}
+\usepackage{lscape}
+\usepackage{longtable}
+
+\usepackage[french]{babel}             % distribution french
+\usepackage[french]{varioref}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Utilisation de fancyheadings.sty
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newfont{\scaledfont}{cmr12 scaled 4000}
+\renewcommand{\thechapter}{\arabic{chapter}}
+\makeatletter
+\def\@makechapterhead#1{
+  {\parindent \z@ \raggedright \normalfont
+    \interlinepenalty\@M
+    \parbox{0.70\textwidth}{\Huge \bfseries #1}\ %
+    \hfill\scaledfont{TP\thechapter}\par\normalsize%
+    \rule{\textwidth}{1pt}%  <--- the rule
+    \nobreak
+    \vskip 40\p@
+  }%
+}
+\makeatother
+
+
+\addto\captionsfrench{%
+\renewcommand{\chaptername}{Séance}
+%\renewcommand{\chaptermark}[1]{\markboth{\chaptername~\thechapter~:#1}{}} %
+}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+\addtolength{\headheight}{0.2\baselineskip} % Pour éviter le overfull \vbox .... has occured while ouput  is active voir doc fancyhdr
+
+%\renewcommand{\chaptermark}[1]{\markboth{\chaptername~\thechapter~: \ #1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{ \thesection  \ #1}}
+
+%\renewcommand{\chaptermark}[1]{\markboth{\textit{#1}}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\textit{\thesection \ #1}}}
+%\renewcommand{\verb}[1]{\footnotesize {\ttfamily #1}}
+
+%%%%%%%%%%%%%%%%%
+%% PAGES DE GAUCHE (PAGES PAIRES) Cas de deux faces
+%%%%%%%%%%%%%%
+\fancyhead[LE]{\thepage}                                        % Indications en haut à gauche
+\fancyhead[CE]{}                                                % Indications en haut au centre
+\fancyhead[RE]{\leftmark}                                       % Indications en haut à droite
+\fancyfoot[LE]{\tiny Analyse et traitement du signal - \today}     % Indications en bas à gauche
+\fancyfoot[CE]{}                                                % Indications en bas au centre
+\fancyfoot[RE]{}                                                % Indications en bas à doite
+%%%%%%%%%%%%%%%%%
+%% PAGES DE DROITE (PAGES IMPAIRES) Cas de deux faces
+%%%%%%%%%%%%%%
+\fancyhead[LO]{\rightmark}                                      % Indications en haut à gauche
+\fancyhead[CO]{}                                                % Indications en haut au centre
+\fancyhead[RO]{\thepage}                                        % Indications en haut à droite
+\fancyfoot[LO]{}                                                % Indications en bas à gauche
+\fancyfoot[CO]{}                                                % Indications en bas au centre
+\fancyfoot[RO]{\tiny Analyse et traitement du signal - \today}     % Indications en bas à doite
+
+
+%%%%%%%%%%%%%%%%%
+%% PAGES DE GAUCHE (PAGES PAIRES) Cas de une face
+%%%%%%%%%%%%%%
+%\fancyhead[LE]{}    % Indications en haut à gauche
+%\fancyhead[CE]{}   % Indications en haut au centre
+%\fancyhead[RE]{}    % Indications en haut à droite
+%\fancyfoot[LE]{}     % Indications en bas à gauche
+%\fancyfoot[CE]{}    % Indications en bas au centre
+%\fancyfoot[RE]{}      % Indications en bas à doite
+%%%%%%%%%%%%%%%%%
+%% PAGES DE DROITE (PAGES IMPAIRES) Cas de une face
+%%%%%%%%%%%%%%
+%\fancyhead[LO]{\rightmark}    % Indications en haut à gauche
+%\fancyhead[CO]{}   % Indications en haut au centre
+%\fancyhead[RO]{\thepage}    % Indications en haut à droite
+%\fancyfoot[LO]{\leftmark}     % Indications en bas à gauche
+%\fancyfoot[CO]{}    % Indications en bas au centre
+%\fancyfoot[RO]{\tiny Sébastien \textsc{Bosch} - LAAS-RIA - \today}      % Indications en bas à doite
+
+\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+
+%\input{tcilatex}
+
+\begin{document}
+
+
+% \thispagestyle{empty}
+
+% \begin{center}
+
+%   \begin{tabular}[l]{ll}
+%     \includegraphics[width=0.2\textwidth]{Figure2}\hspace{0.5cm}
+
+%     &\vspace{-1.3cm} \\
+
+%     &\textsc{Ministère de l'Enseignement Supérieur et de la
+%       Recherche}\\
+%     &\vspace{0cm}\textsc{Département des Sciences et
+%       Techniques pour l'Ingénieur}
+
+%   \end{tabular}
+
+% \end{center}
+
+% \vspace{-2cm}
+
+% \begin{center}
+%   {\LARGE \textsc{Travaux Pratiques~:}}
+
+%   {\Large Filtrage numérique}
+
+
+%   \vspace{2cm}
+
+
+%   \includegraphics[width=0.8\textwidth]{Figure1}
+
+
+%   \vspace{2cm}
+
+%   {\large \textit{Grand Cru 2026--2027}}
+% \end{center}
+
+% \begin{tabular}[c]{lll}
+%   \textbf{Sommeliers(ère)~:} \hspace{2cm}& Pascal \textsc{Acco} \\ 
+%   \\
+% \end{tabular}
+% \pagebreak
+
+% \begin{center} {\LARGE \textbf{Avant-propos}}
+% \end{center}
+
+% \sffamily
+
+% Les TPs ne sont pas évalués directement, ils servent à appuyer la
+% compréhension.
+
+% Pour maximiser l'impact réel de ces enseignements, vous devez être
+% complètement déconnectée (téléphone, montre, etc.) et effectuer un
+% rapport manuscrit, car l'association d'une activité de motricité
+% fine comme l'écriture manuelle renforce la mémorisation.
+
+
+% \subsection*{Contenu du TP}
+
+% \subsection*{Déroulement du TP}
+
+
+% \rmfamily
+%% ___________________________________________
+\chapter{Échantillonnage de signaux}
+%% __________________________________________
+
+
+Nous allons travailler de trois manières~:
+\begin{description}
+\item Expérimentalement -- en utilisant un GBF, un microcontrôleur et
+  un oscilloscope.
+\item Graphiquement -- en utilisant un papier millimétré, un compas,
+  une règle et une échelle logarithmique
+\item Analytiquement -- lorsque les solutions analytiques existent, on
+  les exprimera. L'application numérique est faite graphiquement, et
+  on confrontera avec les résultats expérimentaux.
+\end{description}
+
+
+\section{Échantillonnage d'un sinus}
+\exintro{}
+\label{part:echantillonnage}
+
+Le micro-contrôleur possède~:
+\begin{itemize}
+\item une entrée analogique, notée $x(t)$, et est déjà programmé pour
+  récupérer les échantillons mesurés par un Convertisseur Analogique
+  Numérique (CAN ou ADC en anglais) avec une période $T_e$ fixe. Le
+  processeur stocke périodiquement ces échantillons, notés $x[k]$,
+  pour effectuer un ou des traitements dits \emph{numériques}.
+\item Une sortie de pontage (\emph{bypass} en anglais), notée $a[k]$.
+  La sortie de pontage est effectuée le plus rapidement possible, elle
+  consiste à recopier la valeur $x[k]$ du CNA directement vers un
+  Convertisseur Numérique Analogique (CNA ou DAC en anglais). Ce
+  traitement est très proche d'un gain unitaire~: $a[k] = 1 . x[k]$
+  donc $G(z) = 1$. Le CNA offre une sortie à temps continu en
+  maintenant constante la valeur de sortie, notée $a(t)$. Cette
+  opération est appelée \emph{Bloqueur d'Ordre Zéro} (BOZ ou ZOH en
+  anglais). La sortie $a(t)$ du BOZ du CNA est un signal en forme
+  d'escalier que l'on peut observer à l'oscilloscope en branchant une
+  sonde (en grip fil) sur la broche de rangée 1 et colonne 1 de la
+  matrice de câblage de la carte électronique du microcontrôleur.
+\item Une sortie filtrée, notée $b[k]$. Le processeur stocke dans un
+  tampon d'entrée (buffer en anglais) les derniers échantillons
+  $x[k]$, et a stocké dans un tampon de sortie les derniers
+  échantillons $b[k]$. Il effectue le plus rapidement possible le
+  calcul d'une récurrence (moyenne pondérée par des coefficients de
+  ces deux tampons) pour obtenir l'échantillon de sortie $b(k)$. On a
+  alors une fonction de transfert discrète inconnue
+  $b(z)=G(z).x(z)=G(z).a(z)$. Cette sortie discrète $b[k]$ est envoyée
+  sur une seconde sortie du CNA. Le signal continu $b(t)$ est
+  observable à l'oscilloscope en branchant une sonde sur la rangée 1,
+  colonne 2 de la matrice de câblage.
+\end{itemize}
+
+\textbf{Commencez votre rapport manuscrit en donnant le schéma du
+  système de traitement.} Vous y indiquerez le signal entrant, le CAN
+, le processeur qui calcule les deux signaux discret de sortie et les
+deux CNA. Sur le schéma vous reporterez les signaux $x(t)$, $x[k]$,
+$a[k]$, $a(t)$, $b[k]$, $b(t)$ et laisserez la place pour insérer,
+plus tard, l'allure d'un chronogramme et l'expression analytique pour
+chaque signal.
+
+\subsection{Préliminaire GBF dans $0-3,3V$}
+Il ne faut pas griller la carte et prendre le réflexe de toujours
+vérifier les appareils et les réglages d'entrée avant de poursuivre le
+montage.
+
+Pour cela, branchez directement la sortie du GBF sur l'oscilloscope
+(avec un BNC) et effectuer les réglages pour être sûre que la tension
+de sortie du GBF est entre 0 et 3,3V.
+
+\textbf{ La plage de tension $0-3.3V$ doit être respectée au risque
+  d'endommager le CNA du $\mu$-contrôleur~!}
+
+\begin{enumerate}
+\item Essayez de produire et observer une sinusoïde à $100 Hz$ dont
+  vous noterez l'offset et l'amplitude choisie (pas trop petite au
+  moins 0,5 V) vous permettant de respecter la plage 0-3.3V.
+\item Utilisez un second câble BNC pour relier la sortie SYNC/EXT du
+  GBF\footnote{Certains GBF ont cette sortie désactivée. Il faut aller
+    dans le menu \emph{utility -> synchronisation} pour activer la
+    sortie} à l'entrée de déclenchement externe de l'oscillo. (EXT
+  pour \emph{external trigger} en anglais) de manière à avoir une
+  synchronisation sur un sinus (amplitude nulle à l'instant t=0)
+  indépendante de l'offset.
+\end{enumerate}
+
+\textbf{Une fois ces réglages faits, il ne faut plus toucher à
+  l'amplitude ni au décalage (offset) !}
+
+\subsection{Échantillonnage d'un sinus lent à 100Hz}
+
+On veut compléter notre schéma précédant en donnant les formes d'ondes
+observées, mesurer la période d'échantillonnage $T_e$, et identifier
+et mesurer les retards entre les signaux.
+
+\subsubsection{Expérimentalement}
+
+Le matériel est distribué sous forme de pochettes et vous disposez
+d'un schéma de montage dans un classeur.
+\begin{enumerate}
+\item Effectuez le câblage (schéma et explication en TP) : Alimentez
+  la carte $\mu$-contrôleur via son câble USB que vous brancherez sur
+  un port USB quelconque (celui de l'oscilloscope ou du GBF ou d'un
+  PC)~; connectez son entrée analogique avec un cordon Jack-BNC (à
+  gauche de la carte) au sinus du GBF~; connectez la sonde en voie 2
+  sur la sortie de pontage (rangée 1 colonne 1 de la matrice). Pour
+  cela, il faudra construire le cordon jack-BNC avec un câble
+  Jack-bananes et un plot BNC-Bananes.
+\item observez $a(t)$ et $x(t)$ et en déduire la période
+  d'échantillonnage $T_e$~;
+\item modifiez légèrement la fréquence du BGF pour stabiliser $a(t)$,
+  essayez de comprendre le phénomène (indice~: aucun oscillateur n'est
+  parfait, et il y a deux oscillateurs dans ce montage)~;
+\item une fois $a(t)$ stabilisé (ou juste en appuyant sur le STOP de
+  l'oscilloscope). Représentez graphiquement ces deux signaux observés
+  et mesurez le retard entre $a(t)$ et $x(t)$ observez. Identifiez
+  leurS causeS possibleS.
+\item indiquez sur ce schéma comment mesurer les échantillons $a[k]$
+  en observant $a(t)$ en indiquant sous forme de bâtonnets le signal
+  discret $a[k]$ par-dessus les signaux continus $a(t)$ et $x(t)$
+\end{enumerate}
+
+
+\subsubsection{Analytiquement}
+
+L'échantillonnage d'un signal continu $t\mapsto s(t)$ (où $s$ est une
+fonction) consiste à passer au signal discret $k \mapsto s[k]$ (où $s$
+est une suite numérique) en considérant que l'instant $t$ d'un
+échantillon $k$ est $t=k.T_e$.
+\begin{enumerate}
+\item \'Ecrivez la forme analytique de $x(t)$ pour notre sinus
+  synchronisé avec une amplitude $A$ et un décalage noté $x_0$, où
+  vous ferez apparaitre la fréquence $f$.
+\item Sachant que la période de la fonction sinus est de $2\pi$ et que
+  son argument est sans dimension. Retrouvez le lien entre la
+  fréquence $f$, la pulsation $\omega$ et la période $T$ du sinus.
+\item Donnez l'expression de $a[k]=x[k]$ à partir de $x(t)$. Comme $k$
+  est un numéro d'échantillon, il est sans dimension. Vérifiez que
+  l'argument de votre fonction sinus est toujours sans dimension. Vous
+  pouvez donner cette expression en fonction de $f$ et $F_e$~: en
+  discret le ratio $\frac{f}{F_e}$ est appelé la fréquence normalisée
+  et est essentielle.
+\item On peut observer exactement le même signal discret $a[k]$ pour
+  d'autres fréquences $f$ et $F_e$. Donnez tous les couples $(f,F_e)$
+  permettant d'obtenir ce signal. Conclure.
+\end{enumerate}
+
+On va représenter le sinus avec un peu plus d'imagination~: la
+représentation par phaseur, ou amplitude complexe~:
+
+\begin{equation}
+  \label{eq:phaseur}
+  s(t) = \mathcal{R}\left\{\hat{z}.e^{i.\omega.t}\right\}
+\end{equation}
+
+Par exemple, si on prend le phaseur $\hat{z_i}=1 = 1.e^{i.0}$ on
+obtient le signal cosinus~:
+\begin{equation}
+  \label{eq:Zi}
+  s_i(t) = \mathcal{R}\left\{z_i.e^{i.\omega.t}\right\} = \mathcal{R}\left\{e^{i.\omega.t}\right\}=\cos(\omega.t)
+\end{equation}
+
+
+On parle de signal \og{} In phase\fg{}, car il est en phase avec le
+cosinus pris pour référence, d'où le nom du phaseur $\hat{z_i}$.
+
+\begin{enumerate}
+\item Donnez l'expression réelle d'un signal de phaseur quelconque
+  $\hat{z}=\rho.e^{i.\varphi_0}$ et trouvez ainsi le lien entre
+  l'amplitude et la phase du signal et le phaseur~;
+\item Quelle amplitude et quelle phase faut-il apporter au cosinus
+  pour obtenir un sinus ?  En déduire le phaseur $\hat{z_q}$ d'un
+  sinus d'amplitude 1, et vérifiez que cela fonction avec
+  l'eq.\ref{eq:phaseur}.
+\item Donnez le phaseur $z_{100}$ qui représente votre signal
+  sinusoïdal à 100 Hz d'amplitude choisie. Comment représenter son
+  décalage ?
+\end{enumerate}
+
+\subsubsection{Graphiquement}
+
+Si l'on représente $e^{i.\omega.t}$ dans le plan complexe, on obtient
+le cercle unité avec pour point de départ la valeur 1 obtenue pour
+$t=0$.
+
+Si l'on représente $\hat{z}.e^{i.\omega.t}$ dans ce plan, on obtient
+le cercle de rayon $\rho$ avec un point de départ qui vaut $\hat{z}$
+obtenu pour $t=0$.
+
+Prenons notre signal à la fréquence $f_{100}=100$Hz, de pulsation
+$\omega_{100}$ et de période $T_{100}$
+
+\begin{enumerate}
+\item Représentez, graphiquement dans le plan complexe, votre signal
+  $\hat{z_{100}}.e^{i.\omega_{100}.t}$ avec son point de départ, sa
+  valeur pour $t=\frac{T_{100}}{2}$, $t=\frac{T_{100}}{4}$~;
+\item Donnez les numéros d'échantillons $k$ correspondant à
+  $t=0$,$t=\frac{T_{100}}{4}$, $t=\frac{T_{100}}{2}$ et $t+T$~~: en
+  déduire la période de la suite numérique $\left\{a[k]\right\}$
+\end{enumerate}
+
+\subsection{Sous-échantillonnage = périodicité du spectre}
+
+On vient de voir que l'onde pure $x(t)$ à 100 Hz échantillonnée à 10
+kHZ donne un signal numérique $a[k]$ de période 100.  Cela est vrai
+pour tout échantillonnage de fréquence $F_e$ d'une onde de fréquence
+$f$.
+
+Nous allons voir qu'une infinité d'autres fréquences normalisées
+peuvent donner ce même signal~: le sous-échantillonnage.
+
+\subsubsection{Expérimental}
+\begin{enumerate}
+\item Ne pouvant pas changer $T_e$ (c'est programmé dans le
+  $\mu$-contrôleur), utiliser vos équations de $a[k]$ précédentes pour
+  trouver la fréquence, notée $f_6$, du GBF qui fait que le signal
+  échantillonné soit 6-périodique.  Sans rien changer au montage,
+  régler votre GBF pour observer ce signal, noté $a_6(t)$, stable
+  (synchroniser par tâtonnement sur la fréquence du GBF). Mesurez
+  (rapidement avec les carreaux de l'oscilloscope) et donnez le signal
+  6-périodique $a_6$ sous la forme
+  $(\!( a[0], a[1], a[2], \dots, a[5])\!)$ où les double parenthèse
+  indiquent une suite périodique.
+\end{enumerate}
+
+Maintenant essayons des fréquences plus rapides~:
+\begin{enumerate}
+\item augmentez progressivement la fréquence $f$ du signal GBF en
+  passant par $\frac{F_e}{2}$, $F_e$ puis la fréquence $f=f_6 + F_e$~;
+\item représentez le signal temporel $x(t)$ et sa discrétisation
+  $a[k]$ (petits ronds des bâtonnets par-dessus la courbe) pour la
+  fréquence $\widetilde{f}=\frac{1}{6}$, puis pour la fréquence
+  $\widetilde{f}=\frac{1}{6} + 1$, puis plus loin~: vous observez le
+  phénomène de sous-échantillonnage.
+\item pour un fort sous-échantillonnage (10 fois $F_e$)
+\end{enumerate}
+
+Vous venez de constater que tous signaux continus de fréquences égales
+modulo $F_e$ donnent exactement le même signal discret.
+
+\subsubsection{Analytiquement}
+Vous avez vu que la fréquence $f_6$ telle que
+$\widetilde{f_6}=\frac{1}{6}$ donne un signal discret 6-périodique.
+
+Supposez qu'il existe une autre fréquence que $f_6$ donnant le même
+signal, que l'on modélise par $f = f_6 + \Delta_f$. Cela correspond à
+un écart de fréquence normalisé noté
+$\widetilde{f} = \widetilde{f_6} + \widetilde{\Delta_f}$. En déduire
+la contrainte sur $\widetilde{\Delta_f}$ pour que le signal ne change
+pas.
+\begin{enumerate}
+\item Donnez toutes les fréquences normalisées équivalentes à $f_6$~;
+\item Généralisez pour toute fréquence $f$
+\end{enumerate}
+
+On verra que la Transformée de Fourier d'un Signal Discret (TFSD)
+représente un signal discret par une somme de signaux
+$w_f=e^{i.2\pi.f.k.T_e}$ pour des fréquences $f\in\mathbb{R}$.
+
+Comme les fréquences $f+m.F_e$ sont toutes équivalentes et donnent le
+même signal $w_f$, alors les composantes de la TFSD sont toutes les
+mêmes pour ces fréquences~:
+
+\textbf{Un spectre discret (TFSD) est forcément $F_e$ périodique.}
+
+\subsection{Fréquences négatives = symétrie du spectre}
+
+Une autre représentation des ondes pures par des complexes, utilise
+les fréquences négatives. En effet, une onde à une fréquence négative
+$-f$ est le conjugué de l'onde positive~:
+$e^{i.2\pi.(-f).t}=e^{-i.2\pi.f.t}=\overline{e^{i.2\pi.f.t}}$.
+
+Ainsi, la partie réelle utilisée par un phaseur peut s'obtenir par
+addition de deux conjuguées~:
+\begin{equation}
+  \label{eq:cn}
+  \mathcal{R}\left\{\hat{z}.e^{i.\omega.t}\right\}=\frac{\hat{z}.e^{i.\omega.t}+\overline{\hat{z}.e^{i.\omega.t}}}{2} = \underbrace{\frac{\hat{z}}{2}}_{c(\omega)}.e^{i.\omega.t} + \underbrace{\frac{\overline{\hat{z}}}{2}}_{c(-\omega)}.e^{i.(-\omega).t}
+\end{equation}
+
+Il s'agit bien de la représentation en coefficient $c(\omega)$
+utilisée dans les transformées et séries de Fourier.
+
+\textbf{Ainsi tout spectre d'un signal réel à une symétrie de
+  Hilbert~: $c(-f)=\overline{c(f)}$.}
+
+Les fréquences négatives d'ondes complexes sont utilisée pour
+représenter des ondes réelles.
+
+\subsubsection{Graphiquement}
+
+On va représenter le signal complexe (fonction de $\mathbb{R}$ dans
+$\mathbb{C}$)~:
+ 
+$s_a[k]=e^{i.2\pi.f.\underbrace{k.Te}_{t}}=e^{i.2\pi.\underbrace{\frac{f}{F_e}}_{\widetilde{f}}.k}$
+
+Ce signal est appelé \emph{signal analytique} car il permet comme un
+phaseur de retourner au signal réel avec
+$a[k]=\mathcal{R}\left\{s_a[k]\right\}$
+
+Nous allons représenter ce signal analytique dans le plan complexe
+pour $\widetilde{f}=\frac{1}{6}$.
+   
+\begin{enumerate}
+\item Sur un papier millimétré, représentez dans le plan complexe les
+  7 premiers échantillons de $s_a[k]=A.e^{i.\frac{2\pi}{6}.k}$ (pour
+  construire l'angle $\frac{\pi}{3}$ au compas, il suffit de
+  construire un triangle équilatéral~: la rosace dans le cercle de
+  l'école primaire...).  Où $A$ est l'amplitude choisie pour votre
+  signal.
+\item on note $q=e^{i\frac{2\pi}{6}}$, mesurez la partie réelle et la
+  partie imaginaire de $q$ et retrouvez analytiquement ce que sont ces
+  valeurs (c'est un triangle équilatéral dont vous cherchez la hauteur
+  et la demi-base...).  Exprimez le signal analytique 6-périodique
+  $s_a[k] = (\!( 1, ..., )\!)$ en fonction de $q$. On doit trouver une
+  suite géométrique.
+\item Mesurez les parties réelles et retrouvez les mesures
+  expérimentales $\left\{a_6[k]\right\}=(\!(0,a[1], \dots, )\!)$
+  faites à l'oscillo.
+\item Refaites de même pour la fréquence négative
+  $\frac{-1}{6}$. Remarquez que l'on a le conjugué de la séquence
+  analytique précédente qui nous fait tourner à l'envers dans le
+  cercle. Remarquez temporelle notée $a_{-6}$ est la même que celle de
+  $a_6$, mais jouée à l'envers~!
+\end{enumerate}
+
+On obtient ainsi que pour les fréquences négatives, le signal
+analytique (et donc la TFSD) est le conjugué de la fréquence
+positive. C'est la symétrie de Hilbert.
+
+\textbf{Pour les fréquences négatives d'une onde pure $w_{-f}(t)$ (ou
+  en discret $w_{-f}[k]$), on obtient le signal antipodal
+  $w_{-f}(t) = w_f(-t)$ (ou $w_{-f}[k]=w_f[-k]$)} Pour ce qui est du
+signal réel cela revient à obtenir le signal antipodal.
+
+\subsubsection{Expérimentalement}
+
+
+Difficile de demander à un GBF une fréquence négative
+$\widetilde{f}=\frac{-1}{6}$. En revanche, on peut utiliser la
+périodicité en $F_e$ du spectre pour trouver une fréquence équivalente
+(donc exactement le même signal discret) qui soit positive.
+
+\begin{itemize}
+\item Placez le GBF sur une fréquence image de
+  $\widetilde{f}=\frac{-1}{6}$ qui soit positive, stabilisez le signal
+  $a(t)$ et stoppez-le lorsqu'il est en phase ($a[0]=0$)
+\item mesurez rapidement (avec les carreaux de l'oscilloscope) le
+  signal 6-périodique $a_{-6}=(\!( a_{-6}[0], \dots a_{-6}[5])\!)$
+\item vous devriez vérifier $a_{-6}[k]=a_{6}[-k]=a_{6}[6-k]$~: le
+  signal périodique joué à l'envers dans le temps.
+\end{itemize}
+
+\section{Spectre d'un signal discret}
+ 
+Dans une TFSD, on décompose un signal discret (potentiellement avec
+une part imaginaire) en somme de signaux $w_f[k]=e^{i.2\pi.f.k.T_e}$
+pour tout $f$ dans $\left[0,\; F_e \right[$ uniquement ! Car au-delà,
+chaque signal est périodiquement équivalent à son signal modulo
+$F_e$~: $w_{f+M.F_e}=w_f$.
+
+Dans le cas de signaux réels, déterminer la TFSD du signal discret
+$ k \mapsto s[k]$, c'est calculer chaque phaseur $\hat{z}(f)$ pour
+chaque fréquence qui compose le signal~:
+\begin{equation}
+  \label{eq:tfsd_decompo}
+  s[k] = \int\limits_{0\leq f < F_e}{\mathcal{R}\left\{\widehat{z_s}(f).\underbrace{e^{i.2\pi.f.k.T_e}}_{w_f[k]}\right\}.df}
+\end{equation}
+
+\subsection{Axe des fréquences}
+
+\begin{itemize}
+\item Dessinez sur un axe gradué l'axe des fréquences $f$ de $-F_e$ à
+  $2.F_e$~;
+\item Dessinez juste dessous l'axe des fréquences normalisées
+  $\widetilde{f}$~;
+\item Reportez encore dessous les signaux $w_0$, $w_2$, $w_6$,
+  $w_{100}$ respectivement $1$, $2$, $6$ et $100$ périodiques devant
+  les bonnes fréquences~;
+\item Reportez les signaux antipodaux (fréquences négatives) de $w_0$,
+  $w_2$, $w_6$, $w_{100}$ notés $w_{-0}$, $w_{-2}$, $w_{-6}$ et
+  $w_{-100}$ devant les bonnes fréquences~;
+\item Reportez aussi les signaux conjugués de type
+  $\overline{w_\bullet}$ et les conjugués antipodaux.
+\end{itemize}
+ 
+
+ \subsection{Fréquence absolument la plus rapide = Nyquist}
+ On voit que lorsque la fréquence $f$ augmente en continu, l'onde
+ discrète n'est pas forcément plus rapide, par exemple un signal de
+ fréquence $F_e$ est en fait un signal constant donc le plus lent
+ possible.
+
+ On se pose alors la question de la plus haute fréquence que l'on
+ puisse avoir sur un signal discret.
+
+ Il est utile de mettre le signal $e^{i.2\pi.f.k.T_e}$ sous la forme
+ $e^{i.2\pi.\frac{f}{F_e}.k}=e^{i.\underbrace{2\pi.\widetilde{f}}_{\Delta_f}.k}=e^{i.\Delta_f.k}=q^k$
+ avec $q=e^{i.\Delta_f}$ et où $Delta_f=2\pi\frac{f}{F_e}=\omega.T_e$
+ est nommé l'incrément angulaire.
+
+ \begin{enumerate}
+ \item À quelles fréquences correspondent les incréments
+   $\Delta=\pm\frac{\pi}{2}$, $\Delta=\pm\pi$ et
+   $\Delta=\pm\frac{\pi}{2}$ ?
+ \item montrez que l'incrément $\Delta=\pi + \epsilon$ (avec
+   $\epsilon<\pi$) est en fait le signal antipodal de
+   $\Delta=\pi - \epsilon$ qui est plus petit donc plus lent. En
+   déduire l'incrément le plus rapide et la fréquence la plus rapide
+   en discret~: la fréquence de Nyquist.
+ \item Donnez la séquence discrète correspondant au signal le plus
+   rapide et en déduire sa période
+ \item Donnez une fréquence haute qui donne un signal qui tourne
+   lentement, mais à l'envers, puis à l'arrêt, puis lentement en
+   avant...
+ \end{enumerate}
+
+ Il s'agit du phénomène stroboscopique observé lorsque l'on observe
+ les roues d'une voiture à la télévision, tournant vite puis lentement
+ à l'envers, puis à l'arrêt puis lente en avant, etc.
+ 
+
+ \subsection{Tracé de spectre}
+ 
+ \subsubsection{Spectre de phaseurs}
+ 
+ Le signal 6 périodique du TP de forme $x(t) = x_0 + A \sin(2\pi.f.t)$
+ en continu et sa forme échantillonnée sont faciles à décomposer
+ puisque l'on a déjà identifié les phaseurs de ce sinus.
+
+ On peut tracer un graphe du module $\rho(f)$ du phaseur (sous forme
+ de bâtonnets) en utilisant notre axe de fréquence. On ne fera pas le
+ graphe de la phase ici.
+ \begin{itemize}
+ \item Identifiez leS fréquenceS des composantes de votre signal, et
+   donnez le phaseur de chacune de ces composantes.
+ \item Reportez sous forme d'un bâtonnet d'amplitude
+   $\rho(f)=|\hat{z_s}(f)|$ sur toutes les fréquences où se trouve le
+   signal composante discret $w_f$ et indiquez à côté la valeur
+   complexe du phaseur.
+
+ \item Normalement les deux composantes fréquentielles doivent donner
+   7 bâtonnets entre $-F_e$ et $2.F_e$.
+ \item Faites apparaitre la périodicité de votre spectre.
+ \end{itemize}
+
+
+ \subsubsection{Spectre complexe}
+ On peut introduire les fréquences négatives pour décomposer le signal
+ réel
+ $\mathcal{R}\left\{\hat{z_s(f).w(f)}\right\}=
+ \frac{z_s(f).w_f}{2}+\frac{z_s(-f).w_{-f}}{2}$ en somme de conjugués
+ et avoir la décomposition en coefficients complexes
+ $c(f)=\frac{\widehat{Z_s}(f)}{2}$ ~:
+ \begin{equation}
+   \label{eq:itfsd_cn}
+   s[k] = \int\limits_{-F_e < f < F_e}{c(f).e^{i.2\pi.f.k.T_e}.df}
+ \end{equation}
+ 
+ \begin{itemize}
+ \item Dessinez le spectre des modules $|c(n)|$. et indiquez à côté
+   des bâtonnets la valeur complexe de $c(n)$. Il est d'usage de
+   dessiner un bâtonnet imaginaire pur négatif comme un bâtonnet
+   négatif, mais c'est un abus.
+ \item Vous devez avoir maintenant 10 bâtonnets et pouvez faire
+   apparaitre des axes de symétrie de Hilbert
+ \item Que ce passe-t-il, si les coefficients ne respectent pas la
+   symétrie de Hilbert ? On en conclu que la représentation en $c(f)$
+   est plus générale que cette en phaseur limitée aux signaux réels.
+ \end{itemize}
+
+ 
+ \subsubsection{Spectre polaire}
+
+ Si l'on note la forme polaire des phaseurs
+ $\widehat{z_s}(f)=\rho(f).e^{i.\varphi(f)}$ dépendant de $f$, on
+ obtient alors la recomposition (TFSD inverse) sous sa forme polaire~:
+ \begin{equation}
+   \label{eq:itfsd_polaire}
+   s[k] = \int\limits_{0\leq f < F_e}{\rho(f).\cos\left(2\pi.f.k.T_e+\varphi(f)\right).df}
+ \end{equation}
+
+ Le spectre serait alors la courbe $\rho(f)$ (associée à l'amplitude)
+ et la courbe $\varphi(f)$ (associée à la phase).
+
+ \begin{itemize}
+ \item Remarquez que le spectre tracé précédemment correspond au
+   spectre d'amplitude.
+ \item Ajoutez une deuxième courbe avec le spectre de phase
+   $\varphi(f)$ sur la même échelle.
+ \end{itemize}
+
+
+ \subsubsection{Spectre en composante I et Q}
+
+ Puisque nous avons le phaseur de cosinus (In phase) qui est réel pur
+ $\hat{z_I}=1$ et celui du sinus (Quadrature phase) qui est imaginaire
+ pur $\hat{z_Q}=-i$, on peut toujours décomposer
+ $\hat{z_s}= a(f) .\hat{z_I} + b(f) .\hat{z_Q} = a(f) - i. b(f)$ pour
+ avoir la représentation I/Q de Fourier~:
+ \begin{equation}
+   \label{eq:itfsd_polaire}
+   s[k] = \int\limits_{0\leq f < F_e}{a(f).\cos\left(2\pi.f.k.T_e\right) + b(f).\cos\left(2\pi.f.k.T_e\right).df}
+ \end{equation}
+ Le spectre est alors une fonction $a(f)$ (associée aux composantes
+ paires) et une fonction $b(f)$ (les impaires).
+ \begin{itemize}
+ \item Votre signal $x(t)$ est-il pair, impair ou quelconque ? En
+   déduire si les $a(f)$ sont tous nuls, ou les $b(f)$ sont tous nuls,
+   ou pas.
+ \item Esquissez rapidement le spectre en bâtonnet $a(f)$ et $b(f)$
+ \end{itemize}
+
+
+\end{document}

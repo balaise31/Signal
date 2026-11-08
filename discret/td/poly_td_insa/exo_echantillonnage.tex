@@ -4,13 +4,17 @@
   \refWeb{Corrigé \'Echantillonnage 1.1}{https://moodle.insa-toulouse.fr/mod/resource/view.php?id=104716}
 \end{minipage}
 
-
+\def\pc{\widehat{p_c}}
 
 \subsection{Premier ordre réel~: $e^{-t/\tau}$}
 
 La réponse impulsionnelle d'un système continu du premier ordre est~:
 
 $$ Y(p) = \frac{1}{1+\tau. p} X(p) \quad \underset{p.Y(p)\rightarrow \vec{\dot{y}} }{\longleftrightarrow} \quad \vec{y} + \tau \vec{\dot{y}}  = \vec{x}\quad \underset{\vec{x}=\vec{\delta_0}}{\longleftrightarrow} \quad \underbrace{h(t)}_{\vec{y}} =\frac{1}{\tau}. e^{-t/\tau}.\Gamma(t)$$
+
+
+Ce système à pour pôle $\pc=-\frac{1}{\tau}$ s'écrit donc
+$$ Y(p) = \frac{\pc}{p - \pc} X(p) \quad \underset{p.Y(p)\rightarrow \vec{\dot{y}} }{\longleftrightarrow} \quad \vec{\dot{y}} - \pc . \vec{y}  = \pc . \vec{x}\quad \underset{\vec{x}=\vec{\delta_0}}{\longleftrightarrow} \quad \underbrace{h(t)}_{\vec{y}} = -\pc . e^{\pc . t}.\Gamma(t)$$
 
 
 \def\h#1{(#1>0)}
@@ -28,7 +32,7 @@ $$ Y(p) = \frac{1}{1+\tau. p} X(p) \quad \underset{p.Y(p)\rightarrow \vec{\dot{y
     \begin{axis}[	anchor = origin,  x=1cm, y=1cm,
       axis lines=center, 
       xlabel={$t[s]$},
-      ylabel={$\delta_0(t)$},
+      ylabel={$x(t) = \delta_0(t)$},
       ylabel style = {anchor=south, thick, black},
       xlabel style = {anchor=west, thick, black},
       grid=minor,
@@ -46,13 +50,13 @@ $$ Y(p) = \frac{1}{1+\tau. p} X(p) \quad \underset{p.Y(p)\rightarrow \vec{\dot{y
   \end{scope};
     & \node[dspnodeopen]  (x) {$\vec{x}$};
     & \node[dspsquare] (G) {$G(p)$} ;
-    & \node[dspnodeopen]  (y) {$\vec{h}$};
+    & \node[dspnodeopen]  (y) {$\vec{y}$};
     &
   \begin{scope}[] 
     \begin{axis}[anchor = origin,  x=1cm, y=1cm,
       axis lines=center, 
       xlabel={$t[s]$},
-      ylabel={$h(t)$},
+      ylabel={$y(t) = h(t)$},
       ylabel style = {anchor=south, thick, black},
       xlabel style = {anchor=west, thick, black},
       grid=minor,
