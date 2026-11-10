@@ -1,0 +1,83 @@
+\documentclass[landscape]{article}
+\usepackage[a3paper]{geometry}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage{ifthen}
+\usetikzlibrary{shapes.misc, calc, fpu}
+
+\pgfplotsset{compat=newest}
+\input{calques.tex}
+
+
+
+
+\begin{document}
+\pagestyle{empty}
+
+\usetikzlibrary {math}
+\tikzmath{
+  function modulo(\x,\y) {
+    return \x-int(\x/\y)*\y;
+  };
+  function logpos(\k,\dep){
+    return log10(1+(\k/10^(\dep)));
+  };
+} 
+
+
+
+
+
+\begin{tikzpicture}[remember picture, overlay,  x=1cm, y=1cm]
+  \coordinate (SW) at (current page.south west) ;
+  \coordinate (NE) at (current page.north east) ;
+  \coordinate (HD) at ($(NE) - (1.,1.)$);
+  \coordinate (BG) at ($(SW) + (1.,1.)$);
+  \coordinate (HG) at (BG |- HD);
+  \coordinate (BD) at (BG -| HD);
+  \coordinate (milieu) at ($(BG)!0.5!(HD)$);
+  \coordinate (NG) at ($(BG)+(0,1)$);
+  \coordinate (ND) at (HD |- NG);
+  \coordinate (MG) at ($(NG)+(0,1)$);
+  \coordinate (MD) at (HD |- MG);
+  
+  \coordinate (centre) at ($(milieu) - (7.,0.)$);
+  
+  
+  
+  
+  % \begin{scope}[shift={($(BG)+(3,3)$)}]
+  \begin{scope}[shift=(centre)]
+    
+    \millimetrique{MG}{HD}
+    \logametrique{BG}{MD}{20}{0}{1}{black}{0.08}
+    
+    \cercle{centre}{10} 
+    \draw[->] ($(centre)-(0,7)$) -- ($(centre)+(0,7)$) node[above] {$\mathcal{R}$};
+    \draw[->] ($(centre)+(6,0)$) -- ($(centre)-(6,0)$) node[left] {$\mathcal{I}$};
+    
+    \node[right] at ($(HD)+(-2,0.5)$){Calque ULAtrice};
+    \node[right] at ($(BG)+(-0.5,-0.5)$){ULA: Uniform Log Arithmetic};
+    \node[right] at ($(BD)+(-5,-0.5)$){Utilise les  Logs Andouille ! (ULA)};
+    
+  \end{scope}
+\end{tikzpicture}
+
+\newpage
+\pagestyle{empty}
+
+\begin{tikzpicture}[remember picture, overlay,  x=1cm, y=1cm]
+  \begin{scope}[shift={($(BG)+(1,2)$)}]
+    
+    \millimetrique{NG}{MD}{5}{5}
+%    \logametrique{MG}{HD}{5}{5}{0}{brown}{0.5}
+    %\logametrique{BG}{ND}{10}{0}{0.3}{black}{0.2}
+    
+    \node[right] at ($(HG)+(-0.5,0.5)$){Calque ULAtrice};
+    
+  \end{scope}
+  
+  
+\end{tikzpicture}
+
+\end{document}

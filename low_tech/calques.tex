@@ -1,0 +1,256 @@
+
+
+%__________________________________________________________________________________
+% \logametrique{BG}{MD}{10}{0}{0.8}{black}{0.08}
+% BG  HD  x10    retrait(cm) couleur  resolution (cm)
+% __________________________________________________________________________________
+\newcommand{\logametrique}[7]{
+  \coordinate (Z) at (0,0) {};
+  \coordinate (U) at (Z|-#1) {}; %disons le 1 de l'échelle
+  \coordinate (D) at ($(U)+(#3,#4)$) {}; %disons le 1 de l'échelle
+  \node[] at ($(U)$){1};
+  \node[] at ($(D)$){10};
+  
+  %% On calcule la résolution la plus fine
+  % \pgfmathsetmacro{\dep}{int(-(log10(10^(#7/#3)-1))+1)}
+  \pgfmathsetmacro{\dep}{int(-log10( 10^(#7/#3) -1 ))}
+  \pgfmathsetmacro{\deppun}{\dep + 1}
+  % \pgfmathsetmacro{\dep}{2}
+  \pgfmathsetmacro{\sep}{#5/(\dep+3))}
+  
+  % \foreach \d  in {2,...,2} {
+  % \coordinate (Q) at ($(U)!{0.1*\dep}!(D)$) {};
+  % \pgfmathsetmacro{\kmax}{ int( (1./(1.-10^(-#7/#3))-10^(\dep))/10. )*10}
+  \pgfmathsetmacro{\kreso}{    int( (1 + 1 / (10^(#7/#3)-1) ) / 10 ) * 10}
+  \pgfmathsetmacro{\kdeuxreso}{int( (1 + 2 / (10^(#7/#3)-1) ) / 20 ) * 20}
+  \pgfmathsetmacro{\kcinqreso}{int( (1 + 5 / (10^(#7/#3)-1) ) / 50 ) * 50}
+  \pgfmathsetmacro{\kmax}{10^(\dep)*9-1}
+  \pgfmathsetmacro{\kun}  {(\kreso    >\kmax  )?\kmax  :( \kreso    <1 ? 1 : \kreso   )}
+  \pgfmathsetmacro{\kdeux}{(\kdeuxreso>\kmax-1)?\kmax-1:( \kdeuxreso<1 ? 1 : \kdeuxreso )}
+  \pgfmathsetmacro{\kcinq}{(\kcinqreso>\kmax-4)?\kmax-4:( \kcinqreso<1 ? 1 : \kcinqreso )}
+  \pgfmathsetmacro{\kunp}{\kun+2}
+  %\node[] at ($(0,1)$){DEP = \dep};
+  %\node[] at ($(0,2)$){kmax = \kmax};
+  %\node[] at ($(0,3)$){kreso = \kreso};
+  %\node[] at ($(0,4)$){k2 = \kdeuxreso};
+  %\node[] at ($(0,5)$){k5 = \kcinqreso};
+  
+  \foreach \k in {0,...,\kmax}{
+    \pgfmathparse{(\k<=\kreso) && (modulo(\k,2)!=0)  && (modulo(\k,5)!=0) ? 1 : 0}
+    \ifthenelse{\pgfmathresult = 1}{
+      \coordinate (Q) at ($(U)!{logpos(\k,\dep)}!(D)$) {};
+      % \node[] at ($(Q)+(0,\dep*\sep+3*\sep-0.2)$){\k}; 
+      \draw[shift=(Q), xstep=#3cm, ystep=#4cm, line width=1pt, #6!100] ($(#1)+(0,\dep*\sep+3*\sep)$) grid (#2);
+      
+    }{
+      \pgfmathparse{(\k<\kdeuxreso) && (modulo(\k,2)==0 && (modulo(\k,5)!=0) ? 1 : 0}
+      \ifthenelse{\pgfmathresult = 1}{
+        \coordinate (Q) at ($(U)!{logpos(\k,\dep)}!(D)$) {};
+        % \node[] at ($(Q)+(0,\dep*\sep+2*\sep-0.2)$){\k}; 
+        \draw[shift=(Q), xstep=#3cm, ystep=#4cm, line width=1pt, #6!100] ($(#1)+(0,\dep*\sep+3*\sep)$) grid (#2);
+        
+      }{
+        \pgfmathparse{(\k<\kcinqreso) && ((\k>\kdeuxreso)||(\k<\kreso))  && (modulo(\k,2)!=0 && (modulo(\k,5)==0)  ? 1 : 0}
+        \ifthenelse{\pgfmathresult = 1}{
+          \coordinate (Q) at ($(U)!{logpos(\k,\dep)}!(D)$) {};
+          % \node[] at ($(Q)+(0,\dep*\sep+\sep-0.2)$){\k}; 
+          \draw[shift=(Q), xstep=#3cm, ystep=#4cm, line width=1pt, #6!100] ($(#1)+(0,\dep*\sep+\sep)$) grid (#2);
+          
+        }{
+          \pgfmathparse{(modulo(\k,10)==0  ? 1 : 0}
+          \ifthenelse{\pgfmathresult = 1}
+          {
+            \coordinate (Q) at ($(U)!{logpos(\k,\dep)}!(D)$) {};
+            \pgfmathsetmacro{\dep}{int(-(log10(10^(#7/#3)-1))+1)}
+            
+            
+            % \node[] at ($(Q)+(0,\dep*\sep-0.2)$){\k}; 
+            \ifthenelse{\k = 0}
+            {
+              \draw[shift=(Q), xstep=#3cm, ystep=#4cm, line width=2pt, #6!100] ($(#1)+(0,\sep)$) grid (#2);
+              % \node[] at (#2-|Q){\k};       
+            }
+            {
+              \pgfmathparse{modulo(\k, 10^(\dep-1)) == 0 ? 1 : 0}
+              \ifthenelse{\pgfmathresult = 1}
+              {
+                \pgfmathsetmacro{\puisdix}{\dep-int(log10(\k)+1)}
+                \draw[shift=(Q), xstep=#3cm, ystep=#4cm, line width=2pt, #6!100] ($(#1)+(0,\sep)$) grid (#2);
+                \pgfmathparse{int(int(\k/10^(\dep-1))+1)}
+                
+                \node[] at (Q){\pgfmathresult};
+              }
+              {
+                \pgfmathsetmacro{\puisdix}{\dep-int(log10(\k)+1)}
+                \draw[shift=(Q), xstep=#3cm, ystep=#4cm, line width=1pt, #6!100] ($(#1)+(0,\puisdix*\sep)$) grid (#2);
+                % \node[] at (#2-|Q){\k};
+                
+              }
+              
+            }
+          }
+          {
+            
+            
+          }%Fin dep+
+          
+          
+        }%Fin cinq
+        
+      }%Fin deux
+    }%Fin uns
+  }
+  % \foreach \k in {\kun,\kunp,...,\kdeux}{
+  % \coordinate (Q) at ($(U)!{log10(\k/(10^\d))}!(D)$) {};
+  % \draw[shift=(Q), xstep=#3cm, ystep=#4cm, line width=3-\d, #6!100] ($(#1)+(0,\d*3*\sep-\sep)$) grid (#2);
+  % }
+  % }
+  
+  
+  %%   2,3,..,9
+  %   \foreach \i in {2,...,9} {
+  %   \coordinate (P) at ($(U)!{log10(\i)}!(D)$) {};
+  %   \draw[shift=(P), xstep=#3cm, ystep=#4cm, line width=0.6mm, #6!75] ($(#1)+(0,0.5*#5)$) grid (#2);
+  % }
+  
+  %%   1, 10, 100
+  %   \draw[xstep=#3cm, ystep=#4cm, line width=0.8mm, #6!100] (#1) grid (#2);
+  
+}
+
+
+
+% \logametrique{BG}{MD}{10}{0}{0.8}{black} 
+% BG  HD  x10    retrait couleur 
+\newcommand{\loglogametrique}[6]{
+  \coordinate (S) at ($(#3,#4)$) {}; %disons le 1 de l'échelle
+  
+  %% 1.1, 1.2, ...  ou 1.2, 1.4, ...  ou 1.5 selon def 
+  \foreach \i in {1,...,9} {
+    
+    %% IF 1.
+    \pgfmathparse{(log10(\i+1)-log10(\i))*#3>1?1:0}
+    \ifthenelse{\pgfmathresult = 1}{
+      %% Then 1.1, 1.2, ... passe
+      
+      %% => Trace les 1.1 , 1.2, ...
+      \foreach \j in {1,...,9} {
+        
+        %% IF 1.1.1
+        
+        \pgfmathparse{3>1?1:0}
+        % \pgfmathparse{(log10(\i+\j/10)-log10(\i+(\j+1)/10))*#3>1?1:0}
+        \ifthenelse{\pgfmathresult = 1}{
+          %% Then 1.1.1, 1.1.2, ... passe
+          \foreach \k in {1,...,9} {
+            \coordinate (Q) at ($(0,0)!{log10(\i+(\j/10)+(\k/100))}!(S)$) {};
+            \draw[shift=(Q), xstep=#3cm,  ystep=#4cm, line width=0.2mm, #6!25]  ($(#1)+(0,#5)$) grid (#2);
+            
+          }%% FIN for k
+          
+          %% => le 1.1.5
+          \coordinate (P) at ($(0,0)!{log10(\i+(\j/10)+.05)}!(S)$) {};
+          \draw[shift=(P), xstep=#3cm,  ystep=#4cm, line width=0.4mm, #6!50] ($(#1)+(0,0.*#5)$) grid (#2);
+          
+        }{
+          %% Else passe pas
+        } %% FIN IF 1.1.1
+        
+        
+        \coordinate (Q) at ($(0,0)!{log10(\i+(\j/10))}!(S)$) {};
+        \draw[shift=(Q), xstep=#3cm,  ystep=#4cm, line width=0.2mm, #6!25]  ($(#1)+(0,1.5*#5)$) grid (#2);
+        
+        
+      } %% FIN FOR J
+      %% => le 1.5
+      \coordinate (P) at ($(0,0)!{log10(\i+0.5)}!(S)$) {};
+      \draw[shift=(P), xstep=#3cm,  ystep=#4cm, line width=0.4mm, #6!50] ($(#1)+(0,#5)$) grid (#2);
+      
+    }{
+      %% ELSE 1.1
+      %% IF 1.2
+      \pgfmathparse{(log10(\i+1)-log10(\i))*#3>.5?1:0}    
+      \ifthenelse{\pgfmathresult = 1}{
+        %% THEN 1.2, 1.4,... passe
+        \foreach \j in {2,4,6,8} {
+          \coordinate (Q) at ($(0,0)!{log10(\i+(\j/10))}!(S)$) {};
+          \draw[shift=(Q), xstep=#3cm,  ystep=#4cm, line width=0.3mm, #6!40]  ($(#1)+(0,1.5*#5)$) grid (#2);
+        }
+      }{
+        %% ELSE que 1.5 passe
+        \coordinate (P) at ($(0,0)!{log10(\i+0.5)}!(S)$) {};
+        \draw[shift=(P), xstep=#3cm,  ystep=#4cm, line width=0.4mm, #6!50] ($(#1)+(0,#5)$) grid (#2);
+      } 
+    }%%FIN IF 1.
+    
+    %% 2,3,..,9
+    \foreach \i in {2,...,9} {
+      \coordinate (P) at ($(0,0)!{log10(\i)}!(S)$) {};
+      \draw[shift=(P), xstep=#3cm, ystep=#4cm, line width=0.6mm, #6!75] ($(#1)+(0,0.5*#5)$) grid (#2);
+    }
+    
+    %% 1, 10, 100
+    \draw[xstep=#3cm, ystep=#4cm, line width=0.8mm, #6!100] (#1) grid (#2);
+    
+  }
+  
+  
+  % \foreach \i in {3,...,6} {
+  % \foreach \j in {2,4,...,8} {
+  % \coordinate (Q) at ($(0,0)!{log10(\i+(\j/10))}!(S)$) {};
+  % \draw[shift=(Q), xstep=#3cm, ystep=#4cm, line width=0.2mm, #6!25] ($(#1)+(0,1.5*#5)$) grid (#2);
+  % }
+  % }
+  
+  %   \foreach \i in {1,2,7,8,9} {
+  %   \coordinate (P) at ($(0,0)!{log10(\i+0.5)}!(S)$) {};
+  %   \draw[shift=(P), xstep=#3cm,  ystep=#4cm, line width=0.4mm, #6!50] ($(#1)+(0,#5)$) grid (#2);
+  % }
+  
+  %   \foreach \i in {2,...,9} {
+  %   \coordinate (P) at ($(0,0)!{log10(\i)}!(S)$) {};
+  %   \draw[shift=(P), xstep=#3cm, ystep=#4cm, line width=0.6mm, #6!75] ($(#1)+(0,0.5*#5)$) grid (#2);
+  % }
+  %   \draw[xstep=#3cm, ystep=#4cm, line width=0.8mm, #6!100] (#1) grid (#2);
+  %   \draw[step=1mm, line width=0.1mm, #6!25] (#1) grid (#2);
+  %   \draw[step=5mm, line width=0.2mm, #6!50] (#1) grid (#2);
+}
+
+
+
+\newcommand{\millimetrique}[2]{
+  \draw[step=1mm, line width=0.1mm, brown!25] (#1) grid (#2);
+  \draw[step=5mm, line width=0.2mm, brown!50] (#1) grid (#2);
+  \draw[step=1cm, line width=0.4mm, brown!75] (#1) grid (#2);
+  \draw[step=5cm, line width=0.6mm, brown!100] (#1) grid (#2);
+}
+
+
+
+
+
+\newcommand{\cercle}[2]{
+  \draw[fill=none, line width=0.6mm, brown!100](#1) circle (#2) ;
+  
+  \pgfmathsetmacro{\debut}{90}
+  \pgfmathsetmacro{\pas}{360./2./3.141592654/#2)}
+  \pgfmathsetmacro{\un}{\debut + \pas}
+  \pgfmathsetmacro{\demi}{\debut + \pas/2.}
+  \pgfmathsetmacro{\dixieme}{\debut + \pas/10.}
+  \pgfmathsetmacro{\fin}{\debut + 360}
+  
+  % \foreach \i [count=\k from 0] in {0,11.4591559026,...,359} {
+  % \foreach \i [count=\k from 0] in {90, 101.4591559026,...,449} {
+  \foreach \i [count=\k from 0] in {\debut, \un,...,\fin} {
+    \draw ($(#1)+(\i:#2+.6)$) node[brown] {\textbf{\k}};
+    \draw[line width=0.4mm, brown!100] ($(#1)+(\i:#2-.4)$) -- ($(#1)+(\i:#2+.4)$);
+  }
+  
+  \foreach \i [count=\k from 0] in {\debut, \demi,...,\fin} {
+    \draw[line width=0.4mm, brown!100] ($(#1)+(\i:#2-.3)$) -- ($(#1)+(\i:#2+.3)$);
+  }
+  
+  \foreach \i [count=\k from 0] in {\debut, \dixieme,...,\fin} {
+    \draw[line width=0.2mm, brown!100] ($(#1)+(\i:#2-.15)$) -- ($(#1)+(\i:#2+.15)$);
+  }
+}
