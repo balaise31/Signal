@@ -4,124 +4,329 @@
   \refWeb{Corrigé \'Echantillonnage 1.1}{https://moodle.insa-toulouse.fr/mod/resource/view.php?id=104716}
 \end{minipage}
 
-\def\pc{\widehat{p_c}}
+\def\pc{\alpha}
 
-\subsection{Premier ordre réel~: $e^{-t/\tau}$}
+\subsection{Premier ordre réel~: pôle réel $\pc$}
 
 La réponse impulsionnelle d'un système continu du premier ordre est~:
 
-$$ Y(p) = \frac{1}{1+\tau. p} X(p) \quad \underset{p.Y(p)\rightarrow \vec{\dot{y}} }{\longleftrightarrow} \quad \vec{y} + \tau \vec{\dot{y}}  = \vec{x}\quad \underset{\vec{x}=\vec{\delta_0}}{\longleftrightarrow} \quad \underbrace{h(t)}_{\vec{y}} =\frac{1}{\tau}. e^{-t/\tau}.\Gamma(t)$$
+$$ Y(p) = \frac{\tau}{1+\tau. p} X(p) \quad \underset{p.Y(p)\rightarrow \vec{\dot{y}} }{\longleftrightarrow} \quad \vec{y} + \tau . \vec{\dot{y}}  = \tau . \vec{x}\quad \underset{\vec{x}=\vec{\delta_0}}{\longleftrightarrow} \quad \underbrace{h(t)}_{\vec{y}} = e^{-t/\tau}.\Gamma(t)$$
 
 
-Ce système à pour pôle $\pc=-\frac{1}{\tau}$ s'écrit donc
-$$ Y(p) = \frac{\pc}{p - \pc} X(p) \quad \underset{p.Y(p)\rightarrow \vec{\dot{y}} }{\longleftrightarrow} \quad \vec{\dot{y}} - \pc . \vec{y}  = \pc . \vec{x}\quad \underset{\vec{x}=\vec{\delta_0}}{\longleftrightarrow} \quad \underbrace{h(t)}_{\vec{y}} = -\pc . e^{\pc . t}.\Gamma(t)$$
+Ce système à pour pôle $\pc=-\frac{1}{\tau}$ s'écrit donc~:
 
 
-\def\h#1{(#1>0)}
-\def\fonc#1{1 * \h{#1} *  exp(-#1)}
-\def\dirac#1{(#1<0.001)*(#1>-0.001)*1}
-
-%\begin{tikzpicture}
-\begin{tikzpicture}[outer sep=auto, amp/.style = {regular polygon, regular polygon sides=3,
-    draw, fill=white, text width=1em,
-    inner sep=1mm, outer sep=0mm,
-    shape border rotate=-90}]
+\def\h#1{(#1>=0)} \def\fonc#1{1 * \h{#1} * exp(-#1)}
+\def\dirac#1{(#1<0.001)*(#1>-0.001)*1} \pgfplotsset{
+  standard/.style={%Axis format configuration
+    axis x line=middle, axis y line=middle, x=1cm, enlarge x
+    limits=0.05, enlarge y limits=0.15, every axis x
+    label/.style={at={(current axis.right of origin)},anchor=west},
+    every axis y label/.style={at={(current axis.above
+        origin)},anchor=south}, every axis plot post/.style={mark
+      options={fill=white}} } }
   
-  \matrix (graphe)[ row sep=0cm, column sep=1cm, inner sep=0.5cm]{ 	
-  \begin{scope}[] 
-    \begin{axis}[	anchor = origin,  x=1cm, y=1cm,
-      axis lines=center, 
-      xlabel={$t[s]$},
-      ylabel={$x(t) = \delta_0(t)$},
-      ylabel style = {anchor=south, thick, black},
-      xlabel style = {anchor=west, thick, black},
-      grid=minor,
-      domain=-0.5:2.5,
-      ytick={0,1},
-      yticklabels={0,1},
-      xtick={0,1,2},
-      xticklabels={0,1,2},
-      enlarge y limits=0.5,
-      enlarge x limits=0.1,
-      help lines
-      ]
-      \addplot[very thick, blue,samples=512] plot (\x,{\dirac{\x}});
-    \end{axis}
-  \end{scope};
-    & \node[dspnodeopen]  (x) {$\vec{x}$};
-    & \node[dspsquare] (G) {$G(p)$} ;
-    & \node[dspnodeopen]  (y) {$\vec{y}$};
-    &
-  \begin{scope}[] 
-    \begin{axis}[anchor = origin,  x=1cm, y=1cm,
-      axis lines=center, 
-      xlabel={$t[s]$},
-      ylabel={$y(t) = h(t)$},
-      ylabel style = {anchor=south, thick, black},
-      xlabel style = {anchor=west, thick, black},
-      grid=minor,
-      domain=-0.5:3.5,
-      ytick={0,1},
-      yticklabels={0,$\frac{1}{\tau}$},
-      xtick={0,1,2,3,4},
-      xticklabels={0,$\tau$,$2\tau$,$3\tau$, },
-      enlarge y limits=0.5,
-      enlarge x limits=0.1,
-      help lines
-      ]
-      \addplot[very thick, blue, samples=512] plot (\x,{\fonc{\x}});
-      \draw[dashed, thick, blue](0,1)--(1,0);
-    \end{axis}
-  \end{scope}
+% \begin{tikzpicture}
+\begin{tikzpicture}[outer sep=auto, amp/.style = {regular polygon,
+    regular polygon sides=3, draw, fill=white, text width=1em, inner
+    sep=1mm, outer sep=0mm, shape border rotate=-90}]
+  
+  \matrix (graphe)[ row sep=0cm, column sep=0.6cm, inner sep=0.5cm]{
+    \begin{scope}[]
+      \begin{axis}[anchor = origin, x=1cm, y=1cm, axis lines=center,
+        xlabel={$t[s]$}, ylabel={$x(t) = \delta_0(t)$}, ylabel style =
+        {anchor=south, thick, gray}, xlabel style = {anchor=west,
+          thick, gray}, grid=minor, domain=-0.5:2.5, ytick={0},
+        yticklabels={0,1}, xtick={0,1,2}, xticklabels={0,1,2}, enlarge
+        y limits=0.5, enlarge x limits=0.1, help lines ]
+        \addplot[very thick, blue,samples=512] plot (\x,{\dirac{\x}});
+        \draw[very thick, blue, ->](0,0)--(0,1); \node[very thick,
+        blue] at (0.2,1) (dirac) {$1$} ;
+      \end{axis}
+    \end{scope}; & \node[dspnodeopen] (x) {$\vec{x}=\vec{\delta_0}$};
+    & \node[dspsquare] (G) {$\frac{1}{p-\pc}$} ; & \node[dspnodeopen]
+    (y) {$\vec{y}=\vec{h}$}; &
+    \begin{scope}[]
+      \begin{axis}[anchor = origin, x=1cm, y=1cm, axis lines=center,
+        xlabel={$t[s]$}, ylabel={$y(t) = h(t)$}, ylabel style =
+        {anchor=south, thick, gray}, xlabel style = {anchor=west,
+          thick, gray}, grid=minor, domain=-0.5:3.5, ytick={0,1},
+        yticklabels={0,$1$}, xtick={0,1,2,3,4},
+        xticklabels={0,$\tau$,$2\tau$,$3\tau$, }, enlarge y
+        limits=0.5, enlarge x limits=0.1, help lines ]
+        \addplot[very thick, blue, samples=512] plot (\x,{\fonc{\x}});
+        \draw[dashed, thick, blue](0,1)--(1,0);
+      \end{axis}
+    \end{scope}
 
     \\
-  };
-  \draw[dspflow] (x) -- (G) -- (y) ;
+  }; \draw[dspflow] (x) -- (G) -- (y) ;
   
 \end{tikzpicture}
 
+$$ Y(p) = \frac{1}{p - \pc} X(p) \quad \underset{p.Y(p)\rightarrow \vec{\dot{y}} }{\longleftrightarrow} \quad \vec{\dot{y}} - \pc . \vec{y}  =  \vec{x}\quad \underset{\vec{x}=\vec{\delta_0}}{\longleftrightarrow} \quad \underbrace{h(t)}_{\vec{y}} = e^{\pc . t}.\Gamma(t)$$
 
-Ce système de pôle $\widehat{p_c}=\frac{-1}{\tau}$ est stable
-s.s.i. $\tau> 0$ car~:
+\begin{remarque}
+  Il est facile de se tromper de signe entre
+  $\frac{\tau}{1\pm \tau. p}$ correspondant à
+  $e^{\pm \frac{t}{\tau}}.\Gamma(t)$ ~! Comme~:
 
-Stable simple $\quad \iff h(t) \underset{t\to +\infty}{\rightarrow} 0 \iff$ \og{} retour à l'équilibre après stimuli. \fg{} 
+  Système stable $\quad \iff h(t) \xrightarrow{t\to +\infty} 0 \iff$
+  \og{}retour à l'équilibre après stimuli. \fg{}
 
-Cela corrobore le fait qu'un pôle réel est stable s.s.i
-$\widehat{p_c}$ est dans le demi-plan gauche de \Laplace{}~:
-$\widehat{p_c}\prec 0$.
+  Puisqu'un système est stable pour une constante de temps $\tau>0$,
+  on choisit l'écriture $h(t)=e^{-\frac{t}{\tau}.\Gamma(t)}\xrightarrow{t\to +\infty} 0$ sans se
+  tromper. Et comme~:
 
-Le terme $\Gamma(t)$ est nul pour $t<0$ (fonction de \Heaviside), on
-trouve que le système est causal puisque la Réponse ImPulsionnelle
-(RIp) est nulle avant la stimulation par l'impulsion~:
+  Système stable $\quad \iff \quad $ tout les pôles sont à
+  partie réelle négative.
 
-Système causal $\quad \iff \quad \forall t<0,\; h(t)=0 \quad \iff$ \og{} pas de réponse avant stimuli. \fg 
+  On choisit $\frac{1}{1+\tau.p}$ car son
+  pôle $\frac{-1}{\tau}$ est bien négatif pour $\tau >0$.
+\end{remarque}
 
-\question{Q1~: discrétisation de $h$} Discrétisez le signal $t\mapsto h(t)$, avec
-une période d'échantillonnage temporelle $T_e$, pour obtenir le signal
+Le terme $\Gamma(t)$ est nul pour $t<0$ (fonction de \Heaviside), il
+permet de rendre les signaux causaux en les annulants pour les temps
+négatifs. On trouve que le système du premier ordre est causal,
+puisque la Réponse ImPulsionnelle (RIp) est nulle avant la
+stimulation~:
+
+Système causal $\quad \iff \quad \forall t<0,\; h(t)=0 \quad \iff$
+\og{} pas de réponse avant stimuli. \fg
+
+\question{Q1~: discrétisation de $h$} Discrétisez le signal
+$\vec{h} : t\mapsto h(t)$, avec une période d'échantillonnage
+temporelle $T_e$, pour obtenir le signal discret
 $\vec{h} : k \mapsto h[k]=h(\overbrace{k\,T_e}^{t})$.
 
 Montrez qu'il s'agit d'une suite géométrique $h[k]=a^k.\Gamma[k]$ où
-vous exprimerez $a\in\R$ en fonction de $\tau$ et $T_e$.
+vous exprimerez $a\in\R$ en fonction de $\pc$ et $T_e$.
 
-\question{Q2~: condition de stabilité en discret} Dans l'exercice AR~(Auto Regressif)~\ref{sec:AR}, nous construirons le système discret dont la réponse impulsionnelle est $k\to h[k]$ pour obtenir un système du premier ordre discret. 
+\begin{remarque}
+  Nous montrerons (exercice ~\ref{sec:AR}) que cette réponse
+  $h[k]=a^k.\Gamma[k]$ est celle d'un système discret
+  $G(z)=\frac{z}{z-a}$ de pôle discret $a$.
+\end{remarque}
 
-Représentez $h$ graphiquement (discret et continu si possible) pour $a=\frac{1}{2}$, puis $a=1$, puis
-$2$, puis $a=-\frac{1}{2}$, puis $-1$, puis $-2$.
+\question{Q2~: condition de stabilité en discret}
 
-La condition de stabilité simple en discret reste \og{}retour à zéro
-après stimuli\fg{} :
-  $h[k]\underset{k\to +\infty}{\longrightarrow} 0$.
+On va représenter $h$ graphiquement (en discret et en continu) pour
+différentes valeurs de $a$ et voir si le système discret de pôle $a$
+est stable ou non. Par exemple pour $a=1$~:
 
-  Donnez la condition nécessaire et suffisante de stabilité du système
-  $H$ en fonction de $a$ et vérifiez qu'elle correspond à celle en
-  continu avec $\tau$.
+\noindent
+\begin{minipage}{0.6\linewidth}
+  \begin{tikzpicture}
+    \begin{axis}[ standard, y=2cm, ymax = 1.2, xlabel={$k$},
+      ylabel={$h[k]=\Gamma[k]$ pour $a=1$}, domain=-1:6, samples = 8
+      ]; \addplot+[ycomb,blue,thick] plot(\x, \h{\x}); \addplot[gray,
+      samples=100] plot(\x, \h{\x}); \addplot[gray, samples=100]
+      plot(\x, {\h{\x} * exp(-\x/6)}); \draw[dashed,
+      gray](0,1)--(6,0); \node[gray] at (6,0.2) (t6) {$\tau=6$};
+      \addplot[gray, samples=100] plot(\x,{ \h{\x} * exp(-\x/2)});
+      \draw[dashed, gray](0,1)--(2,0); \node[gray] at (2,0.2) (t2)
+      {$\tau=2$}; \node[gray] at (4.6,0.9) (tinf) {$\tau=\infty$};
+    \end{axis}
+  \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+  En continu on trouve $\pc=0$ et $\tau=+\infty$. Le passage à la
+  limite
   
-\subsection{Oscillateur imaginaire pur : $e^{i\omega\,t}$}
+  $e^{\frac{-t}{\tau}}.\Gamma(t)\underset{\tau\to+\infty}{\to}
+  1.\Gamma(t)$ donc $h(t)=\Gamma(t)$. La fonction de transfert vaut
+  $G(p)=\frac{1}{p-0}=\frac{1}{p}$
+\end{minipage}
+
+Le pôle nul en continu du système $G(p)=\frac{1}{p}$ est celui de
+l'intégrateur qui donne la fonction de \Heaviside{} en réponse
+impulsionnelle.
+
+Le calcul opérationnel nous permet d'identifier la transformée de
+\Laplace{} suivante~:
+\begin{equation}
+  \label{eq:Laplace_integrateur}
+  t \mapsto \Gamma(t) \quad \xrightleftharpoons[\L^{-1}]{\quad \L\quad} \quad \frac{1}{p} \quad \longleftrightarrow \quad \text{intégrateur à temps continu}
+\end{equation}
+
+
+Le pôle discret $a=1$ du système $G(z)=\frac{z}{z-1}$ est donc celui
+d'un intégrateur donnant la fonction de \Heaviside{} en réponse à une
+impulsion unité.
+
+Le calcul opérationnel nous permet d'identifier la transformée en
+$\TZ{}$ suivante~:
+\begin{equation}
+  \label{eq:Z_integrateur}
+  k \mapsto \Gamma[k] \quad \xrightleftharpoons[\TZi{}]{\quad\TZ{}\quad} \quad \frac{z}{z-1} \quad \longleftrightarrow \quad \text{intégrateur à temps discret}
+\end{equation}
+
+\begin{remarque}
+  Le pôle continu réel $\pc=0$ est bien en limite de stabilité puisque
+  sur la frontière du demi-plan gauche de stabilité. La condition sur
+  la réponse impulsionnelle $h(t) \xrightarrow{t\to +\infty} 0 $ n'est
+  pas respectée puisque $h$ est divergente sans diverger à l'infini.
+
+  Cette condition reste la même en discret~:
+
+  Système discret stable
+  $\quad \iff h[k] \xrightarrow{k\to +\infty} 0 \iff$ \og{}retour à
+  l'équilibre après impulsion. \fg{}
+
+
+  Le pôle discret réel $a=1$ est donc aussi en limite de stabilité~:
+  le demi-plan gauche n'est donc pas une région de stabilité en
+  discret. En revanche, la frontière de stabilité en discret passe par
+  ce point $1$ \dots
+\end{remarque}
+
+\paragraph{Faites de même pour $a=\frac{1}{2}$~:}
+
+\begin{tikzpicture}
+  \begin{axis}[ standard, y=2cm, ymax = 1.2, xlabel={$k$},
+    ylabel={$h[k]$ pour $a=\frac{1}{2}$}, domain=-2:6, samples = 9]
+    \draw[help lines,dashed, xstep = 1cm, ystep=0.5cm] (-2.25,0.01)
+    grid (10.25,1.3); \addplot+[ycomb,blue,thick, opacity=\corrige]
+    plot(\x, {(0.5 ^ \x) * (\x >= 0)}); \addplot[gray, samples=100,
+    opacity=\corrige] plot(\x, { \h{\x} * exp(-\x*ln(2))});
+    \draw[dashed, gray, opacity=\corrige](0,1)--({1/ln(2)},0);
+    \node[gray, opacity=\corrige] at ({1/ln(2)},0.85) (t2)
+    {$\tau=\frac{1}{\ln(2)}$}; \draw[gray,
+    opacity=\corrige](t2)--({1/ln(2)},0);
+  \end{axis}
+\end{tikzpicture}
+
+Donnez la valeur de la constante de temps $\tau$ et du pôle continu
+$\pc$ qui correspond et tracez la courbe continue et son asymptote à
+l'origine et les échantillons discrets.
+
+Concluez sur la stabilité du système d'ordre 1 discret de pôle
+$a=\frac{1}{2}$
+
+En déduire une transformée de transformée de \Laplace{} et une
+transformée en $\TZ{}$ par calcul opérationnel.
+
+\paragraph{Faites de même pour $a=2$~:}
+
+\begin{tikzpicture}
+  \begin{axis}[ standard, y=0.5cm, ymax = 8.2, xlabel={$k$},
+    ylabel={$h[k]$ pour $a=2$}, domain=-2:6, samples = 9]
+    \draw[help lines,dashed, xstep = 1cm, ystep=0.5cm] (-20,0.001)
+    grid (20,20); \addplot+[ycomb,blue,thick, opacity=\corrige]
+    plot(\x, {(2 ^ \x) * (\x >= 0)}); \addplot[gray, samples=100,
+    opacity=\corrige] plot(\x, { \h{\x} * exp(\x*ln(2))});
+    \draw[dashed, gray,
+    opacity=\corrige]({-1/ln(2)},0)--({1/ln(2)},2); \node[gray,
+    opacity=\corrige] at ({-1/ln(2)},3) (t2)
+    {$\tau=\frac{-1}{\ln(2)}$}; \draw[gray,
+    opacity=\corrige](t2)--({-1/ln(2)},0);
+  \end{axis}
+  
+\end{tikzpicture}
+
+Faites les tracés et concluez sur la stabilité.
+
+\paragraph{Généralisez pour un $a\in\R$ puis $a\in\C$}
+
+Donnez l'expression de la transformée inverse de $\frac{z}{z-a}$ et la
+condition de stabilité sur $a$ dans ce cas à temps discret.
+
+Sachant la condition de stabilité simple reste en discret
+$h[k] \xrightarrow{k\to +\infty} 0 $, que devient cette condition dans
+le cas général d'un pôle discret $a\in\C$ ? Dessinez cette région dans
+le plan complexe.
+
+\begin{remarque}
+  On verra dans le cours qu'un système est stable si tout ses pôles
+  sont dans le cercle unité. Tout comme en continu, la preuve se fait
+  en décomposant un système discret quelconque en somme de systèmes du
+  premier ordre (dans $\C$).
+
+  La relation entre pôle continu $\pc$ et pôle discret $a$, trouvée à
+  la Q1, est $a=e^{\pc.T_e}$. On voit que cette application
+  $\pc \mapsto a$ transforme le demi-plan gauche
+  $\mathcal{R}\left\{\pc\right\} < 0$ en l'intérieur du cercle
+  unité. Il suffit de décomposer $\pc$ en partie réelle et imaginaire,
+  par exemple $\pc = -\frac{1}{\tau} + i \omega$
+\end{remarque}
+
+\subsection{Oscillateur imaginaire pur : pôle imaginaire pur}
 Le système du premier ordre précédant peut être choisi avec un pôle
-imaginaire pur $p_c= i\omega$.
+imaginaire pur $\pc= i\omega$.
 
 $$ Y(p) = \frac{1}{p-i\omega} X(p) \quad \underset{p.Y(p)\rightarrow \vec{\dot{y}} }{\longleftrightarrow} \quad  \vec{\dot{y}} - i\omega \vec{y}  = \vec{x}\quad \underset{\vec{x}=\vec{\delta_0}}{\longleftrightarrow} \quad \underbrace{h(t)}_{\vec{y}} = e^{i\omega\,t}.\Gamma(t)$$
+\begin{remarque}
+  Ce genre de signal complexe $\R \to \C$ , nommé \emph{signal analytique}, est très utilisé
+  en télécom. Lorsque l'on multiply ce signal par un nombre complexe,
+  nommé \emph{phaseur}, on se ramène à un signal réel en extrayant la partie réelle~:
+  \begin{equation}
+    \label{eq:phaseur}
+    s(t)= \Reel{\underbrace{\overbrace{\hat{z}}^{\text{phaseur}}.e^{i.\omega.t}}_{\text{signal analytique}}}
+  \end{equation}
+  Cette représenta
+\end{remarque}
 
+% \usetikzlibrary {3d}
+% \begin{tikzpicture}
+%   \begin{axis}[
+%     axis x line=middle,
+%     axis y line=middle,
+%     axis z line=middle,
+%     xlabel={$\mathrm{X}$},
+%     ylabel={$\mathrm{Y}$},
+%     ytick={-1,1},
+%     ztick={-1,1},
+%     zlabel={$\mathrm{Z}$},  
+%     enlarge y limits=0.5,
+%     enlarge z limits=0.5,
+%     view={-20}{45}
+%     ]
+%     \addplot3+[
+%     domain=0:10,
+%     samples=22,
+%     samples y= 0,
+%     ] (
+%     {\x},
+%     {cos(deg(2*pi*\x/6))},
+%     {sin(deg(2*pi*\x/6))}
+%     );
+    
+%     \begin{scope}[canvas is xy plane at z=0,fill=blue]
+%       \addplot+[ycomb,blue,thick, domain=0:10, opacity=\corrige] plot(\x, {cos(deg(2*pi*\x/6))});
+%     \end{scope}
+    
+%   \end{axis}
+% \end{tikzpicture} 
+
+
+% \begin{tikzpicture}[z={(10:10mm)},x={(-45:5mm)}]
+%   \def\wave{
+%     \draw[fill,thick,fill opacity=.2]
+%      (0,0) sin (1,1) cos (2,0) sin (3,-1) cos (4,0)
+%            sin (5,1) cos (6,0) sin (7,-1) cos (8,0)
+%            sin (9,1) cos (10,0)sin (11,-1)cos (12,0);
+%     \foreach \shift in {0,4,8}
+%     {
+%       \begin{scope}[xshift=\shift cm,thin]
+%         \draw (.5,0)  -- (0.5,0 |- 45:1cm);
+%         \draw (1,0)   -- (1,1);
+%         \draw (1.5,0) -- (1.5,0 |- 45:1cm);
+%         \draw (2.5,0) -- (2.5,0 |- -45:1cm);
+%         \draw (3,0)   -- (3,-1);
+%         \draw (3.5,0) -- (3.5,0 |- -45:1cm);
+%       \end{scope}
+%     }
+%   }
+%   \begin{scope}[canvas is zy plane at x=0,fill=blue]
+%     \wave
+%     \node at (6,-1.5) [transform shape] {magnetic field};
+%   \end{scope}
+%   \begin{scope}[canvas is zx plane at y=0,fill=red]
+%     \draw[help lines] (0,-2) grid (12,2);
+%     \wave
+%     \node at (6,1.5) [rotate=180,xscale=-1,transform shape] {electric field};
+%   \end{scope}
+% \end{tikzpicture}
 
 Le système devient un système complexe (abstrait) de réponse
 impulsionnelle $h(t)=e^{i\omega\,t}.\Gamma(t)$ comportant en partie
@@ -135,13 +340,13 @@ $h[k]=q^k.\Gamma[k]$, mais cette fois-ci avec $q\in\C$ dont vous
 donnerez la relation avec $\omega$ et $T_e$.
 
 \question{Q2~: condition de stabilité en discret} Le pôle continu
-$p_c$ correspond à un système en limite de stabilité, car la RIp $h$
+$\pc$ correspond à un système en limite de stabilité, car la RIp $h$
 ne converge pas vers 0 et ne diverge pas à l'infini non plus. Ce pôle est sur l'axe imaginaire pur~: entre le demi plan gauche stable et
 le demi plan droit instable divergent.
 
 Nous verrons plus tard que $q$ est le pôle du système discret.
 
-Déterminez le type de convergence de $\left\{h[k]\right\}$. Que devient l'axe imaginaire de limite de stabilité pour les pôles continus $p_c$ lorsque l'on passe à un système discret de pôle $q$ ?
+Déterminez le type de convergence de $\left\{h[k]\right\}$. Que devient l'axe imaginaire de limite de stabilité pour les pôles continus $\pc$ lorsque l'on passe à un système discret de pôle $q$ ?
 
 \question{Q3~: périodicité du spectre}
 
