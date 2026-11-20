@@ -19,28 +19,9 @@ $$Y(z) = \frac{\dots}{\dots +\dots z} X(z) \quad \underset{\vec{x}=X(z)\left\{\v
 
 Les pôles $\widehat{p_d}$ de cette fonction de transfert discrète pourraient, de même, donner un lieu géométrique des pôles discrets stables comme le demi-plan gauche du continu.
 
-\question{Q1~: discrétisation de $h$} Discrétisez le signal $t\mapsto h(t)$, avec une période
-d'échantillonnage temporelle $T_e$, pour obtenir le signal
-$\vec{h} : k \mapsto h[k]=h(\overbrace{k\,T_e}^{t})$, et montrez qu'il
-s'agit d'une suite géométrique $h[k]=a^k.u[k]$ où vous exprimerez $a$
-en fonction de $\tau$ et $T_e$.
 
-\question{Q2~: condition de stabilité en temporel avec $h$}
-Représentez $h$ graphiquement pour $a=\frac{1}{2}$, puis $a=1$, puis
-$2$, puis $a=-\frac{1}{2}$, puis $-1$, puis $-2$.
 
-Déduisez une condition nécessaire et suffisante de stabilité BIBO du système H avec $a$ puis avec $\tau$ (Il y a une CNS de CVA des séries géométriques à utiliser) : 
-\begin{itemize}
-\item en discret, H BIBO stable $\iff \quad |a| \ldots $
-\item de même en continu, H BIBO stable $\iff \quad \tau \ldots$  
-\end{itemize}
-
-Pour trouver l'équivalent du demi-plan gauche stable en discret, les 3 questions suivantes sont des
-manières différentes de trouver la fonction de transfert du système
-
-discret de réponse impulsionnelle du premier ordre $h[k]=a^k.\Gamma[k]$.
-
-\question{Q3~: $h \quad \rightarrow  $ récurrence $\quad \rightarrow G(z) $}
+\question{Q1~: $h \quad \rightarrow  $ récurrence $\quad \rightarrow G(z) $}
 
 \refWeb{Vidéo AR1 : Récurrence}{https://youtu.be/TjNE5sKsKRM?t=19}
 
@@ -74,7 +55,7 @@ Sinon, donnez la fonction de transfert $G_1(z)$ de cette récurrence et
 faites le lien avec celle de la question suivante.
 
 
-\question{Q4~[optionnelle]~: Schéma Bloc $\quad\rightarrow\quad$ récurrence $\quad\rightarrow\quad h[\bullet-1]$ } 
+\question{Q2~[optionnelle]~: Schéma Bloc $\quad\rightarrow\quad$ récurrence $\quad\rightarrow\quad h[\bullet-1]$ } 
 
 \graphe{0.8\textwidth}{../../poly/tikz/ar_o1.png}
 
@@ -99,14 +80,14 @@ Calculez-en la réponse impulsionnelle $h$ à partir de l'équation de récurren
 On doit obtenir notre suite géométrique avec un peu de retard ;-) ...
 
 
-La fonction de transfert $G_1(z)$ de la Q3 donne la suite géométrique $h$ en RIp.
+La fonction de transfert $G_1(z)$ de la Q1 donne la suite géométrique $h$ en RIp.
 
 La fonction de transfert $G_T(z)$ donne cette suite avec un retard unitaire.
 
 Donnez donc la relation $G_?(z) = z^{?}.G_?(z)$ qui exprime qu'un système est en avance sur l'autre.
 
 
-\question{Q5~[Optionnelle]~: $h \quad \rightarrow \quad H(z) = G(z) $ }
+\question{Q3~[Optionnelle]~: $h \quad \rightarrow \quad H(z) = G(z) $ }
 
 
 La fonction de transfert $G_1(z)$ de notre système à pour réponse
@@ -167,7 +148,7 @@ Vous obtenez ainsi la fonction de transfert $H(z)=G_1(z)$ sous forme de fraction
 \end{remarque}
 
 
-\question{Q6~: conditions de stabilité avec $G(z)$}
+\question{Q4~: conditions de stabilité avec $G(z)$}
 
 
 Déterminez l'ordre, le pôle $\widehat{p_c}$ et les zéros de

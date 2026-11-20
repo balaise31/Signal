@@ -1,4 +1,3 @@
-\section{\'Echantillonnage de signaux fondamentaux}
 
 \begin{minipage}{0.4\linewidth}
   \refWeb{Corrigé \'Echantillonnage 1.1}{https://moodle.insa-toulouse.fr/mod/resource/view.php?id=104716}
@@ -6,7 +5,7 @@
 
 \def\pc{\alpha}
 
-\subsection{Premier ordre réel~: pôle réel $\pc$}
+\section{Premier ordre réel~: pôle réel $\pc$}
 
 La réponse impulsionnelle d'un système continu du premier ordre est~:
 
@@ -117,15 +116,21 @@ est stable ou non. Par exemple pour $a=1$~:
 \noindent
 \begin{minipage}{0.6\linewidth}
   \begin{tikzpicture}
-    \begin{axis}[ standard, y=2cm, ymax = 1.2, xlabel={$k$},
-      ylabel={$h[k]=\Gamma[k]$ pour $a=1$}, domain=-1:6, samples = 8
-      ]; \addplot+[ycomb,blue,thick] plot(\x, \h{\x}); \addplot[gray,
-      samples=100] plot(\x, \h{\x}); \addplot[gray, samples=100]
-      plot(\x, {\h{\x} * exp(-\x/6)}); \draw[dashed,
-      gray](0,1)--(6,0); \node[gray] at (6,0.2) (t6) {$\tau=6$};
+    \begin{axis}[
+      standard,
+      y=2cm, ymax = 1.2, xlabel={$k$},
+      ylabel={$h[k]=\Gamma[k]$ pour $a=1$},
+      domain=-1:6, samples = 8
+      ];
+      \addplot+[ycomb,blue,thick] plot(\x, \h{\x});
+      \addplot[gray,samples=100] plot(\x, \h{\x});
+      \addplot[gray, samples=100] plot(\x, {\h{\x} * exp(-\x/6)});
+      \draw[dashed,gray](0,1)--(6,0);
+      \node[gray] at (5.5,0.5) (t6) {$\tau=6$};
       \addplot[gray, samples=100] plot(\x,{ \h{\x} * exp(-\x/2)});
-      \draw[dashed, gray](0,1)--(2,0); \node[gray] at (2,0.2) (t2)
-      {$\tau=2$}; \node[gray] at (4.6,0.9) (tinf) {$\tau=\infty$};
+      \draw[dashed, gray](0,1)--(2,0);
+      \node[gray] at (2.5,0.4) (t2) {$\tau=2$};
+      \node[gray] at (4.6,1.1) (tinf) {$\tau=\infty$};
     \end{axis}
   \end{tikzpicture}
 \end{minipage}
@@ -197,8 +202,8 @@ $\TZ{}$ suivante~:
 \end{tikzpicture}
 
 Donnez la valeur de la constante de temps $\tau$ et du pôle continu
-$\pc$ qui correspond et tracez la courbe continue et son asymptote à
-l'origine et les échantillons discrets.
+$\pc$ qui correspond. Tracez la courbe continue et son asymptote à
+l'origine ainsi que les échantillons discrets.
 
 Concluez sur la stabilité du système d'ordre 1 discret de pôle
 $a=\frac{1}{2}$
@@ -228,13 +233,17 @@ Faites les tracés et concluez sur la stabilité.
 
 \paragraph{Généralisez pour un $a\in\R$ puis $a\in\C$}
 
-Donnez l'expression de la transformée inverse de $\frac{z}{z-a}$ et la
-condition de stabilité sur $a$ dans ce cas à temps discret.
+Donnez la transformée inverse, notée $h_a[k]$, de $G(z)=\frac{z}{z-a}$
+dans le cas général $a\in\C$. Cela revient, par définition du calcul
+opérationnel, à donner l'expression de la réponse impulsionnelle du
+système.
 
-Sachant la condition de stabilité simple reste en discret
+Sachant que la condition de stabilité simple en discret reste 
 $h[k] \xrightarrow{k\to +\infty} 0 $, que devient cette condition dans
-le cas général d'un pôle discret $a\in\C$ ? Dessinez cette région dans
-le plan complexe.
+le cas général d'un pôle discret $a\in\C$ ?
+
+
+Dessinez cette région dans le plan complexe.
 
 \begin{remarque}
   On verra dans le cours qu'un système est stable si tout ses pôles
@@ -250,21 +259,140 @@ le plan complexe.
   par exemple $\pc = -\frac{1}{\tau} + i \omega$
 \end{remarque}
 
-\subsection{Oscillateur imaginaire pur : pôle imaginaire pur}
+\section{Oscillateur imaginaire pur : pôle imaginaire pur}
 Le système du premier ordre précédant peut être choisi avec un pôle
 imaginaire pur $\pc= i\omega$.
 
 $$ Y(p) = \frac{1}{p-i\omega} X(p) \quad \underset{p.Y(p)\rightarrow \vec{\dot{y}} }{\longleftrightarrow} \quad  \vec{\dot{y}} - i\omega \vec{y}  = \vec{x}\quad \underset{\vec{x}=\vec{\delta_0}}{\longleftrightarrow} \quad \underbrace{h(t)}_{\vec{y}} = e^{i\omega\,t}.\Gamma(t)$$
 \begin{remarque}
   Ce genre de signal complexe $\R \to \C$ , nommé \emph{signal analytique}, est très utilisé
-  en télécom. Lorsque l'on multiply ce signal par un nombre complexe,
+  en télécom. Lorsque l'on multiplie ce signal par un nombre complexe,
   nommé \emph{phaseur}, on se ramène à un signal réel en extrayant la partie réelle~:
   \begin{equation}
     \label{eq:phaseur}
-    s(t)= \Reel{\underbrace{\overbrace{\hat{z}}^{\text{phaseur}}.e^{i.\omega.t}}_{\text{signal analytique}}}
+    s(t)= \Reel{\underbrace{\overbrace{\widehat{z}}^{\text{phaseur}}.e^{i.\omega.t}}_{\text{signal analytique}}}
   \end{equation}
-  Cette représenta
-\end{remarque}
+  
+  
+  \def\xy{x=1.2cm, y=1.2cm}
+  \def\bornes{xmin=-1.5, xmax=2.2, ymin=-1.5, ymax=2.7}
+  \def\ro{2.2}
+  \def\teta{20}
+  \def\omt{120}
+
+  \noindent
+%  \begin{figure*}[h!]
+    \hspace{-2cm}\begin{tikzpicture}
+    \begin{scope}[shift={(0,0)}]  
+      \begin{axis}[\xy,
+        color= gray,
+        \bornes, 
+        axis lines=middle, 
+        ticks=none,
+        font=\scriptsize,
+        xlabel = $\Re$,
+        ylabel = $\Im$,
+        inner axis line style={-stealth},
+        ]
+
+        \node [gray, anchor=north west] (un) at (1,0) {$1$};
+        \node [gray, anchor=north east] (mun) at (-1,0) {$-1$};
+        \node [gray, anchor=south east] (i) at (0,1) {$i$};
+        \node [gray, anchor=north west] (mi) at (0,-1) {$-i$};
+        
+        
+        \draw[lightgray, ultra thin] (0,0) circle [radius=1];
+        \draw[black] (\teta:\ro) circle [radius=2pt] node[label=$\widehat{z}$] (z) {};
+        \draw[lightgray] (0,0) -- (\teta:\ro) ;
+        \draw[lightgray, very thick,double]  (1,0) arc (0:\teta:1)   ;
+        \draw node at(\teta/2:1.3) {$\theta$};
+        \draw node at(\teta*1.2:1.4*\ro/2) {$\rho$};
+        
+      \end{axis}
+      \draw node at(4.7,1.8) {$\times$};
+    \end{scope}
+
+    \begin{scope}[shift={(5,0)}]  
+      \begin{axis}[\xy,
+        color= gray,
+        \bornes,
+        axis lines=middle, 
+        font=\scriptsize,
+        ticks=none,
+        xlabel = $\Re$,
+        ylabel = $\Im$,
+        inner axis line style={-stealth},
+        ]
+        \node [gray, anchor=north west] (un) at (1,0) {$1$};
+        \node [gray, anchor=north east] (mun) at (-1,0) {$-1$};
+        \node [gray, anchor=south east] (i) at (0,1) {$i$};
+        \node [gray, anchor=north west] (mi) at (0,-1) {$-i$};
+    
+        \draw[lightgray, ultra thin] (0,0) circle [radius=1];
+        \draw[black] (1,0) circle [radius=2pt] node[] (un) {};
+        \draw [black, very thick] (\omt:1) circle (0.05) node[above left] (e) {$e^{i.\omega t}$} ;
+        \draw[black, thick, -stealth]  (1,0) arc  (0:0.95*\omt:1);
+        \draw node at(\omt/2:1.3) {$\omega.t$};        
+      \end{axis}
+      \draw node at(4.7,1.8) {=};
+    \end{scope}
+    
+    \begin{scope}[shift={(10,0)}]  
+      \begin{axis}[\xy,
+        color= gray,
+        \bornes,
+        xmin=-2.6,
+        axis lines=middle, 
+        font=\scriptsize,
+        ticks=none,
+        xlabel = $\Re$,
+        ylabel = $\Im$,
+        inner axis line style={-stealth}
+        ]
+
+        \node [gray, anchor=north west] (un) at (1,0) {$1$};
+        \node [gray, anchor=north east] (mun) at (-1,0) {$-1$};
+        \node [gray, anchor=south west] (i) at (0,1) {$i$};
+        \node [gray, anchor=north west] (mi) at (0,-1) {$-i$};
+
+        \draw[lightgray, ultra thin] (0,0) circle [radius=1];
+        
+        \draw[lightgray, very thick, ->]  (\teta:1) arc  [start angle=\teta, end angle=\teta+\omt, radius = 1];
+        
+        \draw node at(110:1.3) {$\omega.t$};        
+
+        \draw[black] (\teta:\ro) circle [radius=2pt] node[label=$\widehat{z}$] (z) {};
+        \draw[lightgray] (0,0) -- (\teta:\ro) ;
+        \draw[lightgray, very thick,double]  (1,0) arc [start angle=0, end angle=\teta, radius=1]  ;
+        \draw node at(\teta/2:1.3) {$\theta$};
+        \draw node at(\teta*1.2:1.4*\ro/2) {$\rho$};
+        \draw [black, very thick] (\omt+\teta:\ro) circle (0.05) node[left] (e) {$\widehat{z}.e^{i.\omega t}$} ;
+        \draw[lightgray] (0,0) -- (\teta+\omt:\ro) ;
+        \draw[black, very thick, -stealth]  (\teta:\ro) arc  [start angle=\teta, end angle=\teta+\omt*0.98, radius = \ro];
+      \end{axis}
+      
+    \end{scope}
+    
+  \end{tikzpicture}
+%\end{figure*}
+
+  En choisissant la représentation polaire du phaseur
+  $\widehat{z}=\rho.e^{i.\theta}$ on obtient une onde d'amplitude $\rho$
+  et de phase initiale $\theta$~:
+  
+  \begin{eqnarray*}
+    \label{eq:phaseur_rho_theta}
+    s(t) &= & \Reel{\underbrace{\rho.e^{i.\theta}}_{\text{phaseur polaire constant}}.\underbrace{\vec{e^{i.\omega.t}}}_{\text{signal variant}}} = \Reel{\rho.\vec{e^{i.\left(\theta +\omega.t\right)}}}\\
+         &=& \rho. \Reel{\cos\left(\theta +\omega.t\right) + i.\sin\left(\theta +\omega.t\right) } \\
+         &=& \rho.\cos\left(\omega.t+\theta\right)
+  \end{eqnarray*}
+  
+  Cette projection de l'axe réel est représenté dans la figure~\ref{fig:phaseur_continu} ci--dessous.
+  
+  
+
+
+ \end{remarque}
 
 % \usetikzlibrary {3d}
 % \begin{tikzpicture}
@@ -332,6 +460,98 @@ Le système devient un système complexe (abstrait) de réponse
 impulsionnelle $h(t)=e^{i\omega\,t}.\Gamma(t)$ comportant en partie
 réelle une RIp (Réponse Impulsionnelle) $\cos\!\left(\omega\,t\right)$
 causal et un $\sin\!\left(\omega\,t\right)$ causal en partie imaginaire.
+\newpage
+\question{Q0 : Phaseur I et Q d'un cosinus et d(un sinus}
+
+
+En utilisant la figure~\ref{fig:phaseur_continu} et l'équation~\ref{eq:phaseur_rho_theta}, on voit que le phaseur $\widehat{z_I}=1$ permet de représenter un consinus réel
+d'amplitude 1. Le I voulant dire \emph{In phase} avec un cosinus.
+
+Donnez le phaseur $\widehat{z_Q}$ permettant d'obtenir un sinus réel
+d'amplitude unitaire. Le Q voulant dire \emph{in Quadrature} avec un
+cosinus.
+\begin{figure}[h!]
+  \def\xy{x=.8cm, y=.8cm}
+  \def\ro{2.5}
+  \def\teta{30}
+  \def\omt{120}
+  
+  \hspace{-2.3cm}\begin{tikzpicture}
+    \begin{scope}[]  
+      \begin{axis}[\xy,
+        rotate=90,
+        color= gray,
+        xmin=-3.5, xmax=3.5, ymin=-3, ymax=3.5,
+        axis lines=middle, 
+        font=\scriptsize,
+        ticks=none,
+        xlabel = $\Re$,
+        ylabel = $\Im$,
+        inner axis line style={-stealth}
+        ]
+        \draw[lightgray, ultra thin] (0,0) circle [radius=1];
+        \draw[black, very thin, dashed] (0,0) circle [radius=\ro];
+        
+        \draw[lightgray, very thick, ->]  (\teta:1) arc  [start angle=\teta, end angle=\teta+\omt, radius = 1];
+        \draw[black, very thin, dashed]  (0.95*\ro,0) arc  [start angle=0, end angle=\teta, radius = 0.95*\ro];
+        
+        \draw node at(110:1.4) {$\omega.t$};        
+
+        \draw[black] (\teta:\ro) circle [radius=2pt] node[label=$\widehat{z}$] (z) {};
+        \draw[lightgray] (0,0) -- (\teta:\ro) ;
+        \draw[lightgray, very thick,double]  (1,0) arc [start angle=0, end angle=\teta, radius=1]  ;
+        \draw node at(\teta/2:1.3) {$\theta$};
+        \draw node at(\teta*1.2:1.4*\ro/2) {$\rho$};
+        \draw [black, very thick] (\omt+\teta:\ro) circle (0.05) node[below] (e) {$\widehat{z}.e^{i.\omega t}$} ;
+        \draw[lightgray] (0,0) -- (\teta+\omt:\ro) ;
+        \draw[black, very thick, -stealth]  (\teta:\ro) arc  [start angle=\teta, end angle=\teta+\omt*0.98, radius = \ro];
+
+      \end{axis}
+
+    \end{scope}
+
+    \begin{scope}[shift={(5.5,0)}]
+      \begin{axis}[\xy,
+        color= gray,
+        xmin=-2, xmax=12, ymin=-3.5, ymax=3.5,
+        axis lines=middle, 
+        font=\scriptsize,
+        ticks=none,
+        xlabel = $t$,
+        ylabel = $\mathcal{R}\left\{\widehat{z}.e^{i.\omega t}\right\}$,
+        ylabel style={anchor=south},
+        inner axis line style={-stealth}
+        ]
+
+        \draw[black] (0,{cos(\teta)*\ro}) circle [radius=2pt] ;
+        \draw [black, very thick] (4, {cos(\omt+\teta)*\ro}) circle (0.05) ;
+
+        \draw[black, very thin, dashed, samples=100,smooth,variable=\x,domain=-2:12]
+        plot(\x,{\ro*cos((\x*\omt/4+\teta))});
+
+        \draw[black, very thin, dashed, samples=10,smooth,variable=\x,domain={-\teta*4/\omt}:0]
+        plot(\x,{-0.05*\ro+ \ro*cos((\x*\omt/4+\teta))});
+
+        \draw[black, very thick,samples=100,smooth,variable=\x,domain=0:4,-stealth]
+        plot(\x,{\ro*cos((\x*\omt/4+\teta))});
+        
+        \draw[<->] ({-\teta*4/\omt},1.24*\ro) -- ({360/\omt*4-\teta*4/\omt},1.24*\ro) node[midway,fill=white,inner sep=1] {$T \text{ tel que } \omega. T = 2\pi$};
+
+        \draw[<->] ({-\teta*4/\omt},-0.4*\ro) -- (0,-0.4*\ro) node[midway,fill=white,inner sep=1] {$\tau$};
+        \draw[gray, thick,  dotted] ({-\teta*4/\omt},1.4*\ro) -- ({-\teta*4/\omt},-0.5*\ro);
+        \draw[gray, thick,  dotted] (4,-0.2) node[label= $t$] {} -- (4,{cos(\teta+\omt)*\ro});
+        \draw[gray] node at (-0.5,-0.6*\ro) {$\tau$ tel que};
+        \draw[gray] node at (-0.5,-0.75*\ro) {$\omega.\tau = \theta$};
+    \end{axis}
+    \end{scope}
+  \end{tikzpicture}
+  \caption{\`A gauche le signal analytique dans le plan complexe, à
+    droite la partie réelle du signal analytique en fonction du
+    temps. Attention, le plan complexe est avec l'axe réel vers le
+    haut~!}
+   \label{fig:phaseur_continu}
+ \end{figure}
+
 
 \question{Q1~: discrétisation de $h$} Discrétisez le signal
 $t\mapsto h(t)$, avec une période d'échantillonnage temporelle
@@ -339,117 +559,193 @@ $T_e$. Montrez qu'il s'agit, là aussi, d'une suite géométrique
 $h[k]=q^k.\Gamma[k]$, mais cette fois-ci avec $q\in\C$ dont vous
 donnerez la relation avec $\omega$ et $T_e$.
 
-\question{Q2~: condition de stabilité en discret} Le pôle continu
-$\pc$ correspond à un système en limite de stabilité, car la RIp $h$
-ne converge pas vers 0 et ne diverge pas à l'infini non plus. Ce pôle est sur l'axe imaginaire pur~: entre le demi plan gauche stable et
-le demi plan droit instable divergent.
+Vous donnerez la relation entre le pôle continu $\pc =i.\omega$ et
+le pôle discret $q$.
+
+
+
+\question{Q2~: condition de stabilité en discret}
+
+Le pôle continu $\pc = i \omega$ correspond à un système en limite de stabilité,
+car la RIp $h$ ne converge pas vers 0 et ne diverge pas à l'infini non
+plus. Ce pôle est sur l'axe imaginaire pur~: entre le demi plan gauche
+stable et le demi plan droit instable divergent.
 
 Nous verrons plus tard que $q$ est le pôle du système discret.
 
-Déterminez le type de convergence de $\left\{h[k]\right\}$. Que devient l'axe imaginaire de limite de stabilité pour les pôles continus $\pc$ lorsque l'on passe à un système discret de pôle $q$ ?
+Déterminez le type de convergence de $\left\{h[k]\right\}$. Que
+devient l'axe imaginaire de limite de stabilité pour les pôles
+continus $\pc$ lorsque l'on passe à un système discret de pôle $q$ ?
 
-\question{Q3~: périodicité du spectre}
 
-Pour représenter la suite numérique complexe $\left\{h[k]\right\}$
-graphiquement, on placera les points $h[k]\in\C$ dans le plan
-complexe en indiquant leur indice $k$ à côté.
+\question{Q3~: Fréquence normalisée}
 
-\begin{tikzpicture}
+On va représenter la suite numérique complexe $\left\{h[k]\right\}$
+comme dans la figure~\ref{fig:phaseur_continu}, où on ajoutera les
+échantillons $h[k]\in\C$ sous forme de petits cercle noirs en
+indiquant l'indice $k$ à côté.
 
-	\begin{axis}[
-			anchor = origin,  x=1.5cm, y=1.5cm,
-			ymin=-1.5, ymax=1.5,
-			xmin=-1.5, xmax = 1.5,
-			ytick = {0},	
-			xtick={-1,1 },
-			axis lines=center, 
-			xlabel={$\mathbb{R}$},
-			ylabel={$\mathbb{I}$},
-			ylabel style = {anchor=east, thick, black},
-			xlabel style = {anchor=west, thick, black},
-			grid=minor,
-			help lines]
- 		\draw (0,0) circle (1);
-		\draw [very thick, black, fill=black] ({1.3*cos(0)},{1.3*sin(0)}) circle (0.05) ;
-		\draw [very thick] ({1.3*cos(20)},{1.3*sin(20)}) circle (0.05) node[right] {} ;
-		\draw [very thick] ({1.3*cos(40)},{1.3*sin(40)}) circle (0.05) node[right] {} ;
-		\draw [very thick] ({1.3*cos(60)},{1.3*sin(60)}) circle (0.05) node[right] {} ;
-		\draw [thick,->] ({1.3*cos(3},{1.3*sin(3)}) arc (3:17:1.3)  node[right] {} ;
-		\draw [thick,->] ({1.3*cos(23)},{1.3*sin(23)}) arc (23:37:1.3) node[right] {} ;
-		\draw [thick,->] ({1.3*cos(43)},{1.3*sin(43)}) arc (43:57:1.3) node[right] {} ;
-		\draw [thick,->,dashed] ({1.3*cos(63)},{1.3*sin(63)}) arc (63:77:1.3) node[right] {} ;
-		\node [black ,  thick] (q0) at (1.4,0.2) {$q^0$};
-		\node [black ,  thick] (q1) at (1.4,0.6) {$q^1$};
-		\node [black ,  thick] (q2) at (1.2,0.9) {$q^2$};
-		\node [black ,  thick] (q3) at (0.9,1.2) {$q^3$};
-\end{axis}
+\hspace{-1cm}\begin{tikzpicture}
+  \def\teta{10}
+  \def\delt{40}
+  \def\ro{1.5}
+  \begin{axis}[
+    rotate=90,
+    anchor = origin,
+    axis lines=center, 
+    x=2cm, y=2cm,
+    xmin=-1.7, xmax = 2, ymin=-2, ymax=2, 
+    ticks = none,
+    xlabel={$\Re$}, ylabel={$\Im$},
+    ylabel style = {anchor=east, thick, black}, xlabel style = {anchor=west, thick, black},
+    ]
+    
+    \node [black, anchor=south west] (un) at (1,0) {$1$};
+    \node [black, anchor=north west] (mun) at (-1,0) {$-1$};
+    \node [black, anchor=south east] (i) at (0,1) {$i$};
+    \node [black, anchor=south west] (mi) at (0,-1) {$-i$};
+    
+    \draw (0,0) circle (1);
+    \draw [very thick, fill=black] (\teta-\delt:\ro) circle (0.05) node[above right] (hnmu) {$h[N-1]$} ;
+    \draw [very thick, black] (\teta:\ro) circle (0.05) node[above left] (h0) {$h[0]$} ;
+    \draw [very thick, fill=black] (\teta+\delt:\ro) circle (0.05) node[above left] (h1) {$h[1]$} ;
+    \draw [very thick, fill=black] (\teta+2*\delt:\ro) circle (0.05) node[above left] (h2) {$h[2]$} ;
+    \draw [very thick, fill=black] (\teta+3*\delt:\ro) circle (0.05) node[left] (h3) {$h[3]$} ;
+    \draw [thick,->] (\teta:\ro) arc (\teta:\teta+\delt-3:\ro)  node[right] {} ;
+    \draw [thick,->] (\teta+\delt:\ro) arc (\teta+\delt:\teta+2*\delt-3:\ro)  node[right] {} ;
+    \draw [thick,->] (\teta+2*\delt:\ro) arc (\teta+2*\delt:\teta+3*\delt-3:\ro) node[right] {} ;
+    \draw [thick,->,dashed] (\teta+3*\delt:\ro) arc (\teta+3*\delt:\teta+4*\delt-3:\ro) node[right] {};
+    \draw [thick,->] (\teta-\delt:\ro) arc (\teta-\delt:\teta-3:\ro) node[right] {};
+    \draw [thick,->,dashed] (\teta-2*\delt:\ro) arc (\teta-2*\delt:\teta-\delt-3:\ro) node[right] {};
+    \draw [thick,dotted] (\teta-2.2*\delt:\ro) arc (\teta-2.2*\delt:\teta-4.8*\delt:\ro) node[right] {};
+  \end{axis}
 
-\end{tikzpicture}
+  \draw node at (-1,2) {Cas d'un signal N-périodique~:};
+  \draw node at (-1,0) {$\quad \leftrightarrow \quad s = (\!( h[0],\;\; h[1],\;\; \dots,\;\; h[N-1] )\!)$};
+  \draw node at (-0.5,-2){$\quad \leftrightarrow \quad s \approx (\!( \underbrace{1.5+0.2 i}_{h[0]},\;\; \underbrace{1+1.1 i}_{h[1]},\;\; \dots, \underbrace{1.4-i}_{h[N-1]}\;\; )\!)$};
+\end{tikzpicture} 
 
 Représentez graphiquement $\vec{h}$ pour $q=e^{i\,\frac{\pi}{2}}$,
 vous remarquerez que ce signal est $4$ périodique~: on le notera
-$h_4$.
+$h_4$. On donnera la suite numérique $h_4$ sous forme d'un tuple de 4 valeurs
+complexes comme dans la figure ci-dessus.
 
-Représentez alors la suite numérique $h_4$ par un tuple de
-4 valeurs complexes~:
+L'onde continue $e^{i.\omega t}=e^{i.2\pi.f.t}$ s'échantillonne en
+$e^{i.\omega \overbrace{k
+    T_e}^{t}}=e^{i.2\pi.\frac{f}{F_e}.k}$. Exprimez tous les couples
+$(f, F_e)$ permettant d'obtenir ce même signal discret $h_4$.
 
-$\ldp\overbrace{1}^{k=0},q, q^2, q^3\rdp = \ldp q^3, \overbrace{1}^{k=0},q, q^2 \rdp=\dots$ où les doubles parenthèses indiquent que la suite est périodique.
+\begin{remarque}
+  Seul l'incrément angulaire $\Delta$ de
+  $q=e^{i.\overbrace{2\pi\frac{f}{F_e}}^{\Delta}}$
+  identifie une onde pure discrète. On
+  préfère alors  utiliser la \textbf{fréquence normalisée}
+  $\frac{f}{F_e}$, notée $\widetilde{f}$.
+
+  En discret, on calcule les transformées de Fourier et trace les spectres en utilisant
+  les fréquences normalisées.  Cela permet de s'affranchir du fait
+  qu'un signal à 4Hz échantillonné toutes les secondes, donnera
+  exactement les même échantillons qu'un signal à 4kHz échantillonné
+  toutes les milisecondes.
+
+  On remarque qu'une fréquence $\widetilde{f}=\frac{1}{4}$ donne un
+  signal 4 périodique. On généralise avec une fréquence normalisée
+  rationnelle $\frac{p}{q}$ qui sera $q$ périodique mais contenant $p$
+  battements ou pseudo-périodes.
+
+  Dans le cas d'une fréquence irrationnelle, \textbf{un signal
+    périodique continu, devient apériodique (ou pseudo-périodique)
+    lorsqu'on l'échantillonne~!}
+  
+\end{remarque}
+
+\question{Q3~: périodicité du spectre}
+
 
 Faites de même avec $q=e^{i\,\frac{5\pi}{2}}$ et
 $q=e^{i\,\frac{-3\pi}{2}}$. Cela devrait vous aider à trouver,
-pour une pulsation d'échantillonnage
-$\omega_e=2\pi\,F_e=\frac{2\pi}{T_e}$ donnée, \textbf{TOUTES}
-les pulsations $\omega$ qui permetttent d'avoir ce signal
-discret 4 périodique $h_4$.
+\textbf{TOUTES} les fréquences normalisées donnant exactement le même
+signal discret 4 périodique $h_4$.
 
 \begin{remarque}
   On en déduit que toute les ondes continues pures de
   pulsation $\omega + n.\omega_e$, et donc de fréquence
   $f + n.F_e$, donnent exactement le même signal discret~!
 
-  Lorsque l'on observe un signal fini de N échantillons, la
-  transformée de \Fourier{} d'un Signal Discret (TFSD) étend ce signal
-  par des zéros pour obtenir la suite infinie
-
   
-  $( \dots,0,0, \overbrace{s[0]}^{}, \dots s[N-1],0,0,\dots)$ à
-  support borné.
-
-  
-  Il suffit de décomposer/calculer la TFSD uniquement pour les
+  Lorsque l'on calculera une représentation de Fourier du signal
+  discret, ou l'orsque l'on dessinera le spectre en fréquences, il
+  suffira de décomposer/calculer la TFSD uniquement pour les
   fréquences $f \in \left[0 , F_e\right[$. En effet, la composante
-  discrète à la fréquence $f$ est $e^{i\,2\pi\,f\,\frac{k}{F_e}}$ et
+  discrète à la fréquence $f$ est $e^{i\,2\pi\,k\,\frac{f}{F_e}}$ et
   un calcul pour une fréquence $f + n.F_e$ donnerait le même résultat
   que pour $f$ puisque on aurait exactement le même signal discret.
 
   Un signal discret est ainsi transformé par \textbf{la TFSD en
     fonction continue de $f$ qui est $F_e$ périodique} et seule les
-  fréquences $0\le f<F_e$ sont utiles.
-  
-  Seul l'incrément angulaire $\Delta$ de
-  $q=e^{i.\overbrace{2\pi\frac{f}{F_e}}^{\Delta}}$
-  identifie une onde pure discrète. On
-  préfère alors  utiliser la \textbf{fréquence normalisée}
-  $\frac{f}{F_e}$, notée $\tilde{f}$.
-  
+  fréquences $0\le f<F_e$ sont utiles à représenter.
+
 \end{remarque}
 
-\question{Q4 : signaux temporel  périodiques et spectre discrets}
+\question{Q4 : Fréquences négatives, conjugué et antipodal}
 
-On cherche maintenant toute les fréquences pouvant donner un signal
-temporel de période 8.  Représentez graphiquement le signal de
-fréquence normalisée $\tilde{f_0}=\frac{1}{8}$ pour
-$q=e^{i\,2\pi\frac{1}{8}}$ et vérifiez la question précédente avec les
-fréquences $\tilde{f}=\frac{9}{8}$ et $\tilde{f}=\frac{-7}{8}$ par
-périodicité du spectre en fréquence.
+Cherchez la fréquence normalisée $\widetilde{f_0}$ permettant d'obtenir un
+signal discret de période 8 et représentez-le graphiquement dans le
+plan complexe.
 
+Vérifiez la périodicité du spectre avec les fréquences
+$\widetilde{f_0}+1=\frac{9}{8}$ et $\widetilde{f}-1=\frac{-7}{8}$.
 
 Donnez la séquence $\ldp \overbrace{1}^{},\dots, q^7 \rdp$ pour
 vérifier que ce signal discret est bien 8 périodique.
 
-Quelles sont les périodes des signaux à $2\tilde{f_0}$, $3\tilde{f_0}$, $4\tilde{f_0}$ ? Sont-ils tous 8-périodiques ?
+Représentez le signal obtenu pour une fréquence négative
+$\widetilde{f}=-\widetilde{f_0}$ que l'on note $h_{-8}$ . Remarquez que ce
+signal est le conjugué de celui de fréquence positive~:
+$h_{-8}=\overline{h_8}$.
 
-Généralisez, en gardant $k$ l'indice temporel de $t=k.T_e$ et en prenant $n$ pour indice des fréquences de $f=n.\tilde{f_0}=n\frac{F_e}{N}$. On montrera que les ondes pures $e^{i.2\pi.\overbrace{n\,f_0}^{f}.\overbrace{k\,T_e}^{t}}$ sont toutes N périodiques dans le temps. 
+Comme ces signaux sont 8-périodiques, vous devez aussi constater que
+l'on obtient le signal joué à l'envers dans le temps~:$k\to h[-k]$. Ce
+signal retourné dans le temps est nommé \textbf{signal antipodal}.
+
+\begin{remarque}
+
+  Une manière d'extraire le double de la partie réelle d'un signal
+  complexe $\widehat{z}.e^{i.2\pi.\widetilde{f}.k}$ est de rajouter son
+  conjugué
+  $\overline{\widehat{z}}.\overline{e^{i.2\pi.\widetilde{f}.k}} =
+  \overline{\widehat{z}}.e^{i.2\pi.\widetilde{-f}.k}$. Ce conjugué fait
+  ainsi apparaître une fréquence négative $\widetilde{-f}$.
+
+  Ainsi un signal \textbf{réel} de fréquence positive
+  $\rho\cos(2\pi.\widetilde{f}.k)$ est représenté par une onde
+  complexe de fréquence $\widetilde{f}$ et son conjugué de fréquence
+  négative~:
+
+ $$ \rho\cos(2\pi.\widetilde{f}.k) = \Reel{\widehat{z}.e^{i.2\pi.\widetilde{f}.k}} = \frac{\widehat{z}}{2}.e^{i.2\pi.\widetilde{f}.k} + \frac{\overline{\widehat{z}}}{2}.e^{i.2\pi.\widetilde{-f}.k}$$
+
+ La composante $c(f)=\frac{\widehat{z}}{2}$ du spectre d'un signal réel
+ amène forcément une composante de fréquence négative d'amplitude
+ conjuguée $c(-f)=\frac{\overline{\widehat{z}}}{2}$
+
+ \textbf{Le spectre d'un signal discret réel comporte donc une \emph{symétrie de Hilbert}~: $c(f)=\overline{c(-f)}$}
+
+ \end{remarque}
+
+\question{Q5 : signaux temporel  périodiques et spectres discrets}
+
+On cherche maintenant toutes les fréquences pouvant donner un signal
+temporel de période 8 pouvant être différent de $h_8$. 
+
+Quelles sont les périodes des signaux à $2\widetilde{f_0}$,
+$3\widetilde{f_0}$, $4\widetilde{f_0}$ ? Sont-ils tous 8-périodiques~?
+
+Généralisez, en gardant $k$ l'indice temporel de $t=k.T_e$, et en notant
+$n$ l'indice des fréquences multiples~:
+$f=n.\widetilde{f_0}=n\frac{F_e}{N}$. On montrera que les ondes pures
+$e^{i.2\pi.\overbrace{n\,f_0}^{f}.\overbrace{k\,T_e}^{t}}$ sont toutes
+N périodiques dans le temps.
+
 \begin{remarque}
 
   Contrairement à la TFSD qui étend un signal à l'infini avec des zéros, la TFD/FFT (Transformée de \Fourier{} Discrète, et son algorithme de calcul rapide Fast Fourier Transform) considère que le signal est N périodique de la forme $\ldp \overbrace{s[0]}^{}, \dots s[N-1] \rdp$.
@@ -459,29 +755,35 @@ Généralisez, en gardant $k$ l'indice temporel de $t=k.T_e$ et en prenant $n$ p
   fréquence multiples $n.f_0= n.\frac{F_e}{N}$ sont N périodiques et
   donc utiles pour décomposer le signal.
 
-Un signal complexe de N points en temporel est donc transformé par \textbf{la TFD en un signal discret de N points complexes données aux fréquences $f \in \left\{n.f_0 | 0 \le n<N\right\}$.}
-La TFD est donc un \textbf{signal discret en fréquence} échantillonné à la \textbf{résolution $f_0=\frac{F_e}{N}$} appellée \textbf{résolution fréquentielle}.
-
+  Un signal complexe de N points en temporel est donc transformé par
+  \textbf{la TFD en un signal discret de N points complexes données
+    aux fréquences $f \in \left\{n.f_0 | 0 \le n<N\right\}$.}  La TFD
+  est donc un \textbf{signal discret en fréquence}, échantillonné à la
+  \textbf{résolution $f_0=\frac{F_e}{N}$} appellée \textbf{résolution
+    fréquentielle}.
 \end{remarque}
 
 
-Pour dessiner l'échelle de fréquence d'une TFD, dessinez un axe fréquentiel en indiquant les fréquences normalisées allant de $\frac{-3}{8}$ à $\frac{13}{8}$.
+
+\question{Q6 : Tracé d'un spectre d'un signal 8 périodique}
+
+
+Donnez ainsi les composantes $c(0)$, $c(f_0)$ et $c(-f_0)$ du signal 8
+périodique $s[k]= 1 + sin(\frac{2\pi}{8}.k)$.
+
+
+Dessinez un axe en fréquences normalisées $n\widetilde{f_0}$ pour n allant de $-3$ à $13$.
 
 Complétez cette échelle en indiquant les fréquences équivalentes les
 plus petites en valeur absolue : par exemple remplacer $\frac{9}{8}$
-par $\frac{1}{8}$ par périodicité du spectre de la question~3~; mais
+par $\frac{1}{8}$ par périodicité du spectre de la question~Q3~; mais
 aussi, remplacer $\frac{7}{8}$ par $-\frac{1}{8}$.
 
-En déduire que la fréquence la plus rapide en discret n'est pas infinie~! Cette fréquence est la fréquence de Nyquist.
+
+En déduire que la fréquence la plus rapide en discret n'est pas
+infinie~! Cette fréquence est la fréquence de Nyquist.
 
 
-\question{Q5 : Dualité, conjugué et antipodal}
-
-Représentez la suite de fréquence $\tilde{f}=\frac{-1}{8}$. Vous devez
-constater que l'on obtient le \textbf{signal antipodal} (signal joué à
-l'envers~:$k\to h[-k]$) de $h_8$.
-
-De même vous remarquez que ce signal, noté $h_{-8}$, pour la fréquence $\tilde{f}=\frac{-1}{8}$ est aussi le conjugué de $h_8$ à la fréquence $\tilde{f}=\frac{1}{8}$.
 
 
 
